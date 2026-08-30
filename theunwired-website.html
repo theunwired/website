@@ -28,6 +28,9 @@
       <a href="industries.html">Industries</a>
       <a href="work.html">Work</a>
       <a href="#process">How we work</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
     </div>
     <div class="navright">
       <button type="button" class="navcta js-open-contact">Start a conversation</button>
@@ -35,7 +38,8 @@
   </div>
 </nav>
 
-<header class="hero">
+<header class="hero" id="hero">
+  <div class="hero-scene" id="heroScene" aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero-mark" aria-label="theunwired">
       <div class="hero-lockup" id="heroLockup">
@@ -45,8 +49,8 @@
         </span>
         <span class="hero-mid" id="heroMid">
           <svg id="heroWireSvg" viewBox="0 0 96 64" width="90" height="60">
-            <path id="pathA" fill="none" stroke="#F2F1ED" stroke-width="5"></path>
-            <path id="pathB" fill="none" stroke="#2E8B6E" stroke-width="5"></path>
+            <path id="pathA" d="M2 20 H30 L66 44 H94" fill="none" stroke="#F2F1ED" stroke-width="5"></path>
+            <path id="pathB" d="M2 44 H30 L66 20 H94" fill="none" stroke="#2E8B6E" stroke-width="5"></path>
           </svg>
         </span>
         <span class="hero-word" id="heroWord">theunwired</span>
@@ -59,6 +63,10 @@
       <a href="#services" class="btn btn-primary">See what you get</a>
       <button type="button" class="btn btn-ghost js-open-contact">Talk to us</button>
     </div>
+  </div>
+  <div class="scroll-cue" aria-hidden="true">
+    <span>Scroll</span>
+    <span class="cue-line"></span>
   </div>
 </header>
 
@@ -214,6 +222,9 @@
     <div class="flinks">
       <a href="industries.html">Industries</a>
       <a href="work.html">Work</a>
+      <a href="about.html">About</a>
+      <a href="pricing.html">Pricing</a>
+      <a href="blog.html">Blog</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
@@ -255,11 +266,14 @@
 
 <script>
 (function(){
-  // Hero logo untangle — plays once on load, then settles.
-  // Two wire paths cross into an X, straighten, migrate into the
-  // stacked bar mark, then a green sweep passes through the wordmark.
+  // Hero logo untangle — scroll-linked, per the brand guidelines.
+  // Lands tangled (hard-wired). Scrolling through the hero untangles the
+  // wires and migrates them into the settled bar mark; scrubbing back up
+  // re-tangles it. The green sweep across the wordmark fires once, the
+  // first time the visitor reaches the fully-settled state, and never again.
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  var hero = document.getElementById('hero');
   var pathA = document.getElementById('pathA');
   var pathB = document.getElementById('pathB');
   var leadBarA = document.getElementById('leadBarA');
@@ -281,6 +295,8 @@
   }
 
   function settle(){
+    pathA.setAttribute('d', wirePath(1, 1));
+    pathB.setAttribute('d', wirePath(1, -1));
     leadBarA.style.width = '50px';
     leadBarB.style.width = '29px';
     leadBarA.style.opacity = 1;
@@ -291,31 +307,29 @@
     heroMid.style.marginRight = '0px';
     heroWord.style.color = 'var(--ink)';
     heroWord.style.backgroundImage = 'none';
-    heroWord.style.webkitTextFillColor = '';
   }
 
-  if(reduceMotion || !pathA || !pathB){
+  if(reduceMotion || !pathA || !pathB || !hero){
     if(pathA) settle();
     return;
   }
 
-  var start = null;
-  var TOTAL = 2500; // ms, matches beats 1-3 in the brand guidelines
+  leadBarA.style.opacity = 0;
+  leadBarB.style.opacity = 0;
 
-  function frame(ts){
-    if(start === null) start = ts;
-    var elapsed = ts - start;
-    var p, sweepProg = -1;
+  var hasSwept = false;
+  var sweepStart = null;
+  var SWEEP_MS = 900;
+  var ticking = false;
 
-    if(elapsed < 1400){
-      p = ease(elapsed / 1400);
-    } else if(elapsed < TOTAL){
-      p = 1;
-      sweepProg = (elapsed - 1400) / 1100;
-    } else {
-      settle();
-      return;
-    }
+  function render(){
+    ticking = false;
+
+    // Progress the mark untangles over: from the top of the hero to 60%
+    // of one viewport height scrolled.
+    var span = window.innerHeight * 0.6;
+    var scrolled = clamp(-hero.getBoundingClientRect().top / span);
+    var p = ease(scrolled);
 
     var untangle = clamp(p / 0.6);
     var migrate = clamp((p - 0.6) / 0.4);
@@ -333,25 +347,47 @@
     heroMid.style.marginLeft = (6 * (1 - migrate)) + 'px';
     heroMid.style.marginRight = (6 * (1 - migrate)) + 'px';
 
-    if(sweepProg >= 0 && sweepProg < 1){
-      var x = -25 + sweepProg * 150;
-      heroWord.style.backgroundImage = 'linear-gradient(96deg,#F2F1ED ' + (x-13) + '%,#7FE8C2 ' + x + '%,#F2F1ED ' + (x+13) + '%)';
-      heroWord.style.webkitBackgroundClip = 'text';
-      heroWord.style.backgroundClip = 'text';
-      heroWord.style.color = 'transparent';
-    } else {
+    if(p >= 1 && !hasSwept){
+      hasSwept = true;
+      sweepStart = performance.now();
+      requestAnimationFrame(sweepFrame);
+    }
+
+    if(!hasSwept){
       heroWord.style.backgroundImage = 'none';
       heroWord.style.color = 'var(--ink)';
     }
-
-    requestAnimationFrame(frame);
   }
 
-  leadBarA.style.opacity = 0;
-  leadBarB.style.opacity = 0;
-  requestAnimationFrame(frame);
+  function sweepFrame(ts){
+    var elapsed = ts - sweepStart;
+    var sweepProg = elapsed / SWEEP_MS;
+    if(sweepProg >= 1){
+      heroWord.style.backgroundImage = 'none';
+      heroWord.style.color = 'var(--ink)';
+      return;
+    }
+    var x = -25 + sweepProg * 150;
+    heroWord.style.backgroundImage = 'linear-gradient(96deg,#F2F1ED ' + (x-13) + '%,#7FE8C2 ' + x + '%,#F2F1ED ' + (x+13) + '%)';
+    heroWord.style.webkitBackgroundClip = 'text';
+    heroWord.style.backgroundClip = 'text';
+    heroWord.style.color = 'transparent';
+    requestAnimationFrame(sweepFrame);
+  }
+
+  function onScroll(){
+    if(!ticking){
+      ticking = true;
+      requestAnimationFrame(render);
+    }
+  }
+
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  render();
 })();
 </script>
 <script src="assets/site.js"></script>
+<script type="module" src="assets/scene.js"></script>
 </body>
 </html>
