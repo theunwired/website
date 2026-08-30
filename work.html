@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Work — The Unwired</title>
+<meta name="description" content="Projects The Unwired has built and handed over, documented as they land.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="index.html" class="lockup nav-lockup">
+      <span class="mark" aria-hidden="true">
+        <span class="mark-bar mark-bar-1"></span>
+        <span class="mark-bar mark-bar-2"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="navlinks">
+      <a href="index.html#shift">The shift</a>
+      <a href="index.html#services">What you get</a>
+      <a href="industries.html">Industries</a>
+      <a href="work.html" class="active">Work</a>
+      <a href="index.html#process">How we work</a>
+    </div>
+    <div class="navright">
+      <button type="button" class="navcta js-open-contact">Start a conversation</button>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="wrap">
+    <div class="kicker">Work</div>
+    <h1>Projects, documented as they land.</h1>
+    <p class="sub">We're early. A case study goes up here once it has a named process, a real outcome, and the client's sign-off, not before. Every pillar on this site is a claim until then; a single named result carries more than the whole page.</p>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <div class="work-grid">
+      <div class="work-card reveal">
+        <div>
+          <span class="tag">In progress</span>
+        </div>
+        <div>
+          <h3>First engagement, underway</h3>
+          <p>We're currently building against a live process for an early client. Details, numbers, and scope go up here once the work is done and they've agreed to be named.</p>
+          <span class="status-tag">Case study pending</span>
+        </div>
+      </div>
+      <div class="work-card reveal delay-1">
+        <div>
+          <span class="tag">Open slot</span>
+        </div>
+        <div>
+          <h3>Your process could be next</h3>
+          <p>We take a small number of engagements at a time so each one gets three senior operators, not a bench. If a process is costing you real hours, start a conversation.</p>
+          <span class="status-tag">Available now</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div>
+        <h2>Be the first case study.</h2>
+        <p class="lede">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix, and if it is, this page is where the result goes.</p>
+      </div>
+      <button type="button" class="btn btn-primary js-open-contact">Start a conversation</button>
+    </div>
+  </div>
+</section>
+
+<footer class="reveal">
+  <div class="wrap">
+    <div class="fmuted">© 2026 The Unwired · AI automation, built and handed over</div>
+    <div class="flinks">
+      <a href="industries.html">Industries</a>
+      <a href="work.html">Work</a>
+      <a href="index.html#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal-overlay" id="contactOverlay" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
+    <div class="modal-head">
+      <h3 id="contactModalTitle">Start a conversation</h3>
+      <button type="button" class="modal-close" id="contactClose" aria-label="Close">✕ CLOSE</button>
+    </div>
+    <p class="modal-sub">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form id="contactForm" action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request — theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="text" name="_honey" style="display:none">
+      <div class="field">
+        <label for="cf-name">Name</label>
+        <input type="text" id="cf-name" name="Name" required>
+      </div>
+      <div class="field">
+        <label for="cf-email">Email</label>
+        <input type="email" id="cf-email" name="Email" required>
+      </div>
+      <div class="field">
+        <label for="cf-company">Company</label>
+        <input type="text" id="cf-company" name="Company">
+      </div>
+      <div class="field">
+        <label for="cf-message">What process keeps breaking?</label>
+        <textarea id="cf-message" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="modal-submit" id="contactSubmit">Send it over</button>
+      <div class="modal-status" id="contactStatus"></div>
+    </form>
+    <p class="modal-direct">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/site.js"></script>
+</body>
+</html>
