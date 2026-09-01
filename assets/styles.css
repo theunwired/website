@@ -1155,7 +1155,10 @@ h2.h-section,
   .hero-word { font-size: 30px; }
   .hero-meta { display: none; }
   .hero-copy { margin-top: 28px; }
+  .hero-copy h1 { font-size: clamp(28px, 8vw, 34px); max-width: 22ch; }
   .footer .wrap { justify-content: flex-start; }
+  .h-page { font-size: clamp(28px, 8vw, 34px); max-width: 24ch; }
+  .h-display { font-size: clamp(30px, 9vw, 38px); }
 }
 
 @media (max-width: 420px) {
