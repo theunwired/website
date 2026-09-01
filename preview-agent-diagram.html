@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preview — Agent Path Diagram</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0B0C0B; --surface:#161814; --ink:#F2F1ED; --ink-soft:#D6D7D1;
+    --slate:#7C8177; --line:#24261F; --forest:#0F5C4A; --signal:#2E8B6E;
+    --display:'Instrument Sans',sans-serif; --mono:'IBM Plex Mono',monospace;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{background:var(--bg); color:var(--ink); font-family:var(--display); -webkit-font-smoothing:antialiased;}
+  .wrap{max-width:1000px; margin:0 auto; padding:0 32px;}
+  .filler{height:70vh; display:flex; align-items:center; justify-content:center; color:var(--slate); font-family:var(--mono); font-size:13px; letter-spacing:0.08em; text-transform:uppercase; border-bottom:1px solid var(--line);}
+  .panel{
+    position:fixed; right:24px; top:24px; z-index:10; width:320px;
+    background:rgba(11,12,11,0.9); border:1px solid var(--line); padding:20px 22px;
+    display:flex; flex-direction:column; gap:10px; font-size:13px; backdrop-filter:blur(6px);
+  }
+  .panel h1{font-size:14px; font-weight:700; letter-spacing:-0.01em;}
+  .panel p{color:var(--slate); font-size:12px; line-height:1.5;}
+
+  section.diagram-section{padding:140px 0; border-bottom:1px solid var(--line);}
+  .kicker{font-family:var(--mono); font-size:12px; letter-spacing:0.14em; text-transform:uppercase; color:var(--signal); margin-bottom:14px;}
+  h2{font-family:var(--display); font-weight:700; font-size:clamp(26px,3.4vw,38px); letter-spacing:-0.02em; max-width:640px; margin-bottom:64px;}
+
+  .diagram{position:relative; width:100%;}
+  .diagram svg{display:block; width:100%; height:auto; overflow:visible;}
+  .path-base{fill:none; stroke:var(--line); stroke-width:2;}
+  .path-signal{fill:none; stroke:var(--signal); stroke-width:2; filter:drop-shadow(0 0 6px rgba(46,139,110,0.55));}
+  .lead-dot{fill:var(--signal); filter:drop-shadow(0 0 8px rgba(46,139,110,0.8));}
+
+  .nodes{position:absolute; inset:0; display:flex; justify-content:space-between; pointer-events:none;}
+  .node{
+    width:200px; display:flex; flex-direction:column; align-items:center; text-align:center; gap:14px;
+    transform:translateY(-50%); position:relative; top:50%;
+  }
+  .node .box{
+    width:100%; padding:22px 16px; border:1px solid var(--line); background:var(--surface);
+    transition:border-color .4s ease-out, box-shadow .4s ease-out, background .4s ease-out;
+  }
+  .node.lit .box{border-color:var(--signal); box-shadow:0 0 28px rgba(46,139,110,0.28); background:#131b17;}
+  .node .num{font-family:var(--mono); font-size:11px; letter-spacing:0.1em; color:var(--slate); margin-bottom:8px; transition:color .4s ease-out;}
+  .node.lit .num{color:var(--signal);}
+  .node h4{font-family:var(--display); font-size:17px; font-weight:700; color:var(--ink-soft); margin-bottom:6px; transition:color .4s ease-out;}
+  .node.lit h4{color:var(--ink);}
+  .node p{font-size:12.5px; color:var(--slate); line-height:1.5;}
+
+  .escalate{
+    margin-top:56px; padding:18px 22px; border:1px dashed var(--line); display:inline-flex; gap:12px;
+    align-items:center; font-family:var(--mono); font-size:12px; color:var(--slate);
+    transition:border-color .4s ease-out, color .4s ease-out;
+  }
+  .escalate.lit{border-color:var(--signal); color:var(--ink-soft);}
+  .escalate .dot{width:6px; height:6px; border-radius:50%; background:var(--slate); transition:background .4s ease-out;}
+  .escalate.lit .dot{background:var(--signal);}
+</style>
+</head>
+<body>
+
+<div class="panel">
+  <h1>Agent path diagram — isolated preview</h1>
+  <p>Scroll down slowly. The line draws itself and each stage lights up as you pass it — hairlines + one green stroke, per your own brand spec. Scroll back up to reverse it.</p>
+</div>
+
+<div class="filler">Scroll down ↓</div>
+
+<section class="diagram-section">
+  <div class="wrap">
+    <div class="kicker">What you get</div>
+    <h2>One loop, the same way every time.</h2>
+
+    <div class="diagram" id="diagram" style="height:180px;">
+      <svg viewBox="0 0 1000 20" preserveAspectRatio="none">
+        <path class="path-base" d="M 100 10 L 900 10"></path>
+        <path class="path-signal" id="pathSignal" d="M 100 10 L 900 10" stroke-dasharray="800" stroke-dashoffset="800"></path>
+        <circle class="lead-dot" id="leadDot" cx="100" cy="10" r="5"></circle>
+      </svg>
+      <div class="nodes">
+        <div class="node" id="node0">
+          <div class="box">
+            <div class="num">01</div>
+            <h4>Perceive</h4>
+            <p>Reads documents, screens, and systems the way a person would.</p>
+          </div>
+        </div>
+        <div class="node" id="node1">
+          <div class="box">
+            <div class="num">02</div>
+            <h4>Reason</h4>
+            <p>Plans its next step against the goal, not a fixed script.</p>
+          </div>
+        </div>
+        <div class="node" id="node2">
+          <div class="box">
+            <div class="num">03</div>
+            <h4>Act</h4>
+            <p>Operates your systems directly, the same way a person would.</p>
+          </div>
+        </div>
+        <div class="node" id="node3">
+          <div class="box">
+            <div class="num">04</div>
+            <h4>Check</h4>
+            <p>Verifies its own work before it calls the job done.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="escalate" id="escalate">
+      <span class="dot"></span>
+      <span>Uncertain at any step → escalates to a human, doesn't guess</span>
+    </div>
+  </div>
+</section>
+
+<div class="filler">More content below ↓</div>
+<div class="filler">Keep scrolling to see it reverse on the way back up too</div>
+
+<script>
+(function(){
+  var section = document.getElementById('diagram');
+  var pathSignal = document.getElementById('pathSignal');
+  var leadDot = document.getElementById('leadDot');
+  var svgPath = pathSignal;
+  var totalLength = svgPath.getTotalLength();
+  var nodes = [document.getElementById('node0'), document.getElementById('node1'), document.getElementById('node2'), document.getElementById('node3')];
+  var escalate = document.getElementById('escalate');
+
+  pathSignal.style.strokeDasharray = totalLength;
+  pathSignal.style.strokeDashoffset = totalLength;
+
+  function clamp(x){ return Math.max(0, Math.min(1, x)); }
+
+  function render(){
+    var rect = section.getBoundingClientRect();
+    var vh = window.innerHeight;
+    // progress 0 when the diagram's top enters the bottom of the viewport,
+    // 1 when its bottom reaches a bit above the top — draws in as you
+    // scroll past it, no extra empty scroll space required
+    var start = vh * 0.85;
+    var end = vh * 0.25;
+    var p = clamp((start - rect.top) / (start - end + rect.height));
+
+    pathSignal.style.strokeDashoffset = totalLength * (1 - p);
+
+    var pt = svgPath.getPointAtLength(totalLength * p);
+    leadDot.setAttribute('cx', pt.x);
+    leadDot.setAttribute('cy', pt.y);
+    leadDot.style.opacity = p > 0.01 && p < 0.999 ? 1 : 0;
+
+    nodes.forEach(function(node, i){
+      var threshold = i / (nodes.length - 1);
+      node.classList.toggle('lit', p >= threshold - 0.02);
+    });
+    escalate.classList.toggle('lit', p >= 0.98);
+  }
+
+  var ticking = false;
+  function onScroll(){
+    if(!ticking){ ticking = true; requestAnimationFrame(function(){ render(); ticking = false; }); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll);
+  render();
+})();
+</script>
+</body>
+</html>

@@ -1,202 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Industries — The Unwired</title>
-<meta name="description" content="Where The Unwired's agents run: finance, supply chain, customer operations, IT, HR, and procurement.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Industries · The Unwired</title>
+<meta name="description" content="Finance, supply chain, customer operations, revenue operations and compliance. We sell by process, not by vertical.">
+<link rel="canonical" href="https://theunwired.in/industries.html">
+<meta property="og:title" content="Industries · The Unwired">
+<meta property="og:description" content="Finance, supply chain, customer operations, revenue operations and compliance. We sell by process, not by vertical.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/industries.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=1">
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <a href="index.html" class="lockup nav-lockup">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
       <span class="mark" aria-hidden="true">
-        <span class="mark-bar mark-bar-1"></span>
-        <span class="mark-bar mark-bar-2"></span>
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
       </span>
       <span class="wordmark">theunwired</span>
     </a>
-    <div class="navlinks">
-      <a href="index.html#shift">The shift</a>
-      <a href="index.html#services">What you get</a>
-      <a href="industries.html" class="active">Industries</a>
-      <a href="work.html">Work</a>
-      <a href="index.html#process">How we work</a>
-      <a href="about.html">About</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="blog.html">Blog</a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a href="#rows" aria-current="page">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
     </div>
-    <div class="navright">
-      <button type="button" class="navcta js-open-contact">Start a conversation</button>
-    </div>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
   </div>
 </nav>
 
-<header class="page-hero">
-  <div class="wrap">
-    <div class="kicker">Where it runs</div>
-    <h1>Built for the processes that keep breaking.</h1>
-    <p class="sub">Six functions where agentic automation replaces brittle scripts with a system that adapts. We go deep on one process at a time inside each of these, not everything at once.</p>
-  </div>
-</header>
+<main id="main">
 
-<section>
-  <div class="wrap">
-    <div class="ind-detail">
-      <div class="ind-row reveal">
-        <div>
-          <h3>Finance & accounting</h3>
-          <span class="status">Where we're focused</span>
-        </div>
-        <div>
-          <p>Invoice exceptions, reconciliations, and close-cycle work that used to sit in someone's queue until a human had time for it.</p>
-          <ul>
-            <li>Invoice matching and exception routing</li>
-            <li>Multi-source reconciliation</li>
-            <li>Month-end close checklists</li>
-          </ul>
-        </div>
+  <section class="sec--page-hero" data-section="Overview">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Where it runs</span>
       </div>
-      <div class="ind-row reveal delay-1">
+      <h1 class="h-page">Built for the processes that keep breaking.</h1>
+      <p class="lede">We don't sell by vertical. We sell by process. These are the functions where the work is high-volume, exception-heavy, and spread across systems that were never built to talk.</p>
+    </div>
+  </section>
+
+  <section class="sec--flush" id="rows" data-section="Finance">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
         <div>
-          <h3>Supply chain</h3>
-          <span class="status">Where we're focused</span>
+          <span class="ind-row__num">01</span>
+          <h2>Finance &amp; accounting</h2>
+          <span class="ind-row__fit">Highest fit</span>
         </div>
         <div>
-          <p>Order matching, vendor communication, and shipment exceptions handled without a ticket sitting in a queue.</p>
-          <ul>
-            <li>PO-to-invoice-to-receipt matching</li>
-            <li>Vendor follow-up and exception chasing</li>
-            <li>Shipment delay triage</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ind-row reveal delay-2">
-        <div>
-          <h3>Customer operations</h3>
-          <span class="status">Where we're focused</span>
-        </div>
-        <div>
-          <p>Multi-step case resolution across systems that were never built to talk to each other.</p>
-          <ul>
-            <li>Case triage and first response</li>
-            <li>Cross-system data lookups</li>
-            <li>Escalation to a human at the right point</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ind-row reveal delay-3">
-        <div>
-          <h3>IT operations</h3>
-          <span class="status">Where we're focused</span>
-        </div>
-        <div>
-          <p>Access requests, routine incidents, and provisioning resolved end-to-end by an agent on call.</p>
-          <ul>
-            <li>Access request approval and provisioning</li>
-            <li>Routine incident triage</li>
-            <li>Standard change execution</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ind-row reveal delay-4">
-        <div>
-          <h3>HR & people ops</h3>
-          <span class="status">Where we're focused</span>
-        </div>
-        <div>
-          <p>Onboarding, policy Q&A, and document-heavy processes that stall on missing paperwork.</p>
-          <ul>
-            <li>New-hire onboarding checklists</li>
-            <li>Policy and benefits Q&A</li>
-            <li>Document collection and chasing</li>
-          </ul>
-        </div>
-      </div>
-      <div class="ind-row reveal">
-        <div>
-          <h3>Procurement</h3>
-          <span class="status">Where we're focused</span>
-        </div>
-        <div>
-          <p>Contract review, PO matching, and approvals routed and resolved without manual chasing.</p>
-          <ul>
-            <li>Contract clause review</li>
-            <li>PO and approval routing</li>
-            <li>Vendor onboarding checks</li>
+          <p>Invoice exceptions, reconciliations, and close-cycle work that used to sit in someone's queue. The rules already exist as tolerances, which is exactly what an agent needs to act safely.</p>
+          <ul class="specifics">
+            <li>Three-way match with variance tolerances your finance lead sets</li>
+            <li>Vendor query drafting and follow-up, escalated when it stalls</li>
+            <li>Month-end schedules assembled and flagged, never posted blind</li>
           </ul>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section>
-  <div class="wrap">
-    <div class="cta-band reveal">
-      <div>
-        <h2>Don't see your process here?</h2>
-        <p class="lede">This list is where we're focused, not a limit. Tell us what's breaking and we'll tell you honestly whether an agent is the right fix.</p>
+  <section class="sec--flush" data-section="Supply chain">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">02</span>
+          <h2>Supply chain</h2>
+          <span class="ind-row__fit">Highest fit</span>
+        </div>
+        <div>
+          <p>Order matching, vendor communication, and shipment exceptions handled without a ticket. Most of the delay here is waiting for a human to read an email and update a second system.</p>
+          <ul class="specifics">
+            <li>Order acknowledgements reconciled against the PO automatically</li>
+            <li>Delay notices read, impact assessed, the right planner told</li>
+            <li>Short shipments raised with evidence attached, not a blank form</li>
+          </ul>
+        </div>
       </div>
-      <button type="button" class="btn btn-primary js-open-contact">Start a conversation</button>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="reveal">
+  <section class="sec--flush" data-section="Customer ops">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">03</span>
+          <h2>Customer operations</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Multi-step case resolution across systems that were never built to talk to each other. Not a chatbot on the front. The work behind the ticket, done properly.</p>
+          <ul class="specifics">
+            <li>Case triaged, context gathered from every system before a human sees it</li>
+            <li>Refunds and credits prepared to policy, approved by a person</li>
+            <li>Follow-ups chased until the case actually closes</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Rev ops">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">04</span>
+          <h2>Revenue operations</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Quote-to-cash steps that stall between sales, finance and delivery. The CRM is rarely wrong because people are careless. It's wrong because updating it is someone's fourth priority.</p>
+          <ul class="specifics">
+            <li>Contract terms extracted and pushed into the billing record</li>
+            <li>Renewal and usage signals assembled before the QBR, not during it</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Compliance">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">05</span>
+          <h2>Compliance &amp; audit</h2>
+          <span class="ind-row__fit">Evidence work only</span>
+        </div>
+        <div>
+          <p>Gathering evidence, not making the judgement. The agent assembles the pack and cites every source. A person signs it. That line does not move.</p>
+          <ul class="specifics">
+            <li>Control evidence collected on schedule with the trail attached</li>
+            <li>Exceptions surfaced early instead of during the audit window</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="Where we say no">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Where we say no</span>
+        </div>
+        <p>Anything where the process is undocumented and contested, where the decision carries legal exposure, or where a scheduled job would fix it for a fraction of the cost. We would rather lose the engagement than build the wrong thing well.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--cta" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Don't see your process?</h2>
+          <p>Describe it in two sentences. We'll tell you honestly whether an agent is the right fix.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
   <div class="wrap">
-    <div class="fmuted">© 2026 The Unwired · AI automation, built and handed over</div>
-    <div class="flinks">
-      <a href="industries.html">Industries</a>
-      <a href="work.html">Work</a>
-      <a href="about.html">About</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="blog.html">Blog</a>
-      <a href="index.html#contact">Contact</a>
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>
 
-<div class="modal-overlay" id="contactOverlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
-    <div class="modal-head">
-      <h3 id="contactModalTitle">Start a conversation</h3>
-      <button type="button" class="modal-close" id="contactClose" aria-label="Close">✕ CLOSE</button>
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
     </div>
-    <p class="modal-sub">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
-    <form id="contactForm" action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New conversation request — theunwired.in">
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
       <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="field">
-        <label for="cf-name">Name</label>
-        <input type="text" id="cf-name" name="Name" required>
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
       </div>
       <div class="field">
-        <label for="cf-email">Email</label>
-        <input type="email" id="cf-email" name="Email" required>
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
       </div>
       <div class="field">
-        <label for="cf-company">Company</label>
-        <input type="text" id="cf-company" name="Company">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
       </div>
-      <div class="field">
-        <label for="cf-message">What process keeps breaking?</label>
-        <textarea id="cf-message" name="Message" required></textarea>
-      </div>
-      <button type="submit" class="modal-submit" id="contactSubmit">Send it over</button>
-      <div class="modal-status" id="contactStatus"></div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
     </form>
-    <p class="modal-direct">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
   </div>
 </div>
 
-<script src="assets/site.js"></script>
+<script src="assets/wires.js?v=1"></script>
+<script src="assets/ambient.js?v=1"></script>
+<script src="assets/site.js?v=1"></script>
 </body>
 </html>

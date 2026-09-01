@@ -1,393 +1,468 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Unwired — AI Automation Studio</title>
-<meta name="description" content="The Unwired is an AI automation studio for operators. We build the working system, tailored to your process, and hand you the keys.">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unwired · AI automation, built and handed over</title>
+<meta name="description" content="We build AI agents that run the operational processes that keep breaking, then hand the system over for your team to own.">
+<link rel="canonical" href="https://theunwired.in/">
+<meta property="og:title" content="The Unwired · AI automation, built and handed over">
+<meta property="og:description" content="We build AI agents that run the operational processes that keep breaking, then hand the system over for your team to own.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=1">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "The Unwired",
+  "url": "https://theunwired.in/",
+  "description": "An AI automation studio. We build AI agents that run the operational processes that keep breaking, then hand the system over.",
+  "email": "theunwired.in@gmail.com"
+}
+</script>
 </head>
 <body>
 
-<nav>
-  <div class="wrap">
-    <div class="lockup nav-lockup">
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" href="index.html" aria-label="theunwired, home">
       <span class="mark" aria-hidden="true">
-        <span class="mark-bar mark-bar-1"></span>
-        <span class="mark-bar mark-bar-2"></span>
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
       </span>
       <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a href="#cost">The cost</a>
+      <a href="#run">What changes</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
     </div>
-    <div class="navlinks">
-      <a href="#shift">The shift</a>
-      <a href="#services">What you get</a>
-      <a href="industries.html">Industries</a>
-      <a href="work.html">Work</a>
-      <a href="#process">How we work</a>
-      <a href="about.html">About</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="blog.html">Blog</a>
-    </div>
-    <div class="navright">
-      <button type="button" class="navcta js-open-contact">Start a conversation</button>
-    </div>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
   </div>
 </nav>
 
-<header class="hero" id="hero">
-  <div class="hero-scene" id="heroScene" aria-hidden="true"></div>
-  <div class="wrap">
-    <div class="hero-mark" aria-label="theunwired">
-      <div class="hero-lockup" id="heroLockup">
-        <span class="hero-lead">
-          <span class="hero-lead-bar" id="leadBarA"></span>
-          <span class="hero-lead-bar hero-lead-bar-2" id="leadBarB"></span>
-        </span>
-        <span class="hero-mid" id="heroMid">
-          <svg id="heroWireSvg" viewBox="0 0 96 64" width="90" height="60">
-            <path id="pathA" d="M2 20 H30 L66 44 H94" fill="none" stroke="#F2F1ED" stroke-width="5"></path>
-            <path id="pathB" d="M2 44 H30 L66 20 H94" fill="none" stroke="#2E8B6E" stroke-width="5"></path>
-          </svg>
-        </span>
-        <span class="hero-word" id="heroWord">theunwired</span>
-      </div>
-    </div>
-    <div class="eyebrow">Operations · Finance · Supply chain · Customer ops</div>
-    <h1>Your workflows were<br>hard-wired. <span class="accent">We cut the cord.</span></h1>
-    <p class="sub">The Unwired builds and deploys AI agents that reason, decide, and act, replacing brittle, rule-bound automation with systems that adapt to the work in front of them.</p>
-    <div class="herocta">
-      <a href="#services" class="btn btn-primary">See what you get</a>
-      <button type="button" class="btn btn-ghost js-open-contact">Talk to us</button>
-    </div>
-  </div>
-  <div class="scroll-cue" aria-hidden="true">
-    <span>Scroll</span>
-    <span class="cue-line"></span>
-  </div>
-</header>
+<main id="main">
 
-<section id="shift">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">The shift</div>
-      <h2>From wired to unwired</h2>
-      <p class="lede">Traditional automation follows the wiring you gave it — one path, one exception list, one break when the input changes. Agentic AI follows the goal instead.</p>
-    </div>
-    <div class="compare reveal delay-1">
-      <div class="old">
-        <h3>Wired automation</h3>
-        <ul>
-          <li>Scripted, if-this-then-that logic</li>
-          <li>Breaks on unfamiliar inputs or UI changes</li>
-          <li>Every exception needs a developer</li>
-          <li>Bots that execute, but don't decide</li>
-        </ul>
-      </div>
-      <div class="new">
-        <h3>Unwired agents</h3>
-        <ul>
-          <li>Goal-directed reasoning over live context</li>
-          <li>Handles variation without a rewrite</li>
-          <li>Learns from exceptions, escalates the rest</li>
-          <li>Agents that plan, act, and check their own work</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="wrap"><hr class="rule"></div>
-
-<section id="services">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">What you get</div>
-      <h2>We hand you the system, not the slides.</h2>
-      <p class="lede">Every engagement ends the same way: a working system, running against your real process, that your team owns outright.</p>
-    </div>
-    <div class="pillars">
-      <div class="pillar reveal delay-1">
-        <div class="num">01</div>
-        <h4>Operators, not advisors</h4>
-        <p>We've run the work we automate — sales, rev ops, finance ops, compliance, delivery. We build for your team the way we built for our own.</p>
-      </div>
-      <div class="pillar reveal delay-2">
-        <div class="num">02</div>
-        <h4>A working solution, not a deck</h4>
-        <p>The output is a system running against your real work, not a roadmap. Shaped to your process, your systems, your risk tolerance.</p>
-      </div>
-      <div class="pillar reveal delay-3">
-        <div class="num">03</div>
-        <h4>You own it</h4>
-        <p>Handed over configurable and documented. Your team maintains it, tunes it, and extends it. No lock-in, no retainer required to keep the lights on.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section id="industries">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">Where it runs</div>
-      <h2>Built for operations, not demos</h2>
-    </div>
-    <div class="grid3">
-      <div class="indcard reveal delay-1">
-        <h4>Finance & accounting</h4>
-        <p>Invoice exceptions, reconciliations, and close-cycle work that used to sit in someone's queue.</p>
-      </div>
-      <div class="indcard reveal delay-2">
-        <h4>Supply chain</h4>
-        <p>Order matching, vendor communication, and shipment exceptions handled without a ticket.</p>
-      </div>
-      <div class="indcard reveal delay-3">
-        <h4>Customer operations</h4>
-        <p>Multi-step case resolution across systems that were never built to talk to each other.</p>
-      </div>
-    </div>
-    <p class="reveal delay-3" style="margin-top:28px;"><a href="industries.html" class="btn btn-ghost">See all industries</a></p>
-  </div>
-</section>
-
-<div class="wrap"><hr class="rule"></div>
-
-<section id="work-teaser">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">Selected work</div>
-      <h2>Real engagements, documented as they land.</h2>
-      <p class="lede">We're early. Every entry here will carry a named process and a real outcome, or it won't be on the page.</p>
-    </div>
-    <div class="work-grid reveal delay-1">
-      <div class="work-card">
-        <div>
-          <span class="tag">Coming soon</span>
+  <!-- Hero. The knot. Pinned, scroll-scrubbed. -->
+  <section class="hero-pin" data-hero-pin>
+    <div class="hero-sticky">
+      <div class="hero-stage" data-hero-stage>
+        <div class="hero-mark" data-hero-mark aria-hidden="true">
+          <div class="hero-lockup">
+            <span class="hero-lead">
+              <span class="hero-lead__a" data-lead-a></span>
+              <span class="hero-lead__b" data-lead-b></span>
+            </span>
+            <span class="hero-word" data-word-the>theun</span>
+            <span class="hero-mid" data-hero-mid>
+              <svg viewBox="0 0 96 64" width="90" height="60">
+                <path data-path-a d="M2 20 H30 L66 44 H94" fill="none" stroke="#F2F1ED" stroke-width="5"></path>
+                <path data-path-b d="M2 44 H30 L66 20 H94" fill="none" stroke="#2E8B6E" stroke-width="5"></path>
+              </svg>
+            </span>
+            <span class="hero-word" data-word-wired>wired</span>
+          </div>
         </div>
-        <div>
-          <h3>First case study in progress</h3>
-          <p>We're documenting an active engagement now. Details go up once it's live and the client has signed off.</p>
+        <div class="hero-copy" data-hero-copy>
+          <div class="eyebrow">Operations · Finance · Supply chain · Customer ops</div>
+          <h1>Your workflows were hard-wired. <span>We cut the cord.</span></h1>
+          <p>We build AI agents that do the work, not just follow a script. They read what comes in, decide what to do next, and get it done. When the call should be yours, they hand it over.</p>
+          <div class="btn-row">
+            <a class="btn btn--solid" href="#cost">See how it works</a>
+            <button type="button" class="btn btn--ghost" data-open-contact>Talk to us</button>
+          </div>
+        </div>
+      </div>
+      <div class="hero-meta" data-hero-meta aria-hidden="true">
+        <span class="hero-meta__l">AI AUTOMATION STUDIO</span>
+        <span class="hero-meta__r">SCROLL TO UNTANGLE</span>
+      </div>
+      <div class="scroll-cue" data-scroll-cue aria-hidden="true">
+        <span>Scroll</span>
+        <span class="scroll-cue__track"><span class="scroll-cue__drip"></span></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 The cost -->
+  <section class="sec" id="cost" data-section="The cost">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">01</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">The cost</span>
+        </div>
+        <h2 class="h-section">You already know which process it is.</h2>
+        <p>It works most days, because somebody carries it. Here is what that costs.</p>
+      </div>
+      <div class="grid grid--3" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">01</span>
+          <span class="cell__title">Month-end is a scramble</span>
+          <p>The same fire drill every close. People stay late reconciling what the systems should have agreed on weeks ago.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">02</span>
+          <span class="cell__title">You bought the tool. It's still done by hand.</span>
+          <p>The licence renews on schedule. The work still moves through a spreadsheet and somebody's inbox.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">03</span>
+          <span class="cell__title">Nobody can say where the work is</span>
+          <p>Ask where an invoice or an order stands and someone has to go and look.</p>
         </div>
       </div>
     </div>
-    <p class="reveal delay-2" style="margin-top:28px;"><a href="work.html" class="btn btn-ghost">See all work</a></p>
-  </div>
-</section>
+  </section>
 
-<section id="process">
-  <div class="wrap">
-    <div class="section-head reveal">
-      <div class="kicker">Engagement</div>
-      <h2>How we work with you</h2>
+  <!-- 02 Why it breaks -->
+  <section class="sec sec--rule" id="shift" data-section="Why it breaks">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Why it breaks</span>
+        </div>
+        <h2 class="h-section">It was hard-wired, and the work moved.</h2>
+        <p>Old automation follows the wiring you gave it. One path, one list of exceptions, and it stops the moment something new turns up. An agent follows the goal instead.</p>
+      </div>
+      <div class="grid grid--2" data-reveal data-sweep>
+        <div class="compare compare--wired">
+          <h3>Wired automation</h3>
+          <ul>
+            <li>If this, then that. Nothing else</li>
+            <li>Stops on anything it has not seen before</li>
+            <li>Every exception needs a developer</li>
+            <li>Runs the steps, never makes the call</li>
+          </ul>
+        </div>
+        <div class="compare compare--unwired">
+          <h3>Unwired agents</h3>
+          <ul>
+            <li>Works toward a goal, using what is in front of it</li>
+            <li>Handles the odd case without a rewrite</li>
+            <li>Learns from exceptions, passes on the rest</li>
+            <li>Plans, acts, and checks its own work</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div class="process">
-      <div class="step reveal delay-1">
-        <div class="stepnum">Week 1</div>
-        <div><h4>Map the wiring</h4><p>We shadow the process as it's actually run today — not the flowchart version — and find where it breaks.</p></div>
-      </div>
-      <div class="step reveal delay-2">
-        <div class="stepnum">Week 2–3</div>
-        <div><h4>Design the agent</h4><p>We define the agent's goal, guardrails, and escalation points with the team who owns the process.</p></div>
-      </div>
-      <div class="step reveal delay-3">
-        <div class="stepnum">Week 4–6</div>
-        <div><h4>Deploy in parallel</h4><p>The agent runs alongside the existing process, building trust before it takes the lead.</p></div>
-      </div>
-      <div class="step reveal delay-4">
-        <div class="stepnum">Ongoing</div>
-        <div><h4>Scale and tune</h4><p>We extend the agent to adjacent workflows and keep tuning it against real exceptions.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
-<section id="contact">
-  <div class="wrap">
-    <div class="cta-band reveal">
-      <div>
-        <h2>Ready to unwire something?</h2>
-        <p class="lede">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+  <!-- 03 What changes. The agent run. -->
+  <section class="sec sec--rule sec--rule-b" id="run" data-section="What changes">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">03</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">What changes</span>
+        </div>
+        <h2 class="h-section">One exception, start to finish.</h2>
+        <p>A real run, not a demo. Watch what it does when the numbers stop agreeing.</p>
       </div>
-      <button type="button" class="btn btn-primary js-open-contact">Start a conversation</button>
+      <div class="grid grid--2" data-sweep>
+        <div class="run">
+          <div class="run-step" data-run-step>
+            <span class="run-step__num">01</span>
+            <div>
+              <div class="run-step__title">Read</div>
+              <p>Pulls the invoice, the PO and the goods receipt out of three systems that were never built to talk.</p>
+            </div>
+          </div>
+          <div class="run-step" data-run-step>
+            <span class="run-step__num">02</span>
+            <div>
+              <div class="run-step__title">Decide</div>
+              <p>Quantity matches, price is off by 4%. Inside the tolerance the finance lead set, so it proceeds.</p>
+            </div>
+          </div>
+          <div class="run-step" data-run-step>
+            <span class="run-step__num">03</span>
+            <div>
+              <div class="run-step__title">Act</div>
+              <p>Codes it, posts it, writes the note a human would have written, and closes the queue item.</p>
+            </div>
+          </div>
+          <div class="run-step" data-run-step>
+            <span class="run-step__num">04</span>
+            <div>
+              <div class="run-step__title">Escalate</div>
+              <p>The next one is 22% off. Out of tolerance, so it stops and hands a human the full trail.</p>
+            </div>
+          </div>
+        </div>
+        <div class="log">
+          <div class="log__head">
+            <span>AGENT LOG · AP EXCEPTIONS</span>
+            <span class="log__status" data-run-status>IDLE</span>
+          </div>
+          <div class="log__body" data-run-log aria-live="off" aria-hidden="true"></div>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<footer class="reveal">
+  <!-- 04 Who does it -->
+  <section class="sec" id="who" data-section="Who does it">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">04</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Who does it</span>
+        </div>
+        <h2 class="h-section">Operators, not advisors.</h2>
+        <p>Three founders. We have run the work we automate, and we have built the systems that run it.</p>
+      </div>
+      <div class="grid grid--3" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">DELIVERY</span>
+          <span class="cell__title cell__title--sm">Delivered it before automating it</span>
+          <p>Ten years plus across AI services, automation, consulting, data engineering and post-sales. Has carried the escalation pager, so the guardrails come from doing the job.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">SALES &amp; REVENUE</span>
+          <span class="cell__title cell__title--sm">Sold it, then had to make it true</span>
+          <p>Ten years plus in sales and pre-sales for AI and automation. Knows which promises a process can keep, which is why we say no to some of them.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">OPERATIONS</span>
+          <span class="cell__title cell__title--sm">Owned the process that kept breaking</span>
+          <p>Ten years plus across sales ops, marketing ops, rev ops, finance ops, compliance and audit. Maps the process as it is really run, then finds where it breaks.</p>
+        </div>
+      </div>
+      <p class="note stack-note" data-reveal>All three of us are builders. We have shipped products and worked alongside engineering and product teams to put real systems into production. None of us has stayed in one lane.</p>
+    </div>
+  </section>
+
+  <!-- 05 What you get -->
+  <section class="sec sec--rule" id="get" data-section="What you get">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">05</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">What you get</span>
+        </div>
+        <h2 class="h-section">We hand you the system, not the slides.</h2>
+      </div>
+      <div class="stack" data-reveal data-sweep>
+        <div class="row">
+          <span class="row__num">01</span>
+          <span class="row__title">The agent, running</span>
+          <p>Running in your environment, under your access rules, on your real work. Not a copy of it.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">02</span>
+          <span class="row__title">Guardrails you set</span>
+          <p>Your tolerances, your approval limits, and the exact points where a person takes over. Written down, and yours to change.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">03</span>
+          <span class="row__title">A full audit trail</span>
+          <p>Every decision it made and why. Your auditors see what your team sees.</p>
+        </div>
+      </div>
+      <p class="after-block" data-reveal><a class="btn btn--ghost" data-wipe-link href="what-you-get.html">What the engagement includes</a></p>
+    </div>
+  </section>
+
+  <!-- 06 Where it runs -->
+  <section class="sec sec--rule" id="industries" data-section="Where it runs">
+    <div class="wrap">
+      <div class="sec-head" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">06</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Where it runs</span>
+        </div>
+        <h2 class="h-section">Built for operations, not demos</h2>
+      </div>
+      <div class="cards" data-reveal>
+        <div class="card">
+          <h3>Finance &amp; accounting</h3>
+          <p>Invoice exceptions, reconciliations, and close-cycle work that used to sit in someone's queue.</p>
+        </div>
+        <div class="card">
+          <h3>Supply chain</h3>
+          <p>Order matching, vendor communication, and shipment exceptions handled without a ticket.</p>
+        </div>
+        <div class="card">
+          <h3>Customer operations</h3>
+          <p>Multi-step case resolution across systems that were never built to talk to each other.</p>
+        </div>
+        <div class="card">
+          <h3>Revenue operations</h3>
+          <p>Quote-to-cash steps that stall between sales, finance and delivery, and a CRM nobody has time to update.</p>
+        </div>
+        <div class="card">
+          <h3>Compliance &amp; audit</h3>
+          <p>Evidence gathered on schedule with the trail attached. A person still signs it. That line does not move.</p>
+        </div>
+        <div class="card">
+          <h3>Procurement</h3>
+          <p>PO matching, contract terms read and checked, approvals routed without anyone chasing them.</p>
+        </div>
+      </div>
+      <p class="after-block" data-reveal><a class="btn btn--ghost" data-wipe-link href="industries.html">See all industries</a></p>
+    </div>
+  </section>
+
+  <!-- 07 How it goes -->
+  <section class="sec sec--rule" id="process" data-section="How it goes">
+    <div class="wrap">
+      <div class="sec-head sec-head--tighter" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">07</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">How it goes</span>
+        </div>
+        <h2 class="h-section">Six weeks, one process</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-row" data-reveal>
+          <span class="tl-row__week">Week 1</span>
+          <div>
+            <h3>Map the wiring</h3>
+            <p>We shadow the process as it's actually run today, not the flowchart version, and find where it breaks.</p>
+          </div>
+        </div>
+        <div class="tl-row" data-reveal>
+          <span class="tl-row__week">Week 2–3</span>
+          <div>
+            <h3>Design the agent</h3>
+            <p>We define the agent's goal, guardrails, and escalation points with the team who owns the process.</p>
+          </div>
+        </div>
+        <div class="tl-row" data-reveal>
+          <span class="tl-row__week">Week 4–6</span>
+          <div>
+            <h3>Deploy in parallel</h3>
+            <p>The agent runs alongside the existing process, building trust before it takes the lead.</p>
+          </div>
+        </div>
+        <div class="tl-row" data-reveal>
+          <span class="tl-row__week">Ongoing</span>
+          <div>
+            <h3>Scale and tune</h3>
+            <p>We extend the agent to adjacent workflows and keep tuning it against real exceptions.</p>
+          </div>
+        </div>
+      </div>
+      <p class="after-block" data-reveal><a class="btn btn--ghost" data-wipe-link href="work.html">See the work as it lands</a></p>
+    </div>
+  </section>
+
+  <!-- 08 You own it -->
+  <section class="sec--close sec--rule" id="own" data-section="You own it">
+    <div class="wrap">
+      <div class="chapter chapter--tight" data-reveal>
+        <span class="chapter__num">08</span>
+        <span class="chapter__rule"></span>
+        <span class="chapter__label">The handover</span>
+      </div>
+      <h2 class="h-display" data-reveal>We build it. <span class="own-accent">You own it.</span></h2>
+      <div class="own-cols" data-reveal>
+        <p>We learn how your business really runs before we build. What you get is made for your process, not a generic product that claims to do everything.</p>
+        <p>Along the way you see the gaps in your own operation and make better calls with your own data. Then your team runs it without us. Save time, save money, grow.</p>
+      </div>
+      <div class="grid grid--3 own-cards" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">CONFIGURABLE</span>
+          <p>Change a tolerance or an escalation rule without calling us. If you can't, we built it wrong.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">DOCUMENTED</span>
+          <p>Written for the person who inherits it, not for us. Plus a working session with the team who will run it.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">NO LOCK-IN</span>
+          <p>No retainer required to keep the lights on. If we never speak again, the system still runs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="sec--cta" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Ready to unwire something?</h2>
+          <p>Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
   <div class="wrap">
-    <div class="fmuted">© 2026 The Unwired · AI automation, built and handed over</div>
-    <div class="flinks">
-      <a href="industries.html">Industries</a>
-      <a href="work.html">Work</a>
-      <a href="about.html">About</a>
-      <a href="pricing.html">Pricing</a>
-      <a href="blog.html">Blog</a>
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
       <a href="#contact">Contact</a>
     </div>
   </div>
 </footer>
 
-<div class="modal-overlay" id="contactOverlay" aria-hidden="true">
-  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="contactModalTitle">
-    <div class="modal-head">
-      <h3 id="contactModalTitle">Start a conversation</h3>
-      <button type="button" class="modal-close" id="contactClose" aria-label="Close">✕ CLOSE</button>
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
     </div>
-    <p class="modal-sub">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
-    <form id="contactForm" action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
-      <input type="hidden" name="_subject" value="New conversation request — theunwired.in">
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
       <input type="hidden" name="_captcha" value="false">
-      <input type="text" name="_honey" style="display:none">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
       <div class="field">
-        <label for="cf-name">Name</label>
-        <input type="text" id="cf-name" name="Name" required>
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
       </div>
       <div class="field">
-        <label for="cf-email">Email</label>
-        <input type="email" id="cf-email" name="Email" required>
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
       </div>
       <div class="field">
-        <label for="cf-company">Company</label>
-        <input type="text" id="cf-company" name="Company">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
       </div>
-      <div class="field">
-        <label for="cf-message">What process keeps breaking?</label>
-        <textarea id="cf-message" name="Message" required></textarea>
-      </div>
-      <button type="submit" class="modal-submit" id="contactSubmit">Send it over</button>
-      <div class="modal-status" id="contactStatus"></div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
     </form>
-    <p class="modal-direct">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
   </div>
 </div>
 
-<script>
-(function(){
-  // Hero logo untangle — scroll-linked, per the brand guidelines.
-  // Lands tangled (hard-wired). Scrolling through the hero untangles the
-  // wires and migrates them into the settled bar mark; scrubbing back up
-  // re-tangles it. The green sweep across the wordmark fires once, the
-  // first time the visitor reaches the fully-settled state, and never again.
-  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  var hero = document.getElementById('hero');
-  var pathA = document.getElementById('pathA');
-  var pathB = document.getElementById('pathB');
-  var leadBarA = document.getElementById('leadBarA');
-  var leadBarB = document.getElementById('leadBarB');
-  var heroMid = document.getElementById('heroMid');
-  var heroWord = document.getElementById('heroWord');
-
-  function clamp(x){ return Math.max(0, Math.min(1, x)); }
-  function ease(x){ return x < 0.5 ? 4*x*x*x : 1 - Math.pow(-2*x+2,3)/2; }
-
-  // one wire: flat stub in, single bend, crossing, flat stub out
-  function wirePath(u, sign){
-    var t = 1 - u;
-    var r = function(n){ return Math.round(n*100)/100; };
-    var rest = sign > 0 ? 26 : 40;
-    var y0 = sign > 0 ? rest - 6*t : rest + 4*t;
-    var y1 = sign > 0 ? rest + 18*t : rest - 20*t;
-    return 'M2 ' + r(y0) + ' H30 L66 ' + r(y1) + ' H94';
-  }
-
-  function settle(){
-    pathA.setAttribute('d', wirePath(1, 1));
-    pathB.setAttribute('d', wirePath(1, -1));
-    leadBarA.style.width = '50px';
-    leadBarB.style.width = '29px';
-    leadBarA.style.opacity = 1;
-    leadBarB.style.opacity = 1;
-    heroMid.style.width = '0px';
-    heroMid.style.opacity = 0;
-    heroMid.style.marginLeft = '0px';
-    heroMid.style.marginRight = '0px';
-    heroWord.style.color = 'var(--ink)';
-    heroWord.style.backgroundImage = 'none';
-  }
-
-  if(reduceMotion || !pathA || !pathB || !hero){
-    if(pathA) settle();
-    return;
-  }
-
-  leadBarA.style.opacity = 0;
-  leadBarB.style.opacity = 0;
-
-  var hasSwept = false;
-  var sweepStart = null;
-  var SWEEP_MS = 900;
-  var ticking = false;
-
-  function render(){
-    ticking = false;
-
-    // Progress the mark untangles over: from the top of the hero to 60%
-    // of one viewport height scrolled.
-    var span = window.innerHeight * 0.6;
-    var scrolled = clamp(-hero.getBoundingClientRect().top / span);
-    var p = ease(scrolled);
-
-    var untangle = clamp(p / 0.6);
-    var migrate = clamp((p - 0.6) / 0.4);
-
-    pathA.setAttribute('d', wirePath(untangle, 1));
-    pathB.setAttribute('d', wirePath(untangle, -1));
-
-    leadBarA.style.width = (50 * migrate) + 'px';
-    leadBarB.style.width = (29 * migrate) + 'px';
-    leadBarA.style.opacity = migrate;
-    leadBarB.style.opacity = migrate;
-
-    heroMid.style.width = (90 * (1 - migrate)) + 'px';
-    heroMid.style.opacity = 1 - migrate;
-    heroMid.style.marginLeft = (6 * (1 - migrate)) + 'px';
-    heroMid.style.marginRight = (6 * (1 - migrate)) + 'px';
-
-    if(p >= 1 && !hasSwept){
-      hasSwept = true;
-      sweepStart = performance.now();
-      requestAnimationFrame(sweepFrame);
-    }
-
-    if(!hasSwept){
-      heroWord.style.backgroundImage = 'none';
-      heroWord.style.color = 'var(--ink)';
-    }
-  }
-
-  function sweepFrame(ts){
-    var elapsed = ts - sweepStart;
-    var sweepProg = elapsed / SWEEP_MS;
-    if(sweepProg >= 1){
-      heroWord.style.backgroundImage = 'none';
-      heroWord.style.color = 'var(--ink)';
-      return;
-    }
-    var x = -25 + sweepProg * 150;
-    heroWord.style.backgroundImage = 'linear-gradient(96deg,#F2F1ED ' + (x-13) + '%,#7FE8C2 ' + x + '%,#F2F1ED ' + (x+13) + '%)';
-    heroWord.style.webkitBackgroundClip = 'text';
-    heroWord.style.backgroundClip = 'text';
-    heroWord.style.color = 'transparent';
-    requestAnimationFrame(sweepFrame);
-  }
-
-  function onScroll(){
-    if(!ticking){
-      ticking = true;
-      requestAnimationFrame(render);
-    }
-  }
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  window.addEventListener('resize', onScroll);
-  render();
-})();
-</script>
-<script src="assets/site.js"></script>
-<script type="module" src="assets/scene.js"></script>
+<script src="assets/wires.js?v=1"></script>
+<script src="assets/ambient.js?v=1"></script>
+<script src="assets/site.js?v=1"></script>
 </body>
 </html>
