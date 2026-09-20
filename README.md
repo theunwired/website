@@ -1,6 +1,6 @@
 # The Unwired — marketing site
 
-A four-page static site for **The Unwired**, an AI automation studio. No build
+A static site for **The Unwired**, an AI automation studio. No build
 step, no dependencies. Built from the design handoff in
 `../design_handoff_unwired_site/` (`README.md` is the full spec, `CONTENT.md`
 is the copy source of truth).
@@ -11,8 +11,20 @@ is the copy source of truth).
 |---|---|---|
 | `index.html` | `/` | Home. Ten beats, in a fixed order. The order is the argument. |
 | `what-you-get.html` | `/what-you-get.html` | The deliverable, limits, engagement, pricing |
-| `industries.html` | `/industries.html` | Five functions, and where we say no |
-| `work.html` | `/work.html` | The case study standard, and notes |
+| `industries.html` | `/industries.html` | Six functions, and where we say no |
+| `work.html` | `/work.html` | Engagement one (intelligent document processing) as the hero, then the template every future case study on this page has to fill |
+| `finance-exceptions.html` | `/finance-exceptions.html` | Deep dive: P2P, O2C, R2R, tax, treasury |
+| `hr-hire-to-retire.html` | `/hr-hire-to-retire.html` | Deep dive: the employee lifecycle, hire to retire |
+
+`finance-exceptions.html` and `hr-hire-to-retire.html` are industry deep
+dives, linked directly from their rows on `industries.html` (Finance is 01,
+HR is 02). Document processing isn't an industry — it's the capability behind
+most of these engagements — so instead of its own page it's the featured
+content on `work.html` itself: the diagram, the document rows, how it works,
+the benchmarks and the fit table all live there, above the case-study
+template. All of it reuses classes already in `assets/styles.css`
+(`.ind-row`, `.fit-table`, `.stat-block`, `.diagram-panel`, etc.) rather than
+introducing page-specific styling.
 
 ## Assets
 

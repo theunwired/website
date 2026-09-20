@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work · The Unwired</title>
-<meta name="description" content="Engagements documented as they land. Every case study carries a named process, the guardrails, one real number, and what we got wrong.">
+<meta name="description" content="Our first engagement, documented as it runs: intelligent document processing. Plus the template every future case study on this page will carry.">
 <link rel="canonical" href="https://theunwired.in/work.html">
 <meta property="og:title" content="Work · The Unwired">
-<meta property="og:description" content="Engagements documented as they land. Every case study carries a named process, the guardrails, one real number, and what we got wrong.">
+<meta property="og:description" content="Our first engagement, documented as it runs: intelligent document processing. Plus the template every future case study on this page will carry.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/work.html">
 <meta name="twitter:card" content="summary_large_image">
@@ -16,7 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=2">
+<link rel="stylesheet" href="assets/styles.css?v=4">
 </head>
 <body>
 
@@ -54,42 +54,387 @@
     <div class="wrap">
       <div class="chapter">
         <span class="chapter__rule chapter__rule--short"></span>
-        <span class="chapter__label">Work</span>
+        <span class="chapter__label">First engagement</span>
       </div>
-      <h1 class="h-page">Documented as it lands. Not before.</h1>
-      <p class="lede">We're new. Rather than fill this page with anonymous logos and invented percentages, here is the standard every entry has to meet, and the first one in progress.</p>
+      <h1 class="h-page">Any document. One workflow.</h1>
+      <p class="lede">A document comes in. Data gets pulled out. Where the model is confident, it moves straight into the process. Where it isn't, a person sees only the fields in question, in a review window built for that, not the raw file. This is the first engagement we're documenting on this page, live, as it runs.</p>
+      <div class="btn-row btn-row--left">
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+        <a class="btn btn--ghost" href="#anatomy">See the template</a>
+      </div>
     </div>
   </section>
 
-  <section class="sec" data-section="First engagement">
+  <section class="sec" data-section="The pipeline">
     <div class="wrap">
-      <div class="case" data-reveal data-sweep>
-        <div class="case__intro">
-          <span class="chip">In progress</span>
-          <h2>First case study, live now</h2>
-          <p>We're documenting an active engagement as it runs. It goes up when the client has signed off and there is a number attached to it, not a week earlier.</p>
+      <div class="diagram-panel" data-reveal>
+        <span class="diagram-panel__label">Scored per field, not per document</span>
+        <svg viewBox="0 0 1000 360" width="100%" role="img" aria-label="Schematic: a document is extracted field by field, each with a confidence score. High-confidence fields go straight to the target system. Low-confidence fields go to a validation window where a person checks them, then join the same output. Corrections feed back into extraction.">
+          <text x="36" y="66" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.1em" fill="#7C8177">ANY FORMAT IN</text>
+          <rect x="36" y="82" width="120" height="150" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
+          <rect x="52" y="100" width="70" height="7" fill="#3A3D35"></rect>
+          <rect x="52" y="116" width="88" height="7" fill="#3A3D35"></rect>
+          <rect x="52" y="132" width="60" height="7" fill="#3A3D35"></rect>
+          <rect x="52" y="156" width="88" height="7" fill="#3A3D35"></rect>
+          <rect x="52" y="172" width="44" height="7" fill="#3A3D35"></rect>
+          <rect x="52" y="196" width="76" height="7" fill="#3A3D35"></rect>
+          <text x="96" y="250" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#7C8177">scan · photo · pdf · form</text>
+
+          <path class="flow" d="M156 157 H206" fill="none" stroke="#7C8177" stroke-width="2"></path>
+
+          <rect x="206" y="124" width="126" height="66" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
+          <text x="269" y="151" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">EXTRACT</text>
+          <text x="269" y="169" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#7C8177">score each field</text>
+
+          <path d="M332 157 H372" fill="none" stroke="#24261F" stroke-width="2"></path>
+
+          <text x="392" y="62" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" fill="#7C8177">FIELD</text>
+          <text x="592" y="62" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" fill="#7C8177">CONFIDENCE</text>
+
+          <text x="392" y="84" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#D6D7D1">Invoice number</text>
+          <rect x="592" y="75" width="120" height="8" fill="#1A1C17"></rect>
+          <rect x="592" y="75" width="112" height="8" fill="#0F5C4A"></rect>
+          <path class="flow" d="M726 79 H812" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+
+          <text x="392" y="124" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#D6D7D1">Vendor name</text>
+          <rect x="592" y="115" width="120" height="8" fill="#1A1C17"></rect>
+          <rect x="592" y="115" width="106" height="8" fill="#0F5C4A"></rect>
+          <path class="flow" d="M726 119 H812" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+
+          <text x="392" y="164" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#D6D7D1">Total amount</text>
+          <rect x="592" y="155" width="120" height="8" fill="#1A1C17"></rect>
+          <rect x="592" y="155" width="116" height="8" fill="#0F5C4A"></rect>
+          <path class="flow" d="M726 159 H812" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+
+          <text x="392" y="204" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#7C8177">Line 4 · description</text>
+          <rect x="592" y="195" width="120" height="8" fill="#1A1C17"></rect>
+          <rect x="592" y="195" width="46" height="8" fill="#C46A5A"></rect>
+          <path class="flow" d="M726 199 H760 V 268 H 812" fill="none" stroke="#C46A5A" stroke-width="1.5"></path>
+
+          <text x="392" y="244" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#7C8177">Tax code</text>
+          <rect x="592" y="235" width="120" height="8" fill="#1A1C17"></rect>
+          <rect x="592" y="235" width="58" height="8" fill="#C46A5A"></rect>
+          <path class="flow" d="M726 239 H748 V 268 H 812" fill="none" stroke="#C46A5A" stroke-width="1.5"></path>
+
+          <line x1="812" y1="60" x2="812" y2="300" stroke="#24261F" stroke-width="1" stroke-dasharray="3 5"></line>
+          <text x="822" y="52" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" fill="#7C8177">THRESHOLD</text>
+
+          <path class="flow" d="M812 79 H900" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+          <path class="flow" d="M812 119 H900" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+          <path class="flow" d="M812 159 H900" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+          <text x="900" y="72" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.06em" fill="#4FBF9B">STRAIGHT THROUGH</text>
+
+          <rect x="812" y="244" width="150" height="50" fill="#0B0C0B" stroke="#F2F1ED" stroke-width="1"></rect>
+          <text x="887" y="266" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.05em" fill="#F2F1ED">VALIDATION WINDOW</text>
+          <text x="887" y="283" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="9.5" fill="#7C8177">a person checks these two</text>
+
+          <path class="flow" d="M962 244 V 190 H 900" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+          <text x="900" y="184" text-anchor="end" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.06em" fill="#4FBF9B">CONFIRMED · PUSHED FORWARD</text>
+
+          <path class="flow-slow" d="M887 294 V 330 H 269 V 190" fill="none" stroke="#3A3D35" stroke-width="1.5"></path>
+          <text x="290" y="348" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" fill="#7C8177">THE CORRECTION TRAINS THE NEXT DOCUMENT LIKE IT</text>
+        </svg>
+        <p class="diagram-panel__note">Field names and bar lengths are illustrative. Real thresholds are set per document type against your own tolerance for review.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" id="rows" data-section="KYC">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">01</span>
+          <h2>KYC &amp; onboarding</h2>
+          <span class="ind-row__fit">Evidence work only</span>
         </div>
-        <div class="stack case__table">
-          <div class="kv"><span>FUNCTION</span><span>Coming soon</span></div>
-          <div class="kv"><span>PROCESS</span><span>Coming soon</span></div>
-          <div class="kv"><span>RESULT</span><span>Coming soon</span></div>
-          <div class="kv"><span>HANDOVER</span><span>Coming soon</span></div>
+        <div>
+          <p>Identity documents, proof of address, and screening results in a dozen formats from a dozen jurisdictions. The agent reads them, checks them against each other, and builds the file. A person clears the case.</p>
+          <ul class="specifics">
+            <li>ID and address documents read and cross-checked for name and date mismatches</li>
+            <li>Screening evidence assembled into the case file with the source of every match</li>
+          </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 01 The standard -->
-  <section class="sec sec--rule" id="anatomy" data-section="The standard">
+  <section class="sec--flush" data-section="Invoices">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">02</span>
+          <h2>Invoices &amp; AP documents</h2>
+          <span class="ind-row__fit">Highest volume</span>
+        </div>
+        <div>
+          <p>Line items, tax codes and PO references pulled from any layout, not just the templates a vendor happened to standardise on. What comes out feeds the match, not a spreadsheet someone still has to check.</p>
+          <ul class="specifics">
+            <li>Header and line-item fields extracted regardless of vendor layout</li>
+            <li>Extracted data pushed straight into the P2P match, no re-keying step</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Contracts">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">03</span>
+          <h2>Contracts</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Renewal dates, obligations and pricing terms buried in free text across hundreds of contracts. The agent reads them once and keeps a system of record updated as amendments land.</p>
+          <ul class="specifics">
+            <li>Key terms and renewal dates extracted and tracked against a calendar</li>
+            <li>Amendments matched to the original clause, not filed as a new document</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Anything else">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">04</span>
+          <h2>Anything with a workflow behind it</h2>
+          <span class="ind-row__fit">Ask us</span>
+        </div>
+        <div>
+          <p>Claim forms, correspondence, applications, handwritten notes, a mix of structured fields and free text on the same page. If there's a document and a process it should feed, the pipeline is the same. We build it to your document, not the other way round.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 How it works -->
+  <section class="sec sec--rule" data-section="How it works">
     <div class="wrap">
       <div class="sec-head sec-head--tight" data-reveal>
         <div class="chapter">
           <span class="chapter__num">01</span>
           <span class="chapter__rule"></span>
-          <span class="chapter__label">The standard</span>
+          <span class="chapter__label">How it works</span>
+        </div>
+        <h2 class="h-section">A validation window on the fields that need one, not a queue of documents to check.</h2>
+      </div>
+      <div class="stack-note" data-reveal style="margin-top:0">
+        <span class="diagram-panel__label">Confidence split · illustrative, not a measured result</span>
+        <div class="split-bar" style="margin-top:14px">
+          <div class="split-bar__fill" style="width:68%"></div>
+          <div class="split-bar__rest"></div>
+        </div>
+        <div class="split-bar__labels">
+          <span>High confidence · moves straight through</span>
+          <span>Below threshold · routed to the validation window</span>
+        </div>
+      </div>
+      <div class="grid grid--4 after-block" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">1</span>
+          <span class="cell__title cell__title--sm">Any format in</span>
+          <p>A scan, a photograph, a native PDF, a structured form. The pipeline reads the document as it actually arrives.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">2</span>
+          <span class="cell__title cell__title--sm">Extract and score</span>
+          <p>Every field comes out with a confidence score, not a single pass-fail on the whole document.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">3</span>
+          <span class="cell__title cell__title--sm">A person checks the low-confidence fields</span>
+          <p>Only the fields the model flagged, shown next to the source document. Nothing else needs a second look.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">4</span>
+          <span class="cell__title cell__title--sm">It moves forward</span>
+          <p>Confirmed data is pushed into the target system, and the correction becomes training signal for the next document like it.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Benchmarks -->
+  <section class="sec sec--rule" data-section="The benchmarks">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">What the research says</span>
+        </div>
+        <h2 class="h-section">These are not our numbers. The strongest one is forty years of peer review.</h2>
+        <p>We have not published a client result yet. What we can show you is the published error rate of the thing you are doing now, which is the only baseline that matters when deciding whether extraction is worth it.</p>
+      </div>
+
+      <div class="stack" data-reveal data-sweep>
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Data entry error rate, by method</span>
+            <span class="is-label">meta-analysis · 93 papers</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">READING OFF A DOCUMENT</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:100%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px">6.57%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag">OPTICAL SCANNING</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:11.3%"></div><span class="stat-bar__value" style="left:calc(11.3% + 8px)">0.74%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag">SINGLE KEYING</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:4.4%"></div><span class="stat-bar__value" style="left:calc(4.4% + 8px)">0.29%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--label">DOUBLE KEYING</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--strong" style="width:2.1%"></div><span class="stat-bar__value stat-bar__value--strong" style="left:calc(2.1% + 8px)">0.14%</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">Systematic review<br>&amp; meta-analysis,<br>93 papers, PMC</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Day-to-day manual entry</span>
+            <span>share of fields, experienced staff</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag">TYPICAL</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:40%"></div><span class="stat-bar__value" style="left:calc(40% + 8px)">1 – 4%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--label">BEST CASE, VERIFIED</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--strong" style="width:12%"></div><span class="stat-bar__value stat-bar__value--strong" style="left:calc(12% + 8px)">0.5 – 1%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">UNDER TIME PRESSURE</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:100%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px">18 – 40% OBSERVED</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">Aggregated published<br>benchmarks, 2026</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Automated extraction accuracy</span>
+            <span class="is-warn">vendor-reported. read the note.</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag">STRUCTURED FIELDS</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:92%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px">99.5 – 99.9%</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">Vendor and integrator<br>aggregations, 2026</span>
+        </div>
+      </div>
+
+      <div class="callout callout--warn" data-reveal>
+        <p>Treat that last row carefully, including when we say it. A 99% accuracy claim at character level is a completely different number from 99% at record level, and vendors rarely say which one they mean. At record level, 99% still means one in a hundred documents needs correcting. The meta-analysis above is peer-reviewed across 93 papers. The accuracy row is vendor-aggregated and should be read as direction of travel, not as a promise.</p>
+      </div>
+      <div class="callout" data-reveal>
+        <p>Never evaluate extraction on clean PDFs. Every tool looks good on a well-formatted invoice. Test it on the faxed copy, the handwritten form, the one where the total is buried in a table footnote. That is where the differences show up, and it is how we scope. Send us your worst documents, not your best ones.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Document fit -->
+  <section class="sec sec--rule" data-section="Document fit">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">03</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Document fit</span>
+        </div>
+        <h2 class="h-section">Not every document is worth a pipeline.</h2>
+        <p>Our assessment, not a measurement. High variability is not a reason to say no. No downstream system is.</p>
+      </div>
+
+      <div class="fit-table" data-reveal data-sweep>
+        <div class="fit-table__grid" style="grid-template-columns:220px repeat(4,1fr) 160px">
+          <div class="fit-table__row-label" style="background:var(--panel)"></div>
+          <div class="fit-table__head">VOLUME</div>
+          <div class="fit-table__head">LAYOUT<br>CONSISTENCY</div>
+          <div class="fit-table__head">CLEAR TARGET<br>SYSTEM</div>
+          <div class="fit-table__head">SAFE TO<br>AUTO-POST</div>
+          <div class="fit-table__head">OUR READ</div>
+
+          <div class="fit-table__row-label">Invoices &amp; AP documents</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__read fit-table__read--strong">START HERE</div>
+
+          <div class="fit-table__row-label">Claim forms &amp; applications</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">KYC &amp; onboarding files</div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--against"></div>
+          <div class="fit-table__read fit-table__read--warn">EVIDENCE ONLY</div>
+
+          <div class="fit-table__row-label">Contracts</div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read">GOOD, SCOPED</div>
+
+          <div class="fit-table__row-label">One-off correspondence</div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--against"></div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__read fit-table__read--warn">WE SAY NO</div>
+        </div>
+      </div>
+
+      <div class="fit-legend" data-reveal>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:var(--forest)"></span>STRONG CASE</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.55)"></span>PARTIAL</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.25)"></span>WEAK</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(196,106,90,0.3)"></span>COUNTS AGAINST</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="Where we say no">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Where we say no</span>
+        </div>
+        <p>Low-confidence fields never post without a person seeing them, whatever the deadline. Identity and compliance decisions get an evidence file, not an automatic pass. And every extraction keeps a trail back to the source document, so nothing goes forward unaccounted for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 The template -->
+  <section class="sec sec--rule" id="anatomy" data-section="The template">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">04</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">The template</span>
         </div>
         <h2 class="h-section">What every entry on this page will carry</h2>
-        <p>If a case study can't fill all five, it doesn't go up. This is the rule, published, so you can hold us to it.</p>
+        <p>Document processing above is engagement one. Every case study that follows it, on this page, gets built against these five things. If it can't fill all five, it doesn't go up. This is the rule, published, so you can hold us to it.</p>
       </div>
       <div class="stack" data-reveal data-sweep>
         <div class="row row--tight">
@@ -121,12 +466,12 @@
     </div>
   </section>
 
-  <!-- 02 Notes -->
+  <!-- 05 Notes -->
   <section class="sec sec--rule" data-section="Notes">
     <div class="wrap">
       <div class="sec-head sec-head--notes" data-reveal>
         <div class="chapter">
-          <span class="chapter__num">02</span>
+          <span class="chapter__num">05</span>
           <span class="chapter__rule"></span>
           <span class="chapter__label">Notes</span>
         </div>
@@ -163,8 +508,8 @@
     <div class="wrap">
       <div class="cta" data-reveal data-sweep>
         <div>
-          <h2 class="h-section">Want to be the first one on this page?</h2>
-          <p>Early engagements get our full attention and a documented write-up you approve before it goes up.</p>
+          <h2 class="h-section">Want your process to be the next one on this page?</h2>
+          <p>Send us a sample and the process it feeds. Early engagements get our full attention and a documented write-up you approve before it goes up.</p>
         </div>
         <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
       </div>
@@ -215,8 +560,8 @@
   </div>
 </div>
 
-<script src="assets/wires.js?v=2"></script>
-<script src="assets/ambient.js?v=2"></script>
-<script src="assets/site.js?v=2"></script>
+<script src="assets/wires.js?v=4"></script>
+<script src="assets/ambient.js?v=4"></script>
+<script src="assets/site.js?v=4"></script>
 </body>
 </html>
