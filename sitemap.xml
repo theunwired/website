@@ -52,4 +52,24 @@
     <loc>https://theunwired.in/lab.html</loc>
     <priority>0.7</priority>
   </url>
+  <url>
+    <loc>https://theunwired.in/builds.html</loc>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/supply-chain.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/customer-operations.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/revenue-operations.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/compliance-audit.html</loc>
+    <priority>0.6</priority>
+  </url>
 </urlset>
