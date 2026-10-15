@@ -317,7 +317,14 @@
     chartBox.addEventListener('click', showTip);
     chartBox.addEventListener('mouseleave', function () { tip.hidden = true; });
 
-    range.addEventListener('input', paint);
+    /* record only what the visitor chose, never the default on page load */
+    range.addEventListener('input', function () {
+      paint();
+      if (window.UnwiredLab) {
+        window.UnwiredLab.save('tolerance', { pct: cfg.price_tolerance_pct, touch: last.post + last.slip,
+          person: last.person + last.caught, slip: last.slip });
+      }
+    });
     var w = 0;
     window.addEventListener('resize', function () {
       if (Math.abs(chartBox.clientWidth - w) < 40) return;
@@ -465,6 +472,8 @@
     function tick(name) {
       if (tasks[name]) return;
       tasks[name] = true;
+      var n = (tasks.tolerance ? 1 : 0) + (tasks.rule ? 1 : 0) + (tasks.find ? 1 : 0);
+      if (window.UnwiredLab) window.UnwiredLab.save('handover', { done: n });
       var li = q('[data-lab-task="' + name + '"]', root);
       if (li) { li.classList.add('is-done'); q('[data-state]', li).textContent = 'DONE'; }
       if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;

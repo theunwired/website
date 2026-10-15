@@ -16,7 +16,10 @@ in `docs/brand/` and is not deployed.
 | `work.html` | `/work.html` | Engagement one (intelligent document processing) as the hero, then the template every future case study on this page has to fill |
 | `finance-exceptions.html` | `/finance-exceptions.html` | Deep dive: P2P, O2C, R2R, tax, treasury |
 | `hr-hire-to-retire.html` | `/hr-hire-to-retire.html` | Deep dive: the employee lifecycle, hire to retire |
-| `lab.html` | `/lab.html` | The Lab: the Tolerance lab and the handover test, on one synthetic queue of 200 invoices |
+| `lab.html` | `/lab.html` | The Lab hub: three stage cards, Your run, and the old `#tolerance` / `#handover` anchors forwarded to the stage pages |
+| `lab-tolerance.html` | `/lab-tolerance.html` | Lab stage 01, Set the line |
+| `lab-handover.html` | `/lab-handover.html` | Lab stage 02, Pass the handover |
+| `lab-documents.html` | `/lab-documents.html` | Lab stage 03, Worst-document bench |
 
 `finance-exceptions.html` and `hr-hire-to-retire.html` are industry deep
 dives, linked directly from their rows on `industries.html` (Finance is 01,
@@ -36,7 +39,9 @@ introducing page-specific styling.
 | `assets/wires.js` | The wire field: ten wires on a fixed full-viewport SVG behind everything. |
 | `assets/ambient.js` | Panel sweep on entry, and the one shared breathing clock for green accents. |
 | `assets/site.js` | Nav, contact modal, reveal, progress rail, page transition, the pinned hero, the agent log. |
-| `assets/lab.js` | The Lab only. Builds the seeded invoice queue, runs the rules, draws the chart, parses the config. No network calls. |
+| `assets/lab.js` | Lab stages 01 and 02. Builds the seeded invoice queue, runs the rules, draws the chart, parses the config. No network calls. |
+| `assets/lab-documents.js` | Lab stage 03. Draws the six documents as SVG and runs the pick, reveal and score flow. No network calls. |
+| `assets/lab-run.js` | Every Lab page. Keeps each stage's result in `sessionStorage` for Your run, and pre-fills the contact form from it. |
 
 ## Hard rules
 
@@ -102,20 +107,27 @@ light values and the reasoning are in `docs/brand/README.md`.
 
 ## The Lab
 
-`lab.html` runs two tools in the browser on one seeded queue of 200 made-up
-invoices (`buildQueue` in `assets/lab.js`, seed 40912), so every visitor sees
-the same numbers. They are illustrative and the page says so. Changing the
-seed or the queue mix changes every number on the page, so check the
-summary sentences still read right afterwards.
+A hub (`lab.html`) and three stage pages. Every Lab page has the stage bar
+under the nav, and every stage ends with a Next stage button, so nobody has
+to find their way back. The home page invites people in from a band inside
+the contact section, above the CTA, so the ten numbered beats are untouched.
 
-- **Tolerance lab:** one slider, the price tolerance. Duplicates have no
-  variance on purpose: no tolerance catches them, which is the bridge to the
-  second tool.
-- **Handover test:** the rules as an editable config. An invalid line is
-  rejected with its line number and the last valid rules keep running. The
-  third task names the first invoice the amount ceiling escalates.
-- Nothing is sent anywhere. If a Lab tool ever calls a server or takes
-  uploads, update `privacy.html` and `security.html` first.
+- **01 Set the line** and **02 Pass the handover** run on one seeded queue of
+  200 made-up invoices (`buildQueue` in `assets/lab.js`, seed 40912), so
+  every visitor sees the same numbers. Changing the seed or the mix changes
+  every number on those pages, so re-read the summary sentences afterwards.
+- **03 Worst-document bench** uses six made-up documents drawn in
+  `assets/lab-documents.js`. Their extractions and confidence scores were
+  written by hand to show real failure modes, and the page says so. The
+  invoices add up, check the arithmetic if you edit one. Documents are paper,
+  so they stay light in both themes.
+- **Your run** reads each stage's result from `sessionStorage`. It is kept
+  for the tab only and recorded only when the visitor actually does
+  something, never on page load. "Send this to us" fills the contact form's
+  message; the visitor still writes their name and sends it.
+- Nothing is sent anywhere until the visitor sends the contact form
+  themselves. If a Lab tool ever calls a server or takes uploads, update
+  `privacy.html` and `security.html` first.
 
 ## Contact form
 
