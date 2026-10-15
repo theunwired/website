@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Supply chain · The Unwired</title>
+<meta name="description" content="Order intake, supplier confirmations, delay notices and receiving discrepancies: where an agent clears the supply chain work that arrives by email.">
+<link rel="canonical" href="https://theunwired.in/supply-chain.html">
+<meta property="og:title" content="Supply chain · The Unwired">
+<meta property="og:description" content="Order intake, supplier confirmations, delay notices and receiving discrepancies: where an agent clears the supply chain work that arrives by email.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/supply-chain.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:site_name" content="The Unwired">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=7">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html" aria-current="page">Industries</a>
+      <a data-wipe-link href="builds.html">Builds</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme"><svg class="theme-toggle__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="0.5" y="0.5" width="15" height="15" fill="none" stroke="currentColor"></rect><rect class="theme-toggle__half" x="1" y="1" width="7" height="14" fill="currentColor"></rect></svg></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec--page-hero" data-section="Overview">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Supply chain operations</span>
+      </div>
+      <h1 class="h-page">The orders that arrive as an email and a PDF.</h1>
+      <p class="lede">EDI covers the partners who set it up. Everything else arrives as a PDF on an email, a changed date buried in a reply, or a short shipment someone notices at the dock. A person reads it and types it in. That reading is where we build.</p>
+      <div class="btn-row btn-row--left">
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+        <a class="btn btn--ghost" data-wipe-link href="industries.html">All industries</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" id="rows" data-section="Order intake">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">01</span>
+          <h2>Order intake</h2>
+          <span class="ind-row__fit">Highest volume</span>
+        </div>
+        <div>
+          <p>Purchase orders arrive in whatever format each customer happens to use. The agent reads them, checks them against your price lists and stock, and creates the sales order. Anything that doesn't match goes to a person with the reason.</p>
+          <ul class="specifics">
+            <li>PO lines read from a PDF, an email body or a spreadsheet, whatever the layout</li>
+            <li>Prices and part numbers checked against your master data before entry</li>
+            <li>Order created in the ERP, or held with the mismatch named</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Supplier confirmations">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">02</span>
+          <h2>Supplier confirmations</h2>
+          <span class="ind-row__fit">Highest volume</span>
+        </div>
+        <div>
+          <p>You send a PO. The supplier confirms a different date, quantity or price, somewhere in an email thread. The agent reads the acknowledgement, compares it with what you ordered, and tells the planner what changed.</p>
+          <ul class="specifics">
+            <li>Acknowledgements reconciled line by line against the PO</li>
+            <li>Date, quantity and price changes flagged to the buyer who owns the order</li>
+            <li>Missing confirmations chased before they turn into late deliveries</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Delay notices">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">03</span>
+          <h2>Delay notices</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>A carrier delay or a supplier slip lands in a shared inbox. By the time someone reads it, the planner has lost a day. The agent reads it, works out which orders it touches, and tells the right person.</p>
+          <ul class="specifics">
+            <li>Delay notices matched to the open orders and customers they affect</li>
+            <li>Impact stated plainly: which order, how late, which customer</li>
+            <li>Expedite options prepared for a person to approve</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Receiving discrepancies">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">04</span>
+          <h2>Receiving discrepancies</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Short shipments, damaged goods, wrong items. A claim needs the PO, the packing slip, the receipt and the photos, and they sit in four places. The agent puts them together.</p>
+          <ul class="specifics">
+            <li>Received quantities compared with the PO and the advance ship notice</li>
+            <li>Supplier claims drafted with every document attached</li>
+            <li>Credit notes tracked until they actually arrive</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Master data upkeep">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">05</span>
+          <h2>Master data upkeep</h2>
+          <span class="ind-row__fit">Approval only</span>
+        </div>
+        <div>
+          <p>Lead times, item attributes and supplier prices drift out of date. The agent finds the drift and proposes the change. A person approves anything that touches master data.</p>
+          <ul class="specifics">
+            <li>Quoted lead times compared with what suppliers actually delivered</li>
+            <li>Proposed updates queued for a person, with the evidence attached</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="How the agent works">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">01</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">How the agent works</span>
+        </div>
+        <h2 class="h-section">Same pattern on every message. Read it, match it, act inside your rules, escalate the rest.</h2>
+      </div>
+      <div class="grid grid--4" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">1</span>
+          <span class="cell__title cell__title--sm">A message arrives</span>
+          <p>An order, a confirmation, a delay notice. By email, portal or scan, in whatever format the sender chose.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">2</span>
+          <span class="cell__title cell__title--sm">It reads and matches</span>
+          <p>The agent ties it to the open order, the item master and the customer, across every system it lives in.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">3</span>
+          <span class="cell__title cell__title--sm">It acts inside your rules</span>
+          <p>When everything matches your tolerances, it creates the order or updates the date. Nothing else.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">4</span>
+          <span class="cell__title cell__title--sm">Exceptions go to a person</span>
+          <p>What changed, what it affects, and a proposed next step. The planner decides.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="The benchmarks">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">What the research says</span>
+        </div>
+        <h2 class="h-section">These are not our numbers. They are the published ones.</h2>
+        <p>We have not published a client result yet. Until we do, here is what APQC's order management research says about the work we build on.</p>
+      </div>
+
+      <div class="stack" data-reveal data-sweep>
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Perfect order performance</span>
+            <span>complete, on time, undamaged, right paperwork</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">25TH PERCENTILE</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:80%"></div><span class="stat-bar__value" style="left:calc(80% + 8px)">80%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag">MEDIAN</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:84%"></div><span class="stat-bar__value" style="left:calc(84% + 8px)">84%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--label">75TH PERCENTILE</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--strong" style="width:85%"></div><span class="stat-bar__value stat-bar__value--strong" style="left:calc(85% + 8px)">85%</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">APQC, Measuring Order<br>Management Performance, 2026</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Cost to process a purchase order</span>
+            <span>range across organisations</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--label">LOW END</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--strong" style="width:26%"></div><span class="stat-bar__value stat-bar__value--strong" style="left:calc(26% + 8px)">$14</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">HIGH END</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:100%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px">$54+</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">APQC procurement<br>benchmarks, 2026</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Customer order cycle time</span>
+            <span>order received to delivered</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag">MEDIAN</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:100%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px;color:var(--bone)">15 DAYS</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">APQC, Measuring Order<br>Management Performance, 2026</span>
+        </div>
+
+      </div>
+
+      <div class="callout" data-reveal>
+        <p>APQC's order data comes from 200 large North American companies with at least $100 million in revenue. Smaller operations usually look worse on cost per order. The perfect order figure is the one to hold onto. The gap between the 25th and 75th percentile is five points, and even the stronger performers lose roughly one order in seven somewhere between the PO and the delivery. Your own baseline tells you more than any median. We'd rather you measured it than took our word for it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="Process fit">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">03</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Process fit</span>
+        </div>
+        <h2 class="h-section">Which part is worth building first.</h2>
+        <p>Our assessment, not a measurement. The last column decides a lot here: the more a mistake costs, the more the agent prepares and the less it does on its own.</p>
+      </div>
+
+      <div class="fit-table" data-reveal data-sweep>
+        <div class="fit-table__grid" style="grid-template-columns:200px repeat(4,1fr) 150px">
+          <div class="fit-table__row-label" style="background:var(--panel)"></div>
+          <div class="fit-table__head">VOLUME &amp;<br>REPETITION</div>
+          <div class="fit-table__head">RULES ALREADY<br>WRITTEN</div>
+          <div class="fit-table__head">SPREAD ACROSS<br>SYSTEMS</div>
+          <div class="fit-table__head">LOW COST OF<br>A MISTAKE</div>
+          <div class="fit-table__head">OUR READ</div>
+
+          <div class="fit-table__row-label">Supplier confirmations</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__read fit-table__read--strong">START HERE</div>
+
+          <div class="fit-table__row-label">Order intake</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read fit-table__read--strong">START HERE</div>
+
+          <div class="fit-table__row-label">Receiving discrepancies</div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">Delay notices</div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">Master data upkeep</div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--against"></div>
+          <div class="fit-table__read fit-table__read--warn">APPROVAL ONLY</div>
+        </div>
+      </div>
+
+      <div class="fit-legend" data-reveal>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:var(--forest)"></span>STRONG CASE</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.55)"></span>PARTIAL</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.25)"></span>WEAK</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(196,106,90,0.3)"></span>COUNTS AGAINST</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="Where we say no">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Where we say no</span>
+        </div>
+        <p>The agent never changes master data, commits to a customer delivery date, or places a purchase order on its own. It prepares those with the evidence, and a person approves. If most of your volume already runs through EDI, an agent has little to add there, and we'll tell you so.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 How we engage -->
+  <section class="sec sec--rule" data-section="How we engage">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">04</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">How we engage</span>
+        </div>
+        <h2 class="h-section">Three steps. You can stop after the first one.</h2>
+      </div>
+      <div class="grid grid--3" data-reveal data-sweep>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">01</span>
+            <span class="cell__flag cell__flag--label">FREE</span>
+          </div>
+          <span class="cell__title cell__title--sm">Discovery</span>
+          <p>We sit with whoever actually clears the exception queue and watch a normal week. You get a written assessment either way, including the case for not building anything. If a scheduled job fixes it cheaper, we tell you that and we are done.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">02</span>
+            <span class="cell__flag">FIXED SCOPE</span>
+          </div>
+          <span class="cell__title cell__title--sm">Build</span>
+          <p>One process, scoped and priced before we start. Built against your systems and your rules, not a demo environment. You see it running on your own data, not on ours.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">03</span>
+            <span class="cell__flag">YOU OWN IT</span>
+          </div>
+          <span class="cell__title cell__title--sm">Handover</span>
+          <p>Code, documentation and runbook handed to your team. No licence, no lock-in, no retainer you have to keep paying to keep it working. Keep us on if you want more built.</p>
+        </div>
+      </div>
+      <p class="coming">Build pricing is set per engagement and quoted in writing before any work starts.</p>
+    </div>
+  </section>
+
+  <section class="sec--cta-top" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Which inbox is the bottleneck?</h2>
+          <p>Tell us where orders or confirmations get retyped. We'll tell you honestly whether an agent is the right fix.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="builds.html">Builds</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=7"></script>
+<script src="assets/ambient.js?v=7"></script>
+<script src="assets/site.js?v=7"></script>
+</body>
+</html>

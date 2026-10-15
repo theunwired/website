@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Customer operations · The Unwired</title>
+<meta name="description" content="Case triage, refunds, account changes and follow-ups: the work behind the ticket, prepared by an agent and approved by your team.">
+<link rel="canonical" href="https://theunwired.in/customer-operations.html">
+<meta property="og:title" content="Customer operations · The Unwired">
+<meta property="og:description" content="Case triage, refunds, account changes and follow-ups: the work behind the ticket, prepared by an agent and approved by your team.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/customer-operations.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:site_name" content="The Unwired">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=7">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html" aria-current="page">Industries</a>
+      <a data-wipe-link href="builds.html">Builds</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme"><svg class="theme-toggle__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="0.5" y="0.5" width="15" height="15" fill="none" stroke="currentColor"></rect><rect class="theme-toggle__half" x="1" y="1" width="7" height="14" fill="currentColor"></rect></svg></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec--page-hero" data-section="Overview">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Customer operations</span>
+      </div>
+      <h1 class="h-page">The work behind the ticket.</h1>
+      <p class="lede">A chatbot can answer the question. Somebody still has to find the order, check the policy, issue the credit and update three systems. That second part is where cases stall, and it is where we build. Your customers still talk to your team.</p>
+      <div class="btn-row btn-row--left">
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+        <a class="btn btn--ghost" data-wipe-link href="industries.html">All industries</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" id="rows" data-section="Case triage and context">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">01</span>
+          <h2>Case triage and context</h2>
+          <span class="ind-row__fit">Highest volume</span>
+        </div>
+        <div>
+          <p>Before anyone on your team opens the case, the agent has read it, classified it, and pulled the order, the account, the history and the relevant policy into one view.</p>
+          <ul class="specifics">
+            <li>Intent and urgency classified from the first message</li>
+            <li>Account, order and prior cases gathered from every system</li>
+            <li>Cases routed to the right queue with the reason shown</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Refunds, credits and returns">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">02</span>
+          <h2>Refunds, credits and returns</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>The policy is written down. Applying it means checking eligibility, amounts and history across systems. The agent prepares the decision. A person approves anything that moves money.</p>
+          <ul class="specifics">
+            <li>Eligibility checked against the policy as written</li>
+            <li>Credit or refund prepared in the billing system and held for approval</li>
+            <li>Return authorisation raised and tracked to receipt</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Order and account changes">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">03</span>
+          <h2>Order and account changes</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Address changes, plan changes, cancellations. Small requests that touch billing, fulfilment and the CRM separately. The agent makes the change everywhere once it is confirmed.</p>
+          <ul class="specifics">
+            <li>Changes applied across every system together after confirmation</li>
+            <li>Mismatched records flagged rather than overwritten</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Follow-ups">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">04</span>
+          <h2>Follow-ups</h2>
+          <span class="ind-row__fit">Strong fit</span>
+        </div>
+        <div>
+          <p>Cases die waiting on a warehouse, a supplier or another team. The agent chases until the case closes, and keeps the customer informed.</p>
+          <ul class="specifics">
+            <li>Internal follow-ups sent and escalated on a schedule you set</li>
+            <li>Customer updates drafted for a person to send, or sent within rules you approve</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec--flush" data-section="Reply drafting">
+    <div class="wrap">
+      <div class="ind-row" data-reveal>
+        <div>
+          <span class="ind-row__num">05</span>
+          <h2>Reply drafting</h2>
+          <span class="ind-row__fit">Draft only</span>
+        </div>
+        <div>
+          <p>The agent drafts a reply from the case facts and your knowledge base, and shows what it used. Your team edits it and sends it.</p>
+          <ul class="specifics">
+            <li>Drafts grounded in the policy and the account, with sources</li>
+            <li>Nothing sent on a sensitive case without a person</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="How the agent works">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">01</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">How the agent works</span>
+        </div>
+        <h2 class="h-section">The agent prepares the case. A person handles the customer.</h2>
+      </div>
+      <div class="grid grid--4" data-reveal data-sweep>
+        <div class="cell">
+          <span class="cell__tag">1</span>
+          <span class="cell__title cell__title--sm">The case arrives</span>
+          <p>By email, form, chat or phone transcript. The agent reads it as it actually came in.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">2</span>
+          <span class="cell__title cell__title--sm">It gathers context</span>
+          <p>Order, account, history and the policy that applies, pulled from every system before anyone looks.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">3</span>
+          <span class="cell__title cell__title--sm">It prepares the action</span>
+          <p>The refund, the change or the reply, staged and ready, with the reasoning attached.</p>
+        </div>
+        <div class="cell">
+          <span class="cell__tag">4</span>
+          <span class="cell__title cell__title--sm">A person approves</span>
+          <p>Your team checks it and confirms. Every system updates together once they do.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="The benchmarks">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">What the research says</span>
+        </div>
+        <h2 class="h-section">These are not our numbers. They are the published ones.</h2>
+        <p>We have not published a client result yet. Until we do, here is what the research firms publish about the cost of handling a case and where agent time goes.</p>
+      </div>
+
+      <div class="stack" data-reveal data-sweep>
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Cost per contact</span>
+            <span>by channel</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">LIVE: PHONE, CHAT, EMAIL</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:100%"></div><span class="stat-bar__value stat-bar__value--inside" style="right:8px">$8.01</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--label">SELF-SERVICE</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--strong" style="width:2%"></div><span class="stat-bar__value stat-bar__value--strong" style="left:calc(2% + 8px)">$0.10</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">Gartner, 2019</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Issues fully resolved in self-service</span>
+            <span>share of customers</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag">ALL CUSTOMERS</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:9%"></div><span class="stat-bar__value" style="left:calc(9% + 8px)">9%</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">Gartner, 2019</span>
+        </div>
+
+        <div class="stat-block">
+          <div class="stat-block__label">
+            <span>Where agent time goes</span>
+            <span>share of the working day</span>
+          </div>
+          <div class="stat-block__bars">
+            <div class="stat-bar">
+              <span class="stat-bar__tag stat-bar__tag--warn">SEARCHING FOR INFORMATION</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill stat-bar__fill--weak" style="width:35%"></div><span class="stat-bar__value" style="left:calc(35% + 8px)">UP TO 35%</span></div>
+            </div>
+            <div class="stat-bar">
+              <span class="stat-bar__tag">RE-KEYING DATA BETWEEN APPS</span>
+              <div class="stat-bar__track"><div class="stat-bar__fill" style="width:15%"></div><span class="stat-bar__value" style="left:calc(15% + 8px)">15%</span></div>
+            </div>
+          </div>
+          <span class="stat-block__source">[24]7.ai data,<br>cited by Forrester</span>
+        </div>
+
+      </div>
+
+      <div class="callout" data-reveal>
+        <p>The Gartner figures are from 2019 and channel costs have moved since, so read them as the size of the gap rather than today's price. The pattern still holds. A contact a person handles costs many times more than one that resolves itself, and most customers still end up with a person. That's why we build for the person handling the case.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="Process fit">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">03</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Process fit</span>
+        </div>
+        <h2 class="h-section">Which part is worth building first.</h2>
+        <p>Our assessment, not a measurement. Anything that moves money or speaks for you to a customer gets prepared, then approved.</p>
+      </div>
+
+      <div class="fit-table" data-reveal data-sweep>
+        <div class="fit-table__grid" style="grid-template-columns:200px repeat(4,1fr) 150px">
+          <div class="fit-table__row-label" style="background:var(--panel)"></div>
+          <div class="fit-table__head">VOLUME &amp;<br>REPETITION</div>
+          <div class="fit-table__head">POLICY ALREADY<br>WRITTEN</div>
+          <div class="fit-table__head">SPREAD ACROSS<br>SYSTEMS</div>
+          <div class="fit-table__head">LOW COST OF<br>A MISTAKE</div>
+          <div class="fit-table__head">OUR READ</div>
+
+          <div class="fit-table__row-label">Case triage</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__read fit-table__read--strong">START HERE</div>
+
+          <div class="fit-table__row-label">Refunds &amp; credits</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">Account changes</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">Follow-ups</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__read fit-table__read--strong">STRONG</div>
+
+          <div class="fit-table__row-label">Reply drafting</div>
+          <div class="fit-table__cell fit-table__cell--strong"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--partial"></div>
+          <div class="fit-table__cell fit-table__cell--weak"></div>
+          <div class="fit-table__read fit-table__read--warn">DRAFT ONLY</div>
+        </div>
+      </div>
+
+      <div class="fit-legend" data-reveal>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:var(--forest)"></span>STRONG CASE</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.55)"></span>PARTIAL</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(15,92,74,0.25)"></span>WEAK</span>
+        <span class="fit-legend__row"><span class="fit-legend__swatch" style="background:rgba(196,106,90,0.3)"></span>COUNTS AGAINST</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="Where we say no">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Where we say no</span>
+        </div>
+        <p>We don't put an agent in front of your customers pretending to be a person. We don't build anything that decides a complaint, a legal claim or a vulnerable customer's case. Those go to your team with the facts assembled, every time.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 How we engage -->
+  <section class="sec sec--rule" data-section="How we engage">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">04</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">How we engage</span>
+        </div>
+        <h2 class="h-section">Three steps. You can stop after the first one.</h2>
+      </div>
+      <div class="grid grid--3" data-reveal data-sweep>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">01</span>
+            <span class="cell__flag cell__flag--label">FREE</span>
+          </div>
+          <span class="cell__title cell__title--sm">Discovery</span>
+          <p>We sit with whoever actually clears the exception queue and watch a normal week. You get a written assessment either way, including the case for not building anything. If a scheduled job fixes it cheaper, we tell you that and we are done.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">02</span>
+            <span class="cell__flag">FIXED SCOPE</span>
+          </div>
+          <span class="cell__title cell__title--sm">Build</span>
+          <p>One process, scoped and priced before we start. Built against your systems and your rules, not a demo environment. You see it running on your own data, not on ours.</p>
+        </div>
+        <div class="cell">
+          <div class="cell__meta">
+            <span class="cell__tag">03</span>
+            <span class="cell__flag">YOU OWN IT</span>
+          </div>
+          <span class="cell__title cell__title--sm">Handover</span>
+          <p>Code, documentation and runbook handed to your team. No licence, no lock-in, no retainer you have to keep paying to keep it working. Keep us on if you want more built.</p>
+        </div>
+      </div>
+      <p class="coming">Build pricing is set per engagement and quoted in writing before any work starts.</p>
+    </div>
+  </section>
+
+  <section class="sec--cta-top" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Where do your cases stall?</h2>
+          <p>Tell us the queue and the systems behind it. We'll tell you honestly whether an agent is the right fix.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="builds.html">Builds</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=7"></script>
+<script src="assets/ambient.js?v=7"></script>
+<script src="assets/site.js?v=7"></script>
+</body>
+</html>
