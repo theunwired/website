@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=8">
+<link rel="stylesheet" href="assets/styles.css?v=10">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -238,7 +238,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
           <div class="log__body" data-run-log aria-live="off" aria-hidden="true"></div>
         </div>
       </div>
-      <p class="after-block" data-reveal><a class="btn btn--ghost" data-wipe-link href="lab.html">Set the tolerance yourself in the Lab</a></p>
+      <p class="after-block" data-reveal><a class="btn btn--ghost" data-wipe-link href="lab-tolerance.html">Set the tolerance yourself in the Lab</a></p>
     </div>
   </section>
 
@@ -426,7 +426,25 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
   <!-- Contact -->
   <section class="sec--cta" id="contact" data-section="Contact">
     <div class="wrap">
-      <div class="cta" data-reveal data-sweep>
+      <div class="lab-band" data-reveal data-sweep>
+        <div>
+          <div class="chapter chapter--tight">
+            <span class="chapter__rule chapter__rule--short"></span>
+            <span class="chapter__label">Lab</span>
+          </div>
+          <h2 class="h-section">Try it before you talk to us.</h2>
+          <p>Three short stages on made-up invoices and documents. About eight minutes, and nothing you do leaves your browser.</p>
+          <div class="btn-row btn-row--left">
+            <a class="btn btn--ghost" data-wipe-link href="lab.html">Open the Lab</a>
+          </div>
+        </div>
+        <ol class="lab-band__stages">
+          <li><a data-wipe-link href="lab-tolerance.html"><span class="lab-band__num">01</span><span class="lab-band__name">Set the line</span><span class="lab-band__time">2 MIN</span></a></li>
+          <li><a data-wipe-link href="lab-handover.html"><span class="lab-band__num">02</span><span class="lab-band__name">Pass the handover</span><span class="lab-band__time">3 MIN</span></a></li>
+          <li><a data-wipe-link href="lab-documents.html"><span class="lab-band__num">03</span><span class="lab-band__name">Worst-document bench</span><span class="lab-band__time">3 MIN</span></a></li>
+        </ol>
+      </div>
+      <div class="cta lab-band-gap" data-reveal data-sweep>
         <div>
           <h2 class="h-section">Ready to unwire something?</h2>
           <p>Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pass the handover · Pass the handover · Lab · The Unwired</title>
+<meta name="description" content="Lab stage 02. Edit an agent's rules as plain config, rerun 200 made-up invoices, and pass the test a client team runs before handover.">
+<link rel="canonical" href="https://theunwired.in/lab-handover.html">
+<meta property="og:title" content="Pass the handover · Lab · The Unwired">
+<meta property="og:description" content="Lab stage 02. Edit an agent's rules as plain config, rerun 200 made-up invoices, and pass the test a client team runs before handover.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/lab-handover.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:site_name" content="The Unwired">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=10">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="lab.html" aria-current="page">Lab</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme"><svg class="theme-toggle__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="0.5" y="0.5" width="15" height="15" fill="none" stroke="currentColor"></rect><rect class="theme-toggle__half" x="1" y="1" width="7" height="14" fill="currentColor"></rect></svg></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+  <nav class="lab-stagebar" aria-label="Lab stages">
+    <div class="lab-stagebar__in">
+      <a class="lab-stagebar__home" data-wipe-link href="lab.html">LAB</a>
+      <ol>
+      <li><a data-wipe-link href="lab-tolerance.html"><span class="lab-stagebar__num">01</span><span class="lab-stagebar__name">Set the line</span></a></li>
+      <li><a data-wipe-link href="lab-handover.html" aria-current="step"><span class="lab-stagebar__num">02</span><span class="lab-stagebar__name">Pass the handover</span></a></li>
+      <li><a data-wipe-link href="lab-documents.html"><span class="lab-stagebar__num">03</span><span class="lab-stagebar__name">Worst-document bench</span></a></li>
+      </ol>
+      <span class="lab-stagebar__count">STAGE 2 OF 3</span>
+    </div>
+  </nav>
+  <section class="sec--page-hero lab-hero" data-section="Stage 02">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__num">02</span>
+        <span class="chapter__rule"></span>
+        <span class="chapter__label">Pass the handover</span>
+      </div>
+      <h1 class="h-page">If your team can't change it, we built it wrong.</h1>
+      <p class="lede">Before we call a build done, someone on the client's team does three things on their own. Here is the same test on a working rule set. Edit the config and the queue reruns.</p>
+    </div>
+  </section>
+
+  <section class="sec lab-stage" id="handover" data-section="Pass the handover">
+    <div class="wrap">
+      <div class="lab-handover" data-lab-handover data-reveal>
+        <ol class="lab-tasks">
+          <li data-lab-task="tolerance"><span class="lab-tasks__num">1</span><span><strong>Change a tolerance.</strong> Edit <code>price_tolerance_pct</code> or <code>auto_post_max_amount</code>.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
+          <li data-lab-task="rule"><span class="lab-tasks__num">2</span><span><strong>Add an escalation rule.</strong> Put a vendor on <code>always_escalate_vendor</code>. Try Kestrel Freight.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
+          <li data-lab-task="find"><span class="lab-tasks__num">3</span><span><strong>Explain a decision.</strong> Find out why <span data-lab-target>the invoice</span> went to a person. Search the log and open it.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
+        </ol>
+
+        <div class="lab-done" data-lab-done hidden>
+          <p><strong>Passed.</strong> That is the whole test. A client's team does exactly this on their own system before we sign off, and if they can't, the build isn't finished.</p>
+          <a class="lab-done__link" data-wipe-link href="note-handover-is-the-product.html">Why we work this way</a>
+        </div>
+
+        <div class="lab-split">
+          <div class="lab-config">
+            <div class="lab-config__head">
+              <label for="lab-config">rules.yaml</label>
+              <button type="button" class="lab-reset" data-lab-reset>Reset to handover</button>
+            </div>
+            <textarea id="lab-config" class="lab-config__text" data-lab-config spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="lab-status"></textarea>
+            <p class="lab-status" id="lab-status" data-lab-status role="status"></p>
+          </div>
+          <div class="stack lab-hstats">
+            <div class="cell" data-lab-hstat="post"><span class="cell__tag">POSTED ON ITS OWN</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
+            <div class="cell" data-lab-hstat="person"><span class="cell__tag">SENT TO A PERSON</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
+            <div class="cell" data-lab-hstat="slip"><span class="cell__tag cell__tag--warn">PROBLEMS SLIPPED THROUGH</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
+          </div>
+        </div>
+
+        <div class="lab-log-head">
+          <span class="diagram-panel__label">Decision log</span>
+          <div class="lab-log-tools">
+            <input type="search" class="lab-find" data-lab-find placeholder="Find an invoice or vendor" aria-label="Find an invoice or vendor">
+            <div class="lab-filters" role="group" aria-label="Show">
+              <button type="button" data-lab-filter="person" aria-pressed="true">To a person</button>
+              <button type="button" data-lab-filter="slip" aria-pressed="false">Slipped</button>
+              <button type="button" data-lab-filter="all" aria-pressed="false">All</button>
+            </div>
+          </div>
+        </div>
+        <div class="lab-log" data-lab-log></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec lab-next-sec">
+    <div class="wrap">
+      <div class="lab-next" data-reveal>
+        <span class="lab-next__label">STAGE 02 OF 3</span>
+        <div class="btn-row btn-row--left">
+          <a class="btn btn--solid" data-wipe-link href="lab-documents.html">Next: stage 03 · Worst-document bench</a>
+          <a class="btn btn--ghost" data-wipe-link href="lab.html">Back to the Lab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="lab.html">Lab</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=8"></script>
+<script src="assets/ambient.js?v=8"></script>
+<script src="assets/site.js?v=8"></script>
+<script src="assets/lab.js?v=5"></script>
+<script src="assets/lab-run.js?v=1"></script>
+</body>
+</html>

@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lab · The Unwired</title>
-<meta name="description" content="Two tools on one queue of 200 invoices. Set the tolerance, rewrite the rules, and watch what an agent would post, escalate or let slip.">
+<meta name="description" content="Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, and find the fields worth checking. Runs in your browser.">
 <link rel="canonical" href="https://theunwired.in/lab.html">
 <meta property="og:title" content="Lab · The Unwired">
-<meta property="og:description" content="Two tools on one queue of 200 invoices. Set the tolerance, rewrite the rules, and watch what an agent would post, escalate or let slip.">
+<meta property="og:description" content="Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, and find the fields worth checking. Runs in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/lab.html">
 <meta property="og:image" content="https://theunwired.in/assets/og.png">
@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=8">
+<link rel="stylesheet" href="assets/styles.css?v=10">
 </head>
 <body>
 
@@ -56,7 +56,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       <a data-wipe-link href="what-you-get.html">What you get</a>
       <a data-wipe-link href="industries.html">Industries</a>
       <a data-wipe-link href="work.html">Work</a>
-      <a href="#tolerance" aria-current="page">Lab</a>
+      <a data-wipe-link href="lab.html" aria-current="page">Lab</a>
       <a data-wipe-link href="security.html">Security</a>
       <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
     </div>
@@ -67,125 +67,82 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 </nav>
 
 <main id="main">
-
-  <section class="sec--page-hero" data-section="Lab">
+  <nav class="lab-stagebar" aria-label="Lab stages">
+    <div class="lab-stagebar__in">
+      <a class="lab-stagebar__home" data-wipe-link href="lab.html" aria-current="page">LAB</a>
+      <ol>
+      <li><a data-wipe-link href="lab-tolerance.html"><span class="lab-stagebar__num">01</span><span class="lab-stagebar__name">Set the line</span></a></li>
+      <li><a data-wipe-link href="lab-handover.html"><span class="lab-stagebar__num">02</span><span class="lab-stagebar__name">Pass the handover</span></a></li>
+      <li><a data-wipe-link href="lab-documents.html"><span class="lab-stagebar__num">03</span><span class="lab-stagebar__name">Worst-document bench</span></a></li>
+      </ol>
+      <span class="lab-stagebar__count">THREE STAGES</span>
+    </div>
+  </nav>
+  <section class="sec--page-hero lab-hero" data-section="Lab">
     <div class="wrap">
       <div class="chapter">
         <span class="chapter__rule chapter__rule--short"></span>
         <span class="chapter__label">Lab</span>
       </div>
-      <h1 class="h-page">Set the line yourself.</h1>
-      <p class="lede">Two tools on one queue of 200 invoices. Move the tolerance, rewrite the rules, and see what an agent would do with each invoice. The invoices are made up and everything runs in your browser. Nothing you do here is sent anywhere.</p>
+      <h1 class="h-page">Try the work before you talk to us.</h1>
+      <p class="lede">Three short stages on made-up invoices and documents, about eight minutes in all. Everything runs in your browser and nothing you do is sent anywhere. Start at the first, or open the one closest to your problem.</p>
+      <div class="btn-row btn-row--left">
+        <a class="btn btn--solid" data-wipe-link href="lab-tolerance.html">Start at stage 01</a>
+      </div>
     </div>
   </section>
 
-  <!-- 01 Tolerance lab -->
-  <section class="sec" id="tolerance" data-section="Tolerance lab">
+  <section class="sec" id="stages" data-section="Stages">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div class="chapter">
-          <span class="chapter__num">01</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__label">Tolerance lab</span>
-        </div>
-        <h2 class="h-section">One number decides what nobody checks.</h2>
-        <p>Each square is an invoice, placed by how far its price sits above the PO. Everything left of your line posts on its own. Everything right of it goes to a person. Drag the line and find the trade-off.</p>
-      </div>
-
-      <div class="lab-panel" data-lab-tolerance data-reveal>
-        <div class="lab-control">
-          <label class="lab-control__label" for="lab-range">Price tolerance</label>
-          <input class="lab-range" id="lab-range" type="range" min="0" max="15" step="0.5" value="5" data-lab-range>
-          <span class="lab-control__value" data-lab-readout aria-hidden="true">5.0%</span>
-        </div>
-
-        <div class="grid grid--4 lab-stats">
-          <div class="cell" data-lab-stat="post"><span class="cell__tag">POSTED ON ITS OWN</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
-          <div class="cell" data-lab-stat="person"><span class="cell__tag">SENT TO A PERSON</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub">each one is someone's time</span></div>
-          <div class="cell" data-lab-stat="caught"><span class="cell__tag">PROBLEMS CAUGHT</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub">stopped before payment</span></div>
-          <div class="cell" data-lab-stat="slip"><span class="cell__tag cell__tag--warn">PROBLEMS SLIPPED THROUGH</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub">posted, and should not have</span></div>
-        </div>
-
-        <div class="lab-chart" data-lab-chart></div>
-        <div class="lab-tip" data-lab-tip hidden></div>
-
-        <div class="fit-legend lab-legend">
-          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--post" x="0.5" y="0.5" width="11" height="11"></rect></svg>Posted, and it was fine</span>
-          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--person" x="1" y="1" width="10" height="10"></rect></svg>Sent to a person, it was fine</span>
-          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--caught" x="1" y="1" width="10" height="10"></rect></svg>Sent to a person, it was a problem</span>
-          <span class="fit-legend__row"><svg width="14" height="14" aria-hidden="true"><rect class="lab-key lab-key--slip" x="3" y="3" width="8" height="8" transform="rotate(45 7 7)"></rect></svg>Posted, and it was a problem</span>
-        </div>
-
-        <p class="lab-summary" data-lab-summary aria-live="polite"></p>
-        <p class="diagram-panel__note">Illustrative. 200 made-up invoices, the same for every visitor. Not client data and not a measured result. Hover or tap a square to see the invoice.</p>
+      <div class="lab-cards" data-reveal data-sweep>
+        <a class="lab-card" data-wipe-link href="lab-tolerance.html">
+          <span class="lab-card__top"><span class="lab-card__num">01</span><span class="lab-card__time">ABOUT 2 MIN</span></span>
+          <span class="lab-card__name">Set the line</span>
+          <span class="lab-card__text">Drag one price tolerance across 200 invoices. See what posts on its own, what goes to a person, and what slips through.</span>
+          <span class="lab-card__lesson">One number decides what nobody checks.</span>
+          <span class="lab-card__go">Open stage 01</span>
+        </a>
+        <a class="lab-card" data-wipe-link href="lab-handover.html">
+          <span class="lab-card__top"><span class="lab-card__num">02</span><span class="lab-card__time">ABOUT 3 MIN</span></span>
+          <span class="lab-card__name">Pass the handover</span>
+          <span class="lab-card__text">Edit the agent's rules as plain config. Change a tolerance, add a rule, and explain a decision from the log.</span>
+          <span class="lab-card__lesson">If your team can't change it, we built it wrong.</span>
+          <span class="lab-card__go">Open stage 02</span>
+        </a>
+        <a class="lab-card" data-wipe-link href="lab-documents.html">
+          <span class="lab-card__top"><span class="lab-card__num">03</span><span class="lab-card__time">ABOUT 3 MIN</span></span>
+          <span class="lab-card__name">Worst-document bench</span>
+          <span class="lab-card__text">Six awkward documents: a fax, a pen correction, a total hidden in a footnote. Pick the fields you would check, then see what the agent flagged.</span>
+          <span class="lab-card__lesson">Confidence is not the same as correct.</span>
+          <span class="lab-card__go">Open stage 03</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- 02 The handover test -->
-  <section class="sec sec--rule" id="handover" data-section="The handover test">
+  <section class="sec sec--rule" id="your-run" data-section="Your run">
     <div class="wrap">
-      <div class="sec-head" data-reveal>
-        <div class="chapter">
-          <span class="chapter__num">02</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__label">The handover test</span>
+      <div class="lab-run" data-lab-run data-reveal>
+        <div class="chapter chapter--tight">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Your run</span>
         </div>
-        <h2 class="h-section">If your team can't change it, we built it wrong.</h2>
-        <p>Before we call a build done, someone on the client's team does three things on their own. Here is the same test on a working rule set. Edit the config and the queue reruns.</p>
-      </div>
-
-      <div class="lab-handover" data-lab-handover data-reveal>
-        <ol class="lab-tasks">
-          <li data-lab-task="tolerance"><span class="lab-tasks__num">1</span><span><strong>Change a tolerance.</strong> Edit <code>price_tolerance_pct</code> or <code>auto_post_max_amount</code>.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
-          <li data-lab-task="rule"><span class="lab-tasks__num">2</span><span><strong>Add an escalation rule.</strong> Put a vendor on <code>always_escalate_vendor</code>. Try Kestrel Freight.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
-          <li data-lab-task="find"><span class="lab-tasks__num">3</span><span><strong>Explain a decision.</strong> Find out why <span data-lab-target>the invoice</span> went to a person. Search the log and open it.</span><span class="lab-tasks__state" data-state>TO DO</span></li>
-        </ol>
-
-        <div class="lab-done" data-lab-done hidden>
-          <p><strong>Passed.</strong> That is the whole test. A client's team does exactly this on their own system before we sign off, and if they can't, the build isn't finished.</p>
-          <a class="lab-done__link" data-wipe-link href="note-handover-is-the-product.html">Why we work this way</a>
+        <h2 class="h-section">What you did in the Lab.</h2>
+        <ol class="lab-run__list" data-lab-run-list></ol>
+        <div class="lab-run__foot">
+          <button type="button" class="btn btn--solid" data-open-contact data-lab-run-send hidden>Send this to us</button>
+          <p class="lab-run__note">Kept in this tab only and gone when you close it. Sending it opens the contact form with your run filled in, so you can add the process you have in mind.</p>
         </div>
-
-        <div class="lab-split">
-          <div class="lab-config">
-            <div class="lab-config__head">
-              <label for="lab-config">rules.yaml</label>
-              <button type="button" class="lab-reset" data-lab-reset>Reset to handover</button>
-            </div>
-            <textarea id="lab-config" class="lab-config__text" data-lab-config spellcheck="false" autocomplete="off" autocapitalize="off" aria-describedby="lab-status"></textarea>
-            <p class="lab-status" id="lab-status" data-lab-status role="status"></p>
-          </div>
-          <div class="stack lab-hstats">
-            <div class="cell" data-lab-hstat="post"><span class="cell__tag">POSTED ON ITS OWN</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
-            <div class="cell" data-lab-hstat="person"><span class="cell__tag">SENT TO A PERSON</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
-            <div class="cell" data-lab-hstat="slip"><span class="cell__tag cell__tag--warn">PROBLEMS SLIPPED THROUGH</span><span class="lab-stat" data-num>0</span><span class="lab-stat__sub" data-sub></span></div>
-          </div>
-        </div>
-
-        <div class="lab-log-head">
-          <span class="diagram-panel__label">Decision log</span>
-          <div class="lab-log-tools">
-            <input type="search" class="lab-find" data-lab-find placeholder="Find an invoice or vendor" aria-label="Find an invoice or vendor">
-            <div class="lab-filters" role="group" aria-label="Show">
-              <button type="button" data-lab-filter="person" aria-pressed="true">To a person</button>
-              <button type="button" data-lab-filter="slip" aria-pressed="false">Slipped</button>
-              <button type="button" data-lab-filter="all" aria-pressed="false">All</button>
-            </div>
-          </div>
-        </div>
-        <div class="lab-log" data-lab-log></div>
       </div>
     </div>
   </section>
 
-  <!-- Contact -->
   <section class="sec--cta" id="contact" data-section="Contact">
     <div class="wrap">
       <div class="cta" data-reveal data-sweep>
         <div>
-          <h2 class="h-section">Want the line drawn on your process?</h2>
-          <p>These invoices are made up. Bring a real queue and we'll set the tolerance with the person who owns it.</p>
+          <h2 class="h-section">Want this on your process?</h2>
+          <p>Everything here is made up. Bring a real queue or your worst documents, and the demo runs on those.</p>
         </div>
         <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
       </div>
@@ -245,6 +202,10 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <script src="assets/wires.js?v=8"></script>
 <script src="assets/ambient.js?v=8"></script>
 <script src="assets/site.js?v=8"></script>
-<script src="assets/lab.js?v=4"></script>
+<script src="assets/lab-run.js?v=1"></script>
+<script>
+/* old links pointed at sections of this page; send them to the stage pages */
+(function(){var m={"#tolerance":"lab-tolerance.html","#handover":"lab-handover.html"}[location.hash];if(m)location.replace(m);})();
+</script>
 </body>
 </html>
