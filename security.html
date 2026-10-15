@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Security · The Unwired</title>
+<meta name="description" content="Where the agent runs, what access we hold and when, how your data is handled, and what we sign before the build starts.">
+<link rel="canonical" href="https://theunwired.in/security.html">
+<meta property="og:title" content="Security · The Unwired">
+<meta property="og:description" content="Where the agent runs, what access we hold and when, how your data is handled, and what we sign before the build starts.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/security.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme"><span data-theme-opt="dark">Dark</span><span aria-hidden="true">/</span><span data-theme-opt="light">Light</span></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec--page-hero" data-section="Overview">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Security &amp; data</span>
+      </div>
+      <h1 class="h-page">Your systems, your data, your model account.</h1>
+      <p class="lede">The agent is built inside your infrastructure and runs there after handover. This page sets out what we touch, when we touch it, and what we sign before any of it starts.</p>
+      <div class="btn-row btn-row--left">
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+        <a class="btn btn--ghost" data-wipe-link href="what-you-get.html">What you get</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 01 Where it runs -->
+  <section class="sec" id="where" data-section="Where it runs">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">01</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Where it runs</span>
+        </div>
+        <h2 class="h-section">It lives in your infrastructure.</h2>
+      </div>
+      <div class="stack" data-reveal data-sweep>
+        <div class="row">
+          <span class="row__num">01</span>
+          <span class="row__title">Your environment</span>
+          <p>The agent is deployed in your cloud or on your servers, under your access rules. We don't host it, and we don't keep a copy of it running anywhere else.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">02</span>
+          <span class="row__title">Your model account</span>
+          <p>The agent calls a language model through your own account with the provider you choose. Your documents go to a provider you already hold terms with, under those terms.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">03</span>
+          <span class="row__title">Your infrastructure bill</span>
+          <p>Hosting and model usage are billed to you directly by your providers. You see every line of it.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">04</span>
+          <span class="row__title">Maintenance is optional</span>
+          <p>After handover your team runs it. If you want us to maintain it, that is a separate agreement with its own billing. Nothing stops working if you never sign one.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Access -->
+  <section class="sec sec--rule" data-section="Access">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Access</span>
+        </div>
+        <h2 class="h-section">Access comes in steps, and you can take it back at any point.</h2>
+      </div>
+      <div class="timeline">
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">Week 1</span>
+          <div>
+            <h3>Read-only</h3>
+            <p>We watch the process as it runs. We can read what the systems hold. We can't change any of it.</p>
+          </div>
+          <div class="tl-row__give">
+            <span>WE HOLD</span>
+            <p>Read-only access for named people on our side, listed in writing.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">Week 2–3</span>
+          <div>
+            <h3>No new access</h3>
+            <p>Design happens with your process owner. Goals, guardrails and escalation points are agreed before the agent is allowed to act on anything.</p>
+          </div>
+          <div class="tl-row__give">
+            <span>WE HOLD</span>
+            <p>The same read-only access. Nothing added.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">Week 4–6</span>
+          <div>
+            <h3>Write access, on your sign-off</h3>
+            <p>The agent runs in parallel with your team. Every action it takes is logged in your environment.</p>
+          </div>
+          <div class="tl-row__give">
+            <span>WE HOLD</span>
+            <p>Write access scoped to the systems this one process touches, granted when you approve it.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">Handover</span>
+          <div>
+            <h3>Our access ends</h3>
+            <p>Every credential we held is revoked on the handover date, and you confirm it. If you sign a maintenance agreement, the access it needs is written into that agreement.</p>
+          </div>
+          <div class="tl-row__give">
+            <span>WE KEEP</span>
+            <p>No credentials and no copies of your data.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Your data -->
+  <section class="sec sec--rule" data-section="Your data">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">03</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Your data</span>
+        </div>
+        <h2 class="h-section">What happens to your data.</h2>
+      </div>
+      <div class="stack" data-reveal data-sweep>
+        <div class="row">
+          <span class="row__num">01</span>
+          <span class="row__title">Samples during discovery</span>
+          <p>We may ask for sample documents to test against before the build. They're covered by the NDA, used only for that assessment, and deleted when it ends. We confirm the deletion in writing. If you'd rather samples never leave your systems, we run discovery inside your environment from day one.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">02</span>
+          <span class="row__title">Nothing leaves your systems</span>
+          <p>The agent reads from your systems and writes back to them. We don't export your data to storage of our own, during the build or after it.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">03</span>
+          <span class="row__title">No training on your data</span>
+          <p>We don't use your data to train anything. Your model provider's terms govern what it does with what it receives. We'll go through those terms with your team before the build starts.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">04</span>
+          <span class="row__title">The log stays with you</span>
+          <p>Every input the agent read and every action it took is recorded in your environment. Your auditors read the same log your team does.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Paperwork -->
+  <section class="sec sec--rule" data-section="Paperwork">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">04</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Paperwork</span>
+        </div>
+        <h2 class="h-section">What we sign before we start.</h2>
+      </div>
+      <div class="stack" data-reveal data-sweep>
+        <div class="row">
+          <span class="row__num">01</span>
+          <span class="row__title">NDA</span>
+          <p>Signed before you share a single sample. Your template or ours, whichever your legal team prefers.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">02</span>
+          <span class="row__title">Data processing agreement</span>
+          <p>Available on request for any engagement that touches personal data.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">03</span>
+          <span class="row__title">Your vendor assessment</span>
+          <p>We fill in your security questionnaire as written. Where a question doesn't apply to a studio our size, the answer says so.</p>
+        </div>
+        <div class="row">
+          <span class="row__num">04</span>
+          <span class="row__title">Incident notification</span>
+          <p>You set the notification window. Tell us your requirement and it goes into the contract as written. If something breaks, you hear what happened, what we're doing about it, and when it will be fixed.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="What we don't claim">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">What we don't claim</span>
+        </div>
+        <p>We are not SOC 2 or ISO 27001 certified. Because the agent runs inside your infrastructure, it sits under the controls you already audit. What we can show you is the access we hold, the dates we hold it, and a log of everything the agent did.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="sec--cta-top" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Send this page to your security team.</h2>
+          <p>If they have a question it doesn't answer, we'd rather hear it before the build than after.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=6"></script>
+<script src="assets/ambient.js?v=6"></script>
+<script src="assets/site.js?v=6"></script>
+</body>
+</html>

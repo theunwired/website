@@ -24,4 +24,28 @@
     <loc>https://theunwired.in/hr-hire-to-retire.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://theunwired.in/security.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/faq.html</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/privacy.html</loc>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/note-pilots-die-in-the-demo.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/note-tolerance-is-the-design.html</loc>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://theunwired.in/note-handover-is-the-product.html</loc>
+    <priority>0.5</priority>
+  </url>
 </urlset>
