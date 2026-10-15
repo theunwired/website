@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#4FBF9B; text-decoration:none; }
+  a:hover { color:#F2F1ED; }
+</style>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="How to use" data-screen-label="01" data-speaker-notes="Read this slide, then delete it. Every following slide has a plain background so a video can sit behind the text." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:44px">
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Read this, then delete this slide</span>
+      </div>
+      <p style="margin:0;font-size:76px;font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:26ch">Blank templates. Add the video yourself.</p>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F;max-width:1400px">
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:64px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#4FBF9B">01</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">Insert the loop video, then drag its corners to cover the whole slide.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:64px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#4FBF9B">02</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">Right-click it and choose Send to Back. The text stays on top and stays editable.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:64px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#4FBF9B">03</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">Playback tab: set Start to Automatically and tick Loop until Stopped.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:64px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#8A8F84">04</span><span style="font-size:30px;line-height:1.45;color:#8A8F84">Use it on dividers and statements. Leave content slides still, or the text gets tiring to read.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="T1 · Title card" data-screen-label="02" data-speaker-notes="Template. Deck title card. Fully open around the centre, so a video reads clearly behind it." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">DECK TYPE OR CLIENT NAME</span>
+      <div style="display:flex;flex-direction:column;gap:44px">
+        <div style="display:flex;align-items:center;gap:26px">
+          <span style="display:flex;flex-direction:column;gap:11px">
+            <span style="width:104px;height:11px;background:#F2F1ED;display:block"></span>
+            <span style="width:60px;height:11px;background:#0F5C4A;display:block"></span>
+          </span>
+          <span style="font-size:88px;font-weight:700;letter-spacing:-0.04em;line-height:1">theunwired</span>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:22px">
+          <p style="margin:0;font-size:82px;font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:24ch">Replace this with the deck title.</p>
+          <p style="margin:0;font-size:32px;line-height:1.5;color:#B6B8B0;max-width:52ch">One line of context. What this is and who it is for.</p>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">THE UNWIRED</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">DATE</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="T2 · Section divider" data-screen-label="03" data-speaker-notes="Template. A chapter break. The best place for the moving background." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:36px">
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">01</span>
+        <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Section label</span>
+      </div>
+      <p style="margin:0;font-size:104px;font-weight:700;letter-spacing:-0.04em;line-height:1.0;max-width:20ch">The chapter title goes here.</p>
+      <p style="margin:0;font-size:32px;line-height:1.5;color:#B6B8B0;max-width:56ch">One sentence saying what this section argues, so the divider does work instead of just marking time.</p>
+    </div>
+  </section>
+
+  <section data-label="T3 · Statement" data-screen-label="04" data-speaker-notes="Template. One idea, nothing else. Also a strong place for the video." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center">
+      <p style="margin:0;font-size:118px;font-weight:700;letter-spacing:-0.04em;line-height:1.0;max-width:20ch">One line. <span style="color:#4FBF9B">Say it plainly.</span></p>
+    </div>
+    <div style="position:absolute;left:96px;bottom:84px"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">SOURCE OR CAVEAT, IF ANY</span></div>
+  </section>
+
+  <section data-label="T4 · Two column" data-screen-label="05" data-speaker-notes="Template. A comparison, or before and after. Keep the columns even in length." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">02</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Section label</span>
+        </div>
+        <p style="margin:0;font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;max-width:28ch">The heading for this comparison.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:24px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#8A8F84">BEFORE</span>
+          <div style="display:flex;flex-direction:column;gap:16px;font-size:30px;line-height:1.45;color:#8A8F84">
+            <span>First point on the left.</span>
+            <span>Second point on the left.</span>
+            <span>Third point on the left.</span>
+          </div>
+        </div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:24px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">AFTER</span>
+          <div style="display:flex;flex-direction:column;gap:16px;font-size:30px;line-height:1.45;color:#D6D7D1">
+            <span>First point on the right.</span>
+            <span>Second point on the right.</span>
+            <span>Third point on the right.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="T5 · Numbered list" data-screen-label="06" data-speaker-notes="Template. An agenda, a process, or a set of steps. Mono numerals, never bullets or icons." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">03</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Section label</span>
+        </div>
+        <p style="margin:0;font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;max-width:28ch">The heading for this list.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:34px 44px;display:grid;grid-template-columns:64px 400px 1fr;gap:40px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A">01</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">First item</span><span style="font-size:29px;line-height:1.45;color:#B6B8B0">One sentence of detail. Cut it if the title says enough.</span></div>
+        <div style="background:#0B0C0B;padding:34px 44px;display:grid;grid-template-columns:64px 400px 1fr;gap:40px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A">02</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Second item</span><span style="font-size:29px;line-height:1.45;color:#B6B8B0">One sentence of detail. Cut it if the title says enough.</span></div>
+        <div style="background:#0B0C0B;padding:34px 44px;display:grid;grid-template-columns:64px 400px 1fr;gap:40px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A">03</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Third item</span><span style="font-size:29px;line-height:1.45;color:#B6B8B0">One sentence of detail. Cut it if the title says enough.</span></div>
+        <div style="background:#0B0C0B;padding:34px 44px;display:grid;grid-template-columns:64px 400px 1fr;gap:40px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A">04</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Fourth item</span><span style="font-size:29px;line-height:1.45;color:#B6B8B0">One sentence of detail. Cut it if the title says enough.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="T6 · Three up" data-screen-label="07" data-speaker-notes="Template. Three parallel points. Do not add a fourth column, it breaks the rhythm at this size." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:18px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">04</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Section label</span>
+        </div>
+        <p style="margin:0;font-size:60px;font-weight:700;letter-spacing:-0.03em;line-height:1.05;max-width:28ch">The heading for these three.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">01</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">First point</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Two sentences at most. If it needs more, it needs its own slide.</p></div>
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">02</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Second point</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Two sentences at most. If it needs more, it needs its own slide.</p></div>
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">03</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Third point</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Two sentences at most. If it needs more, it needs its own slide.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="T7 · Open canvas" data-screen-label="08" data-speaker-notes="Template. Deliberately almost empty, for a diagram, a screenshot, or a full-bleed video with one line over it." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">05</span>
+        <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Open canvas</span>
+      </div>
+      <p style="margin:0;font-size:52px;font-weight:700;letter-spacing:-0.03em;line-height:1.1;max-width:30ch">Everything else on this slide is yours. Drop a diagram, a screenshot, or the video here.</p>
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">THE UNWIRED</span>
+    </div>
+  </section>
+
+  <section data-label="T8 · Closing" data-screen-label="09" data-speaker-notes="Template. The last slide. Close on the tagline with the video running behind it." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:24px">
+        <span style="display:flex;flex-direction:column;gap:9px">
+          <span style="width:84px;height:9px;background:#F2F1ED;display:block"></span>
+          <span style="width:49px;height:9px;background:#0F5C4A;display:block"></span>
+        </span>
+        <span style="font-size:44px;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:28px">
+        <p style="margin:0;font-size:118px;font-weight:700;letter-spacing:-0.04em;line-height:1.0">We build it. <span style="color:#4FBF9B">You own it.</span></p>
+        <p style="margin:0;font-size:32px;line-height:1.5;color:#B6B8B0;max-width:56ch">Save time, save money, grow.</p>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">theunwired.in</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#4FBF9B">theunwired.in@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>

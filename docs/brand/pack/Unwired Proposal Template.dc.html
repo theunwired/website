@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#0F5C4A; text-decoration:none; }
+  a:hover { color:#0B0C0B; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page margin="0.7in" style="font-family:'Instrument Sans',Helvetica,Arial,sans-serif;color:#16180F">
+
+  <div slot="header" style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9pt;border-bottom:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>THE UNWIRED · PROPOSAL</span>
+    <span>CLIENT NAME · CONFIDENTIAL</span>
+  </div>
+
+  <div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;padding-top:9pt;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>theunwired.in</span>
+    <span>theunwired.in@gmail.com</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:9pt;margin-bottom:26pt">
+    <span style="display:flex;flex-direction:column;gap:2.5pt">
+      <span style="width:26pt;height:3pt;background:#16180F;display:block"></span>
+      <span style="width:15pt;height:3pt;background:#0F5C4A;display:block"></span>
+    </span>
+    <span style="font-size:16pt;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+  </div>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:#0F5C4A;margin-bottom:10pt">Proposal</div>
+  <h1 style="margin:0 0 12pt;font-size:26pt;font-weight:700;letter-spacing:-0.03em;line-height:1.12;max-width:22ch">Agenting [PROCESS NAME] for [CLIENT NAME]</h1>
+  <p style="margin:0 0 24pt;font-size:11pt;line-height:1.55;color:#3E4238;max-width:62ch">One process, six weeks, handed over for your team to own. Week one is at our cost. This document is the scope, the price, and what we are explicitly not doing.</p>
+
+  <table style="width:100%;border-collapse:collapse;margin-bottom:26pt;font-size:9.5pt">
+    <tbody>
+      <tr><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1;width:30%;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">PREPARED FOR</td><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1">[Name, title, company]</td></tr>
+      <tr><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">PREPARED BY</td><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1">[Founder name], The Unwired</td></tr>
+      <tr><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">DATE</td><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1">[Date]</td></tr>
+      <tr><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">VALID UNTIL</td><td style="padding:7pt 0;border-top:0.75pt solid #C9CBC1;border-bottom:0.75pt solid #C9CBC1">[Date, 30 days out]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">01 · What you told us</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Their words, not ours. Quote the process owner from week one. If this paragraph does not sound like the client, the proposal will not land.</p>
+  <div style="border-left:2pt solid #0F5C4A;padding:2pt 0 2pt 14pt;margin-bottom:12pt">
+    <p style="margin:0;font-size:11pt;line-height:1.55;font-style:normal;color:#16180F">"[Verbatim quote from the process owner about what breaks and what it costs them.]"</p>
+    <p style="margin:6pt 0 0;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">[NAME, TITLE] · WEEK ONE</p>
+  </div>
+  <p style="margin:0 0 22pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">What we measured in week one: [volume per month], [average handling time], [exception rate], [people involved]. These are your numbers, measured with your team, not estimates.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">02 · What we will build</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">An agent that runs [PROCESS NAME] end to end, across [SYSTEM A], [SYSTEM B] and [SYSTEM C], within the tolerances your team sets.</p>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:14pt;font-size:10pt">
+    <thead><tr>
+      <th style="text-align:left;padding:7pt 10pt 7pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:28%">STEP</th>
+      <th style="text-align:left;padding:7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHAT THE AGENT DOES</th>
+      <th style="text-align:left;padding:7pt 0 7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:26%">HUMAN INVOLVEMENT</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Read</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What it gathers, and from where]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">None</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Decide</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[The check it performs, against which tolerance]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">None within tolerance</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Act</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What it writes, posts or closes]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Approval, if any]</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Escalate</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What stops it, and what it attaches]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Named owner]</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:0 0 22pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Nothing runs unattended until it has run in parallel with your existing process and your team has signed off on its judgement.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">03 · Guardrails</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">You set every number in this table. Your team can change any of them after handover without involving us.</p>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:22pt;font-size:10pt">
+    <thead><tr>
+      <th style="text-align:left;padding:7pt 10pt 7pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:34%">RULE</th>
+      <th style="text-align:left;padding:7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:26%">VALUE</th>
+      <th style="text-align:left;padding:7pt 0 7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">SET BY</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6">[Variance tolerance]</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[5%]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Name, title]</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6">[Approval threshold]</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Name, title]</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6">[Escalation route]</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Queue or person]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Name, title]</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6">[Access scope]</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Read-only until week 4]</td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Name, title]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">04 · Timeline</h2>
+  <table style="width:100%;border-collapse:collapse;margin-bottom:14pt;font-size:10pt">
+    <thead><tr>
+      <th style="text-align:left;padding:7pt 10pt 7pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:22%">WHEN</th>
+      <th style="text-align:left;padding:7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHAT HAPPENS</th>
+      <th style="text-align:left;padding:7pt 0 7pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:30%">WE NEED FROM YOU</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#0F5C4A">Week 1 · free</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6"><strong>Map the wiring.</strong> <span style="color:#3E4238">We shadow the process as it is really run and measure it.</span></td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">Two hours with the process owner. Read-only access.</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#6B6F63">Week 2–3</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6"><strong>Design the agent.</strong> <span style="color:#3E4238">Goal, guardrails and escalation points agreed and written down.</span></td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">One decision-maker who can set tolerances.</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#6B6F63">Week 4–6</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6"><strong>Deploy in parallel.</strong> <span style="color:#3E4238">It runs alongside the current process and earns the lead.</span></td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">Write access when you are ready. A weekly review.</td></tr>
+      <tr><td style="padding:8pt 10pt 8pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#0F5C4A">Handover</td><td style="padding:8pt 10pt;border-bottom:0.5pt solid #DDDFD6"><strong>You own it.</strong> <span style="color:#3E4238">Configuration, documentation and a working session with the team.</span></td><td style="padding:8pt 0 8pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">Two hours with whoever will run it.</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:0 0 22pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Six calendar weeks from kickoff, assuming access lands in week one. Delays in access move the end date by the same number of days.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">05 · Price</h2>
+  <div style="border:0.75pt solid #16180F;padding:16pt 18pt;margin-bottom:12pt;break-inside:avoid">
+    <table style="width:100%;border-collapse:collapse;font-size:10.5pt">
+      <tbody>
+        <tr><td style="padding:6pt 0;color:#3E4238">Week one · discovery and measurement</td><td style="padding:6pt 0;text-align:right;font-family:'IBM Plex Mono',monospace;color:#0F5C4A;font-weight:500">No charge</td></tr>
+        <tr><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">Build and deploy · weeks two to six</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;text-align:right;font-family:'IBM Plex Mono',monospace">[AMOUNT]</td></tr>
+        <tr><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">Handover, documentation and working session</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;text-align:right;font-family:'IBM Plex Mono',monospace">Included</td></tr>
+        <tr><td style="padding:8pt 0;border-top:0.75pt solid #16180F;font-weight:700;font-size:11.5pt">Total, fixed</td><td style="padding:8pt 0;border-top:0.75pt solid #16180F;text-align:right;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:11.5pt">[AMOUNT]</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin:0 0 22pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Fixed scope, fixed price. Invoiced [50% at kickoff, 50% at handover]. No retainer is required after handover. If you stop after week one, you owe nothing and you keep the process map.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">06 · What is not included</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Naming this now is cheaper than discovering it in week five.</p>
+  <ul style="margin:0 0 22pt;padding-left:16pt;font-size:10.5pt;line-height:1.6;color:#3E4238;max-width:64ch">
+    <li style="margin-bottom:5pt">A second process. This scope covers [PROCESS NAME] only.</li>
+    <li style="margin-bottom:5pt">Changes to your source systems, licences or infrastructure.</li>
+    <li style="margin-bottom:5pt">Decisions with legal exposure. The agent prepares the case, a person signs it.</li>
+    <li style="margin-bottom:5pt">Data cleanup or migration beyond what the agent needs to read.</li>
+    <li style="margin-bottom:5pt">Ongoing operation. Your team runs it after handover.</li>
+  </ul>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">07 · What you own at the end</h2>
+  <ul style="margin:0 0 22pt;padding-left:16pt;font-size:10.5pt;line-height:1.6;color:#3E4238;max-width:64ch">
+    <li style="margin-bottom:5pt">The agent, running in your environment under your access rules.</li>
+    <li style="margin-bottom:5pt">Every guardrail, documented and changeable by your team without us.</li>
+    <li style="margin-bottom:5pt">The full audit trail of every decision it has made and why.</li>
+    <li style="margin-bottom:5pt">The handover pack, written for the person who inherits it.</li>
+    <li>Full rights to modify, extend or switch it off. No lock-in.</li>
+  </ul>
+
+  <h2 style="margin:0 0 10pt;font-size:14pt;font-weight:700;letter-spacing:-0.02em">08 · To proceed</h2>
+  <p style="margin:0 0 18pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Reply to this document, or sign below and return it. We will confirm a kickoff date within one working day.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;break-inside:avoid">
+    <tbody>
+      <tr>
+        <td style="width:48%;padding-top:28pt;border-top:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">SIGNED FOR [CLIENT NAME] · NAME, TITLE, DATE</td>
+        <td style="width:4%"></td>
+        <td style="width:48%;padding-top:28pt;border-top:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">SIGNED FOR THE UNWIRED · NAME, TITLE, DATE</td>
+      </tr>
+    </tbody>
+  </table>
+
+</doc-page>
+</x-dc>
+</body>
+</html>

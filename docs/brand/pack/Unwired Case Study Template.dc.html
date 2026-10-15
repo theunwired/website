@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#0F5C4A; text-decoration:none; }
+  a:hover { color:#0B0C0B; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page margin="0.7in" style="font-family:'Instrument Sans',Helvetica,Arial,sans-serif;color:#16180F">
+
+  <div slot="header" style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9pt;border-bottom:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>THE UNWIRED · CASE STUDY</span>
+    <span>[CLIENT] · APPROVED [DATE]</span>
+  </div>
+
+  <div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;padding-top:9pt;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>theunwired.in</span>
+    <span>Numbers measured by the client, not by us</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:9pt;margin-bottom:22pt">
+    <span style="display:flex;flex-direction:column;gap:2.5pt">
+      <span style="width:26pt;height:3pt;background:#16180F;display:block"></span>
+      <span style="width:15pt;height:3pt;background:#0F5C4A;display:block"></span>
+    </span>
+    <span style="font-size:16pt;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+  </div>
+
+  <div style="border:0.75pt solid #0F5C4A;padding:10pt 12pt;margin-bottom:20pt;break-inside:avoid">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#0F5C4A;margin-bottom:5pt">THE RULE, PUBLISHED ON OUR WORK PAGE</div>
+    <p style="margin:0;font-size:9.5pt;line-height:1.5;color:#3E4238">If a case study cannot fill all five sections below, it does not go up. No anonymous logos, no invented percentages, and the number is measured by the client. Delete this box before publishing.</p>
+  </div>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:#0F5C4A;margin-bottom:10pt">[Function] · [Industry]</div>
+  <h1 style="margin:0 0 12pt;font-size:26pt;font-weight:700;letter-spacing:-0.03em;line-height:1.12;max-width:24ch">[The outcome in one plain sentence.]</h1>
+  <p style="margin:0 0 20pt;font-size:11pt;line-height:1.55;color:#3E4238;max-width:62ch">[Two sentences of context. Who the client is, in terms a reader in the same seat would recognise, and what the process is. No adjectives.]</p>
+
+  <div style="display:flex;gap:0.75pt;background:#C9CBC1;border:0.75pt solid #C9CBC1;margin-bottom:24pt;break-inside:avoid">
+    <div style="background:#FFFFFF;padding:12pt 14pt;flex:1"><div style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;margin-bottom:4pt">PROCESS</div><div style="font-size:10.5pt;font-weight:600">[Named process]</div></div>
+    <div style="background:#FFFFFF;padding:12pt 14pt;flex:1"><div style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;margin-bottom:4pt">VOLUME</div><div style="font-size:10.5pt;font-weight:600">[Per month]</div></div>
+    <div style="background:#FFFFFF;padding:12pt 14pt;flex:1"><div style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;margin-bottom:4pt">SYSTEMS</div><div style="font-size:10.5pt;font-weight:600">[Count]</div></div>
+    <div style="background:#FFFFFF;padding:12pt 14pt;flex:1"><div style="font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;margin-bottom:4pt">LIVE SINCE</div><div style="font-size:10.5pt;font-weight:600">[Month, year]</div></div>
+  </div>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">01 · The named process</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Not "finance automation". The actual process, the systems it crosses, the volume it runs at, and who was doing it.</p>
+  <p style="margin:0 0 20pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">[Write it here. A reader who runs the same process should recognise their own week in this paragraph.]</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">02 · What was breaking</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">The failure mode before we arrived, in the words the team used, including what they had already tried.</p>
+  <div style="border-left:2pt solid #0F5C4A;padding:2pt 0 2pt 14pt;margin-bottom:12pt">
+    <p style="margin:0;font-size:11pt;line-height:1.55">"[Verbatim quote from the process owner about what was breaking.]"</p>
+    <p style="margin:6pt 0 0;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">[NAME, TITLE]</p>
+  </div>
+  <p style="margin:0 0 20pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">[What they had already tried, named plainly and without disparaging the previous tool or vendor.]</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">03 · The guardrails we set</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Tolerances, escalation points, and what we deliberately left to a human. This is the interesting part and the reason a cautious reader will trust the rest.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:14pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 10pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:34%">RULE</th>
+      <th style="text-align:left;padding:6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:24%">SET AT</th>
+      <th style="text-align:left;padding:6pt 0 6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">SET BY</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Rule]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Rule]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Rule]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:0 0 20pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">[What stayed human, and why. Name it as a deliberate choice, not a limitation.]</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">04 · One real number</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Hours, cycle time, or exception rate. Measured before and after, by the client. One number carries more weight than five.</p>
+  <div style="border:0.75pt solid #16180F;padding:16pt 18pt;margin-bottom:12pt;break-inside:avoid">
+    <table style="width:100%;border-collapse:collapse;font-size:10.5pt">
+      <thead><tr>
+        <th style="text-align:left;padding:0 10pt 8pt 0;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:40%">MEASURE</th>
+        <th style="text-align:left;padding:0 10pt 8pt;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">BEFORE</th>
+        <th style="text-align:left;padding:0 0 8pt 10pt;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">AFTER</th>
+      </tr></thead>
+      <tbody>
+        <tr><td style="padding:8pt 10pt 8pt 0;border-top:0.5pt solid #DDDFD6;font-weight:600">[The headline measure]</td><td style="padding:8pt 10pt;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:8pt 0 8pt 10pt;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#0F5C4A;font-weight:500">[Value]</td></tr>
+        <tr><td style="padding:8pt 10pt 8pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Secondary measure]</td><td style="padding:8pt 10pt;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:8pt 0 8pt 10pt;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="margin:0 0 20pt;font-size:9.5pt;line-height:1.5;color:#6B6F63;max-width:64ch">Measured by [name, title] at [client] over [period]. Method: [how it was counted]. We did not measure this ourselves.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">05 · What we got wrong</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Every build has a week where something misfires. It goes in the write-up. This section is not optional and it is the reason readers believe the rest.</p>
+  <p style="margin:0 0 20pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">[What misfired, what it cost, what we changed, and what we do differently now.]</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">What the client owns now</h2>
+  <ul style="margin:0 0 20pt;padding-left:16pt;font-size:10.5pt;line-height:1.6;color:#3E4238;max-width:64ch">
+    <li style="margin-bottom:5pt">[Who on their team has changed a guardrail since handover, and when]</li>
+    <li style="margin-bottom:5pt">[Whether they have extended it to another process themselves]</li>
+    <li>[Confirm: no retainer, no dependency on us]</li>
+  </ul>
+
+  <div style="border-top:0.75pt solid #C9CBC1;padding-top:14pt;break-inside:avoid">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63;margin-bottom:8pt">BEFORE PUBLISHING</div>
+    <table style="width:100%;border-collapse:collapse;font-size:10pt">
+      <tbody>
+        <tr><td style="padding:5pt 10pt 5pt 0;width:6%;color:#0F5C4A">☐</td><td style="padding:5pt 0;color:#3E4238">All five sections complete, including what we got wrong</td></tr>
+        <tr><td style="padding:5pt 10pt 5pt 0;color:#0F5C4A">☐</td><td style="padding:5pt 0;color:#3E4238">Every number measured by the client and attributed</td></tr>
+        <tr><td style="padding:5pt 10pt 5pt 0;color:#0F5C4A">☐</td><td style="padding:5pt 0;color:#3E4238">Client has read this exact version and approved it in writing</td></tr>
+        <tr><td style="padding:5pt 10pt 5pt 0;color:#0F5C4A">☐</td><td style="padding:5pt 0;color:#3E4238">No banned words, no em dashes, no invented adjectives</td></tr>
+        <tr><td style="padding:5pt 10pt 5pt 0;color:#0F5C4A">☐</td><td style="padding:5pt 0;color:#3E4238">Named quote cleared with the person quoted</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</doc-page>
+</x-dc>
+</body>
+</html>

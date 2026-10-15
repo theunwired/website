@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#0F5C4A; text-decoration:none; }
+  a:hover { color:#0B0C0B; }
+  code { font-family:'IBM Plex Mono',monospace; font-size:9pt; background:#EFF0EA; padding:1pt 4pt; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page margin="0.7in" style="font-family:'Instrument Sans',Helvetica,Arial,sans-serif;color:#16180F">
+
+  <div slot="header" style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9pt;border-bottom:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>HANDOVER PACK · [PROCESS NAME]</span>
+    <span>[CLIENT NAME] · V1.0</span>
+  </div>
+
+  <div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;padding-top:9pt;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>Written for the person who inherits this</span>
+    <span>theunwired.in</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:9pt;margin-bottom:22pt">
+    <span style="display:flex;flex-direction:column;gap:2.5pt">
+      <span style="width:26pt;height:3pt;background:#16180F;display:block"></span>
+      <span style="width:15pt;height:3pt;background:#0F5C4A;display:block"></span>
+    </span>
+    <span style="font-size:16pt;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+  </div>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:#0F5C4A;margin-bottom:10pt">Handover pack</div>
+  <h1 style="margin:0 0 10pt;font-size:24pt;font-weight:700;letter-spacing:-0.03em;line-height:1.12;max-width:24ch">[PROCESS NAME] — how it runs and how to change it</h1>
+  <p style="margin:0 0 20pt;font-size:11pt;line-height:1.55;color:#3E4238;max-width:64ch">This document is written for whoever owns this process next, not for us. If anything here is unclear to a competent person who was not in the build, it is a defect in this document and we will fix it.</p>
+
+  <div style="border-left:2pt solid #0F5C4A;padding:2pt 0 2pt 14pt;margin-bottom:24pt">
+    <p style="margin:0;font-size:10.5pt;line-height:1.55">If your team cannot change the escalation rule without calling us, we built the wrong thing. Section 04 is the one that matters most.</p>
+  </div>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">01 · What the agent does</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Plain language first. The technical detail is in section 06.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 10pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:20%">STEP</th>
+      <th style="text-align:left;padding:6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHAT IT DOES</th>
+      <th style="text-align:left;padding:6pt 0 6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:26%">WHERE TO SEE IT</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Read</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What it gathers, from which systems]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Log location]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Decide</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[The check, against which rule]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Log location]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Act</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What it writes or closes]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[System, record type]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6;font-weight:600">Escalate</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[What stops it and what it attaches]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Queue or inbox]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">02 · What it deliberately does not do</h2>
+  <ul style="margin:0 0 20pt;padding-left:16pt;font-size:10.5pt;line-height:1.6;color:#3E4238;max-width:64ch">
+    <li style="margin-bottom:5pt">[Decision that stays human, and why]</li>
+    <li style="margin-bottom:5pt">[Case it always escalates rather than guessing]</li>
+    <li style="margin-bottom:5pt">[System it has no write access to]</li>
+    <li>[Anything explicitly out of scope from the proposal]</li>
+  </ul>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">03 · Where it runs and who has access</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <tbody>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;width:34%;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">ENVIRONMENT</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Where it is deployed]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">RUNS ON</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Schedule or trigger]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">SERVICE ACCOUNT</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Account name and its permissions]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">SECRETS HELD IN</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Vault or manager, who can rotate]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">WHO CAN CHANGE IT</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Names and roles]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">04 · How to change a guardrail</h2>
+  <p style="margin:0 0 12pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">This is the section that makes the system yours. Every number below is editable by your team, with no involvement from us.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:12pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 10pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:28%">RULE</th>
+      <th style="text-align:left;padding:6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:18%">CURRENT</th>
+      <th style="text-align:left;padding:6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHERE TO CHANGE IT</th>
+      <th style="text-align:left;padding:6pt 0 6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:20%">WHO APPROVES</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Variance tolerance]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[5%]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Exact file, field or screen]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Approval threshold]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Exact file, field or screen]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Escalation recipient]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Name]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Exact file, field or screen]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">[Run schedule]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace">[Value]</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Exact file, field or screen]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Role]</td></tr>
+    </tbody>
+  </table>
+  <p style="margin:0 0 20pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">After any change, run the check in section 07 before the next live run.</p>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">05 · When something goes wrong</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 10pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:32%">SYMPTOM</th>
+      <th style="text-align:left;padding:6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:34%">LIKELY CAUSE</th>
+      <th style="text-align:left;padding:6pt 0 6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHAT TO DO</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">Nothing ran today</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Schedule, credential expiry]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Steps]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">Everything is escalating</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Tolerance set too tight, upstream data change]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Steps]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">It acted when it should have stopped</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Guardrail changed without review]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Pause procedure, then steps]</td></tr>
+      <tr><td style="padding:7pt 10pt 7pt 0;border-bottom:0.5pt solid #DDDFD6">A source system changed</td><td style="padding:7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Field renamed, API version]</td><td style="padding:7pt 0 7pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Steps]</td></tr>
+    </tbody>
+  </table>
+  <div style="border:0.75pt solid #16180F;padding:12pt 14pt;margin-bottom:20pt;break-inside:avoid">
+    <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#0F5C4A;margin-bottom:6pt">HOW TO STOP IT IMMEDIATELY</div>
+    <p style="margin:0;font-size:10.5pt;line-height:1.55;color:#3E4238">[The exact one-step action that halts the agent, and who can do it. This must be doable by a non-technical process owner in under a minute.]</p>
+  </div>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">06 · Technical reference</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <tbody>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;width:34%;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">REPOSITORY</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Location]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">CONFIG FILE</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Path]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">MODEL AND VERSION</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Provider, model, pinned version]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">INTEGRATIONS</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Each system, auth method, scope]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">AUDIT TRAIL</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;color:#3E4238">[Where every decision is recorded, retention]</td></tr>
+      <tr><td style="padding:6pt 12pt 6pt 0;border-top:0.5pt solid #DDDFD6;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">COST PER RUN</td><td style="padding:6pt 0;border-top:0.5pt solid #DDDFD6;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Estimate and what drives it]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">07 · Check it still works</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Run this after any change to a guardrail, a credential or a source system.</p>
+  <ol style="margin:0 0 20pt;padding-left:16pt;font-size:10.5pt;line-height:1.6;color:#3E4238;max-width:64ch">
+    <li style="margin-bottom:5pt">[Feed it a known-good case. It should complete without escalating.]</li>
+    <li style="margin-bottom:5pt">[Feed it a known out-of-tolerance case. It should stop and escalate to the named owner.]</li>
+    <li style="margin-bottom:5pt">[Check the audit trail records both, with reasons.]</li>
+    <li>[Confirm the escalation actually arrived where you expect.]</li>
+  </ol>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">08 · What we got wrong</h2>
+  <p style="margin:0 0 10pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Every build has a week where something misfires. Recording it here saves the next person from rediscovering it.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 10pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:40%">WHAT HAPPENED</th>
+      <th style="text-align:left;padding:6pt 0 6pt 10pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHAT WE CHANGED</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:10pt 10pt 10pt 0;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Issue]</td><td style="padding:10pt 0 10pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Fix]</td></tr>
+      <tr><td style="padding:10pt 10pt 10pt 0;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Issue]</td><td style="padding:10pt 0 10pt 10pt;border-bottom:0.5pt solid #DDDFD6;color:#3E4238">[Fix]</td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">09 · Sign-off</h2>
+  <p style="margin:0 0 16pt;font-size:10.5pt;line-height:1.55;color:#3E4238;max-width:64ch">Handover is complete when the person who will run this has changed a guardrail themselves, in front of us, and the check in section 07 passed.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;break-inside:avoid">
+    <tbody>
+      <tr>
+        <td style="width:48%;padding-top:26pt;border-top:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">ACCEPTED BY [CLIENT] · NAME, TITLE, DATE</td>
+        <td style="width:4%"></td>
+        <td style="width:48%;padding-top:26pt;border-top:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">HANDED OVER BY · NAME, DATE</td>
+      </tr>
+    </tbody>
+  </table>
+
+</doc-page>
+</x-dc>
+</body>
+</html>
