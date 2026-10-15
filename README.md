@@ -3,7 +3,8 @@
 A static site for **The Unwired**, an AI automation studio. No build
 step, no dependencies. Built from the design handoff in
 `../design_handoff_unwired_site/` (`README.md` is the full spec, `CONTENT.md`
-is the copy source of truth).
+is the copy source of truth). The brand pack, including the guidelines, lives
+in `docs/brand/` and is not deployed.
 
 ## Pages
 
@@ -71,6 +72,26 @@ These were fixed deliberately. Changing them back reproduces a real bug.
   cannot leave `pre-reveal` content stuck at `opacity: 0`.
 - **The hero mark's peak scale comes from CSS (`--mark-peak`).** At the desktop
   1.62× the lockup is wider than a phone viewport and gets clipped.
+- **The nav collapses to MENU at 1100px, not lower.** With the theme toggle in
+  the bar, the links wrap onto two lines below about 1100px.
+
+## Themes
+
+Dark and light. Every colour is a token on `:root` in `assets/styles.css`,
+and `:root[data-theme="light"]` remaps the same tokens for a Bone canvas. The
+light values and the reasoning are in `docs/brand/README.md`.
+
+- An inline script in each page's `<head>` sets `data-theme` before first
+  paint: stored choice (`localStorage['unwired-theme']`), else the system
+  setting, else dark. Copy it into any new page or it flashes.
+- `site.js` runs the nav toggle and fires `unwired:theme` on every switch.
+  `wires.js` and `ambient.js` read their colours from tokens and repaint on
+  that event.
+- **Never write a hex value into a rule, an inline SVG or a script.** Use a
+  token. In inline SVG that means `style="fill:var(--quiet)"`, since
+  presentation attributes cannot take `var()`.
+- `--bone` means primary text, so it is Cut Black in light. Text sitting on a
+  Forest or Signal fill uses `--on-accent`.
 
 ## Contact form
 

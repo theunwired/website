@@ -22,7 +22,22 @@
   }
   function clamp(x) { return Math.max(0, Math.min(1, x)); }
 
+  /* colours come from the CSS tokens so the field follows the theme. The
+     fallbacks are the dark values, for a stylesheet that failed to load */
+  var C = {};
+  var FALLBACK = {
+    wire: '#1E211B', 'wire-hi': '#26291F', 'wire-green': '#17493C',
+    'wire-green-hi': '#26775F', 'wire-link': '#232B26', 'wire-node': '#32352E',
+    'wire-node-dec': '#2A5F4E', 'wire-blip': '#2E8B6E', 'wire-hot': '#7FE8C2',
+    cut: '#0B0C0B'
+  };
+  function readColours() {
+    var cs = getComputedStyle(document.documentElement);
+    for (var k in FALLBACK) C[k] = cs.getPropertyValue('--' + k).trim() || FALLBACK[k];
+  }
+
   function mount(host) {
+    readColours();
     /* the host is a plain div so React never owns these children */
     while (host.firstChild) host.removeChild(host.firstChild);
     var svg = el('svg', { viewBox: '0 0 1200 800', preserveAspectRatio: 'none' });
@@ -40,7 +55,7 @@
       var green = i === GREEN;
       var p = el('path', {
         fill: 'none',
-        stroke: green ? '#17493C' : '#1E211B',
+        stroke: green ? C['wire-green'] : C.wire,
         'stroke-width': green ? 1.7 : 1.25,
         'stroke-dasharray': green ? '10 9' : '7 10',
         'stroke-linecap': 'round'
@@ -50,7 +65,7 @@
     }
 
     [[1, 2, 4], [4, 5, 2], [7, 8, 5], [2, 4, 6]].forEach(function (L) {
-      var p = el('path', { fill: 'none', stroke: '#232B26', 'stroke-width': 1, 'stroke-dasharray': '3 5', opacity: 0 });
+      var p = el('path', { fill: 'none', stroke: C['wire-link'], 'stroke-width': 1, 'stroke-dasharray': '3 5', opacity: 0 });
       svg.appendChild(p);
       links.push({ node: p, a: L[0], b: L[1], s: L[2] });
     });
@@ -60,16 +75,16 @@
      { w: 7, s: 3, d: 0 }, { w: 7, s: 7, d: 0 }, { w: 8, s: 5, d: 0 }
     ].forEach(function (n) {
       var box = el('rect', {
-        width: n.d ? 7 : 8, height: n.d ? 7 : 8, fill: '#0B0C0B',
-        stroke: n.d ? '#2A5F4E' : '#32352E', 'stroke-width': 1, opacity: 0
+        width: n.d ? 7 : 8, height: n.d ? 7 : 8, fill: C.cut,
+        stroke: n.d ? C['wire-node-dec'] : C['wire-node'], 'stroke-width': 1, opacity: 0
       });
       svg.appendChild(box);
       nodes.push({ node: box, w: n.w, s: n.s, dec: !!n.d, size: n.d ? 7 : 8 });
     });
 
     for (var b = 0; b < 4; b++) {
-      var halo = el('circle', { r: 8, fill: '#2E8B6E', opacity: 0 });
-      var head = el('circle', { r: 2.5, fill: '#7FE8C2', opacity: 0 });
+      var halo = el('circle', { r: 8, fill: C['wire-blip'], opacity: 0 });
+      var head = el('circle', { r: 2.5, fill: C['wire-hot'], opacity: 0 });
       svg.appendChild(halo); svg.appendChild(head);
       blips.push({ halo: halo, head: head, wire: (b * 3 + 2) % N, phase: b / 4 });
     }
@@ -129,7 +144,7 @@
         w.pts = pts;
         w.node.setAttribute('d', smooth(pts));
         w.node.setAttribute('stroke-dashoffset', (flow * (w.green ? 1.7 : 1)).toFixed(1));
-        w.node.setAttribute('stroke', w.green ? (t > 0.5 ? '#26775F' : '#17493C') : (t > 0.5 ? '#26291F' : '#1E211B'));
+        w.node.setAttribute('stroke', w.green ? (t > 0.5 ? C['wire-green-hi'] : C['wire-green']) : (t > 0.5 ? C['wire-hi'] : C.wire));
         w.node.setAttribute('opacity', (0.5 + 0.35 * t).toFixed(2));
       }
 
@@ -160,7 +175,7 @@
           var d2 = Math.hypot(blips[k].x - p.x, blips[k].y - p.y);
           if (d2 < 34) hot = Math.max(hot, 1 - d2 / 34);
         }
-        n.node.setAttribute('stroke', hot > 0.35 ? '#7FE8C2' : (n.dec ? '#2A5F4E' : '#32352E'));
+        n.node.setAttribute('stroke', hot > 0.35 ? C['wire-hot'] : (n.dec ? C['wire-node-dec'] : C['wire-node']));
         n.node.setAttribute('opacity', (showing * (0.5 + 0.5 * hot)).toFixed(2));
       }
       for (var li = 0; li < links.length; li++) {
@@ -180,6 +195,18 @@
     draw(0);
     window.addEventListener('resize', function () {
       size();
+      draw(performance.now() - t0);
+    });
+    /* a theme switch: repaint the fills that draw() does not touch every
+       frame, then draw once so a static (reduced motion) field updates too */
+    document.addEventListener('unwired:theme', function () {
+      readColours();
+      links.forEach(function (L) { L.node.setAttribute('stroke', C['wire-link']); });
+      nodes.forEach(function (n) { n.node.setAttribute('fill', C.cut); });
+      blips.forEach(function (b) {
+        b.halo.setAttribute('fill', C['wire-blip']);
+        b.head.setAttribute('fill', C['wire-hot']);
+      });
       draw(performance.now() - t0);
     });
     if (reduce) return;

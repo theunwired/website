@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#4FBF9B; text-decoration:none; }
+  a:hover { color:#F2F1ED; }
+</style>
+<script>window.OM_SCENES = '[{"name":"Tangled","dur":2.6,"desc":"The knotted wire field drifts and the wordmark sits grey with the crossed wires inside it"},{"name":"Untangle","dur":3.6,"desc":"The wires comb out of the knot and gather toward one bundle behind the mark"},{"name":"Converge","dur":2.6,"desc":"The crossed wires collapse, the stacked bars take the front, and the word closes up to read as one"},{"name":"Resolve","dur":3.4,"desc":"The field settles into a working process flow and the tagline lands"}]';</script>
+<script>window.OM_PLAYBACK = '{"mode":"times","count":1}';</script>
+<script>window.TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "motionEditor": true,
+  "accent": "#4FBF9B",
+  "tagline": "We build it. You own it.",
+  "showMeta": true
+}/*EDITMODE-END*/;</script>
+</helmet>
+<x-import component-from-global-scope="UntangleFilm" from="./animations-v3.jsx ./tweaks-panel.jsx ./unwired-untangle.jsx" hint-size="100%,100%"></x-import>
+</x-dc>
+</body>
+</html>

@@ -24,6 +24,32 @@
   --error:      #C46A5A;
   --chip-border:#1E3B33;
 
+  /* text on a Forest or Signal fill. Bone in both themes: --bone is the
+     primary text colour and flips to Cut Black in light */
+  --on-accent:  #F2F1ED;
+  --nav-bg:     rgba(11, 12, 11, 0.92);
+  --scrim:      rgba(11, 12, 11, 0.88);
+
+  /* the wire field and the hero mark. Read by wires.js and site.js, so a
+     theme switch repaints the field without a reload */
+  --wire:          #1E211B;
+  --wire-hi:       #26291F;
+  --wire-green:    #17493C;
+  --wire-green-hi: #26775F;
+  --wire-link:     #232B26;
+  --wire-node:     #32352E;
+  --wire-node-dec: #2A5F4E;
+  --wire-blip:     #2E8B6E;
+  --wire-hot:      #7FE8C2;
+  --mark-a:        #F2F1ED;
+  --mark-b:        #2E8B6E;
+
+  /* the two ends of the shared breathing clock in ambient.js */
+  --breath-lo:  #26765E;
+  --breath-hi:  #2E8B6E;
+
+  color-scheme: dark;
+
   --sans: 'Instrument Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
   --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
 
@@ -37,6 +63,52 @@
   /* how far the hero mark over-scales at the top of the pin. Read by
      site.js, tuned down on narrow viewports so the lockup is never clipped. */
   --mark-peak: 0.62;
+}
+
+/* Light theme. Same roles, remapped for a Bone canvas. Label and Signal are
+   too faint on Bone (2.0:1 and 3.7:1), so every text role here is a darker
+   green or grey that clears 4.5:1 on both the canvas and Panel. --bone keeps
+   its name as "primary text", which on this canvas is Cut Black. */
+:root[data-theme="light"] {
+  --cut:        #F2F1ED;
+  --panel:      #E9E8E2;
+  --panel-hi:   #EDECE7;
+  --forest:     #0F5C4A;
+  --signal:     #1F7A5F;
+  --label:      #136B55;
+  --hairline:   #DEDCD4;
+  --hairline-hi:#CFCDC4;
+  --hairline-lo:#E6E4DD;
+  --rail:       #E0DED6;
+  --bone:       #0B0C0B;
+  --body:       #3E4238;
+  --muted:      #5E625A;
+  --quiet:      #63675F;
+  --dim:        #A3A59B;
+  --dim-2:      #DCDAD2;
+  --error:      #A8503F;
+  --chip-border:#B7CFC6;
+
+  --nav-bg:     rgba(242, 241, 237, 0.92);
+  --scrim:      rgba(242, 241, 237, 0.9);
+
+  --wire:          #DCDAD1;
+  --wire-hi:       #D3D1C8;
+  --wire-green:    #B4D0C5;
+  --wire-green-hi: #86B5A3;
+  --wire-link:     #CBD5CE;
+  --wire-node:     #BDBBB2;
+  --wire-node-dec: #86B5A3;
+  --wire-blip:     #2E8B6E;
+  --wire-hot:      #0F5C4A;
+  --mark-a:        #0B0C0B;
+  --mark-b:        #0F5C4A;
+
+  --breath-lo:  #0F5C4A;
+  --breath-hi:  #1F7A5F;
+  --breath:     #1F7A5F;
+
+  color-scheme: light;
 }
 
 /* ------------------------------------------------------------------ base */
@@ -216,8 +288,8 @@ h2.h-section,
   display: inline-block;
   transition: background .2s ease-out, color .2s ease-out, border-color .2s ease-out;
 }
-.btn--solid { background: var(--forest); color: var(--bone); }
-.btn--solid:hover { background: var(--signal); color: var(--bone); }
+.btn--solid { background: var(--forest); color: var(--on-accent); }
+.btn--solid:hover { background: var(--signal); color: var(--on-accent); }
 .btn--ghost { background: none; color: var(--bone); border-color: var(--hairline); }
 .btn--ghost:hover { border-color: var(--bone); color: var(--bone); }
 
@@ -257,7 +329,7 @@ h2.h-section,
   position: sticky;
   top: 0;
   z-index: 50;
-  background: rgba(11, 12, 11, 0.92);
+  background: var(--nav-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--hairline);
@@ -278,7 +350,7 @@ h2.h-section,
   gap: 24px;
   font-size: 13px;
 }
-.nav__links a { color: var(--quiet); transition: color .2s ease-out; }
+.nav__links a { color: var(--quiet); transition: color .2s ease-out; white-space: nowrap; }
 .nav__links a:hover { color: var(--bone); }
 .nav__links a[aria-current="page"] {
   color: var(--bone);
@@ -309,6 +381,27 @@ h2.h-section,
   cursor: pointer;
   flex: 0 0 auto;
 }
+
+/* theme toggle. Text only, no icon: both options are shown and the current
+   one is lit, driven by the data-theme attribute so it needs no JS state */
+.theme-toggle {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  background: none;
+  border: 0;
+  padding: 9px 2px;
+  cursor: pointer;
+  flex: 0 0 auto;
+  display: inline-flex;
+  gap: 6px;
+  color: var(--dim);
+}
+.theme-toggle [data-theme-opt] { color: var(--quiet); transition: color .2s ease-out; }
+.theme-toggle:hover [data-theme-opt] { color: var(--body); }
+:root:not([data-theme="light"]) .theme-toggle [data-theme-opt="dark"],
+:root[data-theme="light"] .theme-toggle [data-theme-opt="light"] { color: var(--bone); }
 
 /* ---------------------------------------------------------- progress rail */
 .rail {
@@ -981,6 +1074,9 @@ h2.h-section,
   color: var(--quiet);
 }
 .stat-bar__value--inside { color: var(--cut); }
+/* Bone on the light Dim fill is 2.2:1. Cut Black reads on it */
+:root[data-theme="light"] .stat-bar__value--inside { color: var(--bone); }
+:root[data-theme="light"] .stat-bar__fill--weak + .stat-bar__value--inside { color: var(--on-accent); }
 .stat-bar__value--strong { color: var(--label); }
 .stat-block__source {
   font-family: var(--mono);
@@ -1078,7 +1174,7 @@ h2.h-section,
 .modal {
   position: fixed;
   inset: 0;
-  background: rgba(11, 12, 11, 0.88);
+  background: var(--scrim);
   display: none;
   align-items: center;
   justify-content: center;
@@ -1153,7 +1249,7 @@ h2.h-section,
   font-size: 14px;
   padding: 14px 26px;
   background: var(--forest);
-  color: var(--bone);
+  color: var(--on-accent);
   cursor: pointer;
   transition: background .2s ease-out;
 }
@@ -1212,7 +1308,7 @@ h2.h-section,
   .rail, .rail-label { display: none; }
 }
 
-@media (max-width: 940px) {
+@media (max-width: 1100px) {
   .nav__menu { display: inline-block; }
   .nav__links {
     position: absolute;
@@ -1248,7 +1344,7 @@ h2.h-section,
     cursor: pointer;
   }
 }
-@media (min-width: 941px) {
+@media (min-width: 1101px) {
   .nav__links .nav__cta-mobile { display: none; }
 }
 
@@ -1311,6 +1407,11 @@ h2.h-section,
   .hero-word { font-size: 26px; }
   .btn { padding: 13px 20px; font-size: 13px; }
   .scroll-cue { left: 20px; }
+  /* both options do not fit beside the lockup and MENU at 320px: show only
+     the theme the button switches to, which matches its aria-label */
+  .theme-toggle [aria-hidden="true"],
+  :root:not([data-theme="light"]) .theme-toggle [data-theme-opt="dark"],
+  :root[data-theme="light"] .theme-toggle [data-theme-opt="light"] { display: none; }
 }
 
 /* short viewports: the hero has to fit without clipping */

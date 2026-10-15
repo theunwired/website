@@ -12,11 +12,19 @@
 <meta property="og:url" content="https://theunwired.in/finance-exceptions.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: a stored choice, else the system
+   setting, else dark. site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=4">
+<link rel="stylesheet" href="assets/styles.css?v=5">
 </head>
 <body>
 
@@ -43,6 +51,7 @@
       <a data-wipe-link href="work.html">Work</a>
       <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
     </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme"><span data-theme-opt="dark">Dark</span><span aria-hidden="true">/</span><span data-theme-opt="light">Light</span></button>
     <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
     <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
   </div>
@@ -70,41 +79,41 @@
       <div class="diagram-panel" data-reveal>
         <span class="diagram-panel__label">Where the work actually goes</span>
         <svg viewBox="0 0 1000 340" width="100%" role="img" aria-label="Schematic: documents enter a rules engine. Matched items post with no one touching them. Declined items route to The Unwired agent, which gathers context and cites sources, then to a person who approves or corrects, and then they post.">
-          <text x="36" y="118" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.1em" fill="#7C8177">WHAT COMES IN</text>
-          <rect x="36" y="140" width="64" height="9" fill="#F2F1ED"></rect>
-          <rect x="36" y="157" width="64" height="9" fill="#3A3D35"></rect>
-          <rect x="36" y="174" width="64" height="9" fill="#3A3D35"></rect>
-          <rect x="36" y="191" width="64" height="9" fill="#3A3D35"></rect>
+          <text x="36" y="118" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.1em" style="fill:var(--quiet)">WHAT COMES IN</text>
+          <rect x="36" y="140" width="64" height="9" style="fill:var(--bone)"></rect>
+          <rect x="36" y="157" width="64" height="9" style="fill:var(--dim)"></rect>
+          <rect x="36" y="174" width="64" height="9" style="fill:var(--dim)"></rect>
+          <rect x="36" y="191" width="64" height="9" style="fill:var(--dim)"></rect>
 
-          <path class="flow" d="M100 172 H210" fill="none" stroke="#7C8177" stroke-width="2"></path>
+          <path class="flow" d="M100 172 H210" fill="none" stroke-width="2" style="stroke:var(--quiet)"></path>
 
-          <rect x="210" y="140" width="150" height="64" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="285" y="167" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" fill="#F2F1ED">RULES ENGINE</text>
-          <text x="285" y="186" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#7C8177">tolerances you set</text>
+          <rect x="210" y="140" width="150" height="64" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="285" y="167" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" style="fill:var(--bone)">RULES ENGINE</text>
+          <text x="285" y="186" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--quiet)">tolerances you set</text>
 
-          <path class="flow" d="M360 172 H410 L450 96 H800" fill="none" stroke="#2E8B6E" stroke-width="2"></path>
-          <text x="470" y="84" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.08em" fill="#4FBF9B">MATCHED · NO ONE TOUCHES IT</text>
+          <path class="flow" d="M360 172 H410 L450 96 H800" fill="none" stroke-width="2" style="stroke:var(--signal)"></path>
+          <text x="470" y="84" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.08em" style="fill:var(--label)">MATCHED · NO ONE TOUCHES IT</text>
 
-          <path class="flow" d="M360 172 H400 L440 265 H470" fill="none" stroke="#7C8177" stroke-width="2"></path>
-          <text x="366" y="212" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.08em" fill="#C46A5A">DECLINED</text>
+          <path class="flow" d="M360 172 H400 L440 265 H470" fill="none" stroke-width="2" style="stroke:var(--quiet)"></path>
+          <text x="366" y="212" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.08em" style="fill:var(--error)">DECLINED</text>
 
-          <rect x="470" y="232" width="210" height="66" fill="#0B0C0B" stroke="#2E8B6E" stroke-width="1"></rect>
-          <text x="575" y="259" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" fill="#4FBF9B">THE UNWIRED AGENT</text>
-          <text x="575" y="279" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#7C8177">gathers context, cites sources</text>
+          <rect x="470" y="232" width="210" height="66" stroke-width="1" style="fill:var(--cut);stroke:var(--signal)"></rect>
+          <text x="575" y="259" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" style="fill:var(--label)">THE UNWIRED AGENT</text>
+          <text x="575" y="279" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--quiet)">gathers context, cites sources</text>
 
-          <path class="flow" d="M680 265 H730" fill="none" stroke="#2E8B6E" stroke-width="2"></path>
+          <path class="flow" d="M680 265 H730" fill="none" stroke-width="2" style="stroke:var(--signal)"></path>
 
-          <rect x="730" y="236" width="150" height="58" fill="#0B0C0B" stroke="#F2F1ED" stroke-width="1"></rect>
-          <text x="805" y="261" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" fill="#F2F1ED">A PERSON</text>
-          <text x="805" y="280" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#7C8177">approves or corrects</text>
+          <rect x="730" y="236" width="150" height="58" stroke-width="1" style="fill:var(--cut);stroke:var(--bone)"></rect>
+          <text x="805" y="261" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" style="fill:var(--bone)">A PERSON</text>
+          <text x="805" y="280" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--quiet)">approves or corrects</text>
 
-          <path class="flow" d="M880 265 H930 V 124" fill="none" stroke="#2E8B6E" stroke-width="2"></path>
+          <path class="flow" d="M880 265 H930 V 124" fill="none" stroke-width="2" style="stroke:var(--signal)"></path>
 
-          <rect x="800" y="68" width="160" height="56" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="880" y="102" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" fill="#F2F1ED">POSTED</text>
+          <rect x="800" y="68" width="160" height="56" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="880" y="102" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" style="fill:var(--bone)">POSTED</text>
 
-          <path class="flow-slow" d="M805 300 V 322 H 575 V 302" fill="none" stroke="#3A3D35" stroke-width="1.5"></path>
-          <text x="590" y="338" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" fill="#7C8177">THE CORRECTION BECOMES THE NEXT CHECK</text>
+          <path class="flow-slow" d="M805 300 V 322 H 575 V 302" fill="none" stroke-width="1.5" style="stroke:var(--dim)"></path>
+          <text x="590" y="338" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.08em" style="fill:var(--quiet)">THE CORRECTION BECOMES THE NEXT CHECK</text>
         </svg>
       </div>
     </div>
@@ -222,17 +231,17 @@
       <div class="diagram-panel" data-reveal style="padding-top:0;background:transparent;border:0">
         <span class="diagram-panel__label">Variance tolerance · illustrative, not a measured result</span>
         <svg viewBox="0 0 1000 90" width="100%" role="img" aria-label="Number line showing a tolerance band around the expected value, with two flagged points outside the band">
-          <line x1="20" y1="55" x2="980" y2="55" stroke="#24261F" stroke-width="2"></line>
-          <rect x="380" y="45" width="240" height="20" fill="#0F5C4A" opacity="0.35"></rect>
-          <line x1="500" y1="30" x2="500" y2="75" stroke="#2E8B6E" stroke-width="2"></line>
-          <text x="500" y="20" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" fill="#4FBF9B">EXPECTED VALUE</text>
-          <text x="500" y="88" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.04em" fill="#7C8177">WITHIN TOLERANCE · MATCHED BY THE RULE</text>
-          <rect x="146" y="49" width="8" height="8" fill="#C46A5A"></rect>
-          <text x="150" y="34" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#C46A5A">OUTSIDE TOLERANCE</text>
-          <text x="150" y="76" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.04em" fill="#7C8177">→ EXCEPTION</text>
-          <rect x="846" y="49" width="8" height="8" fill="#C46A5A"></rect>
-          <text x="850" y="34" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#C46A5A">OUTSIDE TOLERANCE</text>
-          <text x="850" y="76" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.04em" fill="#7C8177">→ EXCEPTION</text>
+          <line x1="20" y1="55" x2="980" y2="55" stroke-width="2" style="stroke:var(--hairline)"></line>
+          <rect x="380" y="45" width="240" height="20" opacity="0.35" style="fill:var(--forest)"></rect>
+          <line x1="500" y1="30" x2="500" y2="75" stroke-width="2" style="stroke:var(--signal)"></line>
+          <text x="500" y="20" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" style="fill:var(--label)">EXPECTED VALUE</text>
+          <text x="500" y="88" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" letter-spacing="0.04em" style="fill:var(--quiet)">WITHIN TOLERANCE · MATCHED BY THE RULE</text>
+          <rect x="146" y="49" width="8" height="8" style="fill:var(--error)"></rect>
+          <text x="150" y="34" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--error)">OUTSIDE TOLERANCE</text>
+          <text x="150" y="76" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.04em" style="fill:var(--quiet)">→ EXCEPTION</text>
+          <rect x="846" y="49" width="8" height="8" style="fill:var(--error)"></rect>
+          <text x="850" y="34" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--error)">OUTSIDE TOLERANCE</text>
+          <text x="850" y="76" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" letter-spacing="0.04em" style="fill:var(--quiet)">→ EXCEPTION</text>
         </svg>
       </div>
       <div class="grid grid--4" data-reveal data-sweep>
@@ -534,8 +543,8 @@
   </div>
 </div>
 
-<script src="assets/wires.js?v=4"></script>
-<script src="assets/ambient.js?v=4"></script>
-<script src="assets/site.js?v=4"></script>
+<script src="assets/wires.js?v=5"></script>
+<script src="assets/ambient.js?v=5"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

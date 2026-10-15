@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<title>The Unwired · AI automation, built and handed over</title>
+<meta name="description" content="We build AI agents that run the operational processes that keep breaking, then hand the system over for your team to own." />
+<meta property="og:title" content="The Unwired · AI automation, built and handed over" />
+<meta property="og:description" content="We build AI agents that run the operational processes that keep breaking, then hand the system over for your team to own." />
+<meta property="og:type" content="website" />
+<meta name="theme-color" content="#0B0C0B" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#0B0C0B; overflow-x:hidden; -webkit-font-smoothing:antialiased; }
+  a { color:#4FBF9B; text-decoration:none; }
+  a:hover { color:#F2F1ED; }
+  @keyframes cueDrip { 0%{top:-26px} 60%{top:26px} 100%{top:26px} }
+</style>
+<script src="wires.js"></script>
+<script src="ambient.js"></script>
+<script src="responsive.js"></script>
+</helmet>
+<div data-root="1" style="background:transparent;color:#F2F1ED;font-family:'Instrument Sans','Helvetica Neue',Helvetica,Arial,sans-serif;position:relative">
+
+  <div data-wipe="1" style="position:fixed;inset:0;background:#0B0C0B;z-index:300;transform:translateX(-101%);pointer-events:none;border-right:2px solid #2E8B6E"></div>
+
+  <div data-rail="1" style="position:fixed;left:26px;top:72px;bottom:0;width:1px;background:#1A1C17;z-index:40;pointer-events:none">
+    <div data-rail-fill="1" style="position:absolute;left:0;top:0;width:1px;height:0;background:#2E8B6E"></div>
+  </div>
+  <div data-rail-label="1" style="position:fixed;left:16px;bottom:22px;z-index:40;pointer-events:none;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.16em;color:#8A8F84;background:#0B0C0B;padding:7px 9px;opacity:0"></div>
+
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(11,12,11,0.92);backdrop-filter:blur(10px);border-bottom:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px;height:72px;display:flex;align-items:center;justify-content:space-between;gap:24px">
+      <a data-wipe-link="1" href="Unwired%20Home.dc.html" style="display:flex;align-items:center;gap:12px;color:#F2F1ED">
+        <span style="display:flex;flex-direction:column;gap:5px">
+          <span style="width:24px;height:4px;background:#F2F1ED;display:block"></span>
+          <span style="width:14px;height:4px;background:#0F5C4A;display:block"></span>
+        </span>
+        <span style="font-size:19px;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+      </a>
+      <div data-navlinks="1" style="display:flex;gap:24px;font-size:13px;color:#7C8177">
+        <a href="#cost" style="color:#7C8177">The cost</a>
+        <a href="#run" style="color:#7C8177">What changes</a>
+        <a data-wipe-link="1" href="Unwired%20What%20You%20Get.dc.html" style="color:#7C8177">What you get</a>
+        <a data-wipe-link="1" href="Unwired%20Industries.dc.html" style="color:#7C8177">Industries</a>
+        <a data-wipe-link="1" href="Unwired%20Work.dc.html" style="color:#7C8177">Work</a>
+      </div>
+      <button type="button" data-open-contact="1" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:9px 18px;border:1px solid #F2F1ED;color:#F2F1ED;background:none;cursor:pointer;transition:background .2s ease-out,color .2s ease-out">Start a conversation</button>
+    </div>
+  </nav>
+
+  <section data-hero-pin="1" data-screen-label="01 Hero" style="height:240vh;position:relative">
+    <div style="position:sticky;top:72px;height:calc(100vh - 72px);display:flex;flex-direction:column;justify-content:center">
+      <div data-hero-stage="1" style="max-width:1120px;margin:0 auto;padding:0 32px;box-sizing:border-box;width:100%;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative">
+        <div data-hero-mark="1" style="height:60px;display:flex;align-items:center;position:relative">
+          <div style="display:flex;align-items:center">
+            <span style="display:flex;flex-direction:column;gap:5px;overflow:hidden;flex:0 0 auto">
+              <span data-lead-a="1" style="height:5px;background:#F2F1ED;width:0;opacity:0;display:block"></span>
+              <span data-lead-b="1" style="height:5px;background:#0F5C4A;width:0;opacity:0;display:block"></span>
+            </span>
+            <span data-word-the="1" style="font-size:44px;font-weight:700;letter-spacing:-0.04em;color:#7C8177;white-space:nowrap">theun</span>
+            <span data-hero-mid="1" style="position:relative;flex:0 0 auto;overflow:hidden;margin:0 6px">
+              <svg viewBox="0 0 96 64" width="90" height="60" style="display:block">
+                <path data-path-a="1" d="M2 20 H30 L66 44 H94" fill="none" stroke="#F2F1ED" stroke-width="5"></path>
+                <path data-path-b="1" d="M2 44 H30 L66 20 H94" fill="none" stroke="#2E8B6E" stroke-width="5"></path>
+              </svg>
+            </span>
+            <span data-word-wired="1" style="font-size:44px;font-weight:700;letter-spacing:-0.04em;color:#7C8177;white-space:nowrap">wired</span>
+          </div>
+        </div>
+        <div data-hero-copy="1" style="margin-top:40px;width:100%;max-width:900px;opacity:0;transform:translateY(10px);text-align:center;display:flex;flex-direction:column;align-items:center">
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B;margin-bottom:22px">Operations · Finance · Supply chain · Customer ops</div>
+          <h1 style="margin:0;font-size:clamp(34px,5.4vw,68px);line-height:1.04;letter-spacing:-0.035em;font-weight:700;max-width:16ch">Your workflows were hard-wired. <span style="color:#7C8177">We cut the cord.</span></h1>
+          <p style="margin:24px 0 0;max-width:60ch;font-size:17px;line-height:1.6;color:#D6D7D1">We build AI agents that do the work, not just follow a script. They read what comes in, decide what to do next, and get it done. When the call should be yours, they hand it over.</p>
+          <div style="display:flex;gap:16px;margin-top:34px;flex-wrap:wrap;justify-content:center">
+            <a href="#cost" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;background:#0F5C4A;color:#F2F1ED;font-weight:500">See how it works</a>
+            <button type="button" data-open-contact="1" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;border:1px solid #24261F;color:#F2F1ED;background:none;cursor:pointer">Talk to us</button>
+          </div>
+        </div>
+      </div>
+      <div data-hero-meta="1" style="position:absolute;inset:0;pointer-events:none">
+        <span style="position:absolute;left:32px;top:34px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:#8A8F84">AI AUTOMATION STUDIO</span>
+        <span style="position:absolute;right:32px;bottom:38px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:0.18em;color:#4FBF9B">SCROLL TO UNTANGLE</span>
+      </div>
+      <div data-scroll-cue="1" style="position:absolute;left:32px;bottom:36px;display:flex;flex-direction:column;align-items:center;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8F84">
+        <span>Scroll</span>
+        <span style="width:1px;height:26px;background:#24261F;position:relative;overflow:hidden;display:block">
+          <span style="position:absolute;left:0;top:-26px;width:1px;height:26px;background:#2E8B6E;animation:cueDrip 1.8s ease-in-out infinite;display:block"></span>
+        </span>
+      </div>
+    </div>
+  </section>
+
+  <section id="cost" data-section="The cost" data-screen-label="02 The cost" style="padding:100px 0">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:52px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">01</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">The cost</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">You already know which process it is.</h2>
+        <p style="margin:16px 0 0;color:#D6D7D1;font-size:16px;line-height:1.6;max-width:70ch">It works most days, because somebody carries it. Here is what that costs.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">01</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">Month-end is a scramble</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">The same fire drill every close. People stay late reconciling what the systems should have agreed on weeks ago.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">02</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">You bought the tool. It's still done by hand.</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">The licence renews on schedule. The work still moves through a spreadsheet and somebody's inbox.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">03</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">Nobody can say where the work is</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">Ask where an invoice or an order stands and someone has to go and look.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shift" data-section="Why it breaks" data-screen-label="03 Why it breaks" style="padding:100px 0;border-top:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:52px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">02</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">Why it breaks</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">It was hard-wired, and the work moved.</h2>
+        <p style="margin:16px 0 0;color:#D6D7D1;font-size:16px;line-height:1.6;max-width:70ch">Old automation follows the wiring you gave it. One path, one list of exceptions, and it stops the moment something new turns up. An agent follows the goal instead.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:40px 36px">
+          <h3 style="margin:0 0 22px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#8A8F84;font-weight:500">Wired automation</h3>
+          <div style="display:flex;flex-direction:column">
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:15px;line-height:1.5">If this, then that. Nothing else</span>
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:15px;line-height:1.5">Stops on anything it has not seen before</span>
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:15px;line-height:1.5">Every exception needs a developer</span>
+            <span style="padding:14px 0;color:#8A8F84;font-size:15px;line-height:1.5">Runs the steps, never makes the call</span>
+          </div>
+        </div>
+        <div style="background:#0B0C0B;padding:40px 36px">
+          <h3 style="margin:0 0 22px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.16em;text-transform:uppercase;color:#4FBF9B;font-weight:500">Unwired agents</h3>
+          <div style="display:flex;flex-direction:column">
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:15px;line-height:1.5">Works toward a goal, using what is in front of it</span>
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:15px;line-height:1.5">Handles the odd case without a rewrite</span>
+            <span style="padding:14px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:15px;line-height:1.5">Learns from exceptions, passes on the rest</span>
+            <span style="padding:14px 0;color:#D6D7D1;font-size:15px;line-height:1.5">Plans, acts, and checks its own work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="run" data-section="What changes" data-screen-label="04 What changes" style="padding:100px 0;border-top:1px solid #24261F;border-bottom:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:48px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">03</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">What changes</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">One exception, start to finish.</h2>
+        <p style="margin:16px 0 0;color:#D6D7D1;font-size:16px;line-height:1.6;max-width:70ch">A real run, not a demo. Watch what it does when the numbers stop agreeing.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;display:flex;flex-direction:column">
+          <div data-run-step="0" style="padding:26px 30px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:30px 1fr;gap:20px;align-items:start;transition:background .3s ease-out">
+            <span data-run-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3D35;transition:color .3s ease-out">01</span>
+            <div><div data-run-title="1" style="font-size:18px;font-weight:700;margin-bottom:6px;color:#7C8177;transition:color .3s ease-out">Read</div><p style="margin:0;font-size:15px;line-height:1.55;color:#7C8177">Pulls the invoice, the PO and the goods receipt out of three systems that were never built to talk.</p></div>
+          </div>
+          <div data-run-step="1" style="padding:26px 30px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:30px 1fr;gap:20px;align-items:start;transition:background .3s ease-out">
+            <span data-run-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3D35;transition:color .3s ease-out">02</span>
+            <div><div data-run-title="1" style="font-size:18px;font-weight:700;margin-bottom:6px;color:#7C8177;transition:color .3s ease-out">Decide</div><p style="margin:0;font-size:15px;line-height:1.55;color:#7C8177">Quantity matches, price is off by 4%. Inside the tolerance the finance lead set, so it proceeds.</p></div>
+          </div>
+          <div data-run-step="2" style="padding:26px 30px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:30px 1fr;gap:20px;align-items:start;transition:background .3s ease-out">
+            <span data-run-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3D35;transition:color .3s ease-out">03</span>
+            <div><div data-run-title="1" style="font-size:18px;font-weight:700;margin-bottom:6px;color:#7C8177;transition:color .3s ease-out">Act</div><p style="margin:0;font-size:15px;line-height:1.55;color:#7C8177">Codes it, posts it, writes the note a human would have written, and closes the queue item.</p></div>
+          </div>
+          <div data-run-step="3" style="padding:26px 30px;display:grid;grid-template-columns:30px 1fr;gap:20px;align-items:start;transition:background .3s ease-out">
+            <span data-run-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#3A3D35;transition:color .3s ease-out">04</span>
+            <div><div data-run-title="1" style="font-size:18px;font-weight:700;margin-bottom:6px;color:#7C8177;transition:color .3s ease-out">Escalate</div><p style="margin:0;font-size:15px;line-height:1.55;color:#7C8177">The next one is 22% off. Out of tolerance, so it stops and hands a human the full trail.</p></div>
+          </div>
+        </div>
+        <div style="background:#161814;padding:30px;display:flex;flex-direction:column;gap:14px;min-height:340px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #24261F;padding-bottom:12px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8A8F84">AGENT LOG · AP EXCEPTIONS</span>
+            <span data-run-status="1" style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;color:#8A8F84">IDLE</span>
+          </div>
+          <div data-run-log="1" style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;line-height:1.9;color:#8A8F84;white-space:pre-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="who" data-section="Who does it" data-screen-label="05 Who does it" style="padding:100px 0">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:52px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">04</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">Who does it</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">Operators, not advisors.</h2>
+        <p style="margin:16px 0 0;color:#D6D7D1;font-size:16px;line-height:1.6;max-width:70ch">Three founders. We have run the work we automate, and we have built the systems that run it.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">DELIVERY</span>
+          <span style="font-size:19px;font-weight:700;letter-spacing:-0.01em">Delivered it before automating it</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">Ten years plus across AI services, automation, consulting, data engineering and post-sales. Has carried the escalation pager, so the guardrails come from doing the job.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">SALES &amp; REVENUE</span>
+          <span style="font-size:19px;font-weight:700;letter-spacing:-0.01em">Sold it, then had to make it true</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">Ten years plus in sales and pre-sales for AI and automation. Knows which promises a process can keep, which is why we say no to some of them.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:34px 30px;display:flex;flex-direction:column;gap:14px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">OPERATIONS</span>
+          <span style="font-size:19px;font-weight:700;letter-spacing:-0.01em">Owned the process that kept breaking</span>
+          <p style="margin:0;font-size:15px;line-height:1.6;color:#D6D7D1">Ten years plus across sales ops, marketing ops, rev ops, finance ops, compliance and audit. Maps the process as it is really run, then finds where it breaks.</p>
+        </div>
+      </div>
+      <p data-reveal="1" style="margin:20px 0 0;font-size:15px;line-height:1.6;color:#8A8F84;max-width:70ch">All three of us are builders. We have shipped products and worked alongside engineering and product teams to put real systems into production. None of us has stayed in one lane.</p>
+    </div>
+  </section>
+
+  <section id="get" data-section="What you get" data-screen-label="06 What you get" style="padding:100px 0;border-top:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:52px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">05</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">What you get</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">We hand you the system, not the slides.</h2>
+      </div>
+      <div data-reveal="1" style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:32px 30px;display:grid;grid-template-columns:40px 260px 1fr;gap:28px;align-items:start">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#0F5C4A;font-size:13px;padding-top:3px">01</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">The agent, running</span>
+          <p style="margin:0;color:#D6D7D1;font-size:15.5px;line-height:1.6">Running in your environment, under your access rules, on your real work. Not a copy of it.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:32px 30px;display:grid;grid-template-columns:40px 260px 1fr;gap:28px;align-items:start">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#0F5C4A;font-size:13px;padding-top:3px">02</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">Guardrails you set</span>
+          <p style="margin:0;color:#D6D7D1;font-size:15.5px;line-height:1.6">Your tolerances, your approval limits, and the exact points where a person takes over. Written down, and yours to change.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:32px 30px;display:grid;grid-template-columns:40px 260px 1fr;gap:28px;align-items:start">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#0F5C4A;font-size:13px;padding-top:3px">03</span>
+          <span style="font-size:20px;font-weight:700;letter-spacing:-0.01em">A full audit trail</span>
+          <p style="margin:0;color:#D6D7D1;font-size:15.5px;line-height:1.6">Every decision it made and why. Your auditors see what your team sees.</p>
+        </div>
+      </div>
+      <p data-reveal="1" style="margin:28px 0 0"><a data-wipe-link="1" href="Unwired%20What%20You%20Get.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;border:1px solid #24261F;color:#F2F1ED;display:inline-block">What the engagement includes</a></p>
+    </div>
+  </section>
+
+  <section id="industries" data-section="Where it runs" data-screen-label="07 Where it runs" style="padding:100px 0;border-top:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:52px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">06</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">Where it runs</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">Built for operations, not demos</h2>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:20px">
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Finance &amp; accounting</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">Invoice exceptions, reconciliations, and close-cycle work that used to sit in someone's queue.</p>
+        </div>
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Supply chain</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">Order matching, vendor communication, and shipment exceptions handled without a ticket.</p>
+        </div>
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Customer operations</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">Multi-step case resolution across systems that were never built to talk to each other.</p>
+        </div>
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Revenue operations</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">Quote-to-cash steps that stall between sales, finance and delivery, and a CRM nobody has time to update.</p>
+        </div>
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Compliance &amp; audit</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">Evidence gathered on schedule with the trail attached. A person still signs it. That line does not move.</p>
+        </div>
+        <div data-card="1" style="border:1px solid #24261F;padding:26px;background:#0B0C0B;transition:border-color .2s ease-out,transform .2s ease-out">
+          <h4 style="margin:0 0 8px;font-size:16px;font-weight:700">Procurement</h4>
+          <p style="margin:0;color:#8A8F84;font-size:14px;line-height:1.5">PO matching, contract terms read and checked, approvals routed without anyone chasing them.</p>
+        </div>
+      </div>
+      <p data-reveal="1" style="margin:28px 0 0"><a data-wipe-link="1" href="Unwired%20Industries.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;border:1px solid #24261F;color:#F2F1ED;display:inline-block">See all industries</a></p>
+    </div>
+  </section>
+
+  <section id="process" data-section="How it goes" data-screen-label="08 How it goes" style="padding:100px 0;border-top:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="margin-bottom:44px;max-width:680px">
+        <div style="display:flex;align-items:center;gap:18px;margin-bottom:26px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">07</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">How it goes</span>
+        </div>
+        <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">Six weeks, one process</h2>
+      </div>
+      <div style="display:flex;flex-direction:column">
+        <div data-reveal="1" style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:28px 0;border-top:1px solid #24261F">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#4FBF9B;font-size:14px;padding-top:2px">Week 1</span>
+          <div><h4 style="margin:0 0 6px;font-size:18px;font-weight:700">Map the wiring</h4><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.55;max-width:60ch">We shadow the process as it's actually run today, not the flowchart version, and find where it breaks.</p></div>
+        </div>
+        <div data-reveal="1" style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:28px 0;border-top:1px solid #24261F">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#4FBF9B;font-size:14px;padding-top:2px">Week 2–3</span>
+          <div><h4 style="margin:0 0 6px;font-size:18px;font-weight:700">Design the agent</h4><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.55;max-width:60ch">We define the agent's goal, guardrails, and escalation points with the team who owns the process.</p></div>
+        </div>
+        <div data-reveal="1" style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:28px 0;border-top:1px solid #24261F">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#4FBF9B;font-size:14px;padding-top:2px">Week 4–6</span>
+          <div><h4 style="margin:0 0 6px;font-size:18px;font-weight:700">Deploy in parallel</h4><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.55;max-width:60ch">The agent runs alongside the existing process, building trust before it takes the lead.</p></div>
+        </div>
+        <div data-reveal="1" style="display:grid;grid-template-columns:110px 1fr;gap:24px;padding:28px 0;border-top:1px solid #24261F;border-bottom:1px solid #24261F">
+          <span style="font-family:'IBM Plex Mono',monospace;color:#4FBF9B;font-size:14px;padding-top:2px">Ongoing</span>
+          <div><h4 style="margin:0 0 6px;font-size:18px;font-weight:700">Scale and tune</h4><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.55;max-width:60ch">We extend the agent to adjacent workflows and keep tuning it against real exceptions.</p></div>
+        </div>
+      </div>
+      <p data-reveal="1" style="margin:28px 0 0"><a data-wipe-link="1" href="Unwired%20Work.dc.html" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;border:1px solid #24261F;color:#F2F1ED;display:inline-block">See the work as it lands</a></p>
+    </div>
+  </section>
+
+  <section id="own" data-section="You own it" data-screen-label="09 You own it" style="padding:110px 0;border-top:1px solid #24261F">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="display:flex;align-items:center;gap:13px;margin-bottom:26px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">08</span>
+        <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;color:#4FBF9B">The handover</span>
+      </div>
+      <h2 data-reveal="1" style="margin:0;font-size:clamp(38px,6.4vw,80px);line-height:1.02;letter-spacing:-0.04em;font-weight:700">We build it. <span style="color:#4FBF9B">You own it.</span></h2>
+      <div data-reveal="1" style="display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:44px">
+        <p style="margin:0;color:#D6D7D1;font-size:18px;line-height:1.6">We learn how your business really runs before we build. What you get is made for your process, not a generic product that claims to do everything.</p>
+        <p style="margin:0;color:#D6D7D1;font-size:18px;line-height:1.6">Along the way you see the gaps in your own operation and make better calls with your own data. Then your team runs it without us. Save time, save money, grow.</p>
+      </div>
+      <div data-reveal="1" style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F;margin-top:52px">
+        <div style="background:#0B0C0B;padding:30px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">CONFIGURABLE</span><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.6">Change a tolerance or an escalation rule without calling us. If you can't, we built it wrong.</p></div>
+        <div style="background:#0B0C0B;padding:30px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">DOCUMENTED</span><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.6">Written for the person who inherits it, not for us. Plus a working session with the team who will run it.</p></div>
+        <div style="background:#0B0C0B;padding:30px;display:flex;flex-direction:column;gap:8px"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;letter-spacing:0.14em;color:#4FBF9B">NO LOCK-IN</span><p style="margin:0;color:#D6D7D1;font-size:15px;line-height:1.6">No retainer required to keep the lights on. If we never speak again, the system still runs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" data-section="Contact" data-screen-label="10 Contact" style="padding:0 0 100px">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px">
+      <div data-reveal="1" style="background:#161814;border:1px solid #24261F;padding:64px 48px;display:flex;justify-content:space-between;align-items:center;gap:32px;flex-wrap:wrap">
+        <div style="max-width:520px">
+          <h2 style="margin:0;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;font-weight:700">Ready to unwire something?</h2>
+          <p style="margin:12px 0 0;color:#D6D7D1;font-size:16px;line-height:1.6">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+        </div>
+        <button type="button" data-open-contact="1" style="font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;background:#0F5C4A;color:#F2F1ED;border:none;cursor:pointer;font-weight:500">Start a conversation</button>
+      </div>
+    </div>
+  </section>
+
+  <footer style="border-top:1px solid #24261F;padding:48px 0;background:#0B0C0B">
+    <div style="max-width:1120px;margin:0 auto;padding:0 32px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px">
+      <span style="color:#8A8F84;font-size:13px;font-family:'IBM Plex Mono',monospace">© 2026 The Unwired · AI automation, built and handed over</span>
+      <div style="display:flex;gap:24px;font-size:13px">
+        <a data-wipe-link="1" href="Unwired%20What%20You%20Get.dc.html" style="color:#7C8177">What you get</a>
+        <a data-wipe-link="1" href="Unwired%20Industries.dc.html" style="color:#7C8177">Industries</a>
+        <a data-wipe-link="1" href="Unwired%20Work.dc.html" style="color:#7C8177">Work</a>
+        <a href="#contact" style="color:#7C8177">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+  <div data-modal="1" role="dialog" aria-modal="true" aria-label="Start a conversation" style="position:fixed;inset:0;background:rgba(11,12,11,0.88);display:none;align-items:center;justify-content:center;padding:24px;z-index:200">
+    <div style="background:#161814;border:1px solid #24261F;width:100%;max-width:520px;max-height:90vh;overflow-y:auto;padding:40px">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:20px;margin-bottom:8px">
+        <h3 style="margin:0;font-size:24px;font-weight:700;letter-spacing:-0.02em">Start a conversation</h3>
+        <button type="button" data-close-contact="1" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#8A8F84;background:none;border:none;cursor:pointer">✕ CLOSE</button>
+      </div>
+      <p style="margin:0 0 28px;color:#8A8F84;font-size:14px;line-height:1.5">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+      <form data-contact-form="1" action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+        <input type="hidden" name="_subject" value="New conversation request from theunwired.in" />
+        <input type="hidden" name="_captcha" value="false" />
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+          <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8A8F84">Name</label>
+          <input type="text" name="Name" required="required" style="background:#0B0C0B;border:1px solid #24261F;color:#F2F1ED;font-family:inherit;font-size:15px;padding:12px 14px;outline:none;width:100%;box-sizing:border-box" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+          <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8A8F84">Email</label>
+          <input type="email" name="Email" required="required" style="background:#0B0C0B;border:1px solid #24261F;color:#F2F1ED;font-family:inherit;font-size:15px;padding:12px 14px;outline:none;width:100%;box-sizing:border-box" />
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+          <label style="font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:#8A8F84">What process keeps breaking?</label>
+          <textarea name="Message" required="required" style="background:#0B0C0B;border:1px solid #24261F;color:#F2F1ED;font-family:inherit;font-size:15px;padding:12px 14px;outline:none;width:100%;min-height:110px;resize:vertical;box-sizing:border-box"></textarea>
+        </div>
+        <button type="submit" style="width:100%;border:none;font-family:'IBM Plex Mono',monospace;font-size:14px;padding:14px 26px;background:#0F5C4A;color:#F2F1ED;cursor:pointer">Send it over</button>
+        <div data-form-status="1" style="font-size:14px;line-height:1.5;margin-top:16px;display:none;color:#4FBF9B"></div>
+      </form>
+      <p style="margin:20px 0 0;text-align:center;font-size:13px;color:#8A8F84">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com" style="color:#4FBF9B">theunwired.in@gmail.com</a></p>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;motion&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;expressive&quot;,&quot;restrained&quot;],&quot;default&quot;:&quot;expressive&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Motion&quot;}}">
+class Component extends DCLogic {
+  componentDidMount() {
+    const root = document.querySelector('[data-root]');
+    if (!root) return;
+    if (this.idleRaf) cancelAnimationFrame(this.idleRaf);
+    this.root = root;
+    const q = (s) => root.querySelector(s);
+    const qa = (s) => Array.from(root.querySelectorAll(s));
+    this.reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    this.initWipe(q, qa);
+    this.initModal(q, qa);
+    this.initHovers(qa);
+    this.initReveal(qa);
+    this.initRail(q, qa);
+    this.initHero(q, root);
+    this.initRun(q, qa);
+
+    this.onScroll = () => {
+      if (this.ticking) return;
+      this.ticking = true;
+      requestAnimationFrame(() => { this.ticking = false; this.frame(); });
+    };
+    window.addEventListener('scroll', this.onScroll, { passive: true });
+    window.addEventListener('resize', this.onScroll);
+    this.frame();
+    window.addEventListener('load', this.onScroll);
+    if (!this.reduce) {
+      const idle = () => {
+        this.idleRaf = requestAnimationFrame(idle);
+        if (!this.heroPin) return;
+        const r = this.heroPin.getBoundingClientRect();
+        if (r.bottom > 0 && r.top < window.innerHeight) this.frame();
+      };
+      this.idleRaf = requestAnimationFrame(idle);
+    }
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.onScroll);
+    window.removeEventListener('resize', this.onScroll);
+    if (this.idleRaf) cancelAnimationFrame(this.idleRaf);
+    if (this.io) this.io.disconnect();
+    this.stopRun();
+    if (window.UnwiredWires) window.UnwiredWires.override = null;
+  }
+
+  clamp(x) { return Math.max(0, Math.min(1, x)); }
+  ease(x) { return x < 0.5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2; }
+
+  initWipe(q, qa) {
+    const w = q('[data-wipe]');
+    if (!w) return;
+    if (!this.reduce) {
+      w.style.transform = 'translateX(0)';
+      requestAnimationFrame(() => {
+        w.style.transition = 'transform .4s cubic-bezier(.65,0,.35,1)';
+        w.style.transform = 'translateX(101%)';
+      });
+    }
+    qa('[data-wipe-link]').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        const href = a.getAttribute('href');
+        if (!href || this.reduce) return;
+        e.preventDefault();
+        w.style.transition = 'none';
+        w.style.transform = 'translateX(-101%)';
+        requestAnimationFrame(() => {
+          w.style.transition = 'transform .3s cubic-bezier(.65,0,.35,1)';
+          w.style.transform = 'translateX(0)';
+          setTimeout(() => { window.location.href = href; }, 310);
+        });
+      });
+    });
+  }
+
+  initModal(q, qa) {
+    const m = q('[data-modal]');
+    if (!m) return;
+    qa('[data-open-contact]').forEach((b) => b.addEventListener('click', () => { m.style.display = 'flex'; }));
+    qa('[data-close-contact]').forEach((b) => b.addEventListener('click', () => { m.style.display = 'none'; }));
+    m.addEventListener('click', (e) => { if (e.target === m) m.style.display = 'none'; });
+    const f = q('[data-contact-form]');
+    const st = q('[data-form-status]');
+    if (f) f.addEventListener('submit', (e) => {
+      e.preventDefault();
+      fetch(f.action, { method: 'POST', body: new FormData(f), headers: { Accept: 'application/json' } })
+        .then(() => { st.style.display = 'block'; st.textContent = 'Got it. We will come back to you within a day.'; f.reset(); })
+        .catch(() => { st.style.display = 'block'; st.style.color = '#C46A5A'; st.textContent = 'That did not send. Write to theunwired.in@gmail.com instead.'; });
+    });
+  }
+
+  initHovers(qa) {
+    qa('[data-card]').forEach((c) => {
+      c.addEventListener('mouseenter', () => { c.style.borderColor = '#F2F1ED'; c.style.transform = 'translateY(-4px)'; });
+      c.addEventListener('mouseleave', () => { c.style.borderColor = '#24261F'; c.style.transform = 'none'; });
+    });
+    qa('[data-navlinks] a, footer a').forEach((a) => {
+      a.addEventListener('mouseenter', () => { a.style.color = '#F2F1ED'; });
+      a.addEventListener('mouseleave', () => { a.style.color = '#7C8177'; });
+    });
+    qa('[data-open-contact]').forEach((b) => {
+      const bg = b.style.background;
+      b.addEventListener('mouseenter', () => { if (bg && bg !== 'none') b.style.background = '#2E8B6E'; else { b.style.background = '#F2F1ED'; b.style.color = '#0B0C0B'; } });
+      b.addEventListener('mouseleave', () => { if (bg && bg !== 'none') b.style.background = bg; else { b.style.background = 'none'; b.style.color = '#F2F1ED'; } });
+    });
+  }
+
+  initReveal(qa) {
+    if (this.reduce) return;
+    this.io = new IntersectionObserver((entries) => {
+      entries.forEach((en) => {
+        if (en.isIntersecting || en.boundingClientRect.top < 0) {
+          en.target.style.opacity = '1';
+          en.target.style.transform = 'none';
+          this.io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    qa('[data-reveal]').forEach((el) => {
+      if (el.getBoundingClientRect().top > window.innerHeight * 0.9) {
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(10px)';
+        el.style.transition = 'opacity .45s ease-out, transform .45s ease-out';
+        this.io.observe(el);
+      }
+    });
+  }
+
+  initRail(q, qa) {
+    this.rail = q('[data-rail]');
+    this.railFill = q('[data-rail-fill]');
+    this.railLabel = q('[data-rail-label]');
+    this.sections = qa('[data-section]');
+    if (this.rail && window.innerWidth < 1000) {
+      this.rail.style.display = 'none';
+      this.railLabel.style.display = 'none';
+    }
+  }
+
+  initHero(q, root) {
+    this.heroPin = q('[data-hero-pin]');
+    this.pathA = q('[data-path-a]');
+    this.pathB = q('[data-path-b]');
+    this.leadA = q('[data-lead-a]');
+    this.leadB = q('[data-lead-b]');
+    this.heroMid = q('[data-hero-mid]');
+    this.wordThe = q('[data-word-the]');
+    this.wordWired = q('[data-word-wired]');
+    this.heroCopy = q('[data-hero-copy]');
+    this.heroStage = q('[data-hero-stage]');
+    this.heroMark = q('[data-hero-mark]');
+    this.heroMeta = q('[data-hero-meta]');
+    this.cue = q('[data-scroll-cue]');
+    if (this.reduce) this.settleHero();
+  }
+
+  wirePath(u, sign) {
+    const t = 1 - u, r = (n) => Math.round(n * 100) / 100;
+    const rest = sign > 0 ? 26 : 40;
+    return 'M2 ' + r(sign > 0 ? rest - 6 * t : rest + 4 * t) + ' H30 L66 ' +
+           r(sign > 0 ? rest + 18 * t : rest - 20 * t) + ' H94';
+  }
+
+  settleHero() {
+    this.applyHero(1, 1);
+    if (this.heroCopy) { this.heroCopy.style.opacity = '1'; this.heroCopy.style.transform = 'none'; }
+    if (this.heroStage) this.heroStage.style.transform = 'none';
+    if (this.heroMark) this.heroMark.style.transform = 'none';
+    if (this.heroMeta) this.heroMeta.style.opacity = '0';
+    if (this.cue) this.cue.style.display = 'none';
+    if (this.heroPin) {
+      this.heroPin.style.height = 'auto';
+      this.heroPin.firstElementChild.style.position = 'static';
+      this.heroPin.firstElementChild.style.height = 'auto';
+      this.heroPin.firstElementChild.style.padding = '120px 0 180px';
+    }
+  }
+
+  applyHero(untangle, converge) {
+    if (!this.pathA) return;
+    this.pathA.setAttribute('d', this.wirePath(untangle, 1));
+    this.pathB.setAttribute('d', this.wirePath(untangle, -1));
+    this.leadA.style.width = 50 * converge + 'px';
+    this.leadA.style.opacity = converge;
+    this.leadB.style.width = 29 * converge + 'px';
+    this.leadB.style.opacity = converge;
+    this.heroMid.style.width = 90 * (1 - converge) + 'px';
+    this.heroMid.style.opacity = 1 - converge;
+    this.heroMid.style.marginLeft = 6 * (1 - converge) + 'px';
+    this.heroMid.style.marginRight = 6 * (1 - converge) + 'px';
+    const col = converge > 0.5 ? '#F2F1ED' : '#7C8177';
+    this.wordThe.style.color = col;
+    this.wordWired.style.color = col;
+  }
+
+  initRun(q, qa) {
+    this.runSteps = qa('[data-run-step]');
+    this.runLog = q('[data-run-log]');
+    this.runStatus = q('[data-run-status]');
+    this.runActive = -1;
+    this.logLines = [
+      ['read  invoice INV-40912 · vendor Kestrel Freight', 'read  po 88214 · goods receipt GR-2210', 'ok    three sources aligned'],
+      ['check qty 240 = 240', 'check price 4.0% over po', 'rule  tolerance 5% · set by finance lead', 'ok    inside tolerance'],
+      ['post  coded 6120 · freight, inbound', 'note  price variance 4.0%, within tolerance', 'ok    queue item closed · 2m 14s'],
+      ['read  invoice INV-40913 · vendor Kestrel Freight', 'check price 22.0% over po', 'stop  outside tolerance', 'hand  to a.chen · full trail attached']
+    ];
+    /* flatten to a single feed so the log can run line by line, live */
+    this.feed = [];
+    this.logLines.forEach((group, gi) => group.forEach((line) => this.feed.push({ step: gi, line: line })));
+    this.cursor = 0;
+    this.running = false;
+  }
+
+  startRun() {
+    if (this.running || !this.runLog) return;
+    this.running = true;
+    const advance = () => {
+      if (!this.running) return;
+      if (this.cursor >= this.feed.length) {
+        /* hold the finished run, then start it over */
+        this.runTimer = setTimeout(() => {
+          if (!this.running) return;
+          this.cursor = 0;
+          this.runLog.innerHTML = '';
+          this.setRunStep(-1);
+          this.runTimer = setTimeout(advance, 700);
+        }, 3200);
+        return;
+      }
+      const item = this.feed[this.cursor++];
+      this.setRunStep(item.step);
+      this.appendLine(item.line);
+      const tag = item.line.slice(0, 5).trim();
+      /* a beat before each new stage, and a longer one before it escalates */
+      const gap = tag === 'stop' ? 1100 : (tag === 'ok' ? 900 : 620);
+      this.runTimer = setTimeout(advance, gap);
+    };
+    advance();
+  }
+
+  stopRun() {
+    this.running = false;
+    if (this.runTimer) clearTimeout(this.runTimer);
+  }
+
+  appendLine(l) {
+    const tag = l.slice(0, 5).trim();
+    const color = tag === 'ok' ? '#4FBF9B' : (tag === 'stop' || tag === 'hand') ? '#F2F1ED' : '#8A8F84';
+    const row = document.createElement('div');
+    row.style.cssText = 'color:' + color + ';opacity:0;transform:translateX(-4px);transition:opacity .25s ease-out,transform .25s ease-out';
+    row.textContent = l;
+    this.runLog.appendChild(row);
+    requestAnimationFrame(() => { row.style.opacity = '1'; row.style.transform = 'none'; });
+    while (this.runLog.childNodes.length > 14) this.runLog.removeChild(this.runLog.firstChild);
+  }
+
+  setRunStep(i) {
+    if (!this.runSteps) return;
+    if (i === this.runActive) return;
+    this.runActive = i;
+    this.runSteps.forEach((s, k) => {
+      const on = k <= i, cur = k === i;
+      s.style.background = cur ? '#101210' : 'transparent';
+      s.querySelector('[data-run-num]').style.color = on ? '#4FBF9B' : '#3A3D35';
+      s.querySelector('[data-run-title]').style.color = on ? '#F2F1ED' : '#7C8177';
+      Array.from(s.querySelectorAll('p')).forEach((p) => { p.style.color = on ? '#D6D7D1' : '#7C8177'; });
+    });
+    if (!this.runStatus) return;
+    if (i < 0) { this.runStatus.textContent = 'IDLE'; this.runStatus.style.color = '#8A8F84'; return; }
+    this.runStatus.textContent = ['READING', 'DECIDING', 'ACTING', 'ESCALATED'][i];
+    this.runStatus.style.color = i === 3 ? '#F2F1ED' : '#4FBF9B';
+  }
+
+  frame() {
+    const y = window.scrollY || window.pageYOffset;
+    const vh = window.innerHeight;
+
+    if (this.heroPin && !this.reduce) {
+      const NAV = 72;
+      const stickyH = vh - NAV;
+      const scrollable = this.heroPin.offsetHeight - stickyH;
+      const top = this.heroPin.getBoundingClientRect().top;
+      const p = scrollable > 0 ? this.clamp((NAV - top) / scrollable) : 0;
+      const untangle = this.ease(this.clamp((p - 0.10) / 0.34));
+      const converge = this.ease(this.clamp((p - 0.44) / 0.18));
+      this.applyHero(untangle, converge);
+      if (this.heroMark) this.heroMark.style.transform = 'scale(' + (1 + 0.62 * (1 - converge)) + ')';
+      /* while the hero is pinned, the whole background field follows the
+         mark's own untangle instead of raw page progress */
+      /* On home the field belongs to the logo: it untangles as one gesture
+         with the mark and then stays resolved for the rest of the page.
+         Handing back to page progress made it re-tangle the moment the pin
+         released, which read as the two fighting each other. */
+      const markMove = this.ease(this.clamp((p - 0.10) / 0.52));
+      if (window.UnwiredWires) window.UnwiredWires.override = 1 - markMove;
+      if (this.heroMeta) this.heroMeta.style.opacity = this.clamp(1 - p / 0.18);
+      if (this.cue) this.cue.style.opacity = this.clamp(1 - p / 0.08);
+      if (this.heroCopy && this.heroStage) {
+        const reveal = this.ease(this.clamp((p - 0.56) / 0.14));
+        const shift = (this.heroCopy.offsetHeight + 40) / 2;
+        this.heroStage.style.transform = 'translateY(' + shift * (1 - reveal) + 'px)';
+        this.heroCopy.style.opacity = reveal;
+        this.heroCopy.style.transform = 'translateY(' + 10 * (1 - reveal) + 'px)';
+      }
+    }
+
+    if (this.rail && this.rail.style.display !== 'none') {
+      const doc = document.documentElement.scrollHeight - vh;
+      const prog = this.clamp(y / Math.max(1, doc));
+      const railH = this.rail.getBoundingClientRect().height;
+      this.railFill.style.height = railH * prog + 'px';
+      let active = -1;
+      this.sections.forEach((s, i) => {
+        if (s.getBoundingClientRect().top < vh * 0.45) active = i;
+      });
+      if (active >= 0) {
+        this.railLabel.textContent = String(active + 1).padStart(2, '0') + ' / ' +
+          this.sections[active].getAttribute('data-section').toUpperCase();
+        this.railLabel.style.opacity = '1';
+      } else this.railLabel.style.opacity = '0';
+    }
+
+    /* the log runs itself whenever the section is on screen */
+    if (this.runSteps && this.runSteps.length) {
+      const sec = document.getElementById('run');
+      if (sec) {
+        const r = sec.getBoundingClientRect();
+        const visible = r.top < vh * 0.85 && r.bottom > vh * 0.15;
+        if (visible && !this.running) this.startRun();
+        else if (!visible && this.running) this.stopRun();
+      }
+    }
+  }
+
+  renderVals() { return {}; }
+}
+</script>
+</body>
+</html>

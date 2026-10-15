@@ -12,11 +12,19 @@
 <meta property="og:url" content="https://theunwired.in/hr-hire-to-retire.html">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: a stored choice, else the system
+   setting, else dark. site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=4">
+<link rel="stylesheet" href="assets/styles.css?v=5">
 </head>
 <body>
 
@@ -43,6 +51,7 @@
       <a data-wipe-link href="work.html">Work</a>
       <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
     </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme"><span data-theme-opt="dark">Dark</span><span aria-hidden="true">/</span><span data-theme-opt="light">Light</span></button>
     <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
     <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
   </div>
@@ -70,47 +79,47 @@
       <div class="diagram-panel" data-reveal>
         <span class="diagram-panel__label">One spine, five stages, four systems</span>
         <svg viewBox="0 0 1000 360" width="100%" role="img" aria-label="Schematic: decisions about a person sit above the lifecycle and stay with a person. Below, five lifecycle stages feed The Unwired agent, which updates HRIS, payroll, access and benefits together.">
-          <rect x="300" y="26" width="400" height="46" fill="#0B0C0B" stroke="#F2F1ED" stroke-width="1"></rect>
-          <text x="500" y="47" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">DECISIONS ABOUT A PERSON</text>
-          <text x="500" y="64" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" fill="#7C8177">hiring · rating · comp · exit — never the agent</text>
-          <path d="M500 72 V 100" fill="none" stroke="#F2F1ED" stroke-width="1.5"></path>
+          <rect x="300" y="26" width="400" height="46" stroke-width="1" style="fill:var(--cut);stroke:var(--bone)"></rect>
+          <text x="500" y="47" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">DECISIONS ABOUT A PERSON</text>
+          <text x="500" y="64" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10" style="fill:var(--quiet)">hiring · rating · comp · exit — never the agent</text>
+          <path d="M500 72 V 100" fill="none" stroke-width="1.5" style="stroke:var(--bone)"></path>
 
-          <line x1="60" y1="122" x2="940" y2="122" stroke="#24261F" stroke-width="2"></line>
+          <line x1="60" y1="122" x2="940" y2="122" stroke-width="2" style="stroke:var(--hairline)"></line>
 
-          <rect x="60" y="100" width="160" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="140" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">HIRE</text>
-          <rect x="240" y="100" width="160" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="320" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">ONBOARD</text>
-          <rect x="420" y="100" width="160" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="500" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">CHANGE</text>
-          <rect x="600" y="100" width="160" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="680" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">PAY</text>
-          <rect x="780" y="100" width="160" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="860" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" fill="#F2F1ED">EXIT</text>
+          <rect x="60" y="100" width="160" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="140" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">HIRE</text>
+          <rect x="240" y="100" width="160" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="320" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">ONBOARD</text>
+          <rect x="420" y="100" width="160" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="500" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">CHANGE</text>
+          <rect x="600" y="100" width="160" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="680" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">PAY</text>
+          <rect x="780" y="100" width="160" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="860" y="127" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11.5" letter-spacing="0.06em" style="fill:var(--bone)">EXIT</text>
 
-          <path class="flow" d="M140 144 V 196" fill="none" stroke="#7C8177" stroke-width="1.5"></path>
-          <path class="flow" d="M320 144 V 196" fill="none" stroke="#7C8177" stroke-width="1.5"></path>
-          <path class="flow" d="M500 144 V 196" fill="none" stroke="#7C8177" stroke-width="1.5"></path>
-          <path class="flow" d="M680 144 V 196" fill="none" stroke="#7C8177" stroke-width="1.5"></path>
-          <path class="flow" d="M860 144 V 196" fill="none" stroke="#7C8177" stroke-width="1.5"></path>
+          <path class="flow" d="M140 144 V 196" fill="none" stroke-width="1.5" style="stroke:var(--quiet)"></path>
+          <path class="flow" d="M320 144 V 196" fill="none" stroke-width="1.5" style="stroke:var(--quiet)"></path>
+          <path class="flow" d="M500 144 V 196" fill="none" stroke-width="1.5" style="stroke:var(--quiet)"></path>
+          <path class="flow" d="M680 144 V 196" fill="none" stroke-width="1.5" style="stroke:var(--quiet)"></path>
+          <path class="flow" d="M860 144 V 196" fill="none" stroke-width="1.5" style="stroke:var(--quiet)"></path>
 
-          <rect x="60" y="196" width="880" height="58" fill="#0B0C0B" stroke="#2E8B6E" stroke-width="1"></rect>
-          <text x="500" y="220" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" fill="#4FBF9B">THE UNWIRED AGENT</text>
-          <text x="500" y="240" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" fill="#7C8177">checks policy · prepares the record · waits for approval</text>
+          <rect x="60" y="196" width="880" height="58" stroke-width="1" style="fill:var(--cut);stroke:var(--signal)"></rect>
+          <text x="500" y="220" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="12" letter-spacing="0.06em" style="fill:var(--label)">THE UNWIRED AGENT</text>
+          <text x="500" y="240" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="10.5" style="fill:var(--quiet)">checks policy · prepares the record · waits for approval</text>
 
-          <path class="flow" d="M145 254 V 298" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
-          <path class="flow" d="M375 254 V 298" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
-          <path class="flow" d="M605 254 V 298" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
-          <path class="flow" d="M835 254 V 298" fill="none" stroke="#2E8B6E" stroke-width="1.5"></path>
+          <path class="flow" d="M145 254 V 298" fill="none" stroke-width="1.5" style="stroke:var(--signal)"></path>
+          <path class="flow" d="M375 254 V 298" fill="none" stroke-width="1.5" style="stroke:var(--signal)"></path>
+          <path class="flow" d="M605 254 V 298" fill="none" stroke-width="1.5" style="stroke:var(--signal)"></path>
+          <path class="flow" d="M835 254 V 298" fill="none" stroke-width="1.5" style="stroke:var(--signal)"></path>
 
-          <rect x="60" y="298" width="170" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="145" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" fill="#7C8177">HRIS</text>
-          <rect x="290" y="298" width="170" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="375" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" fill="#7C8177">PAYROLL</text>
-          <rect x="520" y="298" width="170" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="605" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" fill="#7C8177">ACCESS</text>
-          <rect x="750" y="298" width="170" height="44" fill="#0B0C0B" stroke="#24261F" stroke-width="1"></rect>
-          <text x="835" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" fill="#7C8177">BENEFITS</text>
+          <rect x="60" y="298" width="170" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="145" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" style="fill:var(--quiet)">HRIS</text>
+          <rect x="290" y="298" width="170" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="375" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" style="fill:var(--quiet)">PAYROLL</text>
+          <rect x="520" y="298" width="170" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="605" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" style="fill:var(--quiet)">ACCESS</text>
+          <rect x="750" y="298" width="170" height="44" stroke-width="1" style="fill:var(--cut);stroke:var(--hairline)"></rect>
+          <text x="835" y="325" text-anchor="middle" font-family="'IBM Plex Mono',monospace" font-size="11" letter-spacing="0.06em" style="fill:var(--quiet)">BENEFITS</text>
         </svg>
       </div>
     </div>
@@ -515,8 +524,8 @@
   </div>
 </div>
 
-<script src="assets/wires.js?v=4"></script>
-<script src="assets/ambient.js?v=4"></script>
-<script src="assets/site.js?v=4"></script>
+<script src="assets/wires.js?v=5"></script>
+<script src="assets/ambient.js?v=5"></script>
+<script src="assets/site.js?v=5"></script>
 </body>
 </html>

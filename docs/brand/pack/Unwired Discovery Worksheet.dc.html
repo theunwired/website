@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#0F5C4A; text-decoration:none; }
+  a:hover { color:#0B0C0B; }
+  .rule { border-bottom:0.5pt solid #B9BCB1; height:18pt; }
+</style>
+<script src="./doc-page.js"></script>
+</helmet>
+<doc-page margin="0.7in" style="font-family:'Instrument Sans',Helvetica,Arial,sans-serif;color:#16180F">
+
+  <div slot="header" style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9pt;border-bottom:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>THE UNWIRED · WEEK ONE WORKSHEET</span>
+    <span>PROCESS: ________________</span>
+  </div>
+
+  <div slot="footer" style="display:flex;justify-content:space-between;align-items:baseline;padding-top:9pt;border-top:0.75pt solid #C9CBC1;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.12em;color:#6B6F63">
+    <span>theunwired.in</span>
+    <span>Yours to keep, whatever you decide</span>
+  </div>
+
+  <div style="display:flex;align-items:center;gap:9pt;margin-bottom:22pt">
+    <span style="display:flex;flex-direction:column;gap:2.5pt">
+      <span style="width:26pt;height:3pt;background:#16180F;display:block"></span>
+      <span style="width:15pt;height:3pt;background:#0F5C4A;display:block"></span>
+    </span>
+    <span style="font-size:16pt;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+  </div>
+
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.14em;text-transform:uppercase;color:#0F5C4A;margin-bottom:10pt">Week one · process mapping</div>
+  <h1 style="margin:0 0 10pt;font-size:24pt;font-weight:700;letter-spacing:-0.03em;line-height:1.12;max-width:24ch">Map the process as it is really run.</h1>
+  <p style="margin:0 0 22pt;font-size:11pt;line-height:1.55;color:#3E4238;max-width:64ch">Fill this in with the person who actually runs the process, not the person who owns the org chart. Answer what happens, not what should happen. The gap between those two is usually where the work goes wrong.</p>
+
+  <h2 style="margin:0 0 12pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">01 · The process</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <tbody>
+      <tr><td style="padding:5pt 12pt 5pt 0;width:38%;vertical-align:top;color:#3E4238">What is it called internally?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Who runs it day to day?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Who owns it on paper?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">How many times per month?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">How long does one take, start to finish?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">What percentage need a human to intervene?</td><td class="rule" style="padding:5pt 0"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 8pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">02 · The steps, as they happen</h2>
+  <p style="margin:0 0 10pt;font-size:10pt;line-height:1.5;color:#3E4238;max-width:64ch">One row per step. If a step only exists because a system cannot talk to another system, mark it.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:9.5pt;margin-bottom:20pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 8pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:6%">#</th>
+      <th style="text-align:left;padding:6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:32%">WHAT HAPPENS</th>
+      <th style="text-align:left;padding:6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:22%">IN WHICH SYSTEM</th>
+      <th style="text-align:left;padding:6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:18%">WHO</th>
+      <th style="text-align:left;padding:6pt 0 6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">MINS</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">01</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">02</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">03</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">04</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">05</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">06</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">07</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:11pt 8pt 11pt 0;border-bottom:0.5pt solid #DDDFD6;font-family:'IBM Plex Mono',monospace;color:#9DA096">08</td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 8pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">03 · The exceptions</h2>
+  <p style="margin:0 0 10pt;font-size:10pt;line-height:1.5;color:#3E4238;max-width:64ch">This is the important page. An agent is only as good as the rules for the cases that do not fit.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:9.5pt;margin-bottom:20pt">
+    <thead><tr>
+      <th style="text-align:left;padding:6pt 8pt 6pt 0;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:34%">WHEN THIS HAPPENS</th>
+      <th style="text-align:left;padding:6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400;width:34%">WE CURRENTLY DO THIS</th>
+      <th style="text-align:left;padding:6pt 0 6pt 8pt;border-bottom:0.75pt solid #16180F;font-family:'IBM Plex Mono',monospace;font-size:7.5pt;letter-spacing:0.1em;color:#6B6F63;font-weight:400">WHO DECIDES</th>
+    </tr></thead>
+    <tbody>
+      <tr><td style="padding:12pt 8pt 12pt 0;border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:12pt 8pt 12pt 0;border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:12pt 8pt 12pt 0;border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:12pt 8pt 12pt 0;border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+      <tr><td style="padding:12pt 8pt 12pt 0;border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td><td style="border-bottom:0.5pt solid #DDDFD6"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 12pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">04 · The line an agent must not cross</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <tbody>
+      <tr><td style="padding:5pt 12pt 5pt 0;width:44%;vertical-align:top;color:#3E4238">What tolerance is acceptable without approval?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Above what value does a human always approve?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Who takes the escalation, by name?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Which decisions must stay human, always?</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Who signs off that these numbers are right?</td><td class="rule" style="padding:5pt 0"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 12pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">05 · What it costs today</h2>
+  <table style="width:100%;border-collapse:collapse;font-size:10pt;margin-bottom:20pt">
+    <tbody>
+      <tr><td style="padding:5pt 12pt 5pt 0;width:44%;vertical-align:top;color:#3E4238">Hours per month across everyone involved</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">What is delayed when it backs up</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">What it costs when it goes wrong</td><td class="rule" style="padding:5pt 0"></td></tr>
+      <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;color:#3E4238">Who is the single point of failure</td><td class="rule" style="padding:5pt 0"></td></tr>
+    </tbody>
+  </table>
+
+  <h2 style="margin:0 0 10pt;font-size:13pt;font-weight:700;letter-spacing:-0.02em">06 · Our honest answer</h2>
+  <p style="margin:0 0 10pt;font-size:10pt;line-height:1.5;color:#3E4238;max-width:64ch">We complete this section and send it back to you at the end of week one, whether or not we go further.</p>
+  <div style="border:0.75pt solid #16180F;padding:14pt 16pt;break-inside:avoid">
+    <table style="width:100%;border-collapse:collapse;font-size:10pt">
+      <tbody>
+        <tr><td style="padding:5pt 12pt 5pt 0;width:38%;vertical-align:top;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">IS AN AGENT THE RIGHT FIX</td><td class="rule" style="padding:5pt 0"></td></tr>
+        <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">IF NOT, WHAT IS</td><td class="rule" style="padding:5pt 0"></td></tr>
+        <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">WHAT WE WOULD AUTOMATE FIRST</td><td class="rule" style="padding:5pt 0"></td></tr>
+        <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">WHAT WE WOULD LEAVE ALONE</td><td class="rule" style="padding:5pt 0"></td></tr>
+        <tr><td style="padding:5pt 12pt 5pt 0;vertical-align:top;font-family:'IBM Plex Mono',monospace;font-size:8pt;letter-spacing:0.1em;color:#6B6F63">BIGGEST RISK WE SEE</td><td class="rule" style="padding:5pt 0"></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</doc-page>
+</x-dc>
+</body>
+</html>

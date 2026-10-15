@@ -40,16 +40,30 @@
   }
 
   /* one shared clock so every accent breathes together, never out of phase */
+  function rgb(hex) {
+    var m = /^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(hex.trim());
+    return m ? [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)] : null;
+  }
+
   function breathe() {
     var t0 = performance.now();
     var root = document.documentElement;
+    var lo, hi;
+    /* the two ends come from CSS, so each theme breathes in its own greens:
+       Signal toward Forest on dark, Forest toward Signal on light */
+    function read() {
+      var cs = getComputedStyle(root);
+      lo = rgb(cs.getPropertyValue('--breath-lo')) || [38, 118, 94];
+      hi = rgb(cs.getPropertyValue('--breath-hi')) || [46, 139, 110];
+    }
+    read();
+    document.addEventListener('unwired:theme', read);
     (function loop(now) {
       if (!document.hidden) {
         var k = 0.5 + 0.5 * Math.sin((now - t0) * 0.00092);
-        /* Signal #2E8B6E dimming toward Forest and back, ~7s cycle */
-        var r = Math.round(38 + 8 * k);
-        var g = Math.round(118 + 21 * k);
-        var b = Math.round(94 + 16 * k);
+        var r = Math.round(lo[0] + (hi[0] - lo[0]) * k);
+        var g = Math.round(lo[1] + (hi[1] - lo[1]) * k);
+        var b = Math.round(lo[2] + (hi[2] - lo[2]) * k);
         root.style.setProperty('--breath', 'rgb(' + r + ',' + g + ',' + b + ')');
       }
       requestAnimationFrame(loop);

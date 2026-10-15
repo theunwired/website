@@ -46,6 +46,55 @@
     });
   }
 
+  /* --------------------------------------------------------------- theme */
+  /* The attribute is set before first paint by the inline script in <head>.
+     This only handles the toggle and a system change while the page is open.
+     A stored choice wins over the system setting; with neither, dark. */
+  var THEME_KEY = 'unwired-theme';
+
+  function storedTheme() {
+    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
+  }
+
+  function applyTheme(t) {
+    var root = document.documentElement;
+    root.setAttribute('data-theme', t);
+    var meta = q('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', t === 'light' ? '#F2F1ED' : '#0B0C0B');
+    qa('[data-theme-toggle]').forEach(function (b) {
+      b.setAttribute('aria-label', t === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+    });
+    /* the wire field and the breathing clock paint from JS, so they repaint
+       on this rather than waiting for a reload */
+    var ev;
+    try { ev = new CustomEvent('unwired:theme', { detail: t }); }
+    catch (e) { ev = document.createEvent('CustomEvent'); ev.initCustomEvent('unwired:theme', false, false, t); }
+    document.dispatchEvent(ev);
+  }
+
+  function initTheme() {
+    var current = function () {
+      return document.documentElement.getAttribute('data-theme') === 'light' ? 'light' : 'dark';
+    };
+    applyTheme(current());
+    qa('[data-theme-toggle]').forEach(function (b) {
+      b.addEventListener('click', function () {
+        var next = current() === 'light' ? 'dark' : 'light';
+        try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* private mode: still switches */ }
+        applyTheme(next);
+      });
+    });
+    if (!window.matchMedia) return;
+    var mq = window.matchMedia('(prefers-color-scheme: light)');
+    var follow = function () {
+      var s = storedTheme();
+      if (s === 'light' || s === 'dark') return;
+      applyTheme(mq.matches ? 'light' : 'dark');
+    };
+    if (mq.addEventListener) mq.addEventListener('change', follow);
+    else if (mq.addListener) mq.addListener(follow);
+  }
+
   /* ---------------------------------------------------------------- nav */
   function initNav() {
     var btn = q('[data-nav-toggle]');
@@ -235,7 +284,8 @@
     heroMid.style.opacity = 1 - converge;
     heroMid.style.marginLeft = 6 * (1 - converge) + 'px';
     heroMid.style.marginRight = 6 * (1 - converge) + 'px';
-    var col = converge > 0.5 ? '#F2F1ED' : '#7C8177';
+    /* tokens, not hex, so the word follows the theme */
+    var col = converge > 0.5 ? 'var(--bone)' : 'var(--quiet)';
     wordThe.style.color = col;
     wordWired.style.color = col;
   }
@@ -413,6 +463,7 @@
   }
 
   function start() {
+    safe('theme', initTheme);
     safe('wipe', initWipe);
     safe('nav', initNav);
     safe('modal', initModal);

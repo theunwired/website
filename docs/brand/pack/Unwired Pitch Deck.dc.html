@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+  body { margin:0; background:#0B0C0B; -webkit-font-smoothing:antialiased; }
+  a { color:#4FBF9B; text-decoration:none; }
+  a:hover { color:#F2F1ED; }
+</style>
+<script src="deck-wires.js"></script>
+<script src="pitch-log.js"></script>
+</helmet>
+<x-import component-from-global-scope="deck-stage" from="./deck-stage.js" width="1920" height="1080" hint-size="100%,100%">
+
+  <section data-label="Cover" data-screen-label="01" data-speaker-notes="Do not talk over this. Let it land, then ask one question: which process in your operation would you name if I asked what keeps breaking? Their answer sets up the whole deck." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div data-deck-wire="pcover" style="position:absolute;inset:0"></div>
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+      <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">AI AUTOMATION STUDIO</span>
+      <div style="display:flex;flex-direction:column;gap:48px">
+        <div data-deck-mark="pcover" style="display:flex" data-size="120"></div>
+        <div style="display:flex;flex-direction:column;gap:24px">
+          <p style="margin:0;font-size:82px;font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:22ch">Your workflows were hard-wired. <span style="color:#7C8177">We cut the cord.</span></p>
+          <p style="margin:0;font-size:34px;line-height:1.5;color:#B6B8B0;max-width:54ch">We build AI agents that run the operational processes that keep breaking. Then we hand the system over for your team to own.</p>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">CLIENT NAME · DATE</span>
+        <span data-deck-phase="pcover" style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#4FBF9B">TANGLED</span>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="The process" data-screen-label="02" data-speaker-notes="Read the room. Say: every company we talk to names one of these three within a minute. Which is closest? Then shut up and listen. Their words become your words for the rest of the meeting." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">01</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">The process</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:26ch">You already know which one it is.</p>
+        <p style="margin:0;font-size:32px;line-height:1.5;color:#B6B8B0;max-width:64ch">It works most days, because somebody carries it.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">01</span>
+          <span style="font-size:36px;font-weight:700;letter-spacing:-0.02em;line-height:1.15">Month-end is a scramble</span>
+          <p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">People stay late reconciling what the systems should have agreed on weeks ago.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">02</span>
+          <span style="font-size:36px;font-weight:700;letter-spacing:-0.02em;line-height:1.15">The tool didn't fix it</span>
+          <p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">The licence renews on schedule. The work still moves through a spreadsheet and an inbox.</p>
+        </div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">03</span>
+          <span style="font-size:36px;font-weight:700;letter-spacing:-0.02em;line-height:1.15">Nobody can say where the work is</span>
+          <p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Ask where an invoice or an order stands and someone has to go and look.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="What it costs" data-screen-label="03" data-speaker-notes="This is the founder's slide. The functional manager feels the queue, the founder feels these three. Do not put numbers on this slide that you have not measured for THIS client." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:52px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">02</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">What it costs</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:26ch">Carrying it is the expensive part.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:440px 1fr;gap:44px;align-items:baseline"><span style="font-size:36px;font-weight:700;letter-spacing:-0.015em">Senior time on clerical work</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">The people who understand the exceptions are the people spending their week clearing them.</span></div>
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:440px 1fr;gap:44px;align-items:baseline"><span style="font-size:36px;font-weight:700;letter-spacing:-0.015em">A single point of failure</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">One person knows the real rules. When they are away, the process slows to their absence.</span></div>
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:440px 1fr;gap:44px;align-items:baseline"><span style="font-size:36px;font-weight:700;letter-spacing:-0.015em">Headcount as the only lever</span><span style="font-size:30px;line-height:1.45;color:#D6D7D1">Volume goes up, so the team goes up. That is the only scaling path a manual process offers.</span></div>
+      </div>
+      <p style="margin:0;font-size:32px;line-height:1.5;color:#4FBF9B;border-left:2px solid #0F5C4A;padding-left:36px;max-width:70ch">We will measure your actual numbers in week one, before you pay us anything.</p>
+    </div>
+  </section>
+
+  <section data-label="Why tools failed" data-screen-label="04" data-speaker-notes="If they have tried RPA, this is the slide that earns trust. Say: you already know where it breaks. That is the part we build for. Do not disparage their previous vendor." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">03</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Why the tools didn't fix it</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:28ch">It was hard-wired, and the work moved.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:48px">
+          <h3 style="margin:0 0 28px;font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;text-transform:uppercase;color:#8A8F84;font-weight:500">What you bought</h3>
+          <div style="display:flex;flex-direction:column">
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:30px;line-height:1.4">If this, then that. Nothing else</span>
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:30px;line-height:1.4">Stops on anything it has not seen</span>
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#8A8F84;font-size:30px;line-height:1.4">Every exception needs a developer</span>
+            <span style="padding:22px 0;color:#8A8F84;font-size:30px;line-height:1.4">Runs the steps, never makes the call</span>
+          </div>
+        </div>
+        <div style="background:#0B0C0B;padding:48px">
+          <h3 style="margin:0 0 28px;font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B;font-weight:500">What an agent does</h3>
+          <div style="display:flex;flex-direction:column">
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:30px;line-height:1.4">Works toward a goal, using what is in front of it</span>
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:30px;line-height:1.4">Handles the odd case without a rewrite</span>
+            <span style="padding:22px 0;border-bottom:1px solid #24261F;color:#D6D7D1;font-size:30px;line-height:1.4">Learns from exceptions, passes on the rest</span>
+            <span style="padding:22px 0;color:#D6D7D1;font-size:30px;line-height:1.4">Plans, acts, and checks its own work</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="The agent run" data-screen-label="05" data-speaker-notes="THE CENTREPIECE. Spend four minutes here. Let the log run once in silence, then narrate the second pass. The moment that sells is the escalation: it stops and hands a person the trail. Say: this is not a demo path, this is what your queue looks like." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:80px 96px;box-sizing:border-box;display:flex;flex-direction:column;gap:36px">
+      <div style="display:flex;flex-direction:column;gap:16px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">04</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">What it actually does</span>
+        </div>
+        <p style="margin:0;font-size:58px;font-weight:700;letter-spacing:-0.03em;line-height:1.04;max-width:30ch">One invoice exception, start to finish.</p>
+      </div>
+      <div style="flex:1;display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F;min-height:0">
+        <div style="background:#0B0C0B;display:flex;flex-direction:column">
+          <div data-log-step="0" style="flex:1;padding:26px 34px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:52px 1fr;gap:26px;align-items:center;transition:background .3s ease-out">
+            <span data-log-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#3A3D35;transition:color .3s ease-out">01</span>
+            <div><div data-log-title="1" style="font-size:32px;font-weight:700;margin-bottom:8px;color:#7C8177;transition:color .3s ease-out">Read</div><p style="margin:0;font-size:27px;line-height:1.4;color:#7C8177">Pulls the invoice, the PO and the goods receipt out of three systems that were never built to talk.</p></div>
+          </div>
+          <div data-log-step="1" style="flex:1;padding:26px 34px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:52px 1fr;gap:26px;align-items:center;transition:background .3s ease-out">
+            <span data-log-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#3A3D35;transition:color .3s ease-out">02</span>
+            <div><div data-log-title="1" style="font-size:32px;font-weight:700;margin-bottom:8px;color:#7C8177;transition:color .3s ease-out">Decide</div><p style="margin:0;font-size:27px;line-height:1.4;color:#7C8177">Quantity matches, price is 4% over. Inside the tolerance your finance lead set, so it proceeds.</p></div>
+          </div>
+          <div data-log-step="2" style="flex:1;padding:26px 34px;border-bottom:1px solid #24261F;display:grid;grid-template-columns:52px 1fr;gap:26px;align-items:center;transition:background .3s ease-out">
+            <span data-log-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#3A3D35;transition:color .3s ease-out">03</span>
+            <div><div data-log-title="1" style="font-size:32px;font-weight:700;margin-bottom:8px;color:#7C8177;transition:color .3s ease-out">Act</div><p style="margin:0;font-size:27px;line-height:1.4;color:#7C8177">Codes it, posts it, writes the note a person would have written, closes the queue item.</p></div>
+          </div>
+          <div data-log-step="3" style="flex:1;padding:26px 34px;display:grid;grid-template-columns:52px 1fr;gap:26px;align-items:center;transition:background .3s ease-out">
+            <span data-log-num="1" style="font-family:'IBM Plex Mono',monospace;font-size:24px;color:#3A3D35;transition:color .3s ease-out">04</span>
+            <div><div data-log-title="1" style="font-size:32px;font-weight:700;margin-bottom:8px;color:#7C8177;transition:color .3s ease-out">Escalate</div><p style="margin:0;font-size:27px;line-height:1.4;color:#7C8177">The next one is 22% over. Out of tolerance, so it stops and hands a person the full trail.</p></div>
+          </div>
+        </div>
+        <div style="background:#161814;padding:34px;display:flex;flex-direction:column;gap:20px">
+          <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid #24261F;padding-bottom:18px">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.12em;color:#8A8F84">AGENT LOG · AP EXCEPTIONS</span>
+            <span data-log-status="1" style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.12em;color:#8A8F84">IDLE</span>
+          </div>
+          <div data-log-out="1" style="font-family:'IBM Plex Mono',monospace;font-size:25px;line-height:1.85;color:#8A8F84;white-space:pre-wrap"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Where it stops" data-screen-label="06" data-speaker-notes="The safety slide. Say plainly: you set these numbers, not us, and you can change them without calling us. This is where a cautious functional manager relaxes." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">05</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Where it stops</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:28ch">You draw the line. It never moves it.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">TOLERANCES</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Your numbers, written down</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Set by the person accountable for the process. Changeable by your team without us.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">ESCALATION</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Named humans, named cases</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Out of tolerance means it stops and hands over. It does not guess and it does not proceed.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:18px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">AUDIT TRAIL</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Every decision, and why</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Your auditors see what your team sees. It runs in your environment, under your access rules.</p></div>
+      </div>
+      <p style="margin:0;font-size:32px;line-height:1.5;color:#8A8F84;max-width:76ch">Nothing goes straight to full autonomy. It runs alongside your existing process first and earns the lead.</p>
+    </div>
+  </section>
+
+  <section data-label="Who we are" data-screen-label="07" data-speaker-notes="Keep this to 60 seconds. Credibility lands harder after you have shown you understand the problem. If asked only three of you, say: three seniors who build, and nobody you have to train up on your process." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">06</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">Who you would work with</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:26ch">Operators, not advisors.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">DELIVERY</span><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Delivered it before automating it</span><p style="margin:0;font-size:28px;line-height:1.5;color:#D6D7D1">Ten years plus across AI services, automation, consulting, data engineering and post-sales.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">SALES &amp; REVENUE</span><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Sold it, then had to make it true</span><p style="margin:0;font-size:28px;line-height:1.5;color:#D6D7D1">Ten years plus in sales and pre-sales for AI and automation. Knows which promises a process can keep.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">OPERATIONS</span><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em;line-height:1.2">Owned the process that kept breaking</span><p style="margin:0;font-size:28px;line-height:1.5;color:#D6D7D1">Ten years plus across sales ops, marketing ops, rev ops, finance ops, compliance and audit.</p></div>
+      </div>
+      <p style="margin:0;font-size:30px;line-height:1.5;color:#8A8F84;max-width:80ch">All three of us are builders. We have shipped products and worked alongside engineering and product teams to put real systems into production.</p>
+    </div>
+  </section>
+
+  <section data-label="Six weeks" data-screen-label="08" data-speaker-notes="The offer slide. Land week one hard: it is free, and you can stop after it with a process map you keep. That removes the risk the founder is actually worried about." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:88px 96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:40px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">07</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">How it goes</span>
+        </div>
+        <p style="margin:0;font-size:64px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:28ch">Six weeks, one process. <span style="color:#4FBF9B">Week one is on us.</span></p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:220px 380px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:27px;color:#4FBF9B">Week 1 · free</span><span style="font-size:32px;font-weight:700;letter-spacing:-0.015em">Map the wiring</span><span style="font-size:28px;line-height:1.45;color:#D6D7D1">We shadow the process as it is actually run and find where it breaks. You keep the map either way.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:220px 380px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:27px;color:#8A8F84">Week 2–3</span><span style="font-size:32px;font-weight:700;letter-spacing:-0.015em">Design the agent</span><span style="font-size:28px;line-height:1.45;color:#D6D7D1">Goal, guardrails and escalation points, agreed with the team who owns the process.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:220px 380px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:27px;color:#8A8F84">Week 4–6</span><span style="font-size:32px;font-weight:700;letter-spacing:-0.015em">Deploy in parallel</span><span style="font-size:28px;line-height:1.45;color:#D6D7D1">It runs alongside the existing process, building trust before it takes the lead.</span></div>
+        <div style="background:#0B0C0B;padding:30px 40px;display:grid;grid-template-columns:220px 380px 1fr;gap:36px;align-items:baseline"><span style="font-family:'IBM Plex Mono',monospace;font-size:27px;color:#4FBF9B">Handover</span><span style="font-size:32px;font-weight:700;letter-spacing:-0.015em">You own it</span><span style="font-size:28px;line-height:1.45;color:#D6D7D1">Configuration, documentation, and a working session with the team who will run it.</span></div>
+      </div>
+      <p style="margin:0;font-size:31px;line-height:1.5;color:#4FBF9B;border-left:2px solid #0F5C4A;padding-left:36px;max-width:76ch">After week one you get our honest answer on whether an agent is the right fix. If it is not, we say so and you owe us nothing.</p>
+    </div>
+  </section>
+
+  <section data-label="What you get" data-screen-label="09" data-speaker-notes="Say: the deliverable is a running system, not a roadmap. If they ask what happens when you leave, the answer is on the next slide." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">08</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">What you get</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:28ch">We hand you the system, not the slides.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:64px 420px 1fr;gap:40px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A;padding-top:6px">01</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">The agent, running</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">In your environment, under your access rules, on your real work. Not a copy of it.</p></div>
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:64px 420px 1fr;gap:40px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A;padding-top:6px">02</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">Guardrails you set</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Your tolerances and approval limits, written down and yours to change.</p></div>
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:64px 420px 1fr;gap:40px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A;padding-top:6px">03</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">A full audit trail</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Every decision it made and why. Your auditors see what your team sees.</p></div>
+        <div style="background:#0B0C0B;padding:38px 44px;display:grid;grid-template-columns:64px 420px 1fr;gap:40px;align-items:start"><span style="font-family:'IBM Plex Mono',monospace;font-size:26px;color:#0F5C4A;padding-top:6px">04</span><span style="font-size:34px;font-weight:700;letter-spacing:-0.015em">The handover pack</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Documentation, configuration, and a working session with the team who will run it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="What we won't do" data-screen-label="10" data-speaker-notes="Counter-intuitive but it closes deals. Naming what you refuse makes everything else credible. Deliver it flatly, not apologetically." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:48px">
+      <div style="display:flex;flex-direction:column;gap:20px">
+        <div style="display:flex;align-items:center;gap:18px">
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">09</span>
+          <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+          <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">What we won't do</span>
+        </div>
+        <p style="margin:0;font-size:68px;font-weight:700;letter-spacing:-0.035em;line-height:1.04;max-width:30ch">If an agent is the wrong fix, we say so.</p>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em">Decisions that must stay human</span><p style="margin:0;font-size:28px;line-height:1.5;color:#8A8F84">Hiring, pricing, anything with legal exposure. The agent prepares the case. A person calls it.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em">One-off work a script would fix</span><p style="margin:0;font-size:28px;line-height:1.5;color:#8A8F84">If a scheduled job solves it, that is the answer, and we tell you rather than sell around it.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em">Processes nobody has written down</span><p style="margin:0;font-size:28px;line-height:1.5;color:#8A8F84">If the rules live in one person's head, we map it first. That is week one, not a surprise in week five.</p></div>
+        <div style="background:#0B0C0B;padding:44px;display:flex;flex-direction:column;gap:16px"><span style="font-size:33px;font-weight:700;letter-spacing:-0.015em">Full autonomy out of the box</span><p style="margin:0;font-size:28px;line-height:1.5;color:#8A8F84">Nothing takes the lead until it has run in parallel and earned it.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="You own it" data-screen-label="11" data-speaker-notes="The differentiator. Say the line: if your team cannot change the escalation rule without calling us, we built the wrong thing. Then stop talking." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:center;gap:52px">
+      <div style="display:flex;align-items:center;gap:18px">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;color:#4FBF9B">10</span>
+        <span style="width:44px;height:1px;background:#2E3129;display:block;flex:0 0 auto"></span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:24px;font-weight:500;letter-spacing:0.14em;text-transform:uppercase;color:#4FBF9B">The handover</span>
+      </div>
+      <p style="margin:0;font-size:104px;font-weight:700;letter-spacing:-0.04em;line-height:1.0">We build it. <span style="color:#4FBF9B">You own it.</span></p>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#24261F;border:1px solid #24261F">
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:14px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">CONFIGURABLE</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Change a tolerance or an escalation rule without calling us. If you can't, we built it wrong.</p></div>
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:14px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">DOCUMENTED</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">Written for the person who inherits it, not for us.</p></div>
+        <div style="background:#0B0C0B;padding:40px;display:flex;flex-direction:column;gap:14px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">NO LOCK-IN</span><p style="margin:0;font-size:29px;line-height:1.5;color:#D6D7D1">No retainer to keep the lights on. If we never speak again, the system still runs.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section data-label="Next step" data-screen-label="12" data-speaker-notes="Ask for one thing only: two hours with the person who runs the process. Do not ask for budget in this meeting. Name a date before you leave the room." style="background:#0B0C0B;color:#F2F1ED;font-family:'Instrument Sans',Helvetica,Arial,sans-serif;overflow:hidden">
+    <div data-deck-wire="pclose" style="position:absolute;inset:0"></div>
+    <div style="position:absolute;inset:0;padding:96px;box-sizing:border-box;display:flex;flex-direction:column;justify-content:space-between">
+      <div style="display:flex;align-items:center;gap:24px">
+        <span style="display:flex;flex-direction:column;gap:9px">
+          <span style="width:84px;height:9px;background:#F2F1ED;display:block"></span>
+          <span style="width:49px;height:9px;background:#0F5C4A;display:block"></span>
+        </span>
+        <span style="font-size:44px;font-weight:700;letter-spacing:-0.04em">theunwired</span>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:36px">
+        <p style="margin:0;font-size:82px;font-weight:700;letter-spacing:-0.04em;line-height:1.02;max-width:24ch">Give us two hours and the process you named.</p>
+        <p style="margin:0;font-size:34px;line-height:1.5;color:#B6B8B0;max-width:60ch">That is week one. It costs you nothing, you keep the process map, and you get our honest answer on whether an agent is the right fix.</p>
+        <div style="display:flex;gap:1px;background:#24261F;border:1px solid #24261F;max-width:1240px">
+          <div style="background:#0B0C0B;padding:32px 40px;flex:1;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">WE NEED</span><span style="font-size:29px;line-height:1.4;color:#D6D7D1">Two hours with the person who runs it. Read-only system access.</span></div>
+          <div style="background:#0B0C0B;padding:32px 40px;flex:1;display:flex;flex-direction:column;gap:10px"><span style="font-family:'IBM Plex Mono',monospace;font-size:24px;letter-spacing:0.14em;color:#4FBF9B">YOU GET</span><span style="font-size:29px;line-height:1.4;color:#D6D7D1">The process mapped as it is really run, and a straight answer.</span></div>
+        </div>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:baseline">
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#8A8F84">theunwired.in</span>
+        <span style="font-family:'IBM Plex Mono',monospace;font-size:26px;letter-spacing:0.18em;color:#4FBF9B">theunwired.in@gmail.com</span>
+      </div>
+    </div>
+  </section>
+
+</x-import>
+</x-dc>
+</body>
+</html>
