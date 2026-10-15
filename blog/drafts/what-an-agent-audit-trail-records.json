@@ -1,0 +1,93 @@
+{
+  "slug": "what-an-agent-audit-trail-records",
+  "pillar": "Control and governance",
+  "title": "What an AI agent's audit trail should record",
+  "description": "The eight fields every agent decision record needs, a worked invoice example, and what the EU AI Act and NIST say about logs and oversight.",
+  "lede": "If an auditor picks one decision at random, the record should answer every question they ask without a call to the team that built it.",
+  "answer": "An agent's audit trail should let someone outside the build team reconstruct any single decision: what came in, what the agent checked, which rule and tolerance applied, what it decided and why, what it changed in which system, and which person reviewed or overrode it. Logs written for engineers rarely do this on their own.",
+  "date": "2026-10-15",
+  "summary": "Eight fields per decision, so an auditor can rebuild any one case without calling the team that built the agent.",
+  "cta_heading": "Would your agent pass a random-sample test?",
+  "cta_text": "Send us one decision your current automation made. We'll show you what its record should have said.",
+  "reviewer": "a practitioner with 10+ years in enterprise automation",
+  "sections": [
+    {
+      "heading": "Who this is for",
+      "html": "<p>Finance, HR and operations leads who are about to put an agent into a live process, and the controllers or internal auditors who will be asked to sign off on it. If you are still at the pilot stage, this is the list to agree before the pilot, not after.</p>"
+    },
+    {
+      "heading": "A log is not an audit trail",
+      "html": "<p>Most systems already log. The trouble is who the log was written for. Engineering logs answer questions like \"did the call time out\" and \"which version was running\". An auditor asks different questions. Why was this invoice paid? Who decided the variance was acceptable? Was the rule that allowed it the rule in force that day?</p><p>An audit trail is the set of records that answers the second kind of question for one case at a time. The test is simple. Pick a decision at random, hand its record to someone who has never seen the system, and ask them to explain what happened. If they need to call the build team, the trail is incomplete.</p><p>Agents make this harder than older automation did. A fixed script follows one path, so the path is the explanation. An agent chooses its next step, which means the record has to carry the reason for each choice, not only the outcome.</p>"
+    },
+    {
+      "heading": "The eight fields every decision record needs",
+      "html": "<p>We write one record per decision, not one per run. A run that processes 300 invoices produces 300 records, each readable on its own.</p><table><thead><tr><th>Field</th><th>What it holds</th><th>The question it answers</th></tr></thead><tbody><tr><td><strong>Case and time</strong></td><td>A case ID, plus start and end time</td><td>Which decision are we looking at, and when did it happen?</td></tr><tr><td><strong>Input</strong></td><td>The document or request as received, with a fingerprint so it can be matched later</td><td>What exactly did the agent see?</td></tr><tr><td><strong>Checks made</strong></td><td>Every record the agent looked up: the purchase order, the goods receipt, the vendor master</td><td>What did it compare the input against?</td></tr><tr><td><strong>Rule in force</strong></td><td>The rule and tolerance applied, with their version and who approved that version</td><td>Was it allowed to do this, on that day?</td></tr><tr><td><strong>Decision and reason</strong></td><td>Proceed, hold or escalate, and a plain-language reason tied to the checks</td><td>Why this outcome and not another?</td></tr><tr><td><strong>Action taken</strong></td><td>What changed, in which system, under which service account</td><td>What did it actually do?</td></tr><tr><td><strong>Human involvement</strong></td><td>Who reviewed it, what they saw, what they changed, and when</td><td>Who is accountable for this case?</td></tr><tr><td><strong>Exceptions</strong></td><td>Anything that failed or was skipped, with the fallback used</td><td>Did anything go wrong quietly?</td></tr></tbody></table><p>Two of these carry most of the weight. <strong>Rule in force</strong> matters because tolerances change, and a decision is only correct against the rule that applied at the time. <strong>Human involvement</strong> matters because it is where accountability lands. A record that says \"approved\" without a named reviewer is a record nobody will defend.</p>"
+    },
+    {
+      "heading": "A worked example: one invoice, two outcomes",
+      "html": "<p>Take a three-way match where, for this example, the finance lead has set and signed a price tolerance of 5%. Two invoices from the same vendor arrive on the same morning.</p><ol><li><strong>Invoice A</strong> is 4% above the purchase order price. The record shows the PO and goods receipt the agent matched, the tolerance version in force, and the decision: proceed. The reason reads: \"Price variance 4%, within the 5% tolerance approved by finance lead, version 3.\" No human touched it, and the record says so.</li><li><strong>Invoice B</strong> is 22% above the PO price. The record shows the same checks, the same tolerance version, and the decision: escalate. The reviewer's name, the time they opened the case, and their call (hold, request credit note) are all on the same record.</li></ol><p>An auditor sampling either case gets the full story from one page. Neither record needs the engineer who built the agent.</p>"
+    },
+    {
+      "heading": "What regulation already asks for",
+      "html": "<p>Most finance and operations agents are not classed as high-risk under the EU AI Act. Some HR agents can be. Annex III lists systems used \"to make decisions affecting terms of work-related relationships\" and to evaluate candidates, among others. If an agent falls in that list, the Act is specific about logs:</p><blockquote>High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system.<cite>EU AI Act, Article 12(1)</cite></blockquote><p>Article 26 puts duties on the company using the system, not only the vendor. Deployers must keep those logs for \"at least six months\" unless other law says otherwise, and must assign oversight to people \"who have the necessary competence, training and authority\". Retention rules for financial records under national law are often longer, so the longer period usually wins.</p><p>Outside the EU, the NIST AI Risk Management Framework makes the same point in general terms. It lists accountability and transparency as a characteristic of trustworthy AI, including \"supporting attribution of the AI system's decisions\". The eight fields above are one practical way to meet that.</p><p>This is not legal advice. If an agent touches hiring, performance or credit decisions, check its classification with counsel before go-live.</p>"
+    },
+    {
+      "heading": "Where it is stored and who can change it",
+      "html": "<ul><li><strong>The agent writes, but cannot edit.</strong> Records should be append-only. An agent that can rewrite its own history has no history.</li><li><strong>Keep it in your systems.</strong> The trail belongs to the business that is accountable for the decisions, not to the vendor that built the agent.</li><li><strong>Read access for audit, by default.</strong> Internal audit should be able to pull a sample without raising a ticket.</li><li><strong>Mind personal data.</strong> HR and customer cases carry personal details. Record what the decision needs, mask the rest, and apply the same retention rules as the source records.</li></ul>"
+    },
+    {
+      "heading": "Where this breaks",
+      "html": "<p>A trail can be complete and still useless. Three failure patterns come up often.</p><ul><li><strong>Too much text.</strong> Dumping every model output into the record buries the reason. The reason field should be one or two sentences a controller can read in ten seconds.</li><li><strong>Reasons written after the fact.</strong> A reason generated when someone asks is a story, not a record. It has to be written at the moment of the decision, from the checks actually made.</li><li><strong>The right record of the wrong rule.</strong> A perfect trail of decisions made under a bad tolerance is still a trail of bad decisions. The record makes the problem visible. It does not fix it. Review the rules themselves on a schedule.</li></ul>"
+    }
+  ],
+  "from_our_builds": "<p>When we design an agent, the decision record is one of the first things we write, before the agent itself. We sit with the process owner and the person who will audit the process, and agree what a good record looks like for three real cases: one clean, one borderline, one that should escalate. Then we build to that. The invoice walkthrough on our <a href=\"index.html\">home page</a> follows this shape. In our experience, the conversation about the record surfaces disagreements about the rule faster than any other step.</p>",
+  "faq": [
+    {
+      "q": "Do we need to store the model's full reasoning?",
+      "a": "No. Store the inputs, the checks made, the rule applied and a short reason tied to those checks. Long reasoning text is hard to review and can carry personal data you did not mean to keep."
+    },
+    {
+      "q": "How long should we keep agent decision records?",
+      "a": "At least as long as the source records they relate to. For high-risk systems under the EU AI Act, deployers must keep logs for at least six months, and finance retention rules under national law are often longer."
+    },
+    {
+      "q": "Is a vendor dashboard enough?",
+      "a": "Only if you can export every record, keep it in your own systems, and still read it after the contract ends. If the trail lives only in the vendor's tool, you do not control your own evidence."
+    },
+    {
+      "q": "Who should review the record design?",
+      "a": "The process owner, because they own the rule, and someone from internal audit or finance control, because they will test it. Agree it with both before go-live."
+    }
+  ],
+  "sources": [
+    {
+      "title": "EU AI Act, Article 12: Record-keeping",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-12",
+      "publisher": "European Commission AI Act Service Desk"
+    },
+    {
+      "title": "EU AI Act, Article 26: Obligations of deployers of high-risk AI systems",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-26",
+      "publisher": "European Commission AI Act Service Desk"
+    },
+    {
+      "title": "EU AI Act, Annex III: High-risk AI systems",
+      "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3",
+      "publisher": "European Commission AI Act Service Desk"
+    },
+    {
+      "title": "NIST AI Risk Management Framework, section 3.4: Accountable and transparent",
+      "url": "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/",
+      "publisher": "US National Institute of Standards and Technology"
+    }
+  ],
+  "_review": {
+    "version": 2,
+    "notes": [
+      "Re-sent: v1 lost its formatting in Gmail. Content is unchanged. Reply to this message.",
+      "The worked example uses an illustrative 5% tolerance. The home page walkthrough shows 4% and 22% but states no tolerance, so the two stay consistent. Change it if you prefer another number.",
+      "From our builds describes how we design decision records with the process owner and auditor. Confirm it matches how you actually work, or reply with changes.",
+      "Reviewer line says 10+ years in enterprise automation. Confirm it is true for whoever reviews this post."
+    ]
+  }
+}

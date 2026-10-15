@@ -84,4 +84,8 @@
     <loc>https://theunwired.in/lab-documents.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://theunwired.in/editorial-policy.html</loc>
+    <priority>0.3</priority>
+  </url>
 </urlset>
