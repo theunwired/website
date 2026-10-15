@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en" data-ink="blueprint" data-paper="a3">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Unwired Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* The Unwired Blueprint: the one sheet discovery hands over.
+   Internal template. Fill it in with the form on the left, then print to PDF
+   (A3 or A4 landscape). The form and the toolbar never print.
+
+   Two inks, same as the Lab: blueprint (Prussian ground, white linework) for
+   the screen, whiteprint (white paper, blue linework) for the printer. The
+   sheet is drawn in millimetres so it prints at true size. */
+:root {
+  --sans: 'Instrument Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --mono: 'IBM Plex Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  /* the app around the sheet: the main site's dark ground */
+  --app: #0B0C0B;
+  --app-panel: #161814;
+  --app-line: #24261F;
+  --app-text: #F2F1ED;
+  --app-body: #D6D7D1;
+  --app-quiet: #8A8F84;
+  --app-green: #4FBF9B;
+}
+[data-ink="blueprint"] {
+  --ground: #10304A; --ink: #EAF2F8; --ink-2: #C5D7E6; --ink-3: #93AEC4;
+  --rule: #46739A; --grid-minor: rgba(234,242,248,0.05); --grid-major: rgba(234,242,248,0.10);
+  --agent: #5FD3A8; --wrong: #FF9F8C; --pen: #EAF2F8;
+}
+[data-ink="whiteprint"] {
+  --ground: #FFFFFF; --ink: #10304A; --ink-2: #2B4A64; --ink-3: #4D6A83;
+  --rule: #7F9DB6; --grid-minor: rgba(16,48,74,0.05); --grid-major: rgba(16,48,74,0.10);
+  --agent: #0F6B52; --wrong: #A8503F; --pen: #10304A;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { background: var(--app); color: var(--app-text); font-family: var(--sans); -webkit-font-smoothing: antialiased; }
+
+/* -------------------------------------------------------------- the app */
+.app { display: grid; grid-template-columns: 380px minmax(0, 1fr); min-height: 100vh; }
+.editor { background: var(--app-panel); border-right: 1px solid var(--app-line); padding: 22px 20px 40px; overflow-y: auto; max-height: 100vh; position: sticky; top: 0; }
+.editor h1 { font-size: 18px; letter-spacing: -0.01em; margin: 0 0 4px; }
+.editor .sub { font-family: var(--mono); font-size: 11px; color: var(--app-quiet); line-height: 1.6; margin: 0 0 18px; }
+.editor fieldset { border: 0; border-top: 1px solid var(--app-line); margin: 0; padding: 16px 0 6px; }
+.editor legend { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--app-green); padding: 0 0 10px; }
+.editor label { display: block; font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--app-quiet); margin: 10px 0 5px; }
+.editor input, .editor textarea, .editor select {
+  width: 100%; background: var(--app); border: 1px solid var(--app-line); color: var(--app-text);
+  font: 13px/1.5 var(--sans); padding: 8px 10px; border-radius: 0;
+}
+.editor textarea { font-family: var(--mono); font-size: 12px; min-height: 92px; resize: vertical; }
+.editor input:focus, .editor textarea:focus, .editor select:focus { outline: 2px solid var(--app-green); outline-offset: 0; }
+.editor .hint { font-family: var(--mono); font-size: 10.5px; line-height: 1.55; color: var(--app-quiet); margin-top: 5px; }
+.row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; padding: 14px 24px; border-bottom: 1px solid var(--app-line); position: sticky; top: 0; background: var(--app); z-index: 2; }
+.toolbar .spacer { flex: 1; }
+.btn { font-family: var(--mono); font-size: 12px; padding: 9px 14px; border: 1px solid var(--app-line); background: none; color: var(--app-text); cursor: pointer; border-radius: 0; }
+.btn:hover { border-color: var(--app-text); }
+.btn--solid { background: #0F5C4A; border-color: #0F5C4A; }
+.btn--solid:hover { background: #2E8B6E; border-color: #2E8B6E; }
+.seg { display: inline-flex; }
+.seg button { font-family: var(--mono); font-size: 11.5px; padding: 8px 12px; border: 1px solid var(--app-line); background: none; color: var(--app-body); cursor: pointer; }
+.seg button + button { border-left: 0; }
+.seg button[aria-pressed="true"] { background: var(--app-text); color: var(--app); border-color: var(--app-text); }
+.status { font-family: var(--mono); font-size: 11px; color: var(--app-quiet); }
+.app > main { min-width: 0; }
+.stage { padding: 28px 24px 60px; overflow: hidden; }
+.fit { transform-origin: top left; }
+
+/* ------------------------------------------------------------ the sheet */
+/* A3 landscape, 420 x 297 mm. A4 prints the same sheet scaled to 70.7%. */
+.sheet {
+  width: 420mm; height: 297mm; position: relative; overflow: hidden;
+  background-color: var(--ground); color: var(--ink);
+  background-image:
+    linear-gradient(var(--grid-major) 0.3mm, transparent 0.3mm),
+    linear-gradient(90deg, var(--grid-major) 0.3mm, transparent 0.3mm),
+    linear-gradient(var(--grid-minor) 0.2mm, transparent 0.2mm),
+    linear-gradient(90deg, var(--grid-minor) 0.2mm, transparent 0.2mm);
+  background-size: 25mm 25mm, 25mm 25mm, 5mm 5mm, 5mm 5mm;
+  -webkit-print-color-adjust: exact; print-color-adjust: exact;
+}
+.frame { position: absolute; inset: 10mm; border: 0.6mm solid var(--ink); display: grid; grid-template-rows: auto minmax(0, 1fr) auto; }
+.mono { font-family: var(--mono); }
+.k { font-family: var(--mono); font-size: 2.3mm; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+
+.head { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8mm; padding: 7mm 8mm 6mm; border-bottom: 0.3mm solid var(--rule); }
+.head__eyebrow { font-family: var(--mono); font-size: 2.6mm; letter-spacing: 0.16em; color: var(--agent); }
+.head__title { font-size: 10mm; line-height: 1; letter-spacing: -0.04em; font-weight: 700; margin-top: 3mm; }
+.head__client { font-size: 4.4mm; color: var(--ink-2); margin-top: 2.5mm; }
+.verdict { align-self: start; border: 0.5mm solid var(--ink); padding: 3mm 5mm; min-width: 62mm; display: flex; flex-direction: column; gap: 1.5mm; }
+.verdict__v { font-family: var(--mono); font-size: 5mm; letter-spacing: 0.08em; font-weight: 500; }
+.verdict__note { font-size: 3mm; line-height: 1.4; color: var(--ink-2); max-width: 80mm; }
+.verdict--no .verdict__v { color: var(--wrong); }
+
+.body { display: grid; grid-template-columns: 1.05fr 18mm 1.25fr 72mm; min-height: 0; }
+.col { padding: 6mm 8mm; min-width: 0; display: flex; flex-direction: column; gap: 3mm; }
+.col + .col { border-left: 0.3mm solid var(--rule); }
+.col--arrow { padding: 0; align-items: center; justify-content: center; }
+.col--arrow svg { width: 12mm; height: 12mm; }
+.col h2 { margin: 0; font-family: var(--mono); font-size: 2.8mm; letter-spacing: 0.16em; font-weight: 500; color: var(--ink); }
+.diagram { flex: 1; min-height: 0; }
+.diagram svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.dim { font-family: var(--mono); font-size: 2.5mm; color: var(--ink-3); }
+.steps { list-style: none; margin: 0; padding: 0; columns: 2; column-gap: 6mm; font-size: 2.8mm; line-height: 1.35; color: var(--ink-2); }
+.steps li { break-inside: avoid; display: grid; grid-template-columns: 5mm minmax(0, 1fr); gap: 1mm; padding: 0.6mm 0; }
+.steps b { font-family: var(--mono); font-weight: 500; color: var(--ink); }
+.measures { display: grid; gap: 0; border-top: 0.3mm solid var(--rule); }
+.measures div { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3mm; padding: 1.6mm 0; border-bottom: 0.2mm dashed var(--rule); font-size: 3mm; }
+.measures b { font-family: var(--mono); font-weight: 500; font-size: 3.1mm; }
+.measures small { grid-column: 1 / -1; font-family: var(--mono); font-size: 2.2mm; color: var(--ink-3); }
+
+.line { position: relative; padding-left: 10mm; }
+.line__rule { position: absolute; left: 0; top: 6mm; bottom: 6mm; width: 0.7mm; background: var(--ink); }
+.line__label { font-family: var(--mono); font-size: 2.8mm; letter-spacing: 0.16em; }
+.rules { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2.6mm; }
+.rules li { display: flex; flex-direction: column; gap: 0.6mm; }
+.rules .r-k { font-size: 3mm; color: var(--ink-2); }
+.rules .r-v { font-family: var(--mono); font-size: 4.2mm; font-weight: 500; color: var(--ink); }
+.stays { margin-top: auto; border-top: 0.3mm solid var(--rule); padding-top: 3mm; }
+.stays ul { margin: 2mm 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 1.4mm; }
+.stays li { font-size: 3mm; line-height: 1.35; color: var(--ink-2); padding-left: 4mm; position: relative; }
+.stays li::before { content: ""; position: absolute; left: 0; top: 1.6mm; width: 2.2mm; height: 0.3mm; background: var(--ink-3); }
+
+.foot { display: grid; grid-template-columns: minmax(0, 1.6fr) 62mm 46mm 30mm 40mm 34mm 22mm; border-top: 0.6mm solid var(--ink); }
+.foot > div { padding: 2.5mm 3.5mm; border-left: 0.3mm solid var(--rule); display: flex; flex-direction: column; gap: 1mm; min-width: 0; font-size: 3.2mm; }
+.foot > div:first-child { border-left: 0; }
+.foot .notes { font-size: 2.8mm; line-height: 1.4; color: var(--ink-2); }
+.sig { height: 11mm; border-bottom: 0.3mm solid var(--ink-3); }
+.foot .v { font-family: var(--mono); font-size: 3mm; }
+
+/* the example stamp: a template with example data can never pass as a client's sheet */
+.example-stamp { position: absolute; top: 52%; left: 50%; transform: translate(-50%, -50%) rotate(-8deg); border: 1mm solid var(--wrong); color: var(--wrong); font-family: var(--mono); font-size: 9mm; letter-spacing: 0.14em; padding: 3mm 8mm; text-align: center; line-height: 1.2; opacity: 0.85; pointer-events: none; }
+.example-stamp small { display: block; font-size: 3.4mm; letter-spacing: 0.1em; }
+.example-stamp[hidden] { display: none; }
+
+/* --------------------------------------------------------------- print */
+@page { size: A3 landscape; margin: 0; }
+@media print {
+  body { background: none; }
+  .editor, .toolbar { display: none !important; }
+  .app { display: block; }
+  .stage { padding: 0; overflow: visible; }
+  .fit { transform: none !important; width: auto !important; height: auto !important; }
+  [data-paper="a4"] .sheet { zoom: 0.7071; }
+}
+@media (max-width: 900px) {
+  .app { grid-template-columns: 1fr; }
+  .editor { position: static; max-height: none; border-right: 0; border-bottom: 1px solid var(--app-line); }
+}
+</style>
+<style id="page-size">@page { size: A3 landscape; margin: 0; }</style>
+</head>
+<body>
+<div class="app">
+
+  <form class="editor" id="editor" autocomplete="off" onsubmit="return false">
+    <h1>The Unwired Blueprint</h1>
+    <p class="sub">Fill this in at the end of discovery, with the process owner in the room. Every measure must come from discovery. Saved in this browser as you type.</p>
+
+    <fieldset>
+      <legend>Sheet</legend>
+      <label for="f-client">Client</label><input id="f-client" name="client">
+      <label for="f-process">Process</label><input id="f-process" name="process">
+      <div class="row2">
+        <div><label for="f-ref">Sheet ref</label><input id="f-ref" name="ref"></div>
+        <div><label for="f-rev">Rev</label><input id="f-rev" name="rev"></div>
+      </div>
+      <div class="row2">
+        <div><label for="f-date">Date</label><input id="f-date" name="date"></div>
+        <div><label for="f-drawn">Drawn by</label><input id="f-drawn" name="drawn"></div>
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <legend>Verdict</legend>
+      <label for="f-verdict">Should we build it?</label>
+      <select id="f-verdict" name="verdict">
+        <option value="build">Build it</option>
+        <option value="later">Not yet</option>
+        <option value="no">Don't build it</option>
+      </select>
+      <label for="f-verdictNote">Why, in one sentence</label>
+      <textarea id="f-verdictNote" name="verdictNote" style="min-height:60px"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>As run today</legend>
+      <label for="f-today">Steps, one per line: step | where it happens</label>
+      <textarea id="f-today" name="today" style="min-height:150px"></textarea>
+      <p class="hint">The wire on the sheet visits each "where" in order, so every hand-off shows as a crossing.</p>
+      <label for="f-measures">Measured today: label | value | measured by</label>
+      <textarea id="f-measures" name="measures"></textarea>
+      <p class="hint">Only numbers measured in discovery. Leave it empty rather than estimate.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>As unwired</legend>
+      <label for="f-flow">Flow, one per line: agent | decision | person: label</label>
+      <textarea id="f-flow" name="flow" style="min-height:130px"></textarea>
+      <p class="hint">"agent" and "decision" run left to right. A "person" line hangs below the decision before it: that is the escalation.</p>
+    </fieldset>
+
+    <fieldset>
+      <legend>The line</legend>
+      <label for="f-rules">Rules: name | value</label>
+      <textarea id="f-rules" name="rules"></textarea>
+      <label for="f-stays">Stays with a person, one per line</label>
+      <textarea id="f-stays" name="stays"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Sign-off</legend>
+      <div class="row2">
+        <div><label for="f-owner">Process owner</label><input id="f-owner" name="owner"></div>
+        <div><label for="f-role">Role</label><input id="f-role" name="role"></div>
+      </div>
+      <label for="f-notes">Notes</label>
+      <textarea id="f-notes" name="notes" style="min-height:60px"></textarea>
+    </fieldset>
+  </form>
+
+  <main>
+    <div class="toolbar">
+      <span class="seg" role="group" aria-label="Ink">
+        <button type="button" data-ink-btn="blueprint" aria-pressed="true">Blueprint</button>
+        <button type="button" data-ink-btn="whiteprint" aria-pressed="false">Whiteprint</button>
+      </span>
+      <span class="seg" role="group" aria-label="Paper">
+        <button type="button" data-paper-btn="a3" aria-pressed="true">A3</button>
+        <button type="button" data-paper-btn="a4" aria-pressed="false">A4</button>
+      </span>
+      <span class="spacer"></span>
+      <span class="status" id="status" role="status"></span>
+      <button type="button" class="btn" id="btn-example">Load example</button>
+      <button type="button" class="btn" id="btn-blank">Start blank</button>
+      <button type="button" class="btn" id="btn-export">Export JSON</button>
+      <label class="btn" for="file-import" style="display:inline-block">Import JSON</label>
+      <input type="file" id="file-import" accept="application/json" hidden>
+      <button type="button" class="btn btn--solid" id="btn-print">Print or save as PDF</button>
+    </div>
+
+    <div class="stage" id="stage">
+      <div class="fit" id="fit">
+        <div class="sheet" id="sheet">
+          <div class="frame">
+            <header class="head">
+              <div>
+                <div class="head__eyebrow">THE UNWIRED BLUEPRINT</div>
+                <div class="head__title" data-out="process"></div>
+                <div class="head__client" data-out="client"></div>
+              </div>
+              <div class="verdict" id="verdict">
+                <span class="k">Verdict</span>
+                <span class="verdict__v" id="verdict-v"></span>
+                <span class="verdict__note" data-out="verdictNote"></span>
+              </div>
+            </header>
+
+            <div class="body">
+              <section class="col">
+                <h2>AS RUN TODAY</h2>
+                <div class="diagram" id="tangle"></div>
+                <ol class="steps" id="tangle-steps"></ol>
+                <div class="dim" id="tangle-dim"></div>
+                <div class="measures" id="measures"></div>
+              </section>
+              <div class="col col--arrow" aria-hidden="true">
+                <svg viewBox="0 0 24 24"><path d="M2 12 H 20 M14 6 L 20 12 L 14 18" fill="none" stroke="currentColor" stroke-width="1.2"/></svg>
+              </div>
+              <section class="col">
+                <h2>AS UNWIRED</h2>
+                <div class="diagram" id="flow"></div>
+                <div class="dim" id="flow-dim"></div>
+              </section>
+              <section class="col line">
+                <span class="line__rule" aria-hidden="true"></span>
+                <span class="line__label">THE LINE</span>
+                <ul class="rules" id="rules"></ul>
+                <div class="stays">
+                  <span class="k">Stays with a person</span>
+                  <ul id="stays"></ul>
+                </div>
+              </section>
+            </div>
+
+            <footer class="foot">
+              <div><span class="k">Notes</span><span class="notes" data-out="notes"></span></div>
+              <div><span class="k">Line agreed by (signature)</span><div class="sig"></div></div>
+              <div><span class="k">Process owner</span><span class="v" data-out="owner"></span><span class="k" data-out="role" style="letter-spacing:0.06em;text-transform:none"></span></div>
+              <div><span class="k">Date</span><span class="v" data-out="date"></span></div>
+              <div><span class="k">Drawn by</span><span class="v" data-out="drawn"></span></div>
+              <div><span class="k">Sheet</span><span class="v" data-out="ref"></span></div>
+              <div><span class="k">Rev</span><span class="v" data-out="rev"></span></div>
+            </footer>
+          </div>
+          <div class="example-stamp" id="example-stamp">EXAMPLE<small>NOT A CLIENT SHEET</small></div>
+        </div>
+      </div>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var KEY = 'unwired-blueprint-v1';
+  var NS = 'http://www.w3.org/2000/svg';
+  var FIELDS = ['client', 'process', 'ref', 'rev', 'date', 'drawn', 'verdict', 'verdictNote', 'today', 'measures', 'flow', 'rules', 'stays', 'owner', 'role', 'notes'];
+
+  /* Example values from the Lab's made-up AP queue. Loading them shows the
+     EXAMPLE stamp; any real sheet starts from "Start blank". */
+  var EXAMPLE = {
+    example: true,
+    client: 'Demo Co. Ltd', process: 'Invoice exceptions', ref: 'TU-BP-000', rev: 'A', date: '15 Oct 2026', drawn: 'The Unwired',
+    verdict: 'build', verdictNote: 'Most exceptions are price variances against rules the finance lead already applies by hand.',
+    today: ['Invoice arrives | AP inbox', 'Keyed into ERP | ERP', 'Three-way match fails | ERP', 'Exported to tracker | Spreadsheet', 'Vendor emailed | AP inbox', 'Buyer asked about PO | Email', 'Answer logged | Spreadsheet', 'Approved and posted | ERP'].join('\n'),
+    measures: ['Exceptions a month | 340 | AP ledger, Sep 2026', 'Days to clear one | 6.5 | Tracker timestamps', 'Hands on each | 4 | Shadowing, week 1'].join('\n'),
+    flow: ['agent: Read invoice, PO, receipt', 'agent: Check against contract', 'decision: Inside the line?', 'person: AP lead decides, with the trail', 'agent: Code and post', 'agent: Log every decision'].join('\n'),
+    rules: ['Price variance | 5% of the PO', 'Auto-post ceiling | $25,000', 'New vendors | First 3 invoices to a person', 'Duplicates | Always held'].join('\n'),
+    stays: ['Any vendor dispute', 'Changes to payment terms', 'Anything with tax exposure'].join('\n'),
+    owner: 'A. Chen', role: 'Finance lead', notes: 'Runs in parallel for two weeks before it takes the lead. Tolerances reviewed after the first month.'
+  };
+  var BLANK = { example: false, rev: 'A', drawn: 'The Unwired', verdict: 'build' };
+
+  var form = document.getElementById('editor');
+  var state = load() || EXAMPLE;
+
+  function load() { try { return JSON.parse(localStorage.getItem(KEY)); } catch (e) { return null; } }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); status('Saved in this browser'); } catch (e) { status('Not saved: this browser blocks storage'); } }
+  function status(t) { document.getElementById('status').textContent = t; }
+  function lines(s) { return String(s || '').split('\n').map(function (l) { return l.trim(); }).filter(Boolean); }
+  function cells(l) { return l.split('|').map(function (c) { return c.trim(); }); }
+  function el(tag, attrs, text) { var n = document.createElementNS(NS, tag); for (var k in attrs) n.setAttribute(k, attrs[k]); if (text != null) n.textContent = text; return n; }
+
+  function fillForm() { FIELDS.forEach(function (f) { if (form.elements[f]) form.elements[f].value = state[f] || ''; }); }
+
+  /* --------------------------------------------- as run today: one wire */
+  function drawTangle() {
+    var box = document.getElementById('tangle');
+    box.innerHTML = '';
+    var steps = lines(state.today).map(cells);
+    var dim = document.getElementById('tangle-dim');
+    if (!steps.length) { dim.textContent = 'Add the steps as the process runs today.'; document.getElementById('tangle-steps').innerHTML = ''; return; }
+    var places = [];
+    steps.forEach(function (s) { var w = s[1] || '—'; if (places.indexOf(w) === -1) places.push(w); });
+    var W = 360, H = 190, labW = 92, top = 14;
+    var rowH = (H - top - 20) / Math.max(1, places.length - 1 || 1);
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMin meet', role: 'img', 'aria-label': 'The process as run today: ' + steps.length + ' steps across ' + places.length + ' places' });
+    places.forEach(function (p, i) {
+      var y = top + i * (places.length > 1 ? rowH : 0) + (places.length > 1 ? 0 : (H - top) / 2 - 10);
+      svg.appendChild(el('text', { x: 0, y: y + 4, 'font-family': 'IBM Plex Mono, monospace', 'font-size': 10.5, fill: 'var(--ink-2)' }, p.length > 13 ? p.slice(0, 12) + '…' : p));
+      svg.appendChild(el('line', { x1: labW - 6, y1: y, x2: W, y2: y, stroke: 'var(--rule)', 'stroke-width': 0.5, 'stroke-dasharray': '2 4' }));
+    });
+    var ys = steps.map(function (s) { var w = s[1] || '—'; var i = places.indexOf(w); return top + i * (places.length > 1 ? rowH : 0) + (places.length > 1 ? 0 : (H - top) / 2 - 10); });
+    var x0 = labW + 6, dx = (W - x0 - 10) / Math.max(1, steps.length - 1);
+    var pts = ys.map(function (y, i) { return [x0 + i * dx, y]; });
+    var d = 'M' + pts[0][0] + ' ' + pts[0][1];
+    for (var i = 1; i < pts.length; i++) {
+      var a = pts[i - 1], b = pts[i], mx = (a[0] + b[0]) / 2;
+      d += ' C' + mx + ' ' + a[1] + ',' + mx + ' ' + b[1] + ',' + b[0] + ' ' + b[1];
+    }
+    svg.appendChild(el('path', { d: d, fill: 'none', stroke: 'var(--ink)', 'stroke-width': 1.4 }));
+    var handoffs = 0;
+    pts.forEach(function (p, i) {
+      if (i && ys[i] !== ys[i - 1]) handoffs++;
+      svg.appendChild(el('circle', { cx: p[0], cy: p[1], r: 8, fill: 'var(--ground)', stroke: 'var(--ink)', 'stroke-width': 1 }));
+      svg.appendChild(el('text', { x: p[0], y: p[1] + 3.5, 'text-anchor': 'middle', 'font-family': 'IBM Plex Mono, monospace', 'font-size': 9, fill: 'var(--ink)' }, String(i + 1)));
+    });
+    box.appendChild(svg);
+    dim.textContent = steps.length + ' STEPS · ' + places.length + ' PLACES · ' + handoffs + ' HAND-OFFS';
+    /* the step names, numbered to match the wire. On paper there is no
+       hover, so they are printed */
+    var ol = document.getElementById('tangle-steps');
+    ol.innerHTML = '';
+    steps.forEach(function (s, i) {
+      var li = document.createElement('li');
+      var n = document.createElement('b'); n.textContent = String(i + 1);
+      li.appendChild(n); li.appendChild(document.createTextNode(s[0] || ''));
+      ol.appendChild(li);
+    });
+  }
+
+  function drawMeasures() {
+    var box = document.getElementById('measures');
+    box.innerHTML = '';
+    lines(state.measures).map(cells).forEach(function (m) {
+      var d = document.createElement('div');
+      var k = document.createElement('span'); k.textContent = m[0] || '';
+      var v = document.createElement('b'); v.textContent = m[1] || '';
+      d.appendChild(k); d.appendChild(v);
+      if (m[2]) { var s = document.createElement('small'); s.textContent = 'MEASURED: ' + m[2]; d.appendChild(s); }
+      box.appendChild(d);
+    });
+  }
+
+  /* -------------------------------------------- as unwired: the flow */
+  function drawFlow() {
+    var box = document.getElementById('flow');
+    box.innerHTML = '';
+    var main = [], hang = {};
+    lines(state.flow).forEach(function (l) {
+      var m = /^(agent|decision|person)\s*:\s*(.*)$/i.exec(l);
+      var type = m ? m[1].toLowerCase() : 'agent', label = m ? m[2] : l;
+      if (type === 'person') {
+        var at = main.length - 1;
+        for (var k = main.length - 1; k >= 0; k--) if (main[k].type === 'decision') { at = k; break; }
+        (hang[at] = hang[at] || []).push(label);
+      } else main.push({ type: type, label: label });
+    });
+    var dim = document.getElementById('flow-dim');
+    if (!main.length) { dim.textContent = 'Add the flow as it will run.'; return; }
+    var W = 420, H = 230, n = main.length, gap = 12;
+    var bw = Math.min(104, (W - gap * (n - 1)) / n), bh = 58, y = 24;
+    var svg = el('svg', { viewBox: '0 0 ' + W + ' ' + H, preserveAspectRatio: 'xMidYMin meet', role: 'img', 'aria-label': 'The process as unwired' });
+    function wrap(text, x, y0, maxChars, size) {
+      var words = text.split(' '), out = [], cur = '';
+      words.forEach(function (w) { if ((cur + ' ' + w).trim().length > maxChars) { out.push(cur.trim()); cur = w; } else cur += ' ' + w; });
+      if (cur.trim()) out.push(cur.trim());
+      out = out.slice(0, 3);
+      var g = el('g', {});
+      out.forEach(function (t, i) { g.appendChild(el('text', { x: x, y: y0 + (i - (out.length - 1) / 2) * (size + 2) + size / 3, 'text-anchor': 'middle', 'font-family': 'IBM Plex Mono, monospace', 'font-size': size, fill: 'var(--ink)' }, t)); });
+      return g;
+    }
+    var chars = Math.max(7, Math.floor(bw / 6));
+    main.forEach(function (s, i) {
+      var x = i * (bw + gap), cx = x + bw / 2, cy = y + bh / 2;
+      if (i) svg.appendChild(el('path', { d: 'M' + (x - gap) + ' ' + cy + ' H' + x, stroke: 'var(--agent)', 'stroke-width': 1.6 }));
+      if (s.type === 'decision') {
+        var r = Math.min(bw, bh + 14) / 2;
+        svg.appendChild(el('path', { d: 'M' + cx + ' ' + (cy - r) + ' L' + (cx + r) + ' ' + cy + ' L' + cx + ' ' + (cy + r) + ' L' + (cx - r) + ' ' + cy + ' Z', fill: 'var(--ground)', stroke: 'var(--ink)', 'stroke-width': 1 }));
+        svg.appendChild(wrap(s.label, cx, cy, Math.max(6, Math.floor(r / 4.2)), 8));
+        if (r * 2 < bw) {
+          svg.appendChild(el('path', { d: 'M' + x + ' ' + cy + ' H' + (cx - r) + ' M' + (cx + r) + ' ' + cy + ' H' + (x + bw), stroke: 'var(--agent)', 'stroke-width': 1.6 }));
+        }
+      } else {
+        svg.appendChild(el('rect', { x: x, y: y, width: bw, height: bh, fill: 'var(--ground)', stroke: 'var(--ink)', 'stroke-width': 1 }));
+        svg.appendChild(wrap(s.label, cx, cy, chars, 9));
+      }
+      (hang[i] || []).forEach(function (p, k) {
+        var py = y + bh + 44 + k * 62;
+        svg.appendChild(el('path', { d: 'M' + cx + ' ' + (y + bh + (s.type === 'decision' ? 7 : 0)) + ' V' + py, stroke: 'var(--ink)', 'stroke-width': 1, 'stroke-dasharray': '3 3' }));
+        var pw = Math.max(bw + 30, 120);
+        pw = Math.min(pw, 200);
+        var px = Math.max(0, Math.min(W - pw, cx - pw / 2));
+        svg.appendChild(el('rect', { x: px, y: py, width: pw, height: 46, fill: 'var(--ground)', stroke: 'var(--ink)', 'stroke-width': 1.6 }));
+        svg.appendChild(el('text', { x: px + 6, y: py - 5, 'font-family': 'IBM Plex Mono, monospace', 'font-size': 7.5, fill: 'var(--ink-3)', 'letter-spacing': '1' }, 'A PERSON'));
+        svg.appendChild(wrap(p, px + pw / 2, py + 23, Math.floor(pw / 6), 9));
+      });
+    });
+    box.appendChild(svg);
+    var people = Object.keys(hang).reduce(function (a, k) { return a + hang[k].length; }, 0);
+    dim.textContent = main.length + ' STEPS · ' + people + (people === 1 ? ' PLACE' : ' PLACES') + ' A PERSON DECIDES';
+  }
+
+  function drawRules() {
+    var ul = document.getElementById('rules'); ul.innerHTML = '';
+    lines(state.rules).map(cells).forEach(function (r) {
+      var li = document.createElement('li');
+      var k = document.createElement('span'); k.className = 'r-k'; k.textContent = r[0] || '';
+      var v = document.createElement('span'); v.className = 'r-v'; v.textContent = r[1] || '';
+      li.appendChild(k); li.appendChild(v); ul.appendChild(li);
+    });
+    var st = document.getElementById('stays'); st.innerHTML = '';
+    lines(state.stays).forEach(function (s) { var li = document.createElement('li'); li.textContent = s; st.appendChild(li); });
+  }
+
+  var VERDICT = { build: 'BUILD IT', later: 'NOT YET', no: "DON'T BUILD IT" };
+  function render() {
+    document.querySelectorAll('[data-out]').forEach(function (n) { n.textContent = state[n.getAttribute('data-out')] || ''; });
+    document.getElementById('verdict-v').textContent = VERDICT[state.verdict] || '';
+    document.getElementById('verdict').className = 'verdict' + (state.verdict === 'no' ? ' verdict--no' : '');
+    document.getElementById('example-stamp').hidden = !state.example;
+    document.title = (state.process ? state.process + ' · ' : '') + 'The Unwired Blueprint';
+    drawTangle(); drawMeasures(); drawFlow(); drawRules();
+    fit();
+  }
+
+  /* scale the true-size sheet to the window, on screen only */
+  function fit() {
+    var stage = document.getElementById('stage'), f = document.getElementById('fit'), sheet = document.getElementById('sheet');
+    var avail = stage.clientWidth - 48;
+    var w = sheet.offsetWidth, h = sheet.offsetHeight;
+    var s = Math.min(1, avail / w);
+    f.style.transform = 'scale(' + s + ')';
+    f.style.width = w * s + 'px';
+    f.style.height = h * s + 'px';
+  }
+
+  form.addEventListener('input', function (e) {
+    if (!e.target.name) return;
+    state[e.target.name] = e.target.value;
+    /* editing the example keeps its stamp on purpose: a real sheet starts
+       from "Start blank", so example values can never ship by accident */
+    save(); render();
+  });
+
+  function setInk(v) {
+    document.documentElement.setAttribute('data-ink', v);
+    document.querySelectorAll('[data-ink-btn]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-ink-btn') === v ? 'true' : 'false'); });
+  }
+  function setPaper(v) {
+    document.documentElement.setAttribute('data-paper', v);
+    document.getElementById('page-size').textContent = '@page { size: ' + (v === 'a4' ? 'A4' : 'A3') + ' landscape; margin: 0; }';
+    document.querySelectorAll('[data-paper-btn]').forEach(function (b) { b.setAttribute('aria-pressed', b.getAttribute('data-paper-btn') === v ? 'true' : 'false'); });
+  }
+  document.querySelectorAll('[data-ink-btn]').forEach(function (b) { b.addEventListener('click', function () { setInk(b.getAttribute('data-ink-btn')); }); });
+  document.querySelectorAll('[data-paper-btn]').forEach(function (b) { b.addEventListener('click', function () { setPaper(b.getAttribute('data-paper-btn')); }); });
+
+  document.getElementById('btn-example').addEventListener('click', function () { state = JSON.parse(JSON.stringify(EXAMPLE)); fillForm(); save(); render(); });
+  document.getElementById('btn-blank').addEventListener('click', function () { state = JSON.parse(JSON.stringify(BLANK)); fillForm(); save(); render(); });
+  document.getElementById('btn-print').addEventListener('click', function () { window.print(); });
+  document.getElementById('btn-export').addEventListener('click', function () {
+    var blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = (state.ref || 'blueprint') + '.json';
+    document.body.appendChild(a); a.click(); a.remove();
+    setTimeout(function () { URL.revokeObjectURL(a.href); }, 1000);
+  });
+  document.getElementById('file-import').addEventListener('change', function (e) {
+    var f = e.target.files[0]; if (!f) return;
+    var r = new FileReader();
+    r.onload = function () {
+      try { state = JSON.parse(r.result); fillForm(); save(); render(); status('Imported ' + f.name); }
+      catch (err) { status('That file is not a Blueprint export'); }
+    };
+    r.readAsText(f);
+    e.target.value = '';
+  });
+  window.addEventListener('resize', fit);
+  window.addEventListener('beforeprint', function () { if (document.documentElement.getAttribute('data-ink') === 'blueprint') status('Tip: Whiteprint saves ink'); });
+
+  fillForm();
+  render();
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(render);
+})();
+</script>
+</body>
+</html>
