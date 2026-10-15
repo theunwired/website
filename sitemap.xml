@@ -68,4 +68,8 @@
     <loc>https://theunwired.in/compliance-audit.html</loc>
     <priority>0.6</priority>
   </url>
+  <url>
+    <loc>https://theunwired.in/document-processing.html</loc>
+    <priority>0.6</priority>
+  </url>
 </urlset>
