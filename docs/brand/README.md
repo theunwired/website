@@ -127,5 +127,37 @@ the visitor has signed.
 **The Unwired Blueprint.** The named output of discovery: one sheet with the
 process as it runs today, the process unwired, and the line, signed by the
 process owner, including when the answer is not to build. What you get, the
-FAQ and every deep dive describe discovery this way. A template for the
-sheet itself is still to be made.
+FAQ and every deep dive describe discovery this way. The template is
+`docs/templates/unwired-blueprint.html`; see below.
+
+---
+
+## The Unwired Blueprint template
+
+`docs/templates/unwired-blueprint.html` makes the sheet discovery ends with.
+It is internal (the `docs/` folder never deploys). Open the file in Chrome or
+Edge.
+
+1. **Start blank.** The file opens on example values with an "EXAMPLE · NOT A
+   CLIENT SHEET" stamp. Editing the example keeps the stamp, so a real sheet
+   always starts from **Start blank**.
+2. **Fill it in with the process owner in the room.**
+   - *As run today:* one step per line, `step | where it happens`. The
+     sheet draws one wire through the places in order, so every hand-off
+     shows as a crossing, and prints the numbered step names under it.
+   - *Measured today:* `label | value | measured by`. Discovery measures
+     only. An empty box beats an estimate.
+   - *As unwired:* `agent: …`, `decision: …`, `person: …`. A person line
+     hangs under the decision before it.
+   - *The line:* `rule | value`, plus what stays with a person.
+   - *Verdict:* build it, not yet, or don't build it, with one sentence why.
+     "Don't build it" is a valid sheet.
+3. **Print or save as PDF.** Pick Whiteprint (saves ink) or Blueprint, and A3
+   or A4 landscape. In the print dialog turn on "Background graphics". The
+   process owner signs the printed sheet in pen.
+4. **Keep the data.** Edits save in that browser as you type. Use
+   **Export JSON** to keep a copy with the client's files and **Import JSON**
+   to reopen it.
+
+`unwired-blueprint-example-A3.pdf` is the example sheet, for showing what a
+client will receive.

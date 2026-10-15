@@ -112,6 +112,10 @@ on `<html>`, whiteprint in the light theme), the visitor's own pen marks, and a
 title block on every sheet. Its rules are in `docs/brand/README.md`; nothing
 from it belongs on the main site.
 
+The sheet the site promises, the Unwired Blueprint, is a template in
+`docs/templates/unwired-blueprint.html`. How to fill it in is in
+`docs/brand/README.md`.
+
 A hub (`lab.html`) and three stage pages. Every Lab page has the stage bar
 under the nav, and every stage ends with a Next stage button, so nobody has
 to find their way back. The home page invites people in from a band inside
