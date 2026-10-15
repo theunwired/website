@@ -68,3 +68,27 @@ instead of Signal and a darker Signal on dark.
 
 Everything else in v2 applies unchanged: radius 0, no shadows, two
 typefaces, no italics, one green, no decorative gradients.
+
+---
+
+## Addendum to v2: discovery includes a demo
+
+v2's voice section uses "Most AI pilots die in the demo. We don't run demos."
+as its contrarian example. The team has since decided that free discovery
+includes a demo, so the second sentence no longer holds. What stays true,
+and what the site now says everywhere:
+
+- **The demo runs on the client's samples, never ours,** ideally the worst
+  ones they have. It shows where the build struggles as well as where it
+  works.
+- **A demo is not the system.** Production means their access rules, their
+  tolerances, a parallel run and a handover.
+- "Most AI pilots die in the demo" still stands as a line, and the note of
+  that name stays. It argues against happy-path demos, which is the same
+  thing a demo on your worst samples is for.
+- Retired: "We don't run demos", and "Built for operations, not demos" as a
+  section header (now "Built for operations, not the happy path").
+
+Where it shows up: the build patterns and "What a demo is" on Work, the
+Discovery step on every industry deep dive, the pricing section on What
+you get, the FAQ, and the close of the pilots note.
