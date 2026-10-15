@@ -16,6 +16,7 @@ in `docs/brand/` and is not deployed.
 | `work.html` | `/work.html` | Engagement one (intelligent document processing) as the hero, then the template every future case study on this page has to fill |
 | `finance-exceptions.html` | `/finance-exceptions.html` | Deep dive: P2P, O2C, R2R, tax, treasury |
 | `hr-hire-to-retire.html` | `/hr-hire-to-retire.html` | Deep dive: the employee lifecycle, hire to retire |
+| `lab.html` | `/lab.html` | The Lab: the Tolerance lab and the handover test, on one synthetic queue of 200 invoices |
 
 `finance-exceptions.html` and `hr-hire-to-retire.html` are industry deep
 dives, linked directly from their rows on `industries.html` (Finance is 01,
@@ -35,6 +36,7 @@ introducing page-specific styling.
 | `assets/wires.js` | The wire field: ten wires on a fixed full-viewport SVG behind everything. |
 | `assets/ambient.js` | Panel sweep on entry, and the one shared breathing clock for green accents. |
 | `assets/site.js` | Nav, contact modal, reveal, progress rail, page transition, the pinned hero, the agent log. |
+| `assets/lab.js` | The Lab only. Builds the seeded invoice queue, runs the rules, draws the chart, parses the config. No network calls. |
 
 ## Hard rules
 
@@ -97,6 +99,23 @@ light values and the reasoning are in `docs/brand/README.md`.
   presentation attributes cannot take `var()`.
 - `--bone` means primary text, so it is Cut Black in light. Text sitting on a
   Forest or Signal fill uses `--on-accent`.
+
+## The Lab
+
+`lab.html` runs two tools in the browser on one seeded queue of 200 made-up
+invoices (`buildQueue` in `assets/lab.js`, seed 40912), so every visitor sees
+the same numbers. They are illustrative and the page says so. Changing the
+seed or the queue mix changes every number on the page, so check the
+summary sentences still read right afterwards.
+
+- **Tolerance lab:** one slider, the price tolerance. Duplicates have no
+  variance on purpose: no tolerance catches them, which is the bridge to the
+  second tool.
+- **Handover test:** the rules as an editable config. An invalid line is
+  rejected with its line number and the last valid rules keep running. The
+  third task names the first invoice the amount ceiling escalates.
+- Nothing is sent anywhere. If a Lab tool ever calls a server or takes
+  uploads, update `privacy.html` and `security.html` first.
 
 ## Contact form
 
