@@ -89,6 +89,6 @@ and what the site now says everywhere:
 - Retired: "We don't run demos", and "Built for operations, not demos" as a
   section header (now "Built for operations, not the happy path").
 
-Where it shows up: the Discovery step on Builds and every industry deep
-dive, the pricing section on What you get, the FAQ, and the close of the
-pilots note.
+Where it shows up: the build patterns and "What a demo is" on Work, the
+Discovery step on every industry deep dive, the pricing section on What
+you get, the FAQ, and the close of the pilots note.
