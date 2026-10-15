@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Work · The Unwired</title>
-<meta name="description" content="Case studies go up when the client has signed off and measured the result. The five things each one must carry, plus notes drawn from the work.">
+<meta name="description" content="Ten build patterns we can demo on your own documents, from document extraction to AP exceptions and knowledge assistants. Case studies join them once a client has measured the result.">
 <link rel="canonical" href="https://theunwired.in/work.html">
 <meta property="og:title" content="Work · The Unwired">
-<meta property="og:description" content="Case studies go up when the client has signed off and measured the result. The five things each one must carry, plus notes drawn from the work.">
+<meta property="og:description" content="Ten build patterns we can demo on your own documents, from document extraction to AP exceptions and knowledge assistants. Case studies join them once a client has measured the result.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/work.html">
 <meta property="og:image" content="https://theunwired.in/assets/og.png">
@@ -55,8 +55,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       <a data-wipe-link href="index.html">Home</a>
       <a data-wipe-link href="what-you-get.html">What you get</a>
       <a data-wipe-link href="industries.html">Industries</a>
-      <a data-wipe-link href="builds.html">Builds</a>
-      <a href="#anatomy" aria-current="page">Work</a>
+      <a href="#builds" aria-current="page">Work</a>
       <a data-wipe-link href="lab.html">Lab</a>
       <a data-wipe-link href="security.html">Security</a>
       <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
@@ -75,26 +74,211 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
         <span class="chapter__rule chapter__rule--short"></span>
         <span class="chapter__label">Work</span>
       </div>
-      <h1 class="h-page">Case studies go up when the client has measured the result.</h1>
-      <p class="lede">Not when the build ships, and not a week earlier. Each one goes up after the client has signed off on it and put a number to it themselves. Until a case study is here, the <a data-wipe-link href="builds.html">Builds</a> page shows what we can demo on your own documents, and the notes below show how we think about the work.</p>
+      <h1 class="h-page">What we build, and the proof as it lands.</h1>
+      <p class="lede">Ten build patterns we can demo on your own documents during a free discovery. Case studies join them on this page once a client has signed off and measured the result. Not a week earlier.</p>
       <div class="btn-row btn-row--left">
         <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
-        <a class="btn btn--ghost" data-wipe-link href="builds.html">See the builds</a>
+        <a class="btn btn--ghost" href="#builds">See the builds</a>
       </div>
     </div>
   </section>
 
-  <!-- 01 The template -->
-  <section class="sec" id="anatomy" data-section="The template">
+  <section class="sec" id="builds" data-section="The builds">
     <div class="wrap">
       <div class="sec-head sec-head--tight" data-reveal>
         <div class="chapter">
           <span class="chapter__num">01</span>
           <span class="chapter__rule"></span>
-          <span class="chapter__label">The template</span>
+          <span class="chapter__label">The builds</span>
         </div>
-        <h2 class="h-section">What every entry on this page will carry</h2>
-        <p>Every case study on this page gets built against these five things. If it can't fill all five, it doesn't go up. This is the rule, published, so you can hold us to it.</p>
+        <h2 class="h-section">Ten patterns cover most of what operations teams ask for.</h2>
+        <p>Most requests turn out to be one of these, or two of them joined together. Each one is shaped to your process, your systems and your tolerances. None of them ships as a product.</p>
+      </div>
+      <div class="timeline">
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">01 · IDP</span>
+          <div>
+            <h3>Document extraction</h3>
+            <p>Any document in, structured data out. Invoices, forms, IDs, contracts, claims. Every field gets a confidence score, and the fields below your threshold go to a review screen beside the source.</p>
+            <ul class="specifics">
+              <li>In: Scans, photos, PDFs and email attachments, in any layout</li>
+              <li>Out: Validated fields written into your system of record</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="document-processing.html">Document extraction in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Checks only the fields the model is unsure about, shown next to the source.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">02 · FINANCE</span>
+          <div>
+            <h3>AP invoice exceptions</h3>
+            <p>Invoices that fail the three-way match. The agent finds the reason, pulls the PO, receipt and contract, and proposes the fix or drafts the vendor query.</p>
+            <ul class="specifics">
+              <li>In: Invoices your matching rules declined</li>
+              <li>Out: A resolution proposal with sources, or a vendor query sent and chased</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="finance-exceptions.html">Finance in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Approves the posting. Nothing posts on the agent's authority.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">03 · RAG</span>
+          <div>
+            <h3>Knowledge assistant</h3>
+            <p>Ask a question in plain language and get an answer from your own policies, contracts, SOPs and past tickets, with the passage it came from. When the answer isn't in your documents, it says so.</p>
+            <ul class="specifics">
+              <li>In: Your document library, under the access rules it already has</li>
+              <li>Out: Cited answers in chat, Slack, Teams or your intranet</li>
+            </ul>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Reads the cited source before acting on it. The assistant answers questions. It doesn't make decisions.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">04 · ANY TEAM</span>
+          <div>
+            <h3>Inbox triage</h3>
+            <p>A shared mailbox read, sorted and routed. The agent classifies each message, pulls out the order number, invoice or case ID, files it, and drafts the reply.</p>
+            <ul class="specifics">
+              <li>In: Shared inboxes for AP, orders or support</li>
+              <li>Out: Messages routed with their key fields extracted, and replies drafted</li>
+            </ul>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Sends the reply, or approves the rules for what can go out on its own.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">05 · SUPPLY CHAIN</span>
+          <div>
+            <h3>Sales order entry</h3>
+            <p>Purchase orders from email and PDF turned into sales orders, checked against price lists and stock before they are created.</p>
+            <ul class="specifics">
+              <li>In: Customer POs in any format</li>
+              <li>Out: Sales orders in your ERP, or held with the mismatch named</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="supply-chain.html">Supply chain in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Clears the orders where the price, part or quantity does not match.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">06 · FINANCE</span>
+          <div>
+            <h3>Cash application</h3>
+            <p>Payments matched to open invoices using the bank file, the remittance email and the ledger. Short and split payments come with a stated reason.</p>
+            <ul class="specifics">
+              <li>In: Bank statements, remittance advice and open receivables</li>
+              <li>Out: Proposed matches with the reasoning for each</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="finance-exceptions.html">Finance in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Approves the matches the agent is not sure about.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">07 · LEGAL &AMP; FINANCE</span>
+          <div>
+            <h3>Contract tracker</h3>
+            <p>Key terms, dates and obligations pulled out of your contracts into a tracker, with reminders before each renewal or notice date.</p>
+            <ul class="specifics">
+              <li>In: Signed contracts and their amendments</li>
+              <li>Out: A searchable register of terms, each one linked to its clause</li>
+            </ul>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Reviews the extracted terms before they become the record.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">08 · HR</span>
+          <div>
+            <h3>Employee onboarding</h3>
+            <p>One approved hire becomes accounts, payroll setup, equipment requests and a day-one checklist, across every system that needs it.</p>
+            <ul class="specifics">
+              <li>In: The approved hire record</li>
+              <li>Out: Accounts, requests and a checklist, all tracked to done</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="hr-hire-to-retire.html">HR in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>HR approves the record that starts it. Nothing moves before that.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">09 · CUSTOMER OPS</span>
+          <div>
+            <h3>Support case preparation</h3>
+            <p>Each new case read, classified and assembled with the order, account, history and policy before anyone on your team opens it.</p>
+            <ul class="specifics">
+              <li>In: Cases from email, forms or chat</li>
+              <li>Out: A case ready to act on, with the proposed next step</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="customer-operations.html">Customer ops in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Handles the customer and approves anything that moves money.</p>
+          </div>
+        </div>
+        <div class="tl-row tl-row--3" data-reveal>
+          <span class="tl-row__week">10 · COMPLIANCE</span>
+          <div>
+            <h3>Audit evidence collection</h3>
+            <p>Evidence for each control pulled from the source systems on schedule and filed with its source, so the audit pack exists before the auditor asks.</p>
+            <ul class="specifics">
+              <li>In: Your control list and the systems that hold the evidence</li>
+              <li>Out: An evidence pack per control, with gaps flagged early</li>
+            </ul>
+            <a class="btn btn--ghost after-block" data-wipe-link href="compliance-audit.html">Compliance in detail</a>
+          </div>
+          <div class="tl-row__give">
+            <span>A PERSON</span>
+            <p>Tests the control and signs. The agent never concludes a control passed.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec" data-section="What a demo is">
+    <div class="wrap">
+      <div class="say-no" data-reveal data-sweep>
+        <div class="chapter">
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">What a demo is</span>
+        </div>
+        <p>A discovery demo runs on your samples, not on ours, and it shows you where the build struggles as well as where it works. It is not the finished system. Production means your access rules, your tolerances, a parallel run and a handover, which is what the build phase is for.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02 Case studies -->
+  <section class="sec sec--rule" id="anatomy" data-section="Case studies">
+    <div class="wrap">
+      <div class="sec-head sec-head--tight" data-reveal>
+        <div class="chapter">
+          <span class="chapter__num">02</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">Case studies</span>
+        </div>
+        <h2 class="h-section">None published yet. Each one will carry these five things.</h2>
+        <p>A case study goes up after the client has signed off and put a number to it themselves, not when the build ships. If it can't fill all five, it doesn't go up. This is the rule, published, so you can hold us to it.</p>
       </div>
       <div class="stack" data-reveal data-sweep>
         <div class="row row--tight">
@@ -126,12 +310,12 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
     </div>
   </section>
 
-  <!-- 02 Notes -->
+  <!-- 03 Notes -->
   <section class="sec sec--rule" id="notes" data-section="Notes">
     <div class="wrap">
       <div class="sec-head sec-head--notes" data-reveal>
         <div class="chapter">
-          <span class="chapter__num">02</span>
+          <span class="chapter__num">03</span>
           <span class="chapter__rule"></span>
           <span class="chapter__label">Notes</span>
         </div>
@@ -167,7 +351,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
     <div class="wrap">
       <div class="cta" data-reveal data-sweep>
         <div>
-          <h2 class="h-section">Want your process to be the first one on this page?</h2>
+          <h2 class="h-section">Want yours to be the first case study here?</h2>
           <p>Send us a sample and the process it feeds. Early engagements get our full attention and a documented write-up you approve before it goes up.</p>
         </div>
         <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
@@ -184,7 +368,6 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       <a data-wipe-link href="index.html">Home</a>
       <a data-wipe-link href="what-you-get.html">What you get</a>
       <a data-wipe-link href="industries.html">Industries</a>
-      <a data-wipe-link href="builds.html">Builds</a>
       <a data-wipe-link href="work.html">Work</a>
       <a data-wipe-link href="lab.html">Lab</a>
       <a data-wipe-link href="security.html">Security</a>
