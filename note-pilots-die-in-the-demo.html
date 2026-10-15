@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Why most AI pilots die in the demo · The Unwired</title>
+<meta name="description" content="Why AI pilots that look good in the demo fail on a normal week, and what a pilot should test instead.">
+<link rel="canonical" href="https://theunwired.in/note-pilots-die-in-the-demo.html">
+<meta property="og:title" content="Why most AI pilots die in the demo · The Unwired">
+<meta property="og:description" content="Why AI pilots that look good in the demo fail on a normal week, and what a pilot should test instead.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://theunwired.in/note-pilots-die-in-the-demo.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:site_name" content="The Unwired">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=6">
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme"><span data-theme-opt="dark">Dark</span><span aria-hidden="true">/</span><span data-theme-opt="light">Light</span></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec--page-hero" data-section="Note">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Notes</span>
+      </div>
+      <h1 class="h-page">Why most AI pilots die in the demo</h1>
+      <p class="lede">The demo runs on the happy path. The work runs on the exceptions.</p>
+      <p class="article__meta">The Unwired · October 2026</p>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="Why most AI pilots die in the demo">
+    <div class="wrap">
+      <article class="article" data-reveal>
+        <p>A pilot is usually scoped to prove the technology works. So it gets built on the cleanest data anyone can find. The invoices that match. The orders that arrive complete. The forms somebody filled in properly. The demo goes well, because everyone in the room watches the agent read a document and do the right thing with it.</p>
+        <p>Then it meets a normal week.</p>
+        <h2>The happy path was never the problem</h2>
+        <p>If a case follows the rules, something is probably handling it already. A rules engine, a template, or a person who clears it in two minutes without thinking. The time goes on the cases that don't follow the rules. The invoice with no PO. The payment that covers three invoices and part of a fourth. The vendor who changed their remittance format without telling anyone.</p>
+        <p>Those cases are where the cost sits. They are also exactly the cases a demo is built to avoid.</p>
+        <h2>Test it on the worst week</h2>
+        <p>We ask for the worst samples you have. The faxed copy. The handwritten correction. The case your team keeps in a separate folder because nobody is sure what to do with it. If the agent can't cope with those, we'd rather find out in week one than after you've told your board it works.</p>
+        <p>Two questions tell you whether a pilot means anything. First, what does the agent do when it isn't sure? It should stop and hand the case to a person with its reasons. It should never guess. Second, who decided where sure ends? That line belongs to the person who owns the process, and it should be written down.</p>
+        <h2>Why we run in parallel first</h2>
+        <p>Nothing we build goes straight to the lead. It runs alongside your existing process on live work, and every miss gets reviewed each week. By the time it takes over, you have watched it handle your own exceptions.</p>
+        <p>A pilot that proves the technology works answers a question nobody was asking. The useful question is what happens on the case nobody planned for.</p>
+      </article>
+      <div class="btn-row btn-row--left" style="margin-top:56px">
+        <a class="btn btn--ghost" data-wipe-link href="work.html#notes">All notes</a>
+      </div>
+    </div>
+  </section>
+  <section class="sec--cta-top" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Send us your worst week.</h2>
+          <p>Pick the process and the samples your team dreads. Discovery is free, and we'll show you what an agent does with them.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=6"></script>
+<script src="assets/ambient.js?v=6"></script>
+<script src="assets/site.js?v=6"></script>
+</body>
+</html>
