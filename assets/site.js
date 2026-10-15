@@ -58,7 +58,9 @@
     var meta = q('meta[name="theme-color"]');
     if (meta) meta.setAttribute('content', t === 'light' ? '#F2F1ED' : '#0B0C0B');
     qa('[data-theme-toggle]').forEach(function (b) {
-      b.setAttribute('aria-label', t === 'light' ? 'Switch to dark theme' : 'Switch to light theme');
+      var label = t === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
+      b.setAttribute('aria-label', label);
+      b.setAttribute('title', label);
     });
     /* the wire field and the breathing clock paint from JS, so they repaint
        on this rather than waiting for a reload */

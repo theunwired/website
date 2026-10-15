@@ -382,26 +382,31 @@ h2.h-section,
   flex: 0 0 auto;
 }
 
-/* theme toggle. Text only, no icon: both options are shown and the current
-   one is lit, driven by the data-theme attribute so it needs no JS state */
+/* theme toggle. A hairline square, half filled: the filled half is the
+   current theme's ink. It slides across on a switch, so the icon shows the
+   change rather than a sun or a moon. Square, 1px, no radius, same grammar
+   as the mark. The 40px box is the hit area */
 .theme-toggle {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
   background: none;
   border: 0;
-  padding: 9px 2px;
+  padding: 0;
+  width: 40px;
+  height: 40px;
   cursor: pointer;
   flex: 0 0 auto;
   display: inline-flex;
-  gap: 6px;
-  color: var(--dim);
+  align-items: center;
+  justify-content: center;
+  color: var(--quiet);
+  transition: color .2s ease-out;
 }
-.theme-toggle [data-theme-opt] { color: var(--quiet); transition: color .2s ease-out; }
-.theme-toggle:hover [data-theme-opt] { color: var(--body); }
-:root:not([data-theme="light"]) .theme-toggle [data-theme-opt="dark"],
-:root[data-theme="light"] .theme-toggle [data-theme-opt="light"] { color: var(--bone); }
+.theme-toggle:hover { color: var(--bone); }
+/* the bar is space-between: two auto margins keep the links centred in the
+   free space and park the toggle beside the CTA, not floating between them */
+.nav__bar > .theme-toggle { margin-left: auto; margin-right: -10px; }
+.theme-toggle__icon { display: block; overflow: visible; }
+.theme-toggle__half { transition: transform .3s cubic-bezier(.65, 0, .35, 1); }
+:root[data-theme="light"] .theme-toggle__half { transform: translateX(7px); }
 
 /* ---------------------------------------------------------- progress rail */
 .rail {
@@ -1369,6 +1374,7 @@ h2.h-section,
   }
 }
 @media (min-width: 1101px) {
+  .nav__links { margin-left: auto; }
   .nav__links .nav__cta-mobile { display: none; }
 }
 
@@ -1431,11 +1437,6 @@ h2.h-section,
   .hero-word { font-size: 26px; }
   .btn { padding: 13px 20px; font-size: 13px; }
   .scroll-cue { left: 20px; }
-  /* both options do not fit beside the lockup and MENU at 320px: show only
-     the theme the button switches to, which matches its aria-label */
-  .theme-toggle [aria-hidden="true"],
-  :root:not([data-theme="light"]) .theme-toggle [data-theme-opt="dark"],
-  :root[data-theme="light"] .theme-toggle [data-theme-opt="light"] { display: none; }
 }
 
 /* short viewports: the hero has to fit without clipping */

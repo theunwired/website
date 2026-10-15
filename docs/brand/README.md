@@ -28,9 +28,12 @@ choice is remembered. Everyone else, including visitors whose system is set
 to light, and anyone without JavaScript, gets dark: it is the brand's first
 impression.
 
-**The toggle.** Text only, mono, `DARK / LIGHT`, the current one in primary
-text. Below 420px only the theme it switches to is shown. Icons are on hold
-until the no-icon rule is revisited.
+**The toggle.** The one icon on the site, and a deliberate exception to the
+no-icon rule. A 16px hairline square, half filled: the filled half slides
+across when the theme switches. It is drawn in the mark's grammar (square,
+1px, no radius), never a sun or a moon. Muted at rest, primary text on
+hover, with a 40px hit area and an `aria-label` and tooltip naming the
+theme it switches to. Any further icon needs the same case made for it.
 
 **Logo.** The On Bone lockup from v2 (decided over a dark nav band and a
 dark tile behind the mark). Cut Black upper wire, Forest lower wire, Cut

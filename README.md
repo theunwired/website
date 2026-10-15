@@ -41,6 +41,7 @@ introducing page-specific styling.
 - Border radius is 0 everywhere. No shadows. Structure is drawn with 1px hairlines.
 - Two typefaces only: Instrument Sans and IBM Plex Mono. No italics.
 - No icons and no imagery. Where an icon is tempting, use a mono step number.
+  The one exception is the theme toggle's split square (see `docs/brand/README.md`).
 - `#4FBF9B` (Label) is for section eyebrows and chapter numerals only. Never a fill.
 - No gradients as decoration. The only two are functional: the travelling signal
   on a wire, and the panel sweep.
@@ -73,7 +74,10 @@ These were fixed deliberately. Changing them back reproduces a real bug.
 - **The hero mark's peak scale comes from CSS (`--mark-peak`).** At the desktop
   1.62× the lockup is wider than a phone viewport and gets clipped.
 - **The nav collapses to MENU at 1100px, not lower.** With the theme toggle in
-  the bar, the links wrap onto two lines below about 1100px.
+  the bar, the links wrap onto two lines below about 1040px.
+- **The links and the toggle both carry `margin-left: auto` on desktop.** That
+  keeps the links centred and the toggle beside the CTA. Remove either and the
+  icon floats alone in the middle of the bar.
 
 ## Themes
 
