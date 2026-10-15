@@ -35,6 +35,7 @@ introducing page-specific styling.
 | `assets/wires.js` | The wire field: ten wires on a fixed full-viewport SVG behind everything. |
 | `assets/ambient.js` | Panel sweep on entry, and the one shared breathing clock for green accents. |
 | `assets/site.js` | Nav, contact modal, reveal, progress rail, page transition, the pinned hero, the agent log. |
+| `assets/og-card.png` | The 1200×630 share card from the brand pack. Every indexable page points `og:image` and `twitter:image` at it. |
 
 ## Hard rules
 
