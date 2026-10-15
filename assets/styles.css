@@ -111,6 +111,99 @@
   color-scheme: light;
 }
 
+/* The Lab's world: a true blueprint. Lab pages set data-world="blueprint" on
+   <html>. Dark is the blueprint (Prussian ground, white linework); the light
+   theme is a whiteprint (white paper, blue linework), the other half of a
+   drafting office. It deliberately breaks the one-green rule, and only here:
+   blue is the ground, green still means "the agent acted". Every text role
+   clears 4.5:1 on both ground and panel. See docs/brand/README.md. */
+:root[data-world="blueprint"] {
+  --cut:        #10304A;
+  --panel:      #163C5A;
+  --panel-hi:   #1A4364;
+  --hairline:   #2F5B80;
+  --hairline-hi:#46739A;
+  --hairline-lo:#21496B;
+  --rail:       #21496B;
+  --bone:       #EAF2F8;
+  --body:       #C5D7E6;
+  --muted:      #A9C1D4;
+  --quiet:      #93AEC4;
+  --dim:        #56799A;
+  --dim-2:      #21496B;
+  --forest:     #3FB58C;
+  --signal:     #3FB58C;
+  --label:      #5FD3A8;
+  --error:      #FF9F8C;
+  --chip-border:#2F5B80;
+  --on-accent:  #10304A;
+  --nav-bg:     rgba(16, 48, 74, 0.94);
+  --scrim:      rgba(16, 48, 74, 0.9);
+  --grid-minor: rgba(234, 242, 248, 0.05);
+  --grid-major: rgba(234, 242, 248, 0.10);
+  --pen:        #EAF2F8;
+  --stamp:      #FF9F8C;
+
+  --wire:          #1E4565;
+  --wire-hi:       #275475;
+  --wire-green:    #1F5E5A;
+  --wire-green-hi: #2F8A74;
+  --wire-link:     #2A5677;
+  --wire-node:     #46739A;
+  --wire-node-dec: #3FB58C;
+  --wire-blip:     #5FD3A8;
+  --wire-hot:      #EAF2F8;
+  --mark-a:        #EAF2F8;
+  --mark-b:        #5FD3A8;
+  --breath-lo:  #3FB58C;
+  --breath-hi:  #5FD3A8;
+  --breath:     #5FD3A8;
+  color-scheme: dark;
+}
+:root[data-world="blueprint"][data-theme="light"] {
+  --cut:        #F3F7FA;
+  --panel:      #E6EEF4;
+  --panel-hi:   #EDF3F7;
+  --hairline:   #C3D4E2;
+  --hairline-hi:#A9C0D3;
+  --hairline-lo:#D6E2EB;
+  --rail:       #D6E2EB;
+  --bone:       #0E2A42;
+  --body:       #2B4A64;
+  --muted:      #45627B;
+  --quiet:      #4D6A83;
+  --dim:        #8FA8BD;
+  --dim-2:      #D6E2EB;
+  --forest:     #10304A;
+  --signal:     #1F7A5F;
+  --label:      #0F6B52;
+  --error:      #A8503F;
+  --chip-border:#C3D4E2;
+  --on-accent:  #F3F7FA;
+  --nav-bg:     rgba(243, 247, 250, 0.94);
+  --scrim:      rgba(243, 247, 250, 0.9);
+  --grid-minor: rgba(16, 48, 74, 0.05);
+  --grid-major: rgba(16, 48, 74, 0.10);
+  --pen:        #10304A;
+  --stamp:      #A8503F;
+
+  --wire:          #DCE6EE;
+  --wire-hi:       #D0DDE8;
+  --wire-green:    #B9D6CB;
+  --wire-green-hi: #8FBFAC;
+  --wire-link:     #C9D8E4;
+  --wire-node:     #A9C0D3;
+  --wire-node-dec: #1F7A5F;
+  --wire-blip:     #1F7A5F;
+  --wire-hot:      #10304A;
+  --mark-a:        #10304A;
+  --mark-b:        #0F6B52;
+  --breath-lo:  #0F6B52;
+  --breath-hi:  #1F7A5F;
+  --breath:     #1F7A5F;
+  color-scheme: light;
+}
+
 /* ------------------------------------------------------------------ base */
 *, *::before, *::after { box-sizing: border-box; }
 
@@ -1689,6 +1782,92 @@ h2.h-section,
 .lab-band__name { font-size: 16px; font-weight: 700; }
 .lab-band__time { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.1em; color: var(--quiet); }
 
+/* ------------------------------------------------- the lab: blueprint world */
+/* the drafting grid sits on the page itself; the wire field runs above it */
+[data-world="blueprint"] body {
+  background-color: var(--cut);
+  background-image:
+    linear-gradient(var(--grid-major) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-major) 1px, transparent 1px),
+    linear-gradient(var(--grid-minor) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-minor) 1px, transparent 1px);
+  background-size: 120px 120px, 120px 120px, 24px 24px, 24px 24px;
+}
+/* the logo's lower wire stays green, the upper wire stays white */
+[data-world="blueprint"] .mark__bar--bot { background: var(--label); }
+[data-world="blueprint"] .btn--solid:hover { background: var(--bone); color: var(--cut); }
+[data-world="blueprint"] .lab-chart .lab-mark--post rect + rect { fill: var(--signal); }
+
+/* the line: one vertical, always with its value */
+.lab-thesis { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: stretch; }
+.lab-thesis__line { position: relative; width: 2px; background: var(--bone); margin-right: 120px; }
+.lab-thesis__line span { position: absolute; top: 0; left: 12px; white-space: nowrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bone); }
+.h-thesis { font-size: clamp(44px, 8vw, 104px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 700; max-width: 9ch; }
+
+/* the title block: bottom right of every Lab sheet */
+.titleblock {
+  display: inline-grid;
+  grid-template-columns: repeat(4, auto);
+  border: 1px solid var(--hairline-hi);
+  background: var(--cut);
+  font-family: var(--mono);
+  font-size: 10.5px;
+  letter-spacing: 0.06em;
+  color: var(--bone);
+}
+.titleblock > div { padding: 7px 12px; border-left: 1px solid var(--hairline-hi); display: flex; flex-direction: column; gap: 3px; min-width: 0; }
+.titleblock > div:first-child { border-left: 0; }
+.titleblock__k { color: var(--quiet); font-size: 9px; letter-spacing: 0.12em; }
+.titleblock__sig { height: 22px; width: 74px; display: block; }
+.titleblock__sig path { fill: none; stroke: var(--pen); stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+.titleblock__empty { color: var(--dim); }
+.lab-sheet-foot { margin-top: 28px; display: flex; justify-content: flex-end; }
+
+/* the pen: drawn strokes where a person acted. Never a typeface. */
+.pen-tick { width: 26px; height: 18px; display: inline-block; vertical-align: middle; }
+.pen-tick path { fill: none; stroke: var(--pen); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 40; stroke-dashoffset: 40; animation: penDraw .45s ease-out forwards; }
+@keyframes penDraw { to { stroke-dashoffset: 0; } }
+.pen-note { font-family: var(--mono); font-size: 10.5px; fill: var(--bone); }
+.pen-stroke { fill: none; stroke: var(--pen); stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+.pen-stroke--wrong { stroke: var(--error); }
+
+/* dimension lines under the tolerance chart: measures span what they measure */
+.lab-dim { stroke: var(--quiet); stroke-width: 1; }
+.lab-dim__label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.08em; fill: var(--body); }
+
+/* the visitor's own pen marks: ticks on the bench, initials on the sheet */
+.bench-field__check input { position: absolute; opacity: 0; width: 18px; height: 18px; margin: 0; }
+.bench-field__check { position: relative; }
+.bench-field__box { width: 18px; height: 18px; flex: 0 0 18px; border: 1px solid var(--hairline-hi); position: relative; transform: translateY(3px); }
+.bench-field__box svg { position: absolute; left: -2px; top: -6px; width: 24px; height: 22px; overflow: visible; }
+.bench-field__box path { fill: none; stroke: var(--pen); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.bench-field__check input:focus-visible + .bench-field__box { outline: 2px solid var(--label); outline-offset: 2px; }
+.bench-field__check input:disabled + .bench-field__box { opacity: 0.8; }
+.lab-tasks__state svg { width: 30px; height: 20px; display: block; overflow: visible; }
+
+.lab-sign { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 24px; align-items: end; border: 1px solid var(--hairline); background: var(--panel); padding: 22px; }
+.lab-sign__pad { position: relative; height: 120px; border-bottom: 1px solid var(--bone); touch-action: none; cursor: crosshair; }
+.lab-sign__pad canvas { display: block; width: 100%; height: 100%; }
+.lab-sign__hint { position: absolute; left: 0; bottom: 8px; font-family: var(--mono); font-size: 11px; color: var(--quiet); pointer-events: none; }
+.lab-sign__actions { display: flex; gap: 10px; flex-wrap: wrap; }
+.lab-sign__clear { font-family: var(--mono); font-size: 11px; letter-spacing: 0.08em; background: none; border: 1px solid var(--hairline); color: var(--body); padding: 9px 14px; cursor: pointer; }
+.lab-sign__clear:hover { border-color: var(--bone); color: var(--bone); }
+.lab-stamp {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 8px 14px;
+  border: 1.5px solid var(--stamp);
+  color: var(--stamp);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  transform: rotate(-4deg);
+  align-self: flex-start;
+}
+.lab-stamp[hidden] { display: none; }
+
 /* ----------------------------------------------------------- media queries */
 
 /* ------------------------------------------------------------------ article */
@@ -1797,6 +1976,14 @@ h2.h-section,
 }
 
 @media (max-width: 720px) {
+  .lab-thesis { grid-template-columns: 1fr; gap: 20px; }
+  .lab-thesis__line { width: 100%; height: 2px; margin-right: 0; }
+  .lab-thesis__line span { top: 10px; left: 0; }
+  .lab-sign { grid-template-columns: 1fr; }
+  .titleblock { grid-template-columns: repeat(2, auto); }
+  .titleblock > div:nth-child(3) { border-left: 0; }
+  .titleblock > div:nth-child(n+3) { border-top: 1px solid var(--hairline-hi); }
+  .lab-sheet-foot { justify-content: flex-start; }
   .lab-hero { padding: 48px 0 40px; }
   .lab-band { padding: 30px 22px; }
   .lab-stagebar__in { gap: 14px; }

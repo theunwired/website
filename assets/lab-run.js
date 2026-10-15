@@ -22,6 +22,120 @@
   }
   window.UnwiredLab = { save: save, load: load };
 
+  /* ------------------------------------------------- signing the sheet */
+  /* The visitor's initials, drawn with the pen or typed. Stored for this tab
+     only, as strokes normalised to a 300 x 100 box, then drawn into the
+     "Checked by" cell of every title block on every Lab sheet. */
+  var SIGN = 'unwired-lab-sign';
+  var NS = 'http://www.w3.org/2000/svg';
+  function getSign() {
+    try { return JSON.parse(sessionStorage.getItem(SIGN) || 'null'); } catch (e) { return null; }
+  }
+  function setSign(v) {
+    try {
+      if (v) sessionStorage.setItem(SIGN, JSON.stringify(v));
+      else sessionStorage.removeItem(SIGN);
+    } catch (e) { /* blocked storage: the signature still shows on this page */ }
+    memo = v;
+    paintSignatures();
+  }
+  var memo = null;
+  function signature() { return memo || getSign(); }
+
+  function pathFor(strokes) {
+    return strokes.map(function (st) {
+      return st.map(function (pt, i) { return (i ? 'L' : 'M') + pt[0].toFixed(1) + ' ' + pt[1].toFixed(1); }).join(' ');
+    }).join(' ');
+  }
+
+  function paintSignatures() {
+    var sig = signature();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-signature]'), function (slot) {
+      slot.innerHTML = '';
+      if (!sig) {
+        var e = document.createElement('span');
+        e.className = 'titleblock__empty';
+        e.textContent = 'unsigned';
+        slot.appendChild(e);
+        return;
+      }
+      if (sig.text) { slot.textContent = sig.text; return; }
+      var svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('viewBox', '0 0 300 100');
+      svg.setAttribute('class', 'titleblock__sig');
+      svg.setAttribute('role', 'img');
+      svg.setAttribute('aria-label', 'Your initials');
+      var path = document.createElementNS(NS, 'path');
+      path.setAttribute('d', pathFor(sig.strokes));
+      svg.appendChild(path);
+      slot.appendChild(svg);
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-stamp]'), function (st) { st.hidden = !sig; });
+  }
+
+  function initPad() {
+    var pad = document.querySelector('[data-lab-sign-pad]');
+    if (!pad) return;
+    var canvas = pad.querySelector('canvas');
+    var hint = document.querySelector('[data-lab-sign-hint]');
+    var typed = document.querySelector('[data-lab-sign-typed]');
+    var clear = document.querySelector('[data-lab-sign-clear]');
+    var ctx = canvas.getContext('2d');
+    var strokes = [], cur = null;
+
+    function ink() { return getComputedStyle(document.documentElement).getPropertyValue('--pen').trim() || '#EAF2F8'; }
+    function fit() {
+      var r = pad.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+      canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
+      ctx.setTransform(d, 0, 0, d, 0, 0);
+      redraw();
+    }
+    function redraw() {
+      var r = pad.getBoundingClientRect();
+      ctx.clearRect(0, 0, r.width, r.height);
+      ctx.strokeStyle = ink(); ctx.lineWidth = 2.4; ctx.lineCap = 'round'; ctx.lineJoin = 'round';
+      strokes.forEach(function (st) {
+        ctx.beginPath();
+        st.forEach(function (pt, i) { var x = pt[0] / 300 * r.width, y = pt[1] / 100 * r.height; if (i) ctx.lineTo(x, y); else ctx.moveTo(x, y); });
+        ctx.stroke();
+      });
+      if (hint) hint.hidden = strokes.length > 0;
+    }
+    function point(e) {
+      var r = pad.getBoundingClientRect();
+      return [Math.max(0, Math.min(300, (e.clientX - r.left) / r.width * 300)), Math.max(0, Math.min(100, (e.clientY - r.top) / r.height * 100))];
+    }
+    pad.addEventListener('pointerdown', function (e) {
+      pad.setPointerCapture(e.pointerId);
+      cur = [point(e)]; strokes.push(cur); redraw();
+    });
+    pad.addEventListener('pointermove', function (e) { if (!cur) return; cur.push(point(e)); redraw(); });
+    function end() {
+      if (!cur) return;
+      cur = null;
+      /* keep only strokes with some length: a tap is not a signature */
+      strokes = strokes.filter(function (st) { return st.length > 2; });
+      if (strokes.length) { if (typed) typed.value = ''; setSign({ strokes: strokes }); }
+      redraw();
+    }
+    pad.addEventListener('pointerup', end);
+    pad.addEventListener('pointercancel', end);
+    if (typed) {
+      typed.addEventListener('input', function () {
+        var v = typed.value.trim().slice(0, 4).toUpperCase();
+        strokes = []; redraw();
+        setSign(v ? { text: v } : null);
+      });
+    }
+    if (clear) clear.addEventListener('click', function () { strokes = []; if (typed) typed.value = ''; redraw(); setSign(null); });
+    document.addEventListener('unwired:theme', redraw);
+    window.addEventListener('resize', fit);
+    var existing = getSign();
+    if (existing && existing.strokes) strokes = existing.strokes;
+    if (existing && existing.text && typed) typed.value = existing.text;
+    fit();
+  }
+
   var STAGES = [
     { key: 'tolerance', num: '01', name: 'Set the line', href: 'lab-tolerance.html' },
     { key: 'handover', num: '02', name: 'Pass the handover', href: 'lab-handover.html' },
@@ -40,7 +154,9 @@
         : d.done + ' of 3 handover tasks done.';
     }
     if (key === 'documents') {
-      return 'Worked through ' + d.docs + ' of 6 documents. Of the ' + d.wrong + ' fields that were actually wrong, you would have checked ' +
+      var docs = 'Worked through ' + d.docs + ' of 6 documents. ';
+      if (!d.wrong) return docs + 'Nothing on those was wrong. The hard ones are further along.';
+      return docs + 'Of the ' + d.wrong + (d.wrong === 1 ? ' field' : ' fields') + ' that were actually wrong, you would have checked ' +
         d.youCaught + ' and the agent flagged ' + d.agentCaught + ' at a ' + d.threshold + '% review threshold.';
     }
     return null;
@@ -92,12 +208,16 @@
       var t = sentence(s.key, data[s.key]);
       if (t) lines.push('- ' + s.num + ' ' + s.name + ': ' + t);
     });
+    var sig = signature();
+    if (sig) lines.push('- Signed the sheet' + (sig.text ? ' as ' + sig.text : '') + '.');
     lines.push('', 'The process I would like to try this on: ');
     return lines.join('\n');
   }
 
   function start() {
     render();
+    paintSignatures();
+    try { initPad(); } catch (e) { if (window.console) console.error('[unwired] lab signature failed', e); }
     Array.prototype.forEach.call(document.querySelectorAll('[data-lab-run-send]'), function (b) {
       b.addEventListener('click', function () {
         /* the message is filled in; site.js opens the dialog with the

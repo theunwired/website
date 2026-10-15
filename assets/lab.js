@@ -173,7 +173,7 @@
     var cfg = { price_tolerance_pct: 5, auto_post_max_amount: Infinity, hold_duplicates: false,
       new_vendor_review: false, always_escalate_vendor: [] };
     var marks = [];
-    var svg, line, lineLabel, layout;
+    var svg, line, lineLabel, layout, dims;
 
     function build() {
       var narrow = chartBox.clientWidth < 620;
@@ -193,7 +193,7 @@
       var left = 4, top = 26, gap = 22;
       var x0 = left + zcols * P + gap;
       var W = x0 + bins * P + 6;
-      var H = top + rows * P + 40;
+      var H = top + rows * P + 78;
       layout = { x0: x0, bin: bin, P: P, top: top, rows: rows, H: H, W: W };
 
       chartBox.innerHTML = '';
@@ -228,6 +228,17 @@
       var cap = svgEl('text', { x: x0, y: base + 34, 'class': 'lab-tick lab-tick--quiet' });
       cap.textContent = 'PRICE VARIANCE AGAINST THE PO';
       svg.appendChild(cap);
+
+      /* dimension lines: what posts on its own spans left of the line,
+         what goes to a person spans right of it */
+      var dy = base + 56;
+      dims = {
+        left: svgEl('path', { 'class': 'lab-dim' }), right: svgEl('path', { 'class': 'lab-dim' }),
+        lText: svgEl('text', { y: dy + 16, 'class': 'lab-dim__label', 'text-anchor': 'middle' }),
+        rText: svgEl('text', { y: dy + 16, 'class': 'lab-dim__label', 'text-anchor': 'middle' }),
+        y: dy, x0: left, x1: W - 6
+      };
+      [dims.left, dims.right, dims.lText, dims.rText].forEach(function (n) { svg.appendChild(n); });
 
       line = svgEl('line', { y1: 10, y2: base + 4, 'class': 'lab-line' });
       lineLabel = svgEl('text', { y: 14, 'class': 'lab-line__label' });
@@ -266,6 +277,13 @@
       lineLabel.setAttribute('x', flip ? lx - 6 : lx + 6);
       lineLabel.setAttribute('text-anchor', flip ? 'end' : 'start');
 
+      if (dims) {
+        var y = dims.y, t = 6;
+        dims.left.setAttribute('d', 'M' + dims.x0 + ' ' + y + ' H' + lx + ' M' + dims.x0 + ' ' + (y - t) + ' V' + (y + t));
+        dims.right.setAttribute('d', 'M' + lx + ' ' + y + ' H' + dims.x1 + ' M' + lx + ' ' + (y - t) + ' V' + (y + t) + ' M' + dims.x1 + ' ' + (y - t) + ' V' + (y + t));
+        fitLabel(dims.lText, (dims.x0 + lx) / 2, lx - dims.x0, (res.post + res.slip) + ' POST ON THEIR OWN', String(res.post + res.slip));
+        fitLabel(dims.rText, (lx + dims.x1) / 2, dims.x1 - lx, (res.person + res.caught) + ' TO A PERSON', String(res.person + res.caught));
+      }
       setStat(root, 'post', res.post + res.slip);
       setStat(root, 'person', res.person + res.caught);
       setStat(root, 'caught', res.caught);
@@ -278,6 +296,13 @@
       if (dups) text += ' ' + dups + ' of them are duplicates with no variance at all. No tolerance can see those. That takes a rule, which is the next tool.';
       summary.textContent = text;
       svg.setAttribute('aria-label', 'Dot chart of 200 synthetic invoices by price variance. ' + text);
+    }
+
+    /* the long label if the span holds it, the bare number if not */
+    function fitLabel(node, cx, span, long, short) {
+      node.setAttribute('x', cx);
+      node.textContent = long;
+      if (node.getComputedTextLength() > span - 10) node.textContent = short;
     }
 
     function setStat(scope, key, n) {
@@ -475,7 +500,12 @@
       var n = (tasks.tolerance ? 1 : 0) + (tasks.rule ? 1 : 0) + (tasks.find ? 1 : 0);
       if (window.UnwiredLab) window.UnwiredLab.save('handover', { done: n });
       var li = q('[data-lab-task="' + name + '"]', root);
-      if (li) { li.classList.add('is-done'); q('[data-state]', li).textContent = 'DONE'; }
+      if (li) {
+        li.classList.add('is-done');
+        /* the visitor did it, so the mark is the pen, not a word */
+        var st = q('[data-state]', li);
+        st.innerHTML = '<svg class="pen-tick" viewBox="0 0 30 20" role="img" aria-label="Done"><path d="M3 11 L 10 17 L 27 3"/></svg>';
+      }
       if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
     }
 

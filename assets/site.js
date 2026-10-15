@@ -56,7 +56,8 @@
     var root = document.documentElement;
     root.setAttribute('data-theme', t);
     var meta = q('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', t === 'light' ? '#F2F1ED' : '#0B0C0B');
+    /* the page's own ground, so the Lab's blueprint reads blue in the browser chrome */
+    if (meta) meta.setAttribute('content', getComputedStyle(root).getPropertyValue('--cut').trim() || (t === 'light' ? '#F2F1ED' : '#0B0C0B'));
     qa('[data-theme-toggle]').forEach(function (b) {
       var label = t === 'light' ? 'Switch to dark theme' : 'Switch to light theme';
       b.setAttribute('aria-label', label);
