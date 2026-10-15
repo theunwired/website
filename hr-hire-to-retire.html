@@ -13,10 +13,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#0B0C0B">
 <script>
-/* set the theme before first paint: a stored choice, else the system
-   setting, else dark. site.js handles the toggle after load */
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
 (function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
-if(t!=='light'&&t!=='dark')t=window.matchMedia&&matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';
+if(t!=='light')t='dark';
 document.documentElement.setAttribute('data-theme',t);
 if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
 </script>

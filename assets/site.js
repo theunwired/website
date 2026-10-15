@@ -47,14 +47,10 @@
   }
 
   /* --------------------------------------------------------------- theme */
-  /* The attribute is set before first paint by the inline script in <head>.
-     This only handles the toggle and a system change while the page is open.
-     A stored choice wins over the system setting; with neither, dark. */
+  /* The attribute is set before first paint by the inline script in <head>:
+     the stored choice, else dark. The system setting is deliberately not
+     followed. This only handles the toggle. */
   var THEME_KEY = 'unwired-theme';
-
-  function storedTheme() {
-    try { return localStorage.getItem(THEME_KEY); } catch (e) { return null; }
-  }
 
   function applyTheme(t) {
     var root = document.documentElement;
@@ -84,15 +80,6 @@
         applyTheme(next);
       });
     });
-    if (!window.matchMedia) return;
-    var mq = window.matchMedia('(prefers-color-scheme: light)');
-    var follow = function () {
-      var s = storedTheme();
-      if (s === 'light' || s === 'dark') return;
-      applyTheme(mq.matches ? 'light' : 'dark');
-    };
-    if (mq.addEventListener) mq.addEventListener('change', follow);
-    else if (mq.addListener) mq.addListener(follow);
   }
 
   /* ---------------------------------------------------------------- nav */

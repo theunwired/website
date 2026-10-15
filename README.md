@@ -82,8 +82,9 @@ and `:root[data-theme="light"]` remaps the same tokens for a Bone canvas. The
 light values and the reasoning are in `docs/brand/README.md`.
 
 - An inline script in each page's `<head>` sets `data-theme` before first
-  paint: stored choice (`localStorage['unwired-theme']`), else the system
-  setting, else dark. Copy it into any new page or it flashes.
+  paint: stored choice (`localStorage['unwired-theme']`), else dark. The
+  system setting is deliberately ignored. Copy it into any new page or it
+  flashes.
 - `site.js` runs the nav toggle and fires `unwired:theme` on every switch.
   `wires.js` and `ambient.js` read their colours from tokens and repaint on
   that event.

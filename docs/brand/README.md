@@ -23,16 +23,18 @@ truth, has not been supplied yet.
 v2 says light mode exists only for print and email. As of this addendum the
 website has a light theme too. Dark stays the brand's primary canvas.
 
-**When it shows.** A visitor's stored choice (the nav toggle) wins. With no
-stored choice the site follows the system setting. Without JavaScript it is
-dark.
+**When it shows.** Only when the visitor picks it with the nav toggle. The
+choice is remembered. Everyone else, including visitors whose system is set
+to light, and anyone without JavaScript, gets dark: it is the brand's first
+impression.
 
 **The toggle.** Text only, mono, `DARK / LIGHT`, the current one in primary
 text. Below 420px only the theme it switches to is shown. Icons are on hold
 until the no-icon rule is revisited.
 
-**Logo.** The On Bone lockup from v2: Cut Black upper wire, Forest lower
-wire, Cut Black wordmark. Same for the hero mark.
+**Logo.** The On Bone lockup from v2 (decided over a dark nav band and a
+dark tile behind the mark). Cut Black upper wire, Forest lower wire, Cut
+Black wordmark. Same for the hero mark.
 
 **Colour roles.** Every role keeps its job; only the value changes. Label and
 Signal are too faint on Bone (2.0:1 and 3.7:1), so the text greens go darker.
