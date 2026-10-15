@@ -330,11 +330,19 @@
         cb.type = 'checkbox';
         cb.checked = !!st.picks[i];
         cb.disabled = st.revealed;
-        cb.addEventListener('change', function () { st.picks[i] = cb.checked; });
+        /* the visitor's pick is their own mark, so it is drawn in pen */
+        var box = document.createElement('span');
+        box.className = 'bench-field__box';
+        box.setAttribute('aria-hidden', 'true');
+        function tick() {
+          box.innerHTML = cb.checked ? '<svg viewBox="0 0 24 22"><path class="pen-draw" d="M3 12 L 9 18 L 22 2"/></svg>' : '';
+        }
+        cb.addEventListener('change', function () { st.picks[i] = cb.checked; tick(); });
+        tick();
         var lab = document.createElement('span');
         lab.className = 'bench-field__label';
         lab.textContent = f.label;
-        check.appendChild(cb); check.appendChild(lab);
+        check.appendChild(cb); check.appendChild(box); check.appendChild(lab);
 
         var val = document.createElement('span');
         val.className = 'bench-field__value';

@@ -92,3 +92,40 @@ and what the site now says everywhere:
 Where it shows up: the build patterns and "What a demo is" on Work, the
 Discovery step on every industry deep dive, the pricing section on What
 you get, the FAQ, and the close of the pilots note.
+
+---
+
+## Addendum to v2: the Lab is the rebel wing
+
+The Lab (`lab.html` and its three stages) runs on its own rules. The main site
+keeps v2 as written; nothing below leaks out of the Lab, apart from the Lab
+band on home, which stays in the main site's style.
+
+**The idea.** "You draw the line." is the Lab's headline. Every system we
+build has a line: left of it the agent acts, right of it a person decides.
+"We build it. You own it." stays the company tagline.
+
+**The world: a true blueprint.** Lab pages set `data-world="blueprint"`.
+Dark is the blueprint, Prussian `#10304A` with white linework. The light theme
+is a whiteprint, `#F3F7FA` paper with blue linework. This deliberately breaks
+the one-green rule, here only: blue is the ground, green still means "the
+agent acted", red still only means "wrong". Every text role clears 4.5:1 on
+ground and panel in both. Tokens are in `assets/styles.css`.
+
+**The line.** One vertical, always labelled with its value ("YOUR LINE ·
+6.0%"). If it holds no value, it isn't the line.
+
+**The pen.** Drawn strokes, never a typeface, and only where a person acts:
+the visitor's ticks on the handover tasks and on the bench, and their
+initials when they sign the sheet. The rule is still two typefaces and a hand.
+
+**The drafting marks.** Every Lab sheet carries a title block (sheet, drawn
+by, checked by, rev). Dimension lines measure across what they measure, as
+under the tolerance chart. The "Approved by a person" stamp shows only after
+the visitor has signed.
+
+**The Unwired Blueprint.** The named output of discovery: one sheet with the
+process as it runs today, the process unwired, and the line, signed by the
+process owner, including when the answer is not to build. What you get, the
+FAQ and every deep dive describe discovery this way. A template for the
+sheet itself is still to be made.

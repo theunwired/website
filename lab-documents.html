@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-world="blueprint">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,7 +17,7 @@
 <meta property="og:site_name" content="The Unwired">
 <meta name="twitter:image" content="https://theunwired.in/assets/og.png">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="theme-color" content="#0B0C0B">
+<meta name="theme-color" content="#10304A">
 <script>
 /* set the theme before first paint: the visitor's stored choice, else dark.
    Dark is the brand's first impression, so the system setting is ignored.
@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=10">
+<link rel="stylesheet" href="assets/styles.css?v=11">
 </head>
 <body>
 
@@ -87,6 +87,14 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       </div>
       <h1 class="h-page">Confidence is not the same as correct.</h1>
       <p class="lede">Six awkward documents, the kind a pilot quietly leaves out. For each one, tick the fields you would check before it posts, then reveal what the agent read, how sure it was, and what was really there.</p>
+      <div class="lab-sheet-foot">
+        <div class="titleblock" aria-label="Title block">
+          <div><span class="titleblock__k">SHEET</span>03 / 03</div>
+          <div><span class="titleblock__k">DRAWN BY</span>The Unwired</div>
+          <div><span class="titleblock__k">CHECKED BY</span><span data-lab-signature><span class="titleblock__empty">unsigned</span></span></div>
+          <div><span class="titleblock__k">REV</span>A</div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -139,6 +147,21 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
         </div>
         <h2 class="h-section">What you did in the Lab.</h2>
         <ol class="lab-run__list" data-lab-run-list></ol>
+        <div class="lab-sign" data-lab-sign>
+          <div>
+            <label class="lab-control__label" for="lab-sign-typed">Sign the sheet</label>
+            <div class="lab-sign__pad" data-lab-sign-pad aria-hidden="true">
+              <canvas></canvas>
+              <span class="lab-sign__hint" data-lab-sign-hint>Draw your initials here</span>
+            </div>
+          </div>
+          <div class="lab-sign__actions">
+            <input class="lab-find" id="lab-sign-typed" data-lab-sign-typed type="text" maxlength="4" autocomplete="off" placeholder="or type them" aria-describedby="lab-sign-note">
+            <button type="button" class="lab-sign__clear" data-lab-sign-clear>Clear</button>
+          </div>
+        </div>
+        <p class="lab-run__note" id="lab-sign-note">Your initials go in the "Checked by" box on every Lab sheet, for this tab only. A person checked the work, so it gets the stamp.</p>
+        <span class="lab-stamp" data-lab-stamp hidden aria-label="Approved by a person"><span>APPROVED BY</span><span>A PERSON</span></span>
         <div class="lab-run__foot">
           <button type="button" class="btn btn--solid" data-open-contact data-lab-run-send hidden>Send this to us</button>
           <p class="lab-run__note">Kept in this tab only and gone when you close it. Sending it opens the contact form with your run filled in, so you can add the process you have in mind.</p>
@@ -152,7 +175,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       <div class="cta" data-reveal data-sweep>
         <div>
           <h2 class="h-section">Want this on your process?</h2>
-          <p>Everything here is made up. Bring a real queue or your worst documents, and the demo runs on those.</p>
+          <p>Everything here is made up. Discovery ends with the real sheet: the Unwired Blueprint, your process with your line drawn on it, signed by the person who owns it.</p>
         </div>
         <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
       </div>
@@ -211,8 +234,8 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 
 <script src="assets/wires.js?v=8"></script>
 <script src="assets/ambient.js?v=8"></script>
-<script src="assets/site.js?v=8"></script>
-<script src="assets/lab-documents.js?v=2"></script>
-<script src="assets/lab-run.js?v=1"></script>
+<script src="assets/site.js?v=9"></script>
+<script src="assets/lab-documents.js?v=3"></script>
+<script src="assets/lab-run.js?v=3"></script>
 </body>
 </html>

@@ -107,6 +107,11 @@ light values and the reasoning are in `docs/brand/README.md`.
 
 ## The Lab
 
+The Lab is the brand's rebel wing: a true blueprint world (`data-world="blueprint"`
+on `<html>`, whiteprint in the light theme), the visitor's own pen marks, and a
+title block on every sheet. Its rules are in `docs/brand/README.md`; nothing
+from it belongs on the main site.
+
 A hub (`lab.html`) and three stage pages. Every Lab page has the stage bar
 under the nav, and every stage ends with a Next stage button, so nobody has
 to find their way back. The home page invites people in from a band inside
