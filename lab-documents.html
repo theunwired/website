@@ -3,19 +3,19 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Worst-document bench · Worst-document bench · Lab · The Unwired</title>
-<meta name="description" content="Lab stage 03. Six awkward made-up documents. Pick the fields you would check, then see what an agent flagged and what was really wrong.">
+<title>Worst-document bench · Lab · The Unwired</title>
+<meta name="description" content="The agent is 95% sure. Would you check it? Six awkward documents: tick the fields you would check, then see what the agent flagged and what was really wrong. Lab stage 03, illustrative, in your browser.">
 <link rel="canonical" href="https://theunwired.in/lab-documents.html">
 <meta property="og:title" content="Worst-document bench · Lab · The Unwired">
-<meta property="og:description" content="Lab stage 03. Six awkward made-up documents. Pick the fields you would check, then see what an agent flagged and what was really wrong.">
+<meta property="og:description" content="The agent is 95% sure. Would you check it? Six awkward documents: tick the fields you would check, then see what the agent flagged and what was really wrong. Lab stage 03, illustrative, in your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/lab-documents.html">
-<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image" content="https://theunwired.in/assets/og-lab-documents.png">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="The Unwired Lab, sheet 03. The agent is 95% sure. Would you check it?">
 <meta property="og:site_name" content="The Unwired">
-<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:image" content="https://theunwired.in/assets/og-lab-documents.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#10304A">
 <script>
@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=11">
+<link rel="stylesheet" href="assets/styles.css?v=12">
 </head>
 <body>
 
@@ -85,7 +85,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
         <span class="chapter__rule"></span>
         <span class="chapter__label">Worst-document bench</span>
       </div>
-      <h1 class="h-page">Confidence is not the same as correct.</h1>
+      <h1 class="h-page">Would you check what the agent is sure of?</h1>
       <p class="lede">Six awkward documents, the kind a pilot quietly leaves out. For each one, tick the fields you would check before it posts, then reveal what the agent read, how sure it was, and what was really there.</p>
       <div class="lab-sheet-foot">
         <div class="titleblock" aria-label="Title block">
@@ -122,6 +122,13 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
           </div>
         </div>
         <p class="bench-score" data-bench-score aria-live="polite"></p>
+        <div class="lab-earned" data-lab-earned="documents" hidden>
+          <span class="lab-lesson"><span class="lab-lesson__k">SHEET 03 · THE LESSON</span><span>Confidence is not the same as correct.</span></span>
+          <div class="lab-copy-row" hidden>
+            <button type="button" class="lab-copy" data-lab-copy="documents">Copy the sheet</button>
+            <span class="lab-copy__status" role="status"></span>
+          </div>
+        </div>
         <p class="diagram-panel__note">Illustrative. Made-up documents, and the extractions and confidence scores were written by hand to show the common failures. They are not output from a real run. Nothing is uploaded.</p>
       </div>
     </div>
@@ -138,7 +145,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       </div>
     </div>
   </section>
-  <section class="sec sec--rule" id="your-run" data-section="Your run">
+  <section class="sec sec--rule" id="your-run" data-section="Your run" hidden>
     <div class="wrap">
       <div class="lab-run" data-lab-run data-reveal>
         <div class="chapter chapter--tight">
@@ -164,6 +171,10 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
         <span class="lab-stamp" data-lab-stamp hidden aria-label="Approved by a person"><span>APPROVED BY</span><span>A PERSON</span></span>
         <div class="lab-run__foot">
           <button type="button" class="btn btn--solid" data-open-contact data-lab-run-send hidden>Send this to us</button>
+          <div class="lab-copy-row" hidden>
+            <button type="button" class="lab-copy" data-lab-copy="run">Copy the sheet</button>
+            <span class="lab-copy__status" role="status"></span>
+          </div>
           <p class="lab-run__note">Kept in this tab only and gone when you close it. Sending it opens the contact form with your run filled in, so you can add the process you have in mind.</p>
         </div>
       </div>
@@ -232,10 +243,10 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
   </div>
 </div>
 
-<script src="assets/wires.js?v=8"></script>
+<script src="assets/wires.js?v=9"></script>
 <script src="assets/ambient.js?v=8"></script>
 <script src="assets/site.js?v=9"></script>
-<script src="assets/lab-documents.js?v=3"></script>
-<script src="assets/lab-run.js?v=3"></script>
+<script src="assets/lab-documents.js?v=4"></script>
+<script src="assets/lab-run.js?v=4"></script>
 </body>
 </html>
