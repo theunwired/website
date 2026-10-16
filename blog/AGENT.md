@@ -145,8 +145,8 @@ Mac holds the SSH key that can push to GitHub; cloud sessions cannot.
      lists only the new note page, `work.html`, `sitemap.xml` and `blog/`,
      then `git commit -m "blog: publish <slug>" && git push origin main`.
      Vercel deploys main.
-   - Wait about 2 minutes, WebFetch `https://theunwired.in/note-<slug>.html`
-     to confirm it is live, then reply in the thread:
+   - Wait about 2 minutes, then on the Mac run `curl -sL -o /dev/null -w "%{http_code}" https://theunwired.in/note-<slug>.html` (the apex redirects to www)
+     and expect 200, then reply in the thread:
      "Published: https://theunwired.in/note-<slug>.html". If it is not live
      after 10 minutes, reply saying the push succeeded but the page is not
      live yet, with the commit hash.
