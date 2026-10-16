@@ -5,19 +5,25 @@
 
    Stored in sessionStorage only: it lives for this tab and is gone when the
    tab closes. Nothing is sent anywhere. Every read and write is guarded, so
-   a blocked storage leaves the panel showing "not tried yet", never broken. */
+   a blocked storage leaves the panel hidden, never broken.
+
+   Lessons are never printed before the visitor plays. Each stage's lesson is
+   stamped, on the stage page and on its hub card, once the stage has earned
+   it (see earned() below). */
 (function () {
   'use strict';
 
   var KEY = 'unwired-lab-run';
+  var memoRun = null;
 
   function load() {
-    try { return JSON.parse(sessionStorage.getItem(KEY) || '{}') || {}; } catch (e) { return {}; }
+    try { return JSON.parse(sessionStorage.getItem(KEY) || 'null') || memoRun || {}; } catch (e) { return memoRun || {}; }
   }
   function save(stage, data) {
     var all = load();
     all[stage] = data;
-    try { sessionStorage.setItem(KEY, JSON.stringify(all)); } catch (e) { /* private mode: the panel just stays empty */ }
+    memoRun = all;
+    try { sessionStorage.setItem(KEY, JSON.stringify(all)); } catch (e) { /* private mode: this page still shows the run */ }
     render();
   }
   window.UnwiredLab = { save: save, load: load };
@@ -48,6 +54,11 @@
     }).join(' ');
   }
 
+  function anyRun() {
+    var data = load();
+    return STAGES.some(function (s) { return !!data[s.key]; });
+  }
+
   function paintSignatures() {
     var sig = signature();
     Array.prototype.forEach.call(document.querySelectorAll('[data-lab-signature]'), function (slot) {
@@ -70,9 +81,13 @@
       svg.appendChild(path);
       slot.appendChild(svg);
     });
-    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-stamp]'), function (st) { st.hidden = !sig; });
+    /* the stamp means a person checked finished work: signed, and at least
+       one stage actually run */
+    var stamped = !!sig && anyRun();
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-stamp]'), function (st) { st.hidden = !stamped; });
   }
 
+  var refitPad = null;
   function initPad() {
     var pad = document.querySelector('[data-lab-sign-pad]');
     if (!pad) return;
@@ -86,10 +101,12 @@
     function ink() { return getComputedStyle(document.documentElement).getPropertyValue('--pen').trim() || '#EAF2F8'; }
     function fit() {
       var r = pad.getBoundingClientRect(), d = window.devicePixelRatio || 1;
+      if (!r.width) return;
       canvas.width = Math.round(r.width * d); canvas.height = Math.round(r.height * d);
       ctx.setTransform(d, 0, 0, d, 0, 0);
       redraw();
     }
+    refitPad = fit;
     function redraw() {
       var r = pad.getBoundingClientRect();
       ctx.clearRect(0, 0, r.width, r.height);
@@ -137,10 +154,26 @@
   }
 
   var STAGES = [
-    { key: 'tolerance', num: '01', name: 'Set the line', href: 'lab-tolerance.html' },
-    { key: 'handover', num: '02', name: 'Pass the handover', href: 'lab-handover.html' },
-    { key: 'documents', num: '03', name: 'Worst-document bench', href: 'lab-documents.html' }
+    { key: 'tolerance', num: '01', name: 'Set the line', href: 'lab-tolerance.html',
+      lesson: 'One number decides what nobody checks.' },
+    { key: 'handover', num: '02', name: 'Pass the handover', href: 'lab-handover.html',
+      lesson: "If your team can't change it, we built it wrong." },
+    { key: 'documents', num: '03', name: 'Worst-document bench', href: 'lab-documents.html',
+      lesson: 'Confidence is not the same as correct.' }
   ];
+  var SITE = 'https://theunwired.in/';
+
+  /* a stage earns its lesson when the visitor has seen the thing it is about:
+     let go of the line, passed all three tasks, met a confident mistake */
+  function earned(key, d) {
+    if (!d) return false;
+    if (key === 'tolerance') return !!d.done;
+    if (key === 'handover') return d.done === 3;
+    if (key === 'documents') return !!d.trapConf;
+    return false;
+  }
+
+  function money(v) { return '$' + Math.round(v).toLocaleString('en-US'); }
 
   /* one plain sentence per stage, used on the page and in the message */
   function sentence(key, d) {
@@ -156,23 +189,113 @@
     if (key === 'documents') {
       var docs = 'Worked through ' + d.docs + ' of 6 documents. ';
       if (!d.wrong) return docs + 'Nothing on those was wrong. The hard ones are further along.';
-      return docs + 'Of the ' + d.wrong + (d.wrong === 1 ? ' field' : ' fields') + ' that were actually wrong, you would have checked ' +
+      return docs + 'Of the ' + d.wrong + (d.wrong === 1 ? ' field that was' : ' fields that were') + ' actually wrong, you would have checked ' +
         d.youCaught + ' and the agent flagged ' + d.agentCaught + ' at a ' + d.threshold + '% review threshold.';
     }
     return null;
   }
 
+  /* ------------------------------------------------- copy the sheet */
+  /* Plain text a visitor can paste into a post or a message: the lesson
+     first, in the visitor's own numbers, then where it came from, the link
+     last. "/" separators and no emoji: a post sets them in a proportional
+     font, and coloured squares would bring in colour that means nothing */
+  function lead(key, d) {
+    if (key === 'tolerance') {
+      var at = 'At my ' + d.pct.toFixed(1) + '% line, ';
+      if (d.dups) return at + d.dups + ' duplicate invoices still got paid. No price tolerance can see a duplicate.';
+      if (d.slip) return at + d.slip + (d.slip === 1 ? ' overbilled invoice' : ' overbilled invoices') + ' still got paid.';
+      return at + 'nothing slipped through, and ' + d.person + ' of 200 invoices went to a person to get there.';
+    }
+    if (key === 'handover') {
+      return "I changed a tolerance and added an escalation rule to an invoice agent myself, and found out from its log why one invoice went to a person. If a team can't do that, the build isn't finished.";
+    }
+    if (key === 'documents') {
+      return 'The agent was ' + d.trapConf + '% sure of a field, and it was wrong. Confidence is not the same as correct.';
+    }
+    return '';
+  }
+  function detail(key, d) {
+    if (key === 'tolerance') {
+      return d.touch + ' of 200 posted on their own, ' + d.person + ' went to a person, ' + d.slip +
+        (d.slip === 1 ? ' problem' : ' problems') + ' slipped through' + (d.money ? ', about ' + money(d.money) + ' paid that should not have been.' : '.');
+    }
+    if (key === 'documents' && d.wrong) {
+      return 'Of the ' + d.wrong + (d.wrong === 1 ? ' field that was' : ' fields that were') + ' wrong, I would have checked ' + d.youCaught +
+        '. The agent flagged ' + d.agentCaught + ' at a ' + d.threshold + '% review line.';
+    }
+    return '';
+  }
+  function sheetText(key) {
+    var data = load();
+    var lines = [];
+    /* share text carries only lessons the visitor has earned */
+    if (key === 'run') {
+      STAGES.forEach(function (s) { if (earned(s.key, data[s.key])) lines.push(lead(s.key, data[s.key])); });
+      lines.push('', 'THE UNWIRED LAB / ' + lines.length + (lines.length === 1 ? ' SHEET' : ' SHEETS') + ' / Illustrative, the same for everyone');
+      lines.push(SITE + 'lab.html');
+      return lines.join('\n');
+    }
+    var s = STAGES.filter(function (x) { return x.key === key; })[0];
+    var d = data[key];
+    if (!s || !earned(key, d)) return '';
+    lines.push(lead(key, d));
+    var more = detail(key, d);
+    if (more) lines.push(more);
+    var src = key === 'documents' ? 'Illustrative documents, the same six for everyone' : 'Illustrative queue, the same 200 invoices for everyone';
+    lines.push('', 'THE UNWIRED LAB / SHEET ' + s.num + ' / ' + s.name.toUpperCase() + ' / ' + src);
+    lines.push(SITE + s.href);
+    return lines.join('\n');
+  }
+
+  function copySheet(btn) {
+    var key = btn.getAttribute('data-lab-copy');
+    var row = btn.closest('.lab-copy-row') || btn.parentNode;
+    var status = row.querySelector('.lab-copy__status');
+    var text = sheetText(key);
+    if (!text) return;
+    function say(msg) { if (status) status.textContent = msg; }
+    function fallback() {
+      /* the browser refused the clipboard: show the text, selected, so the
+         visitor can copy it themselves */
+      var box = row.parentNode.querySelector('.lab-copy__text');
+      if (!box) {
+        box = document.createElement('textarea');
+        box.className = 'lab-copy__text';
+        box.readOnly = true;
+        box.setAttribute('aria-label', 'Your sheet as text');
+        row.parentNode.insertBefore(box, row.nextSibling);
+      }
+      box.hidden = false;
+      box.value = text;
+      box.style.height = 'auto';
+      box.style.height = (box.scrollHeight + 2) + 'px';
+      box.focus();
+      /* select it all but keep the first line, the lesson, in view */
+      box.setSelectionRange(0, text.length, 'backward');
+      box.scrollTop = 0;
+      say('Copying was blocked here. The text is selected below: copy it yourself.');
+    }
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () { say('Copied. Paste it anywhere.'); }, fallback);
+      } else fallback();
+    } catch (e) { fallback(); }
+  }
+
+  /* ------------------------------------------------- render */
   function render() {
     var data = load();
+    var any = false;
     Array.prototype.forEach.call(document.querySelectorAll('[data-lab-run]'), function (box) {
       var list = box.querySelector('[data-lab-run-list]');
       var send = box.querySelector('[data-lab-run-send]');
       if (!list) return;
       list.innerHTML = '';
-      var any = false;
+      var some = false;
       STAGES.forEach(function (s) {
         var text = sentence(s.key, data[s.key]);
-        if (text) any = true;
+        if (text) some = true;
         var li = document.createElement('li');
         li.className = 'lab-run__row' + (text ? ' is-done' : '');
         var num = document.createElement('span');
@@ -196,8 +319,36 @@
         li.appendChild(body);
         list.appendChild(li);
       });
-      if (send) send.hidden = !any;
+      if (send) send.hidden = !some;
+      any = any || some;
+      /* an empty run is not shown at all: no list of blanks, no sign pad */
+      var sec = box.closest('#your-run') || box;
+      var was = sec.hidden;
+      sec.hidden = !some;
+      if (was && some && refitPad) setTimeout(refitPad, 0);
     });
+
+    /* lessons, stamped once earned */
+    STAGES.forEach(function (s) {
+      var on = earned(s.key, data[s.key]);
+      Array.prototype.forEach.call(document.querySelectorAll('[data-lab-earned="' + s.key + '"]'), function (n) { n.hidden = !on; });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-copy]'), function (b) {
+      var k = b.getAttribute('data-lab-copy');
+      var ok = k === 'run' ? STAGES.some(function (s) { return earned(s.key, data[s.key]); }) : earned(k, data[k]);
+      var row = b.closest('.lab-copy-row');
+      (row || b).hidden = !ok;
+      /* a fallback box already open must not keep an older run's numbers */
+      var box = row && row.parentNode.querySelector('.lab-copy__text');
+      if (box && !box.hidden) box.value = sheetText(k);
+    });
+
+    /* the hub's line always carries a value: the visitor's, once drawn */
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-hubline]'), function (n) {
+      var t = data.tolerance;
+      n.textContent = t ? 'YOUR LINE · ' + t.pct.toFixed(1) + '%' : 'THE LINE · 5.0%';
+    });
+    paintSignatures();
   }
 
   /* pre-fill the contact form, then let site.js open it as usual */
@@ -215,9 +366,8 @@
   }
 
   function start() {
-    render();
-    paintSignatures();
     try { initPad(); } catch (e) { if (window.console) console.error('[unwired] lab signature failed', e); }
+    render();
     Array.prototype.forEach.call(document.querySelectorAll('[data-lab-run-send]'), function (b) {
       b.addEventListener('click', function () {
         /* the message is filled in; site.js opens the dialog with the
@@ -225,6 +375,9 @@
         var f = document.getElementById('f-msg');
         if (f) f.value = message();
       });
+    });
+    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-copy]'), function (b) {
+      b.addEventListener('click', function () { copySheet(b); });
     });
   }
 

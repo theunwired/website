@@ -1,0 +1,92 @@
+<!doctype html><html><head><meta charset="utf-8">
+<!-- The Lab's link cards, 1200 x 627. Drawn from the Lab's own seeded queue:
+     shoot.js extracts the engine from assets/lab.js into engine.js, then
+     screenshots card.html#hub, #tolerance, #handover and #documents. -->
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--cut:#10304A;--panel:#163C5A;--hair:#2F5B80;--hair-hi:#46739A;--bone:#EAF2F8;--body:#C5D7E6;--quiet:#93AEC4;--dim:#56799A;--signal:#3FB58C;--label:#5FD3A8;--error:#FF9F8C}
+*{box-sizing:border-box}
+html,body{margin:0;width:1200px;height:627px;overflow:hidden}
+body{background-color:var(--cut);background-image:linear-gradient(rgba(234,242,248,.10) 1px,transparent 1px),linear-gradient(90deg,rgba(234,242,248,.10) 1px,transparent 1px),linear-gradient(rgba(234,242,248,.05) 1px,transparent 1px),linear-gradient(90deg,rgba(234,242,248,.05) 1px,transparent 1px);background-size:120px 120px,120px 120px,24px 24px,24px 24px;background-position:-1px -1px;color:var(--bone);font-family:'Instrument Sans',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+.card{position:absolute;inset:0;padding:56px 72px 0;display:flex;flex-direction:column}
+.top{display:flex;justify-content:space-between;align-items:flex-start}
+.lockup{display:flex;align-items:center;gap:16px}
+.mark{display:flex;flex-direction:column;gap:6px}
+.mark i{display:block;height:7px;background:var(--bone);width:44px}
+.mark i+i{background:var(--label);width:26px}
+.word{font-weight:700;font-size:34px;letter-spacing:-0.04em;line-height:1}
+.tb{display:grid;grid-template-columns:repeat(3,auto);border:1px solid var(--hair-hi);background:var(--cut);font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.06em}
+.tb div{padding:8px 14px;border-left:1px solid var(--hair-hi);display:flex;flex-direction:column;gap:3px}
+.tb div:first-child{border-left:0}
+.tb span{color:var(--quiet);font-size:10.5px;letter-spacing:.14em}
+.eyebrow{margin-top:40px;font-family:'IBM Plex Mono',monospace;font-size:16px;letter-spacing:.16em;color:var(--label)}
+.q{margin-top:14px;font-weight:700;font-size:60px;line-height:1.02;letter-spacing:-0.035em;max-width:820px;text-wrap:balance}
+.q.wide{max-width:1000px}
+.q.narrow{max-width:600px;font-size:52px}
+.art{position:absolute;left:72px;right:72px;bottom:74px}
+.art svg{display:block;width:100%;overflow:visible}
+.foot{position:absolute;left:72px;right:72px;bottom:0;height:52px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.14em;color:var(--quiet)}
+.foot b{font-weight:400;color:var(--bone)}
+.yaml{position:absolute;right:72px;top:150px;width:392px;background:var(--cut);border:1px solid var(--hair-hi);padding:16px 18px;font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.85;color:var(--body)}
+.yaml .c{color:var(--quiet)} .yaml .v{color:var(--bone)}
+text{font-family:'IBM Plex Mono',monospace}
+</style></head><body>
+<div class="card" id="card"></div>
+<script src="engine.js"></script>
+<script>
+var Q = buildQueue();
+var which = location.hash.slice(1) || 'hub';
+var NS='http://www.w3.org/2000/svg';
+function el(t,a,p){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
+function outcome(inv,to){ if(to==='post') return inv.problem?'slip':'post'; return inv.problem?'caught':'person'; }
+var C={post:'#3FB58C',person:'#C5D7E6',caught:'#FF9F8C',slip:'#FF9F8C'};
+var CARDS={
+  hub:{sheet:'00 / 03',eyebrow:'THE LAB · THREE STAGES · ABOUT 8 MIN',q:'Where would you draw the line?',strip:{pct:5,rules:false,label:'THE LINE · 5.0%'},foot:'ILLUSTRATIVE · LEFT OF THE LINE THE AGENT ACTS. RIGHT OF IT, A PERSON.'},
+  tolerance:{sheet:'01 / 03',eyebrow:'SHEET 01 · SET THE LINE',q:'At a 5.0% line, how many duplicate invoices get paid?',strip:{pct:5,rules:false},foot:'ILLUSTRATIVE · THE SAME 200 INVOICES FOR EVERYONE'},
+  handover:{sheet:'02 / 03',eyebrow:'SHEET 02 · PASS THE HANDOVER',q:'Could your team change this agent without calling us?',strip:{pct:5,rules:true},yaml:true,foot:'ILLUSTRATIVE · THE SAME 200 INVOICES FOR EVERYONE'},
+  documents:{sheet:'03 / 03',eyebrow:'SHEET 03 · WORST-DOCUMENT BENCH',q:'The agent is 95% sure. Would you check it?',conf:true,foot:'ILLUSTRATIVE · THE SAME SIX DOCUMENTS FOR EVERYONE'}
+};
+var c=CARDS[which];
+var card=document.getElementById('card');
+card.innerHTML='<div class="top"><div class="lockup"><span class="mark"><i></i><i></i></span><span class="word">theunwired</span></div>'+
+ '<div class="tb"><div><span>SET</span>THE LAB</div><div><span>SHEET</span>'+c.sheet+'</div><div><span>REV</span>A</div></div></div>'+
+ '<div class="eyebrow">'+c.eyebrow+'</div><div class="q'+(c.yaml?' narrow':' wide')+'">'+c.q+'</div>'+
+ (c.yaml?'<div class="yaml"><div class="c"># your team owns this file.</div><div>price_tolerance_pct: <span class="v">5</span></div><div>auto_post_max_amount: <span class="v">25000</span></div><div>hold_duplicates: <span class="v">yes</span></div><div>new_vendor_review: <span class="v">yes</span></div><div>always_escalate_vendor: <span class="v">none</span></div></div>':'')+
+ '<div class="art" id="art"></div><div class="foot"><span>'+c.foot+'</span><b>THEUNWIRED.IN/LAB</b></div>';
+var art=document.getElementById('art');
+if(c.strip){
+  var cfg={price_tolerance_pct:c.strip.pct,auto_post_max_amount:c.strip.rules?25000:Infinity,hold_duplicates:c.strip.rules,new_vendor_review:c.strip.rules,always_escalate_vendor:[]};
+  var zero=Q.filter(function(i){return !i.variance}), nz=Q.filter(function(i){return i.variance}).sort(function(a,b){return a.variance-b.variance});
+  var bin=0.5, bins=46, gap=2, counts=[];
+  nz.forEach(function(inv){var b=Math.min(bins-1,Math.floor(inv.variance/bin)); /* same bins as the stage 01 chart */ (counts[b]=counts[b]||[]).push(inv);});
+  var rows=counts.reduce(function(m,c){return Math.max(m,c?c.length:0);},9), zc=Math.ceil(zero.length/rows), P=13, S=10.2;
+  var x0=(zc+gap)*P, W=1056, H=rows*P+48, base=24+rows*P;
+  var svg=el('svg',{viewBox:'0 0 '+W+' '+H},art);
+  function mark(inv,x,y){var o=outcome(inv,decide(inv,cfg).to);
+    if(o==='slip'){var s=S*0.78;el('rect',{x:x+(S-s)/2,y:y+(S-s)/2,width:s,height:s,fill:C.slip,transform:'rotate(45 '+(x+S/2)+' '+(y+S/2)+')'},svg);}
+    else if(o==='post') el('rect',{x:x,y:y,width:S,height:S,fill:C.post},svg);
+    else el('rect',{x:x+.75,y:y+.75,width:S-1.5,height:S-1.5,fill:'none',stroke:C[o],'stroke-width':1.5},svg);}
+  zero.forEach(function(inv,k){var col=Math.floor(k/rows), r=k%rows; mark(inv,col*P,base-(r+1)*P);});
+  counts.forEach(function(col,b){ if(col) col.forEach(function(inv,k){mark(inv,x0+b*P,base-(k+1)*P);}); });
+  el('line',{x1:0,x2:zc*P-(P-S),y1:base+8,y2:base+8,stroke:'#46739A'},svg);
+  el('line',{x1:x0,x2:x0+bins*P,y1:base+8,y2:base+8,stroke:'#46739A'},svg);
+  var t=el('text',{x:0,y:base+28,fill:'#93AEC4','font-size':13,'letter-spacing':1.4},svg); t.textContent='EXACT MATCH · '+zero.length;
+  [0,5,10,15,20].forEach(function(v){var tx=x0+v/bin*P; el('line',{x1:tx,x2:tx,y1:base+8,y2:base+13,stroke:'#46739A'},svg); var tt=el('text',{x:tx,y:base+28,fill:'#93AEC4','font-size':13,'text-anchor':v?'middle':'start'},svg); tt.textContent=v+'%';});
+  var lx=x0+c.strip.pct/bin*P;
+  el('line',{x1:lx,x2:lx,y1:-6,y2:base+14,stroke:'#EAF2F8','stroke-width':2.5},svg);
+  var lt=el('text',{x:lx+10,y:6,fill:'#EAF2F8','font-size':15,'font-weight':500,'letter-spacing':1.6},svg); lt.textContent=c.strip.label||'YOUR LINE · 5.0%';
+}
+if(c.conf){
+  var W=1056,H=150, svg=el('svg',{viewBox:'0 0 '+W+' '+H},art);
+  var t1=el('text',{x:0,y:20,fill:'#93AEC4','font-size':14,'letter-spacing':1.8},svg); t1.textContent='WHAT THE AGENT READ · DOCUMENT 04';
+  var t2=el('text',{x:0,y:62,fill:'#EAF2F8','font-size':30,'font-weight':500},svg); t2.textContent='AMOUNT DUE  12,600.00';
+  var x0=520, w=536, y=40, h=22;
+  el('rect',{x:x0,y:y,width:w,height:h,fill:'none',stroke:'#46739A'},svg);
+  el('rect',{x:x0,y:y,width:w*0.95,height:h,fill:'#3FB58C'},svg);
+  var lx=x0+w*0.90; el('line',{x1:lx,x2:lx,y1:y-30,y2:y+h+12,stroke:'#EAF2F8','stroke-width':2.5},svg);
+  var lt=el('text',{x:lx-10,y:y-16,fill:'#EAF2F8','font-size':15,'font-weight':500,'letter-spacing':1.6,'text-anchor':'end'},svg); lt.textContent='REVIEW LINE · 90%';
+  var t3=el('text',{x:x0+w,y:y+h+30,fill:'#C5D7E6','font-size':14,'letter-spacing':1.4,'text-anchor':'end'},svg); t3.textContent='CONFIDENCE 95% · POSTING';
+  var t4=el('text',{x:0,y:102,fill:'#93AEC4','font-size':14,'letter-spacing':1.4},svg); t4.textContent='FIELDS BELOW THE LINE GO TO A PERSON. THIS ONE IS ABOVE IT.';
+}
+document.fonts.ready.then(function(){document.body.setAttribute('data-ready','1');});
+</script></body></html>

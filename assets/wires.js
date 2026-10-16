@@ -217,6 +217,8 @@
   }
 
   function prefetch() {
+    if (prefetch.on) return;
+    prefetch.on = 1;
     var seen = {};
     document.addEventListener('mouseover', function (e) {
       var a = e.target.closest ? e.target.closest('[data-wipe-link]') : null;
@@ -231,6 +233,10 @@
   }
 
   function start() {
+    /* the Lab's blueprint world draws its own grid and keeps green for "the
+       agent acted", so the green-wired field never runs there */
+    var world = document.documentElement.getAttribute('data-world');
+    if (world === 'blueprint') { prefetch(); return; }
     /* the field owns its own container appended to <body>, so React never
        sees it and cannot clobber the injected SVG on re-render */
     if (!document.getElementById('unwired-wirefield')) {

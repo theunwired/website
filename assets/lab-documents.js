@@ -130,7 +130,7 @@
       ]
     },
     {
-      key: 'footnote', name: 'The total in the footnote', tag: 'TRAP',
+      key: 'footnote', name: 'The total in the footnote', tag: 'FOOTNOTE',
       lesson: 'This is the dangerous one. The agent read the table total with 95% confidence, and it was the wrong number to pay. No threshold catches a confident mistake. A cross-check does: amount due should equal the total less any credit note named on the page.',
       draw: function () {
         return invoiceHead('Redfern Chemicals', 'Dock Lane · Runcorn', [['INVOICE NO', 'RC-90214'], ['DATE', '2026-09-25'], ['PO', 'PO 88602']])
@@ -410,12 +410,15 @@
     }
 
     function score() {
-      var docs = 0, wrong = 0, you = 0, agent = 0, youExtra = 0, agentExtra = 0;
+      var docs = 0, wrong = 0, you = 0, agent = 0, youExtra = 0, agentExtra = 0, trapConf = 0;
       DOCS.forEach(function (d, i) {
         if (!state[i].revealed) return;
         docs++;
         d.fields.forEach(function (f, k) {
           var picked = !!state[i].picks[k], flag = flagged(f);
+          /* a confident mistake: wrong, read at 90% or more, and sure enough to
+             go straight through. Meeting one earns this stage its lesson */
+          if (f.wrong && !flag && f.conf >= 90) trapConf = Math.max(trapConf, f.conf);
           if (f.wrong) { wrong++; if (picked) you++; if (flag) agent++; }
           else { if (picked) youExtra++; if (flag) agentExtra++; }
         });
@@ -424,7 +427,17 @@
       scoreEl.textContent = docs + ' of 6 documents. Of ' + wrong + ' wrong ' + (wrong === 1 ? 'field' : 'fields') + ', you caught ' + you +
         ' and the agent caught ' + agent + '. You checked ' + youExtra + ' that were fine, the agent sent ' + agentExtra + ' that were fine.';
       if (window.UnwiredLab) {
-        window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold() });
+        var prev = window.UnwiredLab.load().documents;
+        /* once met, a confident mistake stays met, whatever the threshold does next */
+        trapConf = Math.max(trapConf, (prev && prev.trapConf) || 0);
+        if (prev && prev.docs > docs) {
+          /* back for another look: this visit has seen less than the last one,
+             so keep the fuller run rather than shrink it */
+          prev.trapConf = trapConf;
+          window.UnwiredLab.save('documents', prev);
+        } else {
+          window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf });
+        }
       }
     }
 
@@ -436,7 +449,16 @@
       if (first) first.scrollIntoView({ block: 'nearest' });
     });
     nextBtn.addEventListener('click', function () {
-      if (cur < DOCS.length - 1) { show(cur + 1); return; }
+      if (cur < DOCS.length - 1) {
+        show(cur + 1);
+        /* stacked on a phone, the next document is a screen above the button:
+           bring the paper itself into view */
+        if (window.matchMedia('(max-width: 860px)').matches) {
+          var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+          docBox.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+        }
+        return;
+      }
       var run = document.getElementById('your-run');
       if (run) run.scrollIntoView({ behavior: 'smooth', block: 'start' });
     });

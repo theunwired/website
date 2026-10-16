@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lab · The Unwired</title>
-<meta name="description" content="Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, and find the fields worth checking. Runs in your browser.">
+<meta name="description" content="Where would you draw the line? Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, check the fields. In your browser.">
 <link rel="canonical" href="https://theunwired.in/lab.html">
 <meta property="og:title" content="Lab · The Unwired">
-<meta property="og:description" content="Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, and find the fields worth checking. Runs in your browser.">
+<meta property="og:description" content="Where would you draw the line? Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, check the fields. In your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/lab.html">
-<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image" content="https://theunwired.in/assets/og-lab.png">
 <meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:image:height" content="627">
+<meta property="og:image:alt" content="The Unwired Lab, sheet 00. Where would you draw the line? A line labelled 5.0% across 200 invoices.">
 <meta property="og:site_name" content="The Unwired">
-<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:image" content="https://theunwired.in/assets/og-lab.png">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#10304A">
 <script>
@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=11">
+<link rel="stylesheet" href="assets/styles.css?v=12">
 </head>
 <body>
 
@@ -92,7 +92,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
             <a class="btn btn--solid" data-wipe-link href="lab-tolerance.html">Start at stage 01</a>
           </div>
         </div>
-        <div class="lab-thesis__line" aria-hidden="true"><span>YOUR LINE</span></div>
+        <div class="lab-thesis__line" aria-hidden="true"><span data-lab-hubline>THE LINE · 5.0%</span></div>
       </div>
       <div class="lab-sheet-foot">
         <div class="titleblock" aria-label="Title block">
@@ -112,28 +112,31 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
           <span class="lab-card__top"><span class="lab-card__num">01</span><span class="lab-card__time">ABOUT 2 MIN</span></span>
           <span class="lab-card__name">Set the line</span>
           <span class="lab-card__text">Drag one price tolerance across 200 invoices. See what posts on its own, what goes to a person, and what slips through.</span>
-          <span class="lab-card__lesson">One number decides what nobody checks.</span>
+          <span class="lab-card__ask">How much slips through at your line?</span>
+          <span data-lab-earned="tolerance" hidden><span class="lab-lesson"><span class="lab-lesson__k">SHEET 01 · THE LESSON</span><span>One number decides what nobody checks.</span></span></span>
           <span class="lab-card__go">Open stage 01</span>
         </a>
         <a class="lab-card" data-wipe-link href="lab-handover.html">
           <span class="lab-card__top"><span class="lab-card__num">02</span><span class="lab-card__time">ABOUT 3 MIN</span></span>
           <span class="lab-card__name">Pass the handover</span>
           <span class="lab-card__text">Edit the agent's rules as plain config. Change a tolerance, add a rule, and explain a decision from the log.</span>
-          <span class="lab-card__lesson">If your team can't change it, we built it wrong.</span>
+          <span class="lab-card__ask">Could your team change this agent without calling us?</span>
+          <span data-lab-earned="handover" hidden><span class="lab-lesson"><span class="lab-lesson__k">SHEET 02 · THE LESSON</span><span>If your team can't change it, we built it wrong.</span></span></span>
           <span class="lab-card__go">Open stage 02</span>
         </a>
         <a class="lab-card" data-wipe-link href="lab-documents.html">
           <span class="lab-card__top"><span class="lab-card__num">03</span><span class="lab-card__time">ABOUT 3 MIN</span></span>
           <span class="lab-card__name">Worst-document bench</span>
           <span class="lab-card__text">Six awkward documents: a fax, a pen correction, a total hidden in a footnote. Pick the fields you would check, then see what the agent flagged.</span>
-          <span class="lab-card__lesson">Confidence is not the same as correct.</span>
+          <span class="lab-card__ask">Would you check a field the agent is 95% sure of?</span>
+          <span data-lab-earned="documents" hidden><span class="lab-lesson"><span class="lab-lesson__k">SHEET 03 · THE LESSON</span><span>Confidence is not the same as correct.</span></span></span>
           <span class="lab-card__go">Open stage 03</span>
         </a>
       </div>
     </div>
   </section>
 
-  <section class="sec sec--rule" id="your-run" data-section="Your run">
+  <section class="sec sec--rule" id="your-run" data-section="Your run" hidden>
     <div class="wrap">
       <div class="lab-run" data-lab-run data-reveal>
         <div class="chapter chapter--tight">
@@ -159,6 +162,10 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
         <span class="lab-stamp" data-lab-stamp hidden aria-label="Approved by a person"><span>APPROVED BY</span><span>A PERSON</span></span>
         <div class="lab-run__foot">
           <button type="button" class="btn btn--solid" data-open-contact data-lab-run-send hidden>Send this to us</button>
+          <div class="lab-copy-row" hidden>
+            <button type="button" class="lab-copy" data-lab-copy="run">Copy the sheet</button>
+            <span class="lab-copy__status" role="status"></span>
+          </div>
           <p class="lab-run__note">Kept in this tab only and gone when you close it. Sending it opens the contact form with your run filled in, so you can add the process you have in mind.</p>
         </div>
       </div>
@@ -227,10 +234,10 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
   </div>
 </div>
 
-<script src="assets/wires.js?v=8"></script>
+<script src="assets/wires.js?v=9"></script>
 <script src="assets/ambient.js?v=8"></script>
-<script src="assets/site.js?v=9"></script>
-<script src="assets/lab-run.js?v=3"></script>
+<script src="assets/site.js?v=10"></script>
+<script src="assets/lab-run.js?v=4"></script>
 <script>
 /* old links pointed at sections of this page; send them to the stage pages */
 (function(){var m={"#tolerance":"lab-tolerance.html","#handover":"lab-handover.html"}[location.hash];if(m)location.replace(m);})();
