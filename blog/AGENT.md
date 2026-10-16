@@ -127,12 +127,18 @@ Mac holds the SSH key that can push to GitHub; cloud sessions cannot.
 
 1. Gmail search `subject:"[Unwired review]" newer_than:45d`. For each
    thread, `get_thread` with `PLAIN_TEXT`.
-2. In each thread find the latest message from us that contains
-   `Review draft · v`. Read its line `Draft <slug> · v<N> · fingerprint <fp>`.
-   Then look at messages after it **from theunwired.in@gmail.com only**.
-   Ignore everything below the quoted-reply marker ("On ... wrote:").
-   Skip the thread if a later message from us already says "Published" or
-   contains a newer draft. If no thread needs action, stop.
+2. Drafts and replies both come from theunwired.in@gmail.com (the agent
+   sends from that inbox to itself). Tell them apart by how the message
+   text starts, ignoring everything below the quoted-reply marker
+   ("On ... wrote:"):
+   - a **draft** starts with `Review draft` and contains the line
+     `Draft <slug> · v<N> · fingerprint <fp>`;
+   - an **agent note** starts with `Published:` or `Approved, but`;
+   - anything else from theunwired.in@gmail.com is a **reviewer reply**.
+   Messages from any other address are ignored.
+   In each thread take the latest draft, then the first reviewer reply
+   after it. Skip the thread if there is no such reply, or if an agent note
+   or a newer draft comes after that reply. If no thread needs action, stop.
 3. Pull the repo on the Mac.
 4. Reply starts with `approved` (any case):
    - On the Mac, `blog/drafts/<slug>.json` must have `_review.version` equal
