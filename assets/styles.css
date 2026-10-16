@@ -1667,7 +1667,9 @@ h2.h-section,
 .lab-hero { padding: 64px 0 56px; }
 .lab-stage { padding-top: 56px; }
 /* the stage bar takes 48px of sticky space, so in-page anchors clear it */
-.lab-stage, #your-run, #stages, .bench-picker { scroll-margin-top: calc(var(--nav-h) + 72px); }
+.lab-stage, #your-run, #stages { scroll-margin-top: calc(var(--nav-h) + 72px); }
+/* html scroll-padding already clears the nav: this adds the stage bar */
+.bench-doc { scroll-margin-top: 56px; }
 
 .lab-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--hairline); border: 1px solid var(--hairline); }
 .lab-card {
@@ -1685,7 +1687,8 @@ h2.h-section,
 .lab-card__time { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; color: var(--quiet); }
 .lab-card__name { font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
 .lab-card__text { font-size: 15px; line-height: 1.6; color: var(--body); flex: 1; }
-.lab-card__ask { font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--bone); border-top: 1px solid var(--hairline); padding-top: 12px; }
+/* two lines tall whatever the question, so the rules line up across cards */
+.lab-card__ask { font-size: 15px; font-weight: 600; line-height: 1.45; min-height: calc(2.9em + 13px); color: var(--bone); border-top: 1px solid var(--hairline); padding-top: 12px; }
 .lab-card .lab-lesson { margin-top: 2px; }
 .lab-card__go { font-family: var(--mono); font-size: 12.5px; color: var(--signal); margin-top: 6px; }
 .lab-card:hover .lab-card__go { color: var(--bone); }
@@ -1802,7 +1805,8 @@ h2.h-section,
 
 /* the line: one vertical, always with its value */
 .lab-thesis { position: relative; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 40px; align-items: stretch; }
-.lab-thesis__line { position: relative; width: 2px; background: var(--bone); margin-right: 120px; }
+/* room for the widest label, YOUR LINE · 15.0% */
+.lab-thesis__line { position: relative; width: 2px; background: var(--bone); margin-right: 150px; }
 .lab-thesis__line span { position: absolute; top: 0; left: 12px; white-space: nowrap; font-family: var(--mono); font-size: 11px; letter-spacing: 0.12em; color: var(--bone); }
 .h-thesis { font-size: clamp(44px, 8vw, 104px); line-height: 0.95; letter-spacing: -0.045em; font-weight: 700; max-width: 9ch; }
 
@@ -1984,6 +1988,7 @@ h2.h-section,
 @media (max-width: 860px) {
   .lab-split { grid-template-columns: 1fr; }
   .lab-cards, .bench-split, .lab-band { grid-template-columns: 1fr; }
+  .lab-card__ask { min-height: 0; }
   .bench-picker { grid-template-columns: repeat(3, 1fr); }
   .bench-doc { position: static; }
   .bench-zoom { display: inline-block; }

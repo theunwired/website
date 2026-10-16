@@ -175,6 +175,12 @@
       new_vendor_review: false, always_escalate_vendor: [] };
     var marks = [];
     var svg, line, lineLabel, layout, dims;
+    /* a visitor coming back finds their own line, not the default. "released"
+       is set once they let go of the line, which earns the lesson and lets the
+       summary name the duplicates. Nothing is saved on load */
+    var prev = window.UnwiredLab ? window.UnwiredLab.load().tolerance : null;
+    var released = !!(prev && prev.done);
+    if (prev && isFinite(prev.pct)) range.value = prev.pct;
 
     function build() {
       var narrow = chartBox.clientWidth < 620;
@@ -294,7 +300,8 @@
       var text = 'At ' + pct(cfg.price_tolerance_pct) + ', ' + touch + ' of 200 invoices post with no one touching them. ' +
         (res.person + res.caught) + ' go to a person, and ' + res.person + ' of those were fine. ' +
         res.slip + ' problems slip through, about ' + money(res.slipValue) + ' paid that should not have been.';
-      if (dups) text += ' ' + dups + ' of them are duplicates with no variance at all. No tolerance can see those. That takes a rule, which is the next tool.';
+      if (dups && released) text += ' ' + dups + ' of them are duplicates with no variance at all. No tolerance can see those. That takes a rule, which is the next tool.';
+      else if (dups) text += ' Drag the line, then let go. Which ones still get paid?';
       summary.textContent = text;
       svg.setAttribute('aria-label', 'Dot chart of 200 synthetic invoices by price variance. ' + text);
     }
@@ -345,8 +352,6 @@
 
     /* record only what the visitor chose, never the default on page load.
        "done" is set when they let go of the line, which earns the lesson */
-    var prev = window.UnwiredLab ? window.UnwiredLab.load().tolerance : null;
-    var released = !!(prev && prev.done);
     function record() {
       if (!window.UnwiredLab) return;
       var dups = last.rows.filter(function (r) { return r.o === 'slip' && r.inv.kind === 'duplicate'; }).length;
@@ -401,6 +406,7 @@
   function parseConfig(text) {
     var cfg = { always_escalate_vendor: [] };
     var lines = {};
+    var vendorLines = {};
     var known = VENDORS.concat(NEW_VENDORS).map(function (v) { return v.toLowerCase(); });
     var src = text.split('\n');
     for (var i = 0; i < src.length; i++) {
@@ -431,6 +437,8 @@
             return { error: at + 'no vendor called "' + list[k] + '" in this queue. Try ' + VENDORS[0] + ' or ' + VENDORS[3] + '.' };
           }
           if (cfg.always_escalate_vendor.indexOf(list[k]) === -1) cfg.always_escalate_vendor.push(list[k]);
+          /* one vendor per line is the advice, so credit each to its own line */
+          if (!vendorLines[list[k]]) vendorLines[list[k]] = i + 1;
         }
       }
       lines[key] = i + 1;
@@ -439,6 +447,7 @@
       if (KEYS[key2] !== 'vendor' && cfg[key2] === undefined) return { error: 'Missing ' + key2 + '. Every rule needs a value, even if it is the default.' };
     }
     cfg.lines = lines;
+    cfg.vendorLines = vendorLines;
     return { cfg: cfg };
   }
 
@@ -514,50 +523,73 @@
     /* why the slips dropped: the same line with no rules, as on sheet 01,
        against the rules in the file now. Each held problem is credited to
        the rule that held it, by its line in the visitor's config */
+    function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
     function explain() {
       if (!why) return;
       var lineOnly = runQueue(queue, { price_tolerance_pct: cfg.price_tolerance_pct, auto_post_max_amount: Infinity,
         hold_duplicates: false, new_vendor_review: false, always_escalate_vendor: [] });
-      var held = {};
+      var held = {}, order = [];
       lineOnly.rows.forEach(function (r, i) {
         var now = res.rows[i];
-        if (r.o === 'slip' && now.o === 'caught') held[now.d.rule] = (held[now.d.rule] || 0) + 1;
+        if (r.o !== 'slip' || now.o !== 'caught') return;
+        var rule = now.d.rule;
+        var at = rule === 'always_escalate_vendor' ? cfg.vendorLines[now.inv.vendor.toLowerCase()] : cfg.lines[rule];
+        var key = rule + '@' + at;
+        if (!held[key]) { held[key] = { rule: rule, line: at, n: 0, dups: true }; order.push(key); }
+        held[key].n++;
+        if (now.inv.kind !== 'duplicate') held[key].dups = false;
       });
       var p = pct(cfg.price_tolerance_pct);
-      var text = 'Sheet 01 had only the line: at ' + p + ', ' + lineOnly.slip + (lineOnly.slip === 1 ? ' problem slips' : ' problems slip') +
-        ' through. With these rules, ' + res.slip + (res.slip === 1 ? ' does.' : ' do.');
-      var rules = Object.keys(held).sort(function (a, b) { return (cfg.lines[a] || 0) - (cfg.lines[b] || 0); });
-      var parts = rules.map(function (rule) {
-        var n = held[rule];
-        var what = rule === 'hold_duplicates' ? (n === 1 ? 'duplicate' : 'duplicates') : (n === 1 ? 'problem' : 'problems');
-        return n + ' ' + what + ' held by <code>' + rule + '</code>, line ' + cfg.lines[rule] + ' of your config';
+      var mine = carried || cfg.price_tolerance_pct !== startPct ? 'your line' : 'the line';
+      var text = 'With only a line, as on sheet 01, ' + (lineOnly.slip ? plural(lineOnly.slip, 'problem slips', 'problems slip') : 'nothing slips') +
+        ' through at ' + p + '. With these rules, ' + (res.slip === 0 ? 'none do.' : res.slip === 1 ? '1 does.' : res.slip + ' do.');
+      order.sort(function (a, b) { return (held[a].line || 0) - (held[b].line || 0); });
+      var parts = order.map(function (k) {
+        var h = held[k];
+        return plural(h.n, h.dups ? 'duplicate' : 'problem', h.dups ? 'duplicates' : 'problems') + ' held by <code>' + h.rule + '</code>, line ' + h.line + ' of your config';
       });
       if (parts.length) text += ' ' + parts.join('; ') + '.';
       var left = res.rows.filter(function (r) { return r.o === 'slip'; });
+      var d = left.filter(function (r) { return r.inv.kind === 'duplicate'; }).length, o = left.length - d;
       if (left.length === 1) {
         var inv = left[0].inv;
-        text += ' Still slipping: ' + inv.id + (inv.kind === 'duplicate' ? ', a duplicate, because hold_duplicates is off.'
-          : ', ' + pct(inv.variance) + ' over the PO, inside your line.');
+        text += ' Still slipping: ' + inv.id + (d ? ', a duplicate, because <code>hold_duplicates</code> is off.'
+          : ', ' + pct(inv.variance) + ' over the PO, inside ' + mine + '.');
       } else if (left.length > 1) {
-        var d = left.filter(function (r) { return r.inv.kind === 'duplicate'; }).length;
-        text += ' Still slipping: ' + left.length + ', ' + (d ? d + ' of them duplicates and ' + (left.length - d) + ' inside your line.' : 'all inside your line.');
+        var bits = [];
+        if (d) bits.push(plural(d, 'duplicate', 'duplicates') + ', because <code>hold_duplicates</code> is off');
+        if (o) bits.push(plural(o, 'overbill', 'overbills') + ' inside ' + mine);
+        text += ' Still slipping: ' + bits.join(', and ') + '.';
       }
-      why.innerHTML = text;
+      /* the paragraph is a live region: rewrite it only when it changes */
+      if (why.innerHTML !== text) why.innerHTML = text;
     }
 
+    function mark(name) {
+      var li = q('[data-lab-task="' + name + '"]', root);
+      if (!li) return;
+      li.classList.add('is-done');
+      /* the visitor did it, so the mark is the pen, not a word */
+      var st = q('[data-state]', li);
+      st.innerHTML = '<svg class="pen-tick" viewBox="0 0 30 20" role="img" aria-label="Done"><path d="M3 11 L 10 17 L 27 3"/></svg>';
+    }
     function tick(name) {
       if (tasks[name]) return;
       tasks[name] = true;
       var n = (tasks.tolerance ? 1 : 0) + (tasks.rule ? 1 : 0) + (tasks.find ? 1 : 0);
-      if (window.UnwiredLab) window.UnwiredLab.save('handover', { done: n });
-      var li = q('[data-lab-task="' + name + '"]', root);
-      if (li) {
-        li.classList.add('is-done');
-        /* the visitor did it, so the mark is the pen, not a word */
-        var st = q('[data-state]', li);
-        st.innerHTML = '<svg class="pen-tick" viewBox="0 0 30 20" role="img" aria-label="Done"><path d="M3 11 L 10 17 L 27 3"/></svg>';
+      if (window.UnwiredLab) {
+        /* a pass already earned in this tab stays earned */
+        var had = window.UnwiredLab.load().handover;
+        window.UnwiredLab.save('handover', { done: Math.max(n, (had && had.done) || 0) });
       }
+      mark(name);
       if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
+    }
+    /* back after passing: show the pass, without saving anything */
+    var passed = window.UnwiredLab ? window.UnwiredLab.load().handover : null;
+    if (passed && passed.done === 3) {
+      ['tolerance', 'rule', 'find'].forEach(function (k) { tasks[k] = true; mark(k); });
+      done.hidden = false;
     }
 
     function render() {

@@ -189,7 +189,7 @@
     if (key === 'documents') {
       var docs = 'Worked through ' + d.docs + ' of 6 documents. ';
       if (!d.wrong) return docs + 'Nothing on those was wrong. The hard ones are further along.';
-      return docs + 'Of the ' + d.wrong + (d.wrong === 1 ? ' field' : ' fields') + ' that were actually wrong, you would have checked ' +
+      return docs + 'Of the ' + d.wrong + (d.wrong === 1 ? ' field that was' : ' fields that were') + ' actually wrong, you would have checked ' +
         d.youCaught + ' and the agent flagged ' + d.agentCaught + ' at a ' + d.threshold + '% review threshold.';
     }
     return null;
@@ -208,12 +208,10 @@
       return at + 'nothing slipped through, and ' + d.person + ' of 200 invoices went to a person to get there.';
     }
     if (key === 'handover') {
-      if (d.done === 3) return "I changed an invoice agent's rules myself: a tolerance, an escalation rule, and why one invoice went to a person. If a team can't do that, the build isn't finished.";
-      return 'I did ' + d.done + " of the 3 handover tasks on an invoice agent's rules. A team should be able to do all three on its own.";
+      return "I changed a tolerance and added an escalation rule to an invoice agent myself, and found out from its log why one invoice went to a person. If a team can't do that, the build isn't finished.";
     }
     if (key === 'documents') {
-      if (d.trapConf) return 'The agent was ' + d.trapConf + '% sure of a field, and it was wrong. Confidence is not the same as correct.';
-      return 'I checked ' + d.docs + ' of 6 awkward documents against what an agent read.';
+      return 'The agent was ' + d.trapConf + '% sure of a field, and it was wrong. Confidence is not the same as correct.';
     }
     return '';
   }
@@ -223,7 +221,7 @@
         (d.slip === 1 ? ' problem' : ' problems') + ' slipped through' + (d.money ? ', about ' + money(d.money) + ' paid that should not have been.' : '.');
     }
     if (key === 'documents' && d.wrong) {
-      return 'Of the ' + d.wrong + (d.wrong === 1 ? ' field' : ' fields') + ' that were wrong, I would have checked ' + d.youCaught +
+      return 'Of the ' + d.wrong + (d.wrong === 1 ? ' field that was' : ' fields that were') + ' wrong, I would have checked ' + d.youCaught +
         '. The agent flagged ' + d.agentCaught + ' at a ' + d.threshold + '% review line.';
     }
     return '';
@@ -231,15 +229,16 @@
   function sheetText(key) {
     var data = load();
     var lines = [];
+    /* share text carries only lessons the visitor has earned */
     if (key === 'run') {
-      STAGES.forEach(function (s) { if (data[s.key]) lines.push(lead(s.key, data[s.key])); });
+      STAGES.forEach(function (s) { if (earned(s.key, data[s.key])) lines.push(lead(s.key, data[s.key])); });
       lines.push('', 'THE UNWIRED LAB / ' + lines.length + (lines.length === 1 ? ' SHEET' : ' SHEETS') + ' / Illustrative, the same for everyone');
       lines.push(SITE + 'lab.html');
       return lines.join('\n');
     }
     var s = STAGES.filter(function (x) { return x.key === key; })[0];
     var d = data[key];
-    if (!s || !d) return '';
+    if (!s || !earned(key, d)) return '';
     lines.push(lead(key, d));
     var more = detail(key, d);
     if (more) lines.push(more);
@@ -269,8 +268,12 @@
       }
       box.hidden = false;
       box.value = text;
+      box.style.height = 'auto';
+      box.style.height = (box.scrollHeight + 2) + 'px';
       box.focus();
-      box.select();
+      /* select it all but keep the first line, the lesson, in view */
+      box.setSelectionRange(0, text.length, 'backward');
+      box.scrollTop = 0;
       say('Copying was blocked here. The text is selected below: copy it yourself.');
     }
     try {
@@ -332,9 +335,12 @@
     });
     Array.prototype.forEach.call(document.querySelectorAll('[data-lab-copy]'), function (b) {
       var k = b.getAttribute('data-lab-copy');
-      var ok = k === 'run' ? STAGES.some(function (s) { return !!data[s.key]; }) : !!data[k];
+      var ok = k === 'run' ? STAGES.some(function (s) { return earned(s.key, data[s.key]); }) : earned(k, data[k]);
       var row = b.closest('.lab-copy-row');
       (row || b).hidden = !ok;
+      /* a fallback box already open must not keep an older run's numbers */
+      var box = row && row.parentNode.querySelector('.lab-copy__text');
+      if (box && !box.hidden) box.value = sheetText(k);
     });
 
     /* the hub's line always carries a value: the visitor's, once drawn */

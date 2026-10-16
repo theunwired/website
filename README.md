@@ -138,7 +138,9 @@ the contact section, above the CTA, so the ten numbered beats are untouched.
   are questions. Each lesson is stamped (`data-lab-earned` in the HTML,
   `earned()` in `assets/lab-run.js`) once the visitor has done the thing it
   is about: let go of the line on 01, passed all three tasks on 02, met a
-  field the agent was sure of and wrong about on 03.
+  field the agent read at 90% or more, wrongly, above the review line on 03.
+  An earned lesson stays earned for the tab, and Copy the sheet only ever
+  carries earned lessons.
 - **Stage 02 starts from the visitor's line.** If they set one on 01,
   `rules.yaml` loads it with a `# from sheet 01` comment, and the sentence
   under the stats credits each held problem to the rule and config line that
@@ -149,10 +151,13 @@ the contact section, above the CTA, so the ten numbered beats are untouched.
 - **Your run and the sign pad stay hidden until there is a run.** The
   "Approved by a person" stamp needs a signature and at least one stage.
 - **Link cards.** Each Lab page has its own 1200 × 627 card
-  (`assets/og-lab*.png`), a question over the Lab's real queue. The cards
-  were drawn from the seeded queue, so redraw them if the seed or the mix
-  changes. After changing a card, re-scrape the page in LinkedIn's Post
-  Inspector or it keeps showing the old one.
+  (`assets/og-lab*.png`), a question over the Lab's real queue. They are
+  drawn by `docs/brand/social/lab-cards/` (`node shoot.js` there, with
+  Playwright installed), which copies the engine fresh from `assets/lab.js`,
+  so redraw them whenever the seed, the mix or the rules change. After
+  changing a card, re-scrape the page in LinkedIn's Post Inspector or it keeps
+  showing the old one. The cards print theunwired.in/lab, which `vercel.json`
+  redirects to `/lab.html`.
 - Nothing is sent anywhere until the visitor sends the contact form
   themselves. Copy the sheet only writes to the visitor's own clipboard. If a
   Lab tool ever calls a server or takes uploads, update `privacy.html` and

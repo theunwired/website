@@ -416,9 +416,9 @@
         docs++;
         d.fields.forEach(function (f, k) {
           var picked = !!state[i].picks[k], flag = flagged(f);
-          /* a confident mistake: wrong, and sure enough to go straight through.
-             Meeting one is what earns this stage its lesson */
-          if (f.wrong && !flag) trapConf = Math.max(trapConf, f.conf);
+          /* a confident mistake: wrong, read at 90% or more, and sure enough to
+             go straight through. Meeting one earns this stage its lesson */
+          if (f.wrong && !flag && f.conf >= 90) trapConf = Math.max(trapConf, f.conf);
           if (f.wrong) { wrong++; if (picked) you++; if (flag) agent++; }
           else { if (picked) youExtra++; if (flag) agentExtra++; }
         });
@@ -430,7 +430,14 @@
         var prev = window.UnwiredLab.load().documents;
         /* once met, a confident mistake stays met, whatever the threshold does next */
         trapConf = Math.max(trapConf, (prev && prev.trapConf) || 0);
-        window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf });
+        if (prev && prev.docs > docs) {
+          /* back for another look: this visit has seen less than the last one,
+             so keep the fuller run rather than shrink it */
+          prev.trapConf = trapConf;
+          window.UnwiredLab.save('documents', prev);
+        } else {
+          window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf });
+        }
       }
     }
 
@@ -445,10 +452,10 @@
       if (cur < DOCS.length - 1) {
         show(cur + 1);
         /* stacked on a phone, the next document is a screen above the button:
-           bring it into view, starting with the picker so the visitor sees which */
+           bring the paper itself into view */
         if (window.matchMedia('(max-width: 860px)').matches) {
           var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-          picker.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+          docBox.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
         }
         return;
       }

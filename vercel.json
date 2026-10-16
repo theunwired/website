@@ -30,6 +30,11 @@
       "source": "/builds.html",
       "destination": "/work.html#builds",
       "permanent": true
+    },
+    {
+      "source": "/lab",
+      "destination": "/lab.html",
+      "permanent": true
     }
   ]
 }

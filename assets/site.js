@@ -216,13 +216,16 @@
     var doc = document.documentElement.scrollHeight - vh;
     var prog = clamp(y / Math.max(1, doc));
     railFill.style.height = rail.getBoundingClientRect().height * prog + 'px';
+    /* number only the sections on the page: a hidden one (the Lab's empty
+       Your run) has a zero rect and would otherwise always read as active */
+    var shown = sections.filter(function (s) { return !s.hidden && s.getClientRects().length; });
     var active = -1;
-    sections.forEach(function (s, i) {
+    shown.forEach(function (s, i) {
       if (s.getBoundingClientRect().top < vh * 0.45) active = i;
     });
     if (active >= 0) {
       railLabel.textContent = String(active + 1).padStart(2, '0') + ' / ' +
-        sections[active].getAttribute('data-section').toUpperCase();
+        shown[active].getAttribute('data-section').toUpperCase();
       railLabel.style.opacity = '1';
     } else {
       railLabel.style.opacity = '0';
