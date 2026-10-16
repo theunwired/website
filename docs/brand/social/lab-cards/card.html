@@ -38,7 +38,7 @@ var Q = buildQueue();
 var which = location.hash.slice(1) || 'hub';
 var NS='http://www.w3.org/2000/svg';
 function el(t,a,p){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
-function outcome(inv,to){ if(to==='post') return inv.problem?'slip':'post'; return inv.problem?'caught':'person'; }
+function cardOutcome(inv,to){ if(to==='post') return inv.problem?'slip':'post'; return inv.problem?'caught':'person'; }
 var C={post:'#3FB58C',person:'#C5D7E6',caught:'#FF9F8C',slip:'#FF9F8C'};
 var CARDS={
   hub:{sheet:'00 / 03',eyebrow:'THE LAB · THREE STAGES · ABOUT 8 MIN',q:'Where would you draw the line?',strip:{pct:5,rules:false,label:'THE LINE · 5.0%'},foot:'ILLUSTRATIVE · LEFT OF THE LINE THE AGENT ACTS. RIGHT OF IT, A PERSON.'},
@@ -62,7 +62,7 @@ if(c.strip){
   var rows=counts.reduce(function(m,c){return Math.max(m,c?c.length:0);},9), zc=Math.ceil(zero.length/rows), P=13, S=10.2;
   var x0=(zc+gap)*P, W=1056, H=rows*P+48, base=24+rows*P;
   var svg=el('svg',{viewBox:'0 0 '+W+' '+H},art);
-  function mark(inv,x,y){var o=outcome(inv,decide(inv,cfg).to);
+  function mark(inv,x,y){var o=cardOutcome(inv,decide(inv,cfg).to);
     if(o==='slip'){var s=S*0.78;el('rect',{x:x+(S-s)/2,y:y+(S-s)/2,width:s,height:s,fill:C.slip,transform:'rotate(45 '+(x+S/2)+' '+(y+S/2)+')'},svg);}
     else if(o==='post') el('rect',{x:x,y:y,width:S,height:S,fill:C.post},svg);
     else el('rect',{x:x+.75,y:y+.75,width:S-1.5,height:S-1.5,fill:'none',stroke:C[o],'stroke-width':1.5},svg);}

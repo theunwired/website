@@ -1,7 +1,8 @@
 /* Redraws the Lab's link cards into assets/.
-     npm i playwright   (once, anywhere on NODE_PATH)
-     node docs/brand/social/lab-cards/shoot.js
-   CHROME=/path/to/chrome uses an installed Chromium instead of Playwright's.
+     npm i --prefix /tmp/pw playwright      (once, outside the repo)
+     PLAYWRIGHT=/tmp/pw/node_modules/playwright node docs/brand/social/lab-cards/shoot.js
+   Add CHROME=/path/to/chrome to use an installed Chromium instead of
+   Playwright's own (npx playwright install chromium fetches that one).
    The engine is copied fresh from assets/lab.js each run, so the cards always
    match the queue the Lab runs. Re-scrape the pages in LinkedIn's Post
    Inspector after changing a card. */

@@ -248,6 +248,15 @@
     return lines.join('\n');
   }
 
+  /* the fallback box: sized to its text, all of it selected, first line in view */
+  function fill(box, text) {
+    box.value = text;
+    box.style.height = 'auto';
+    box.style.height = (box.scrollHeight + 2) + 'px';
+    if (document.activeElement === box) box.setSelectionRange(0, text.length, 'backward');
+    box.scrollTop = 0;
+  }
+
   function copySheet(btn) {
     var key = btn.getAttribute('data-lab-copy');
     var row = btn.closest('.lab-copy-row') || btn.parentNode;
@@ -267,13 +276,15 @@
         row.parentNode.insertBefore(box, row.nextSibling);
       }
       box.hidden = false;
-      box.value = text;
-      box.style.height = 'auto';
-      box.style.height = (box.scrollHeight + 2) + 'px';
-      box.focus();
-      /* select it all but keep the first line, the lesson, in view */
-      box.setSelectionRange(0, text.length, 'backward');
-      box.scrollTop = 0;
+      fill(box, text);
+      /* focus without letting the browser scroll to the caret, then bring the
+         whole box into view below the sticky bars, first line first */
+      box.focus({ preventScroll: true });
+      fill(box, text);
+      var r = box.getBoundingClientRect();
+      var bar = document.querySelector('.lab-stagebar');
+      var under = bar ? bar.getBoundingClientRect().bottom : 0;
+      if (r.top < under || r.bottom > window.innerHeight) box.scrollIntoView({ block: 'start' });
       say('Copying was blocked here. The text is selected below: copy it yourself.');
     }
     try {
@@ -340,7 +351,7 @@
       (row || b).hidden = !ok;
       /* a fallback box already open must not keep an older run's numbers */
       var box = row && row.parentNode.querySelector('.lab-copy__text');
-      if (box && !box.hidden) box.value = sheetText(k);
+      if (box && !box.hidden) fill(box, sheetText(k));
     });
 
     /* the hub's line always carries a value: the visitor's, once drawn */

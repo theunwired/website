@@ -1687,8 +1687,22 @@ h2.h-section,
 .lab-card__time { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.12em; color: var(--quiet); }
 .lab-card__name { font-size: 21px; font-weight: 700; letter-spacing: -0.015em; }
 .lab-card__text { font-size: 15px; line-height: 1.6; color: var(--body); flex: 1; }
-/* two lines tall whatever the question, so the rules line up across cards */
-.lab-card__ask { font-size: 15px; font-weight: 600; line-height: 1.45; min-height: calc(2.9em + 13px); color: var(--bone); border-top: 1px solid var(--hairline); padding-top: 12px; }
+.lab-card__ask { font-size: 15px; font-weight: 600; line-height: 1.45; color: var(--bone); border-top: 1px solid var(--hairline); padding-top: 12px; }
+/* three across, the cards share their rows, so each question, stamp and link
+   lines up with its neighbours whichever lessons have been earned */
+@supports (grid-template-rows: subgrid) {
+  @media (min-width: 861px) {
+    .lab-cards { grid-template-rows: repeat(6, auto); }
+    .lab-card { display: grid; grid-row: span 6; grid-template-rows: subgrid; row-gap: 0; }
+    .lab-card > * { margin-top: 12px; }
+    .lab-card__top { grid-row: 1; margin-top: 0; }
+    .lab-card__name { grid-row: 2; }
+    .lab-card__text { grid-row: 3; }
+    .lab-card__ask { grid-row: 4; }
+    .lab-card > [data-lab-earned] { grid-row: 5; }
+    .lab-card__go { grid-row: 6; margin-top: 18px; align-self: end; }
+  }
+}
 .lab-card .lab-lesson { margin-top: 2px; }
 .lab-card__go { font-family: var(--mono); font-size: 12.5px; color: var(--signal); margin-top: 6px; }
 .lab-card:hover .lab-card__go { color: var(--bone); }
@@ -1910,6 +1924,7 @@ h2.h-section,
 .lab-copy__status { font-family: var(--mono); font-size: 11px; line-height: 1.5; color: var(--quiet); }
 .lab-copy__text { width: 100%; min-height: 150px; font-family: var(--mono); font-size: 12px; line-height: 1.6; color: var(--bone); background: var(--panel); border: 1px solid var(--hairline-hi); padding: 12px; resize: vertical; }
 .lab-copy__text[hidden] { display: none; }
+.lab-copy__text { scroll-margin-top: 56px; }
 
 /* why the slips dropped between sheet 01 and sheet 02 */
 .lab-why { margin-top: 18px; max-width: 74ch; font-size: 15px; line-height: 1.6; color: var(--body); border-left: 2px solid var(--hairline-hi); padding-left: 16px; }
@@ -1988,7 +2003,6 @@ h2.h-section,
 @media (max-width: 860px) {
   .lab-split { grid-template-columns: 1fr; }
   .lab-cards, .bench-split, .lab-band { grid-template-columns: 1fr; }
-  .lab-card__ask { min-height: 0; }
   .bench-picker { grid-template-columns: repeat(3, 1fr); }
   .bench-doc { position: static; }
   .bench-zoom { display: inline-block; }

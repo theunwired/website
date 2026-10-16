@@ -409,35 +409,38 @@
       drawn.boxes[i].classList.toggle('is-hot', on);
     }
 
+    /* the run keeps one record per document, merged across visits, so a
+       second look at the bench adds to the run instead of replacing it */
     function score() {
-      var docs = 0, wrong = 0, you = 0, agent = 0, youExtra = 0, agentExtra = 0, trapConf = 0;
+      var prev = window.UnwiredLab ? window.UnwiredLab.load().documents : null;
+      var per = {};
+      if (prev && prev.per) for (var pk in prev.per) per[pk] = prev.per[pk];
       DOCS.forEach(function (d, i) {
         if (!state[i].revealed) return;
-        docs++;
+        var t = { w: 0, y: 0, a: 0, ye: 0, ae: 0, trap: 0 };
         d.fields.forEach(function (f, k) {
           var picked = !!state[i].picks[k], flag = flagged(f);
           /* a confident mistake: wrong, read at 90% or more, and sure enough to
              go straight through. Meeting one earns this stage its lesson */
-          if (f.wrong && !flag && f.conf >= 90) trapConf = Math.max(trapConf, f.conf);
-          if (f.wrong) { wrong++; if (picked) you++; if (flag) agent++; }
-          else { if (picked) youExtra++; if (flag) agentExtra++; }
+          if (f.wrong && !flag && f.conf >= 90) t.trap = Math.max(t.trap, f.conf);
+          if (f.wrong) { t.w++; if (picked) t.y++; if (flag) t.a++; }
+          else { if (picked) t.ye++; if (flag) t.ae++; }
         });
+        per[d.key] = t;
       });
+      var docs = 0, wrong = 0, you = 0, agent = 0, youExtra = 0, agentExtra = 0, trapConf = 0;
+      for (var key in per) {
+        var r = per[key];
+        docs++; wrong += r.w; you += r.y; agent += r.a; youExtra += r.ye; agentExtra += r.ae;
+        trapConf = Math.max(trapConf, r.trap);
+      }
       if (!docs) { scoreEl.textContent = 'Reveal a document to start the score.'; return; }
       scoreEl.textContent = docs + ' of 6 documents. Of ' + wrong + ' wrong ' + (wrong === 1 ? 'field' : 'fields') + ', you caught ' + you +
         ' and the agent caught ' + agent + '. You checked ' + youExtra + ' that were fine, the agent sent ' + agentExtra + ' that were fine.';
       if (window.UnwiredLab) {
-        var prev = window.UnwiredLab.load().documents;
         /* once met, a confident mistake stays met, whatever the threshold does next */
         trapConf = Math.max(trapConf, (prev && prev.trapConf) || 0);
-        if (prev && prev.docs > docs) {
-          /* back for another look: this visit has seen less than the last one,
-             so keep the fuller run rather than shrink it */
-          prev.trapConf = trapConf;
-          window.UnwiredLab.save('documents', prev);
-        } else {
-          window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf });
-        }
+        window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf, per: per });
       }
     }
 

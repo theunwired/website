@@ -524,6 +524,10 @@
        against the rules in the file now. Each held problem is credited to
        the rule that held it, by its line in the visitor's config */
     function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
+    /* the config line behind a decision: a vendor rule is on its vendor's line */
+    function ruleLine(rule, inv) {
+      return rule === 'always_escalate_vendor' ? cfg.vendorLines[inv.vendor.toLowerCase()] : cfg.lines[rule];
+    }
     function explain() {
       if (!why) return;
       var lineOnly = runQueue(queue, { price_tolerance_pct: cfg.price_tolerance_pct, auto_post_max_amount: Infinity,
@@ -533,7 +537,7 @@
         var now = res.rows[i];
         if (r.o !== 'slip' || now.o !== 'caught') return;
         var rule = now.d.rule;
-        var at = rule === 'always_escalate_vendor' ? cfg.vendorLines[now.inv.vendor.toLowerCase()] : cfg.lines[rule];
+        var at = ruleLine(rule, now.inv);
         var key = rule + '@' + at;
         if (!held[key]) { held[key] = { rule: rule, line: at, n: 0, dups: true }; order.push(key); }
         held[key].n++;
@@ -578,18 +582,18 @@
       tasks[name] = true;
       var n = (tasks.tolerance ? 1 : 0) + (tasks.rule ? 1 : 0) + (tasks.find ? 1 : 0);
       if (window.UnwiredLab) {
-        /* a pass already earned in this tab stays earned */
-        var had = window.UnwiredLab.load().handover;
-        window.UnwiredLab.save('handover', { done: Math.max(n, (had && had.done) || 0) });
+        window.UnwiredLab.save('handover', { done: n, tasks: { tolerance: tasks.tolerance, rule: tasks.rule, find: tasks.find } });
       }
       mark(name);
       if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
     }
-    /* back after passing: show the pass, without saving anything */
-    var passed = window.UnwiredLab ? window.UnwiredLab.load().handover : null;
-    if (passed && passed.done === 3) {
-      ['tolerance', 'rule', 'find'].forEach(function (k) { tasks[k] = true; mark(k); });
-      done.hidden = false;
+    /* back for another go: tasks already done in this tab stay done. Shown
+       again on load without saving anything */
+    var had = window.UnwiredLab ? window.UnwiredLab.load().handover : null;
+    if (had) {
+      var was = had.tasks || (had.done === 3 ? { tolerance: true, rule: true, find: true } : {});
+      ['tolerance', 'rule', 'find'].forEach(function (k) { if (was[k]) { tasks[k] = true; mark(k); } });
+      if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
     }
 
     function render() {
@@ -639,7 +643,7 @@
           ['read', inv.po + ' · goods receipt GR-' + (2200 + inv.n)],
           ['check', inv.variance ? 'price ' + pct(inv.variance) + ' over po' : 'price and quantity match the po'],
           [d.to === 'post' ? 'post' : 'hand', d.why],
-          ['rule', d.rule ? d.rule + (cfg.lines[d.rule] ? ' · line ' + cfg.lines[d.rule] + ' of your config' : '') : 'no rule needed, everything agreed'],
+          ['rule', d.rule ? d.rule + (ruleLine(d.rule, inv) ? ' · line ' + ruleLine(d.rule, inv) + ' of your config' : '') : 'no rule needed, everything agreed'],
           ['truth', 'what it was: ' + inv.note]
         ];
         lines.forEach(function (l) {
