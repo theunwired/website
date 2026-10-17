@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What an AI agent&#x27;s audit trail should record · The Unwired</title>
+<meta name="description" content="The eight fields every agent decision record needs, a worked invoice example, and what the EU AI Act and NIST say about logs and oversight.">
+<link rel="canonical" href="https://theunwired.in/note-what-an-agent-audit-trail-records.html">
+<meta property="og:title" content="What an AI agent&#x27;s audit trail should record · The Unwired">
+<meta property="og:description" content="The eight fields every agent decision record needs, a worked invoice example, and what the EU AI Act and NIST say about logs and oversight.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://theunwired.in/note-tolerance-is-the-design.html">
+<meta property="og:image" content="https://theunwired.in/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="theunwired. Your workflows were hard-wired. We cut the cord. We build it. You own it.">
+<meta property="og:site_name" content="The Unwired">
+<meta name="twitter:image" content="https://theunwired.in/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#0B0C0B">
+<script>
+/* set the theme before first paint: the visitor's stored choice, else dark.
+   Dark is the brand's first impression, so the system setting is ignored.
+   site.js handles the toggle after load */
+(function(){var t;try{t=localStorage.getItem('unwired-theme')}catch(e){}
+if(t!=='light')t='dark';
+document.documentElement.setAttribute('data-theme',t);
+if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.setAttribute('content','#F2F1ED')}})();
+</script>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230B0C0B'/%3E%3Crect x='12' y='22' width='40' height='6' fill='%23F2F1ED'/%3E%3Crect x='12' y='36' width='23' height='6' fill='%230F5C4A'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css?v=14">
+<link rel="stylesheet" href="assets/notes.css?v=1">
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "BlogPosting", "headline": "What an AI agent's audit trail should record", "description": "The eight fields every agent decision record needs, a worked invoice example, and what the EU AI Act and NIST say about logs and oversight.", "datePublished": "2026-10-15", "dateModified": "2026-10-15", "author": {"@type": "Organization", "name": "The Unwired", "url": "https://theunwired.in/"}, "publisher": {"@type": "Organization", "name": "The Unwired", "url": "https://theunwired.in/"}, "mainEntityOfPage": "https://theunwired.in/note-what-an-agent-audit-trail-records.html", "image": "https://theunwired.in/assets/og.png", "citation": ["https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-12", "https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-26", "https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3", "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/"]}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do we need to store the model's full reasoning?", "acceptedAnswer": {"@type": "Answer", "text": "No. Store the inputs, the checks made, the rule applied and a short reason tied to those checks. Long reasoning text is hard to review and can carry personal data you did not mean to keep."}}, {"@type": "Question", "name": "How long should we keep agent decision records?", "acceptedAnswer": {"@type": "Answer", "text": "At least as long as the source records they relate to. For high-risk systems under the EU AI Act, deployers must keep logs for at least six months, and finance retention rules under national law are often longer."}}, {"@type": "Question", "name": "Is a vendor dashboard enough?", "acceptedAnswer": {"@type": "Answer", "text": "Only if you can export every record, keep it in your own systems, and still read it after the contract ends. If the trail lives only in the vendor's tool, you do not control your own evidence."}}, {"@type": "Question", "name": "Who should review the record design?", "acceptedAnswer": {"@type": "Answer", "text": "The process owner, because they own the rule, and someone from internal audit or finance control, because they will test it. Agree it with both before go-live."}}]}]}</script>
+</head>
+<body>
+
+<a class="skip-link" href="#main">Skip to content</a>
+
+<div class="wipe" data-wipe aria-hidden="true"></div>
+
+<div class="rail" data-rail aria-hidden="true"><div class="rail__fill" data-rail-fill></div></div>
+<div class="rail-label" data-rail-label aria-hidden="true"></div>
+
+<nav class="nav" aria-label="Primary">
+  <div class="nav__bar">
+    <a class="lockup" data-wipe-link href="index.html" aria-label="theunwired, home">
+      <span class="mark" aria-hidden="true">
+        <span class="mark__bar mark__bar--top"></span>
+        <span class="mark__bar mark__bar--bot"></span>
+      </span>
+      <span class="wordmark">theunwired</span>
+    </a>
+    <div class="nav__links" data-navlinks>
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="lab.html">Lab</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <button type="button" class="nav__cta-mobile" data-open-contact>Start a conversation</button>
+    </div>
+    <button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch to light theme" title="Switch to light theme"><svg class="theme-toggle__icon" viewBox="0 0 16 16" width="16" height="16" aria-hidden="true"><rect x="0.5" y="0.5" width="15" height="15" fill="none" stroke="currentColor"></rect><rect class="theme-toggle__half" x="1" y="1" width="7" height="14" fill="currentColor"></rect></svg></button>
+    <button type="button" class="nav__cta" data-open-contact>Start a conversation</button>
+    <button type="button" class="nav__menu" data-nav-toggle aria-label="Open menu" aria-expanded="false">MENU</button>
+  </div>
+</nav>
+
+<main id="main">
+
+  <section class="sec--page-hero" data-section="Note">
+    <div class="wrap">
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Notes</span>
+      </div>
+      <h1 class="h-page">What an AI agent&#x27;s audit trail should record</h1>
+      <p class="lede">If an auditor picks one decision at random, the record should answer every question they ask without a call to the team that built it.</p>
+      <p class="article__meta">The Unwired team · Reviewed by a practitioner with 10+ years in enterprise automation · Updated 15 Oct 2026</p>
+    </div>
+  </section>
+
+  <section class="sec sec--rule" data-section="What an AI agent&#x27;s audit trail should record">
+    <div class="wrap">
+      <article class="article" data-reveal>
+        <p class="article__answer">An agent's audit trail should let someone outside the build team reconstruct any single decision: what came in, what the agent checked, which rule and tolerance applied, what it decided and why, what it changed in which system, and which person reviewed or overrode it. Logs written for engineers rarely do this on their own.</p>
+        <h2>Who this is for</h2>
+        <p>Finance, HR and operations leads who are about to put an agent into a live process, and the controllers or internal auditors who will be asked to sign off on it. If you are still at the pilot stage, this is the list to agree before the pilot, not after.</p>
+        <h2>A log is not an audit trail</h2>
+        <p>Most systems already log. The trouble is who the log was written for. Engineering logs answer questions like "did the call time out" and "which version was running". An auditor asks different questions. Why was this invoice paid? Who decided the variance was acceptable? Was the rule that allowed it the rule in force that day?</p><p>An audit trail is the set of records that answers the second kind of question for one case at a time. The test is simple. Pick a decision at random, hand its record to someone who has never seen the system, and ask them to explain what happened. If they need to call the build team, the trail is incomplete.</p><p>Agents make this harder than older automation did. A fixed script follows one path, so the path is the explanation. An agent chooses its next step, which means the record has to carry the reason for each choice, not only the outcome.</p>
+        <h2>The eight fields every decision record needs</h2>
+        <p>We write one record per decision, not one per run. A run that processes 300 invoices produces 300 records, each readable on its own.</p><div class="article__table"><table><thead><tr><th>Field</th><th>What it holds</th><th>The question it answers</th></tr></thead><tbody><tr><td><strong>Case and time</strong></td><td>A case ID, plus start and end time</td><td>Which decision are we looking at, and when did it happen?</td></tr><tr><td><strong>Input</strong></td><td>The document or request as received, with a fingerprint so it can be matched later</td><td>What exactly did the agent see?</td></tr><tr><td><strong>Checks made</strong></td><td>Every record the agent looked up: the purchase order, the goods receipt, the vendor master</td><td>What did it compare the input against?</td></tr><tr><td><strong>Rule in force</strong></td><td>The rule and tolerance applied, with their version and who approved that version</td><td>Was it allowed to do this, on that day?</td></tr><tr><td><strong>Decision and reason</strong></td><td>Proceed, hold or escalate, and a plain-language reason tied to the checks</td><td>Why this outcome and not another?</td></tr><tr><td><strong>Action taken</strong></td><td>What changed, in which system, under which service account</td><td>What did it actually do?</td></tr><tr><td><strong>Human involvement</strong></td><td>Who reviewed it, what they saw, what they changed, and when</td><td>Who is accountable for this case?</td></tr><tr><td><strong>Exceptions</strong></td><td>Anything that failed or was skipped, with the fallback used</td><td>Did anything go wrong quietly?</td></tr></tbody></table></div><p>Two of these carry most of the weight. <strong>Rule in force</strong> matters because tolerances change, and a decision is only correct against the rule that applied at the time. <strong>Human involvement</strong> matters because it is where accountability lands. A record that says "approved" without a named reviewer is a record nobody will defend.</p>
+        <h2>A worked example: one invoice, two outcomes</h2>
+        <p>Take a three-way match where, for this example, the finance lead has set and signed a price tolerance of 5%. Two invoices from the same vendor arrive on the same morning.</p><ol><li><strong>Invoice A</strong> is 4% above the purchase order price. The record shows the PO and goods receipt the agent matched, the tolerance version in force, and the decision: proceed. The reason reads: "Price variance 4%, within the 5% tolerance approved by finance lead, version 3." No human touched it, and the record says so.</li><li><strong>Invoice B</strong> is 22% above the PO price. The record shows the same checks, the same tolerance version, and the decision: escalate. The reviewer's name, the time they opened the case, and their call (hold, request credit note) are all on the same record.</li></ol><p>An auditor sampling either case gets the full story from one page. Neither record needs the engineer who built the agent.</p>
+        <h2>What regulation already asks for</h2>
+        <p>Most finance and operations agents are not classed as high-risk under the EU AI Act. Some HR agents can be. Annex III lists systems used "to make decisions affecting terms of work-related relationships" and to evaluate candidates, among others. If an agent falls in that list, the Act is specific about logs:</p><blockquote>High-risk AI systems shall technically allow for the automatic recording of events (logs) over the lifetime of the system.<cite>EU AI Act, Article 12(1)</cite></blockquote><p>Article 26 puts duties on the company using the system, not only the vendor. Deployers must keep those logs for "at least six months" unless other law says otherwise, and must assign oversight to people "who have the necessary competence, training and authority". Retention rules for financial records under national law are often longer, so the longer period usually wins.</p><p>Outside the EU, the NIST AI Risk Management Framework makes the same point in general terms. It lists accountability and transparency as a characteristic of trustworthy AI, including "supporting attribution of the AI system's decisions". The eight fields above are one practical way to meet that.</p><p>This is not legal advice. If an agent touches hiring, performance or credit decisions, check its classification with counsel before go-live.</p>
+        <h2>Where it is stored and who can change it</h2>
+        <ul><li><strong>The agent writes, but cannot edit.</strong> Records should be append-only. An agent that can rewrite its own history has no history.</li><li><strong>Keep it in your systems.</strong> The trail belongs to the business that is accountable for the decisions, not to the vendor that built the agent.</li><li><strong>Read access for audit, by default.</strong> Internal audit should be able to pull a sample without raising a ticket.</li><li><strong>Mind personal data.</strong> HR and customer cases carry personal details. Record what the decision needs, mask the rest, and apply the same retention rules as the source records.</li></ul>
+        <h2>Where this breaks</h2>
+        <p>A trail can be complete and still useless. Three failure patterns come up often.</p><ul><li><strong>Too much text.</strong> Dumping every model output into the record buries the reason. The reason field should be one or two sentences a controller can read in ten seconds.</li><li><strong>Reasons written after the fact.</strong> A reason generated when someone asks is a story, not a record. It has to be written at the moment of the decision, from the checks actually made.</li><li><strong>The right record of the wrong rule.</strong> A perfect trail of decisions made under a bad tolerance is still a trail of bad decisions. The record makes the problem visible. It does not fix it. Review the rules themselves on a schedule.</li></ul>
+        <h2>From our builds</h2>
+        <div class="article__from"><p>When we design an agent, the decision record is one of the first things we write, before the agent itself. We sit with the process owner and the person who will audit the process, and agree what a good record looks like for three real cases: one clean, one borderline, one that should escalate. Then we build to that. The invoice walkthrough on our <a href="index.html">home page</a> follows this shape. In our experience, the conversation about the record surfaces disagreements about the rule faster than any other step.</p></div>
+        <h2>Questions people ask</h2>
+        <h3>Do we need to store the model's full reasoning?</h3>
+        <p>No. Store the inputs, the checks made, the rule applied and a short reason tied to those checks. Long reasoning text is hard to review and can carry personal data you did not mean to keep.</p>
+        <h3>How long should we keep agent decision records?</h3>
+        <p>At least as long as the source records they relate to. For high-risk systems under the EU AI Act, deployers must keep logs for at least six months, and finance retention rules under national law are often longer.</p>
+        <h3>Is a vendor dashboard enough?</h3>
+        <p>Only if you can export every record, keep it in your own systems, and still read it after the contract ends. If the trail lives only in the vendor's tool, you do not control your own evidence.</p>
+        <h3>Who should review the record design?</h3>
+        <p>The process owner, because they own the rule, and someone from internal audit or finance control, because they will test it. Agree it with both before go-live.</p>
+        <h2>Sources</h2>
+        <ol class="article__sources"><li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-12" rel="noopener">EU AI Act, Article 12: Record-keeping</a>, European Commission AI Act Service Desk</li><li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/article-26" rel="noopener">EU AI Act, Article 26: Obligations of deployers of high-risk AI systems</a>, European Commission AI Act Service Desk</li><li><a href="https://ai-act-service-desk.ec.europa.eu/en/ai-act/annex-3" rel="noopener">EU AI Act, Annex III: High-risk AI systems</a>, European Commission AI Act Service Desk</li><li><a href="https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/" rel="noopener">NIST AI Risk Management Framework, section 3.4: Accountable and transparent</a>, US National Institute of Standards and Technology</li></ol>
+        <p class="article__disclosure">How this note was made: researched and drafted with AI assistance, then reviewed and edited by the Unwired team. Read our <a data-wipe-link href="editorial-policy.html">editorial policy</a>.</p>
+      </article>
+      <div class="btn-row btn-row--left" style="margin-top:56px">
+        <a class="btn btn--ghost" data-wipe-link href="work.html#notes">All notes</a>
+      </div>
+    </div>
+  </section>
+  <section class="sec--cta-top" id="contact" data-section="Contact">
+    <div class="wrap">
+      <div class="cta" data-reveal data-sweep>
+        <div>
+          <h2 class="h-section">Would your agent pass a random-sample test?</h2>
+          <p>Send us one decision your current automation made. We'll show you what its record should have said.</p>
+        </div>
+        <button type="button" class="btn btn--solid" data-open-contact>Start a conversation</button>
+      </div>
+    </div>
+  </section>
+</main>
+
+
+<footer class="footer">
+  <div class="wrap">
+    <span class="footer__copy">© 2026 The Unwired · AI automation, built and handed over</span>
+    <div class="footer__links">
+      <a data-wipe-link href="index.html">Home</a>
+      <a data-wipe-link href="what-you-get.html">What you get</a>
+      <a data-wipe-link href="industries.html">Industries</a>
+      <a data-wipe-link href="work.html">Work</a>
+      <a data-wipe-link href="lab.html">Lab</a>
+      <a data-wipe-link href="security.html">Security</a>
+      <a data-wipe-link href="faq.html">FAQ</a>
+      <a data-wipe-link href="privacy.html">Privacy</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</footer>
+
+<div class="modal" data-modal role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal__panel">
+    <div class="modal__head">
+      <h2 id="modal-title">Start a conversation</h2>
+      <button type="button" class="modal__close" data-close-contact aria-label="Close dialog">✕ CLOSE</button>
+    </div>
+    <p class="modal__intro">Tell us about the process that keeps breaking. We'll tell you honestly whether an agent is the right fix.</p>
+    <form data-contact-form action="https://formsubmit.co/ajax/theunwired.in@gmail.com" method="POST">
+      <input type="hidden" name="_subject" value="New conversation request from theunwired.in">
+      <input type="hidden" name="_captcha" value="false">
+      <input class="hp" type="text" name="_honey" tabindex="-1" autocomplete="off" aria-hidden="true">
+      <div class="field">
+        <label for="f-name">Name</label>
+        <input id="f-name" type="text" name="Name" required autocomplete="name">
+      </div>
+      <div class="field">
+        <label for="f-email">Email</label>
+        <input id="f-email" type="email" name="Email" required autocomplete="email">
+      </div>
+      <div class="field">
+        <label for="f-msg">What process keeps breaking?</label>
+        <textarea id="f-msg" name="Message" required></textarea>
+      </div>
+      <button type="submit" class="submit">Send it over</button>
+      <div class="form-status" data-form-status role="status"></div>
+    </form>
+    <p class="modal__foot">Prefer email? Write to <a href="mailto:theunwired.in@gmail.com">theunwired.in@gmail.com</a></p>
+  </div>
+</div>
+
+<script src="assets/wires.js?v=9"></script>
+<script src="assets/ambient.js?v=8"></script>
+<script src="assets/site.js?v=10"></script>
+</body>
+</html>

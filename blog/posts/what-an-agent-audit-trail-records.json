@@ -80,14 +80,5 @@
       "url": "https://airc.nist.gov/airmf-resources/airmf/3-sec-characteristics/",
       "publisher": "US National Institute of Standards and Technology"
     }
-  ],
-  "_review": {
-    "version": 2,
-    "notes": [
-      "Re-sent: v1 lost its formatting in Gmail. Content is unchanged. Reply to this message.",
-      "The worked example uses an illustrative 5% tolerance. The home page walkthrough shows 4% and 22% but states no tolerance, so the two stay consistent. Change it if you prefer another number.",
-      "From our builds describes how we design decision records with the process owner and auditor. Confirm it matches how you actually work, or reply with changes.",
-      "Reviewer line says 10+ years in enterprise automation. Confirm it is true for whoever reviews this post."
-    ]
-  }
+  ]
 }
