@@ -54,9 +54,16 @@
     }).join(' ');
   }
 
+  /* a run means something was played: on the hub, the line moved or the word
+     struck, not just the first call */
+  function played(key, d) {
+    if (!d) return false;
+    if (key === 'hub') return !!(d.moved || d.struck);
+    return true;
+  }
   function anyRun() {
     var data = load();
-    return STAGES.some(function (s) { return !!data[s.key]; });
+    return STAGES.some(function (s) { return played(s.key, data[s.key]); });
   }
 
   function paintSignatures() {
@@ -182,8 +189,9 @@
   function sentence(key, d) {
     if (!d) return null;
     if (key === 'hub') {
-      var call = d.call === 'post' ? 'Posted the first invoice, a duplicate. ' : d.call === 'person' ? 'Sent the first invoice, a duplicate, to a person. ' : '';
-      if (d.struck) return call + 'Struck hold_duplicates: no. One word stopped ' + money(d.word) + ' of duplicate payments; the whole slider moved ' + money(d.whole) + '.';
+      var call = d.call === 'post' ? 'Called the first invoice: posted it. It was a duplicate. '
+        : d.call === 'person' ? 'Called the first invoice: sent it to a person. It was a duplicate. ' : '';
+      if (d.struck) return call + 'Struck the no in hold_duplicates: no. One word stopped ' + money(d.word) + ' of duplicate payments. The whole slider moved ' + money(d.whole) + '.';
       if (d.moved) return call + 'Drew the line at ' + d.pct.toFixed(1) + '%. The duplicate rule is still off.';
       return call ? call.trim() : null;
     }
@@ -211,13 +219,13 @@
      font, and coloured squares would bring in colour that means nothing */
   function lead(key, d) {
     if (key === 'hub') {
-      return "One word in an invoice agent's config stopped " + money(d.word) + ' of duplicate payments. Moving its price tolerance from 0% to 15% changed ' + money(d.whole) + '.';
+      return "One word in an invoice agent's config stopped " + money(d.word) + ' of duplicate payments. Moving its price tolerance all the way from 0% to 15% changed what got paid wrong by ' + money(d.whole) + '.';
     }
     if (key === 'tolerance') {
       var mine = 'My ' + d.pct.toFixed(1) + '% line ';
       if (d.over === 0) return mine + 'caught all ' + d.overAll + ' overbilled invoices. ' + d.fine + (d.fine === 1 ? ' invoice that was fine' : ' invoices that were fine') + ' went to a person as well.';
       if (d.over === 1) return mine + 'let 1 overbilled invoice through: ' + d.nearId + ', ' + d.nearVar.toFixed(1) + '% over the PO.';
-      if (d.over > 1) return mine + 'let ' + d.over + ' overbilled invoices through. The widest line that catches them all is ' + d.safe.toFixed(1) + '%.';
+      if (d.over > 1) return mine + 'let ' + d.over + ' overbilled invoices through. The widest line on the slider that catches them all is ' + d.safe.toFixed(1) + '%, just under ' + d.nearId + ' at ' + d.nearVar.toFixed(1) + '%.';
       return 'At my ' + d.pct.toFixed(1) + '% line, ' + d.slip + ' problem invoices got paid.';
     }
     if (key === 'handover') {

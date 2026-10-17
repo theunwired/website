@@ -122,7 +122,8 @@ initials when they sign the sheet. The rule is still two typefaces and a hand.
 **The drafting marks.** Every Lab sheet carries a title block (sheet, drawn
 by, checked by, rev). Dimension lines measure across what they measure, as
 under the tolerance chart. The "Approved by a person" stamp shows only after
-the visitor has signed and run at least one stage. Stamps are in the pen's
+the visitor has signed and played something: a stage, or a moved line or
+struck word on the hub. Stamps are in the pen's
 ink, never red: red still only means wrong.
 
 **No wire field.** The green-wired field never runs on Lab pages. The
@@ -140,7 +141,8 @@ matters, the rule matters more.
 
 **Leaving the site.** Copy the sheet gives plain text: the lesson in the
 visitor's own numbers first, the link last, "/" separators, no emoji. Every
-Lab page has its own link card, a question over a labelled line.
+Lab page has its own link card: a question over a labelled line, or on sheet
+00, over the invoice it opens on.
 
 **The Unwired Blueprint.** The named output of discovery: one sheet with the
 process as it runs today, the process unwired, and the line, signed by the
@@ -149,8 +151,8 @@ FAQ and every deep dive describe discovery this way. The template is
 `docs/templates/unwired-blueprint.html`; see below.
 
 **Decided for the Lab (16 Oct 2026).** From the catchiness brainstorm:
-- The hub's first screen will be a cold open on one invoice (post it, or send
-  it to a person?) with the draggable line right under it. Stage 01's bet
+- The hub's first screen is a cold open on one invoice (post it, or send it
+  to a person?) with the draggable line right under it. Shipped 17 Oct. Stage 01's bet
   then moves to the overbill near miss: a 3.5% line against INV-40168 at
   3.9%.
 - The Lab may publish rules that say no. A draft Blueprint's verdict can say

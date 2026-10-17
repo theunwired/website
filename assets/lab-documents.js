@@ -313,7 +313,7 @@
       renderFields();
     }
 
-    function renderFields() {
+    function renderFields(save) {
       var doc = DOCS[cur], st = state[cur];
       fieldsBox.innerHTML = '';
       stepEl.textContent = st.revealed ? 'What the agent saw, and what was really there.' :
@@ -381,7 +381,7 @@
       nextBtn.textContent = cur < DOCS.length - 1 ? 'Next document' : 'See your run';
       lessonEl.hidden = !st.revealed;
       lessonEl.textContent = st.revealed ? docSummary(cur) + ' ' + DOCS[cur].lesson : '';
-      score();
+      score(save);
     }
 
     function docSummary(i) {
@@ -409,35 +409,37 @@
       drawn.boxes[i].classList.toggle('is-hot', on);
     }
 
-    /* the run keeps one record per document, merged across visits, so a
-       second look at the bench adds to the run instead of replacing it */
-    function score() {
+    /* the run keeps, per document, only what the visitor did: which fields
+       they ticked. The tallies are rebuilt from the documents at the current
+       review threshold every time, so they always match the line on screen.
+       Records merge across visits, and nothing is written on page load */
+    function score(save) {
       var prev = window.UnwiredLab ? window.UnwiredLab.load().documents : null;
       var per = {};
-      if (prev && prev.per) for (var pk in prev.per) per[pk] = prev.per[pk];
+      if (prev && prev.per) for (var pk in prev.per) per[pk] = { picks: (prev.per[pk] && prev.per[pk].picks) || [] };
       DOCS.forEach(function (d, i) {
         if (!state[i].revealed) return;
-        var t = { w: 0, y: 0, a: 0, ye: 0, ae: 0, trap: 0 };
-        d.fields.forEach(function (f, k) {
-          var picked = !!state[i].picks[k], flag = flagged(f);
-          /* a confident mistake: wrong, read at 90% or more, and sure enough to
-             go straight through. Meeting one earns this stage its lesson */
-          if (f.wrong && !flag && f.conf >= 90) t.trap = Math.max(t.trap, f.conf);
-          if (f.wrong) { t.w++; if (picked) t.y++; if (flag) t.a++; }
-          else { if (picked) t.ye++; if (flag) t.ae++; }
-        });
-        per[d.key] = t;
+        var picks = [];
+        d.fields.forEach(function (f, k) { if (state[i].picks[k]) picks.push(k); });
+        per[d.key] = { picks: picks };
       });
       var docs = 0, wrong = 0, you = 0, agent = 0, youExtra = 0, agentExtra = 0, trapConf = 0;
-      for (var key in per) {
-        var r = per[key];
-        docs++; wrong += r.w; you += r.y; agent += r.a; youExtra += r.ye; agentExtra += r.ae;
-        trapConf = Math.max(trapConf, r.trap);
-      }
+      DOCS.forEach(function (d) {
+        if (!per[d.key]) return;
+        docs++;
+        d.fields.forEach(function (f, k) {
+          var picked = per[d.key].picks.indexOf(k) !== -1, flag = flagged(f);
+          /* a confident mistake: wrong, read at 90% or more, and sure enough to
+             go straight through. Meeting one earns this stage its lesson */
+          if (f.wrong && !flag && f.conf >= 90) trapConf = Math.max(trapConf, f.conf);
+          if (f.wrong) { wrong++; if (picked) you++; if (flag) agent++; }
+          else { if (picked) youExtra++; if (flag) agentExtra++; }
+        });
+      });
       if (!docs) { scoreEl.textContent = 'Reveal a document to start the score.'; return; }
       scoreEl.textContent = docs + ' of 6 documents. Of ' + wrong + ' wrong ' + (wrong === 1 ? 'field' : 'fields') + ', you caught ' + you +
         ' and the agent caught ' + agent + '. You checked ' + youExtra + ' that were fine, the agent sent ' + agentExtra + ' that were fine.';
-      if (window.UnwiredLab) {
+      if (save && window.UnwiredLab) {
         /* once met, a confident mistake stays met, whatever the threshold does next */
         trapConf = Math.max(trapConf, (prev && prev.trapConf) || 0);
         window.UnwiredLab.save('documents', { docs: docs, wrong: wrong, youCaught: you, agentCaught: agent, threshold: threshold(), trapConf: trapConf, per: per });
@@ -447,7 +449,7 @@
     revealBtn.addEventListener('click', function () {
       state[cur].revealed = true;
       buildPicker();
-      renderFields();
+      renderFields(true);
       var first = q('.bench-field', fieldsBox);
       if (first) first.scrollIntoView({ block: 'nearest' });
     });
@@ -468,7 +470,7 @@
     range.addEventListener('input', function () {
       readout.textContent = threshold() + '%';
       range.setAttribute('aria-valuetext', threshold() + '% review threshold');
-      renderFields();
+      renderFields(true);
     });
 
     readout.textContent = threshold() + '%';

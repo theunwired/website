@@ -80,7 +80,7 @@ if(c.strip){
   var cfg={price_tolerance_pct:c.strip.pct,auto_post_max_amount:c.strip.rules?25000:Infinity,hold_duplicates:c.strip.rules,new_vendor_review:c.strip.rules,always_escalate_vendor:[]};
   var zero=Q.filter(function(i){return !i.variance}), nz=Q.filter(function(i){return i.variance}).sort(function(a,b){return a.variance-b.variance});
   var bin=0.5, bins=46, gap=2, counts=[];
-  nz.forEach(function(inv){var b=Math.min(bins-1,Math.floor(inv.variance/bin)); /* same bins as the stage 01 chart */ (counts[b]=counts[b]||[]).push(inv);});
+  nz.forEach(function(inv){var b=Math.min(bins-1,Math.max(0,Math.ceil(inv.variance/bin)-1)); /* same upper-inclusive bins as the Lab's charts */ (counts[b]=counts[b]||[]).push(inv);});
   var rows=counts.reduce(function(m,c){return Math.max(m,c?c.length:0);},9), zc=Math.ceil(zero.length/rows), P=13, S=10.2;
   var x0=(zc+gap)*P, W=1056, H=rows*P+48, base=24+rows*P;
   var svg=el('svg',{viewBox:'0 0 '+W+' '+H},art);

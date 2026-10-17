@@ -4,18 +4,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lab · The Unwired</title>
-<meta name="description" content="Post this invoice, or send it to a person? One call, then draw the line on 200 made-up invoices, then three short stages. In your browser.">
+<meta name="description" content="Post a made-up invoice, or send it to a person? One call, then draw the line on a queue of 200, then three short stages. In your browser.">
 <link rel="canonical" href="https://theunwired.in/lab.html">
 <meta property="og:title" content="Lab · The Unwired">
-<meta property="og:description" content="Post this invoice, or send it to a person? One call, then draw the line on 200 made-up invoices, then three short stages. In your browser.">
+<meta property="og:description" content="Post a made-up invoice, or send it to a person? One call, then draw the line on a queue of 200, then three short stages. In your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/lab.html">
-<meta property="og:image" content="https://theunwired.in/assets/og-lab.png">
+<meta property="og:image" content="https://theunwired.in/assets/og-lab.png?v=2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
 <meta property="og:image:alt" content="The Unwired Lab, sheet 00. Post INV-40152, or send it to a person? A made-up invoice from Quarry Lane Print for $21,920.00.">
 <meta property="og:site_name" content="The Unwired">
-<meta name="twitter:image" content="https://theunwired.in/assets/og-lab.png">
+<meta name="twitter:image" content="https://theunwired.in/assets/og-lab.png?v=2">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#10304A">
 <script>
@@ -131,12 +131,11 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
     <div class="wrap">
       <div class="lab-panel hubline" data-lab-hub data-reveal>
         <div class="chapter chapter--tight">
-          <span class="chapter__num">00</span>
-          <span class="chapter__rule"></span>
-          <span class="chapter__label">The line</span>
+          <span class="chapter__rule chapter__rule--short"></span>
+          <span class="chapter__label">Then the line</span>
         </div>
         <h2 class="h-section">Drag the line. Watch where the money goes.</h2>
-        <p class="hubline__help">All 200 invoices. Left of the line the agent posts on its own. Right of it, a person decides. Drag the line itself, or use the slider.</p>
+        <p class="hubline__help">All 200 invoices. Left of the line the agent posts on its own, unless a rule holds it. Right of it, a person decides. Drag the line itself, or use the slider.</p>
 
         <div class="hubline__chart" data-hub-chart></div>
         <div class="lab-control">
@@ -151,7 +150,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
           <span class="fit-legend__row"><svg width="14" height="14" aria-hidden="true"><rect class="lab-key lab-key--slip" x="3" y="3" width="8" height="8" transform="rotate(45 7 7)"></rect></svg>Posted, and it was a problem</span>
         </div>
 
-        <div class="grid grid--4 lab-stats" aria-live="polite">
+        <div class="grid grid--4 lab-stats">
           <div class="cell"><span class="cell__tag">SENT TO A PERSON</span><span class="lab-stat" data-hub-stat="person">0</span></div>
           <div class="cell"><span class="cell__tag">POSTED ON ITS OWN</span><span class="lab-stat" data-hub-stat="post">0</span></div>
           <div class="cell"><span class="cell__tag cell__tag--warn">PROBLEMS PAID</span><span class="lab-stat" data-hub-stat="slip">0</span></div>
@@ -160,14 +159,15 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 
         <div class="hubline__rule">
           <div>
-            <div class="hubline__yaml" aria-label="rules.yaml">
+            <div class="hubline__yaml">
               <div class="hubline__c"># rules.yaml</div>
-              <div><span class="hubline__k">price_tolerance_pct:</span> <span data-hub-pct>5</span> <span class="hubline__c"># the line</span></div>
+              <div class="hubline__c"># the line</div>
+              <div><span class="hubline__k">price_tolerance_pct:</span> <span data-hub-pct>5</span></div>
               <div><span class="hubline__k">hold_duplicates:</span> <button type="button" class="hubline__word" data-hub-word aria-label="Strike out no, so hold_duplicates is yes">no<svg class="hubline__strike" viewBox="0 0 40 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 13 C 10 9, 26 12, 38 7"></path></svg></button><span class="hubline__yes" data-hub-yes hidden>yes</span></div>
             </div>
             <p class="hubline__hint" data-hub-hint>Strike the word with the pen.</p>
           </div>
-          <div class="hubline__bars" aria-live="polite">
+          <div class="hubline__bars">
             <div class="hubline__bar"><span>No rule</span><span class="hubline__track"><span class="hubline__fill" data-hub-bar="a"></span><span class="hubline__val" data-hub-val="a"></span></span></div>
             <div class="hubline__bar"><span>With the rule</span><span class="hubline__track"><span class="hubline__fill" data-hub-bar="b"></span><span class="hubline__val" data-hub-val="b">strike the word</span></span></div>
             <div class="hubline__bar"><span></span><span class="hubline__word-dim" data-hub-worddim></span></div>
@@ -181,13 +181,14 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
             <span class="lab-copy__status" role="status"></span>
           </div>
         </div>
-        <p class="diagram-panel__note">Illustrative. 200 made-up invoices, the same for every visitor. Money paid wrong counts the whole amount of a duplicate and only the overbilled part of an overbill. Only the price tolerance and the duplicate rule are on here, so the two can be seen alone.</p>
+        <p class="diagram-panel__note">Illustrative. 200 made-up invoices, the same for every visitor. Money paid wrong counts the whole amount of a duplicate and only the overbilled part of an overbill. Only the price tolerance and the duplicate rule run here, so the two can be seen alone.</p>
+        <p class="sr-only" role="status" data-hub-status></p>
         <div class="lab-sheet-foot">
           <div class="titleblock" aria-label="Title block">
             <div><span class="titleblock__k">SHEET</span>00 / 03</div>
             <div><span class="titleblock__k">DRAWN BY</span>The Unwired</div>
             <div><span class="titleblock__k">CHECKED BY</span><span data-lab-signature><span class="titleblock__empty">unsigned</span></span></div>
-            <div><span class="titleblock__k">REV</span>B</div>
+            <div><span class="titleblock__k">REV</span>A</div>
           </div>
         </div>
       </div>
@@ -327,7 +328,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <script src="assets/ambient.js?v=8"></script>
 <script src="assets/site.js?v=10"></script>
 <script src="assets/lab.js?v=9"></script>
-<script src="assets/lab-run.js?v=5"></script>
+<script src="assets/lab-run.js?v=6"></script>
 <script>
 /* old links pointed at sections of this page; send them to the stage pages */
 (function(){var m={"#tolerance":"lab-tolerance.html","#handover":"lab-handover.html"}[location.hash];if(m)location.replace(m);})();
