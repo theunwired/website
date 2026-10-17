@@ -154,6 +154,8 @@
   }
 
   var STAGES = [
+    { key: 'hub', num: '00', name: 'The bet', href: 'lab.html#bet',
+      lesson: 'The line matters. The rule matters more.' },
     { key: 'tolerance', num: '01', name: 'Set the line', href: 'lab-tolerance.html',
       lesson: 'One number decides what nobody checks.' },
     { key: 'handover', num: '02', name: 'Pass the handover', href: 'lab-handover.html',
@@ -167,6 +169,7 @@
      let go of the line, passed all three tasks, met a confident mistake */
   function earned(key, d) {
     if (!d) return false;
+    if (key === 'hub') return !!d.struck;
     if (key === 'tolerance') return !!d.done;
     if (key === 'handover') return d.done === 3;
     if (key === 'documents') return !!d.trapConf;
@@ -178,6 +181,12 @@
   /* one plain sentence per stage, used on the page and in the message */
   function sentence(key, d) {
     if (!d) return null;
+    if (key === 'hub') {
+      var call = d.call === 'post' ? 'Posted the first invoice, a duplicate. ' : d.call === 'person' ? 'Sent the first invoice, a duplicate, to a person. ' : '';
+      if (d.struck) return call + 'Struck hold_duplicates: no. One word stopped ' + money(d.word) + ' of duplicate payments; the whole slider moved ' + money(d.whole) + '.';
+      if (d.moved) return call + 'Drew the line at ' + d.pct.toFixed(1) + '%. The duplicate rule is still off.';
+      return call ? call.trim() : null;
+    }
     if (key === 'tolerance') {
       return 'Left the price tolerance at ' + d.pct.toFixed(1) + '%: ' + d.touch + ' of 200 invoices posted on their own, ' +
         d.person + ' went to a person, ' + d.slip + ' problems slipped through.';
@@ -201,11 +210,15 @@
      last. "/" separators and no emoji: a post sets them in a proportional
      font, and coloured squares would bring in colour that means nothing */
   function lead(key, d) {
+    if (key === 'hub') {
+      return "One word in an invoice agent's config stopped " + money(d.word) + ' of duplicate payments. Moving its price tolerance from 0% to 15% changed ' + money(d.whole) + '.';
+    }
     if (key === 'tolerance') {
-      var at = 'At my ' + d.pct.toFixed(1) + '% line, ';
-      if (d.dups) return at + d.dups + ' duplicate invoices still got paid. No price tolerance can see a duplicate.';
-      if (d.slip) return at + d.slip + (d.slip === 1 ? ' overbilled invoice' : ' overbilled invoices') + ' still got paid.';
-      return at + 'nothing slipped through, and ' + d.person + ' of 200 invoices went to a person to get there.';
+      var mine = 'My ' + d.pct.toFixed(1) + '% line ';
+      if (d.over === 0) return mine + 'caught all ' + d.overAll + ' overbilled invoices. ' + d.fine + (d.fine === 1 ? ' invoice that was fine' : ' invoices that were fine') + ' went to a person as well.';
+      if (d.over === 1) return mine + 'let 1 overbilled invoice through: ' + d.nearId + ', ' + d.nearVar.toFixed(1) + '% over the PO.';
+      if (d.over > 1) return mine + 'let ' + d.over + ' overbilled invoices through. The widest line that catches them all is ' + d.safe.toFixed(1) + '%.';
+      return 'At my ' + d.pct.toFixed(1) + '% line, ' + d.slip + ' problem invoices got paid.';
     }
     if (key === 'handover') {
       return "I changed a tolerance and added an escalation rule to an invoice agent myself, and found out from its log why one invoice went to a person. If a team can't do that, the build isn't finished.";
@@ -217,8 +230,8 @@
   }
   function detail(key, d) {
     if (key === 'tolerance') {
-      return d.touch + ' of 200 posted on their own, ' + d.person + ' went to a person, ' + d.slip +
-        (d.slip === 1 ? ' problem' : ' problems') + ' slipped through' + (d.money ? ', about ' + money(d.money) + ' paid that should not have been.' : '.');
+      return d.touch + ' of 200 posted on their own and ' + d.person + ' went to a person.' +
+        (d.dups ? ' ' + d.dups + ' duplicates got paid at every line: no price tolerance can see a duplicate.' : '');
     }
     if (key === 'documents' && d.wrong) {
       return 'Of the ' + d.wrong + (d.wrong === 1 ? ' field that was' : ' fields that were') + ' wrong, I would have checked ' + d.youCaught +
@@ -244,7 +257,7 @@
     if (more) lines.push(more);
     var src = key === 'documents' ? 'Illustrative documents, the same six for everyone' : 'Illustrative queue, the same 200 invoices for everyone';
     lines.push('', 'THE UNWIRED LAB / SHEET ' + s.num + ' / ' + s.name.toUpperCase() + ' / ' + src);
-    lines.push(SITE + s.href);
+    lines.push(SITE + s.href.replace(/#.*$/, ''));
     return lines.join('\n');
   }
 
@@ -323,7 +336,7 @@
           var a = document.createElement('a');
           a.href = s.href;
           a.setAttribute('data-wipe-link', '');
-          a.textContent = 'Open stage ' + s.num;
+          a.textContent = s.key === 'hub' ? 'Make the call' : 'Open stage ' + s.num;
           body.appendChild(a);
         }
         li.appendChild(num);
@@ -354,11 +367,6 @@
       if (box && !box.hidden) fill(box, sheetText(k));
     });
 
-    /* the hub's line always carries a value: the visitor's, once drawn */
-    Array.prototype.forEach.call(document.querySelectorAll('[data-lab-hubline]'), function (n) {
-      var t = data.tolerance;
-      n.textContent = t ? 'YOUR LINE · ' + t.pct.toFixed(1) + '%' : 'THE LINE · 5.0%';
-    });
     paintSignatures();
   }
 
