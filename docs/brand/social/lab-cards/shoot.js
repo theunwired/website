@@ -4,8 +4,9 @@
    Add CHROME=/path/to/chrome to use an installed Chromium instead of
    Playwright's own (npx playwright install chromium fetches that one).
    The engine is copied fresh from assets/lab.js each run, so the cards always
-   match the queue the Lab runs. Re-scrape the pages in LinkedIn's Post
-   Inspector after changing a card. */
+   match the queue the Lab runs. After changing a card, bump the ?v= on that
+   page's og:image and twitter:image (sites cache card images by URL), then
+   re-scrape the page in LinkedIn's Post Inspector. */
 const fs = require('fs');
 const path = require('path');
 const { chromium } = require(process.env.PLAYWRIGHT || 'playwright');

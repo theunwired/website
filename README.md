@@ -16,7 +16,7 @@ in `docs/brand/` and is not deployed.
 | `work.html` | `/work.html` | Engagement one (intelligent document processing) as the hero, then the template every future case study on this page has to fill |
 | `finance-exceptions.html` | `/finance-exceptions.html` | Deep dive: P2P, O2C, R2R, tax, treasury |
 | `hr-hire-to-retire.html` | `/hr-hire-to-retire.html` | Deep dive: the employee lifecycle, hire to retire |
-| `lab.html` | `/lab.html` | The Lab hub: three stage cards, Your run, and the old `#tolerance` / `#handover` anchors forwarded to the stage pages |
+| `lab.html` | `/lab.html` | The Lab hub, sheet 00: the bet on one invoice, the line over all 200, three stage cards, Your run, and the old `#tolerance` / `#handover` anchors forwarded to the stage pages |
 | `lab-tolerance.html` | `/lab-tolerance.html` | Lab stage 01, Set the line |
 | `lab-handover.html` | `/lab-handover.html` | Lab stage 02, Pass the handover |
 | `lab-documents.html` | `/lab-documents.html` | Lab stage 03, Worst-document bench |
@@ -39,7 +39,7 @@ introducing page-specific styling.
 | `assets/wires.js` | The wire field: ten wires on a fixed full-viewport SVG behind everything. It does not run on Lab pages, which draw their own grid. |
 | `assets/ambient.js` | Panel sweep on entry, and the one shared breathing clock for green accents. |
 | `assets/site.js` | Nav, contact modal, reveal, progress rail, page transition, the pinned hero, the agent log. |
-| `assets/lab.js` | Lab stages 01 and 02. Builds the seeded invoice queue, runs the rules, draws the chart, parses the config. No network calls. |
+| `assets/lab.js` | The Lab hub (sheet 00) and stages 01 and 02. Builds the seeded invoice queue, runs the rules, draws the chart, parses the config. No network calls. |
 | `assets/lab-documents.js` | Lab stage 03. Draws the six documents as SVG and runs the pick, reveal and score flow. No network calls. |
 | `assets/lab-run.js` | Every Lab page. Keeps each stage's result in `sessionStorage` for Your run, stamps each lesson once it is earned, builds the Copy the sheet text, and pre-fills the contact form. |
 
@@ -144,7 +144,8 @@ the contact section, above the CTA, so the ten numbered beats are untouched.
 - **Lessons are never printed before play.** Hub cards and stage headlines
   are questions. Each lesson is stamped (`data-lab-earned` in the HTML,
   `earned()` in `assets/lab-run.js`) once the visitor has done the thing it
-  is about: let go of the line on 01, passed all three tasks on 02, met a
+  is about: struck the no in `hold_duplicates: no` on 00, let go of the
+  line on 01, passed all three tasks on 02, met a
   field the agent read at 90% or more, wrongly, above the review line on 03.
   An earned lesson stays earned for the tab, and Copy the sheet only ever
   carries earned lessons.
@@ -156,15 +157,20 @@ the contact section, above the CTA, so the ten numbered beats are untouched.
   visitor's numbers first, the link last, "/" separators and no emoji. If
   the browser refuses the clipboard, the text is shown selected instead.
 - **Your run and the sign pad stay hidden until there is a run.** The
-  "Approved by a person" stamp needs a signature and at least one stage.
+  "Approved by a person" stamp needs a signature and something played: a
+  stage, or on the hub a moved line or a struck word (the first call alone
+  does not count).
 - **Link cards.** Each Lab page has its own 1200 × 627 card
   (`assets/og-lab*.png`), a question over the Lab's real queue. They are
   drawn by `docs/brand/social/lab-cards/` (`node shoot.js` there, with
   Playwright installed), which copies the engine fresh from `assets/lab.js`,
   so redraw them whenever the seed, the mix or the rules change. After
   changing a card, re-scrape the page in LinkedIn's Post Inspector or it keeps
-  showing the old one. The cards print theunwired.in/lab, which `vercel.json`
-  redirects to `/lab.html`.
+  showing the old one. Sites cache card images by URL, so bump the `?v=` on
+  the page's `og:image` and `twitter:image` whenever a card is redrawn. The
+  cards print theunwired.in/lab, which `vercel.json` redirects to
+  `/lab.html`. If the seed changes, also re-check the invoice details written
+  into `lab.html` as its no-script fallback and its `og:image:alt`.
 - Nothing is sent anywhere until the visitor sends the contact form
   themselves. Copy the sheet only writes to the visitor's own clipboard. If a
   Lab tool ever calls a server or takes uploads, update `privacy.html` and

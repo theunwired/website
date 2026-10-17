@@ -198,7 +198,9 @@
       var zero = [];
       queue.forEach(function (inv) {
         if (inv.variance === 0) { zero.push(inv); return; }
-        var b = Math.min(bins - 1, Math.floor(inv.variance / bin));
+        /* upper-inclusive bins: an invoice exactly on a step posts, so it sits
+           left of that step's line */
+        var b = Math.min(bins - 1, Math.max(0, Math.ceil(inv.variance / bin) - 1));
         (counts[b] = counts[b] || []).push(inv);
       });
       var rows = Math.max(12, counts.reduce(function (m, c) { return Math.max(m, c ? c.length : 0); }, 0));
@@ -264,10 +266,11 @@
       /* the reveal: a dimension from the line to the nearest overbill,
          drawn only once the visitor has let go */
       var nm = marks.filter(function (m) { return m.inv === nearest; })[0];
-      near = { g: svgEl('g', { 'class': 'lab-near' }), cx: nm ? nm.cx : x0, y: Math.max(top + 14, nearTop - 10), narrow: narrow };
+      near = { g: svgEl('g', { 'class': 'lab-near' }), y: Math.max(top + 30, nearTop - 10), narrow: narrow };
       near.path = svgEl('path', { 'class': 'lab-dim' });
+      near.bg = svgEl('rect', { 'class': 'lab-near__bg', height: 14 });
       near.text = svgEl('text', { 'class': 'lab-dim__label' });
-      near.g.appendChild(near.path); near.g.appendChild(near.text);
+      near.g.appendChild(near.path); near.g.appendChild(near.bg); near.g.appendChild(near.text);
       svg.appendChild(near.g);
       paint();
     }
@@ -311,19 +314,35 @@
       }
       if (near) {
         near.g.style.display = released ? '' : 'none';
-        var ny = near.y, nx = near.cx, tt = 5;
+        /* both ends on the same scale: the line, and INV-40168's own 3.9% */
+        var ny = near.y, nx = layout.x0 + (nearest.variance / layout.bin) * layout.P - 1, tt = 5;
         near.path.setAttribute('d', 'M' + lx + ' ' + ny + ' H' + nx + ' M' + lx + ' ' + (ny - tt) + ' V' + (ny + tt) + ' M' + nx + ' ' + (ny - tt) + ' V' + (ny + tt));
         var caught = cfg.price_tolerance_pct < nearest.variance;
         var gap = Math.abs(nearest.variance - cfg.price_tolerance_pct).toFixed(1);
-        near.text.textContent = near.narrow ? nearest.id + ' · ' + gap + (caught ? ' PTS CLEAR' : ' PTS INSIDE')
+        var shortT = nearest.id + ' · ' + gap + (caught ? ' PTS CLEAR' : ' PTS INSIDE');
+        near.text.textContent = near.narrow ? shortT
           : nearest.id + ' · ' + pct(nearest.variance) + ' OVER · ' + (caught ? 'CAUGHT, ' + gap + ' PTS CLEAR' : 'PAID, ' + gap + ' PTS INSIDE THE LINE');
         near.text.setAttribute('class', 'lab-dim__label' + (caught ? '' : ' lab-dim__label--wrong'));
-        near.text.setAttribute('y', ny - 7);
-        /* sit the label over the span, kept inside the drawing */
+        /* the label starts just past the span, over the short columns, and
+           flips to the other side only when it would leave the drawing. It
+           sits above every mark it crosses, on a knockout, never on them */
         var lw = near.text.getComputedTextLength();
         var lo = Math.min(lx, nx), hi = Math.max(lx, nx);
-        var tx2 = Math.max(4, Math.min(layout.W - 4 - lw, (lo + hi) / 2 - lw / 2));
-        near.text.setAttribute('x', tx2);
+        /* prefer the clear side: shorten the label before flipping it over
+           the tall columns */
+        if (hi + 8 + lw > layout.W - 4 && near.text.textContent !== shortT) {
+          near.text.textContent = shortT;
+          lw = near.text.getComputedTextLength();
+        }
+        var right = hi + 8 + lw <= layout.W - 4;
+        var x1 = right ? hi + 8 : Math.max(4, lo - 8 - lw);
+        var clear = ny - 4;
+        marks.forEach(function (m) { if (m.cx > x1 - 6 && m.cx < x1 + lw + 6) clear = Math.min(clear, m.cy - 6); });
+        var by = Math.max(layout.top + 4, clear - 14);
+        near.text.setAttribute('x', x1);
+        near.text.setAttribute('y', by + 10.5);
+        near.bg.setAttribute('x', x1 - 4); near.bg.setAttribute('y', by);
+        near.bg.setAttribute('width', lw + 8);
       }
       setStat(root, 'post', res.post + res.slip);
       setStat(root, 'person', res.person + res.caught);
@@ -338,11 +357,11 @@
         if (!overPaid) {
           verdict = 'Every overbill caught at ' + at + '. ' + (cfg.price_tolerance_pct < safe
             ? 'There was room: the nearest, ' + nearest.id + ', is ' + pct(nearest.variance) + ' over the PO, so a ' + pct(safe) + ' line catches them all too. '
-            : 'That is the widest line that does it here. One step wider and ' + nearest.id + ', ' + pct(nearest.variance) + ' over the PO, gets paid. ');
+            : 'That is the widest line on the slider that does it. One step wider and ' + nearest.id + ', ' + pct(nearest.variance) + ' over the PO, gets paid. ');
         } else {
           verdict = nearest.id + ' got paid: ' + pct(nearest.variance) + ' over the PO, inside your ' + at + ' line. ' +
             (overPaid > 1 ? (overPaid - 1) + ' more overbilled ' + (overPaid === 2 ? 'invoice was' : 'invoices were') + ' paid too. ' : '') +
-            'The widest line that catches every overbill here is ' + pct(safe) + '. ';
+            'The widest line on the slider that catches every overbill is ' + pct(safe) + ', just under ' + nearest.id + ' at ' + pct(nearest.variance) + '. ';
         }
       }
       var text = verdict + 'At ' + pct(cfg.price_tolerance_pct) + ', ' + touch + ' of 200 invoices post with no one touching them. ' +
@@ -753,6 +772,8 @@
       for (var k in patch) d[k] = patch[k];
       window.UnwiredLab.save('hub', d);
     }
+    var status = q('[data-hub-status]');
+    function say(text) { if (status) status.textContent = text; }
     var dups = queue.filter(function (inv) { return inv.dupOf; });
     /* the invoice on the desk: the largest duplicate whose original was
        posted right before it, so the twin is one invoice earlier */
@@ -773,10 +794,11 @@
 
       var drawDim = function () {
         if (dim.hidden || !dim.clientWidth) return;
+        /* layout offsets, not rects: they ignore the twin's slide-in transform */
         var papers = qa('.paper-inv', desk);
-        var dr = desk.getBoundingClientRect(), a = papers[0].getBoundingClientRect(), b = papers[1].getBoundingClientRect();
         var w = dim.clientWidth;
-        var x1 = a.left - dr.left + a.width / 2, x2 = b.left - dr.left + b.width / 2;
+        var x1 = papers[0].offsetLeft - dim.offsetLeft + papers[0].offsetWidth / 2;
+        var x2 = papers[1].offsetLeft - dim.offsetLeft + papers[1].offsetWidth / 2;
         dim.innerHTML = '';
         var svg = svgEl('svg', { viewBox: '0 0 ' + w + ' 34' });
         svg.appendChild(svgEl('path', { d: 'M' + x1 + ' 2 V22 M' + x1 + ' 12 H' + x2 + ' M' + x2 + ' 2 V22' }));
@@ -787,12 +809,19 @@
         var tw = t.getComputedTextLength() + 16;
         svg.insertBefore(svgEl('rect', { x: (x1 + x2) / 2 - tw / 2, y: 4, width: tw, height: 16 }), t);
       };
+      var called = false;
       var show = function (call, fresh) {
+        called = true;
         calls.forEach(function (b) {
           var on = b.getAttribute('data-bet-call') === call;
           b.setAttribute('aria-pressed', on ? 'true' : 'false');
-          b.disabled = true;
-          if (on && !q('.pen-tick', b)) b.insertAdjacentHTML('beforeend', '<svg class="pen-tick" viewBox="0 0 30 20" aria-hidden="true"><path d="M3 11 L 10 17 L 27 3"/></svg>');
+          /* aria-disabled, not disabled, so keyboard focus stays where it was */
+          b.setAttribute('aria-disabled', 'true');
+          if (on && !q('.pen-tick', b)) {
+            b.insertAdjacentHTML('beforeend', '<svg class="pen-tick" viewBox="0 0 30 20" aria-hidden="true"><path d="M3 11 L 10 17 L 27 3"/></svg>');
+            /* a mark restored from earlier is already drawn, not drawn again */
+            if (!fresh) q('.pen-tick path', b).style.animation = 'none';
+          }
         });
         ghost.hidden = true;
         twin.hidden = false;
@@ -800,14 +829,23 @@
         else twin.classList.add('is-in');
         dim.hidden = false;
         drawDim();
-        q('[data-bet-head]', reveal).textContent = call === 'post' ? 'You paid ' + pick.vendor + ' twice.' : 'Good call. What would your person check?';
+        var head = call === 'post' ? 'You paid ' + pick.vendor + ' twice.' : 'Good call. What would your person check?';
+        q('[data-bet-head]', reveal).textContent = head;
         q('[data-bet-body]', reveal).textContent = call === 'post'
-          ? pick.dupOf.id + ' was posted one invoice earlier. Your call was reasonable: everything on this sheet checks out.'
-          : 'Nothing on this sheet is wrong. The problem is ' + pick.dupOf.id + ', posted one invoice earlier. A person only sees it if they look back.';
+          ? pick.dupOf.id + ' was posted one invoice earlier. Your call was reasonable: everything on this invoice checks out.'
+          : 'Nothing on this invoice is wrong by itself. The problem is that ' + pick.dupOf.id + ' was posted one invoice earlier. A person only sees that if they look back.';
         reveal.hidden = false;
+        if (!fresh) return;
+        say(head + ' ' + pick.id + ' repeats ' + pick.dupOf.id + ': same vendor, amount and PO.');
+        if (!reduce) twin.addEventListener('transitionend', drawDim, { once: true });
+        /* on a phone the twin pushes the answer below the fold: bring it up */
+        if (q('[data-bet-head]', reveal).getBoundingClientRect().bottom > window.innerHeight) {
+          twin.scrollIntoView({ block: 'start', behavior: reduce ? 'auto' : 'smooth' });
+        }
       };
       calls.forEach(function (b) {
         b.addEventListener('click', function () {
+          if (called) return;
           var call = b.getAttribute('data-bet-call');
           show(call, true);
           store({ call: call });
@@ -841,7 +879,7 @@
       var narrow = W < 620;
       var bin = narrow ? 1 : 0.5, bins = Math.ceil(23 / bin);
       var counts = [];
-      rest.forEach(function (inv) { var b = Math.min(bins - 1, Math.floor(inv.variance / bin)); (counts[b] = counts[b] || []).push(inv); });
+      rest.forEach(function (inv) { var b = Math.min(bins - 1, Math.max(0, Math.ceil(inv.variance / bin) - 1)); (counts[b] = counts[b] || []).push(inv); });
       var tall = counts.reduce(function (m, c) { return Math.max(m, c ? c.length : 0); }, 0);
       var zc = narrow ? 8 : 16, rows = Math.max(Math.ceil(zero.length / zc), tall);
       var gapCols = narrow ? 2 : 3;
@@ -882,7 +920,10 @@
       wt.textContent = (narrow ? 'WHOLE SLIDER · ' : 'THE WHOLE SLIDER, 0% TO 15% · ') + money(whole);
       wholeG.appendChild(wt);
       var ww = wt.getComputedTextLength() + 16;
-      wholeG.insertBefore(svgEl('rect', { x: (d1 + d2) / 2 - ww / 2, y: dy - 8, width: ww, height: 16 }), wt);
+      /* the label breaks the line only where the span has room; otherwise it
+         sits under the dimension, which stays visible tick to tick */
+      if (ww > (d2 - d1) - 24) wt.setAttribute('y', dy + 18);
+      else wholeG.insertBefore(svgEl('rect', { x: (d1 + d2) / 2 - ww / 2, y: dy - 8, width: ww, height: 16 }), wt);
       /* the line */
       lineG = svgEl('g', {});
       svg.appendChild(lineG);
@@ -919,7 +960,10 @@
       var stats = { person: res.person + res.caught, post: res.post + res.slip, slip: res.slip, money: money(res.slipValue) };
       qa('[data-hub-stat]', root).forEach(function (n) { n.textContent = stats[n.getAttribute('data-hub-stat')]; });
       q('[data-hub-pct]', root).textContent = String(state.pct);
-      range.setAttribute('aria-valuetext', pct(state.pct) + '. ' + stats.person + ' to a person, ' + res.slip + ' problems paid, ' + stats.money + ' paid wrong.');
+      var said = pct(state.pct) + '. ' + stats.person + ' to a person, ' + res.slip + (res.slip === 1 ? ' problem paid, ' : ' problems paid, ') + stats.money + ' paid wrong.';
+      range.setAttribute('aria-valuetext', said);
+      var svgN = q('svg', chart);
+      if (svgN) svgN.setAttribute('aria-label', 'All 200 made-up invoices with the line at ' + said);
       bars();
     }
 
@@ -928,27 +972,31 @@
     function bars() {
       var a = slipAt(state.pct, false).slipValue, b = slipAt(state.pct, true).slipValue;
       var track = q('[data-hub-bar="a"]', root).parentNode.clientWidth || 300;
-      var use = track * 0.62, wa = a / MAX * use, wb = state.struck ? b / MAX * use : 0;
+      /* leave room after the longest bar for its value, on any width */
+      var use = Math.max(20, Math.min(track * 0.62, track - 72)), wa = a / MAX * use, wb = state.struck ? b / MAX * use : 0;
       q('[data-hub-bar="a"]', root).style.width = wa + 'px';
       q('[data-hub-val="a"]', root).style.left = (wa + 8) + 'px';
       q('[data-hub-val="a"]', root).textContent = money(a);
       q('[data-hub-bar="b"]', root).style.width = wb + 'px';
       q('[data-hub-val="b"]', root).style.left = (wb + 8) + 'px';
-      q('[data-hub-val="b"]', root).textContent = state.struck ? money(b) : 'strike the word to see';
+      q('[data-hub-val="b"]', root).textContent = state.struck ? money(b) : 'strike the word';
       wordDim.innerHTML = '';
       if (!state.struck) return;
       var svg = svgEl('svg', { viewBox: '0 0 ' + track + ' 30' });
       svg.appendChild(svgEl('path', { d: 'M' + wb + ' 2 V14 M' + wb + ' 8 H' + wa + ' M' + wa + ' 2 V14' }));
-      var t = svgEl('text', { y: 27 });
+      var t = svgEl('text', { y: 27, 'text-anchor': 'start' });
       t.textContent = 'ONE WORD · ' + money(a - b);
-      var tx = (wa + wb) / 2;
-      t.setAttribute('x', tx);
-      t.setAttribute('text-anchor', tx < 70 ? 'start' : 'middle');
       svg.appendChild(t);
       wordDim.appendChild(svg);
+      /* centred under the span, kept inside the track */
+      var lw = t.getComputedTextLength();
+      if (lw > track) { t.textContent = money(a - b); lw = t.getComputedTextLength(); }
+      t.setAttribute('x', Math.max(0, Math.min(track - lw, (wa + wb) / 2 - lw / 2)));
     }
 
     function record() {
+      var r = slipAt(state.pct, state.struck);
+      say('At ' + pct(state.pct) + ': ' + (r.person + r.caught) + ' to a person, ' + money(r.slipValue) + ' paid wrong' + (state.struck ? ', with hold_duplicates on.' : '.'));
       store({ pct: state.pct, moved: state.moved, struck: state.struck, whole: whole,
         word: Math.round(slipAt(state.pct, false).slipValue - slipAt(state.pct, true).slipValue) });
     }
@@ -992,11 +1040,16 @@
     function strike(fresh) {
       state.struck = true;
       word.classList.add('is-struck');
-      if (!fresh) word.querySelector('path').style.animation = 'none';
-      word.disabled = true;
-      word.setAttribute('aria-label', 'no, struck out');
+      if (!fresh) {
+        /* restored: the strike is already drawn, so show its end state */
+        var sp = word.querySelector('path');
+        sp.style.animation = 'none';
+        sp.style.strokeDashoffset = '0';
+      }
+      word.setAttribute('aria-disabled', 'true');
+      word.setAttribute('aria-label', 'no, struck out. hold_duplicates is yes');
       yes.hidden = false;
-      hint.textContent = 'hold_duplicates: yes. Same line, same tolerance.';
+      hint.textContent = 'hold_duplicates: yes. The line has not moved.';
     }
     word.addEventListener('click', function () {
       if (state.struck) return;
