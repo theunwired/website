@@ -181,6 +181,13 @@
     var prev = window.UnwiredLab ? window.UnwiredLab.load().tolerance : null;
     var released = !!(prev && prev.done);
     if (prev && isFinite(prev.pct)) range.value = prev.pct;
+    /* the bet on this sheet: the widest line that still catches every
+       overbill. The nearest overbill decides it, and the widest safe line is
+       the last slider step below it */
+    var overs = queue.filter(function (inv) { return inv.kind === 'overbill'; }).sort(function (a, b) { return a.variance - b.variance; });
+    var nearest = overs[0];
+    var safe = Math.floor((nearest.variance - 1e-9) / 0.5) * 0.5;
+    var near = null;
 
     function build() {
       var narrow = chartBox.clientWidth < 620;
@@ -215,10 +222,12 @@
         var c = Math.floor(k / rows), rr = k % rows;
         marks.push(mark(inv, left + c * P, base - (rr + 1) * P, S));
       });
+      var nearTop = top;
       counts.forEach(function (col, b) {
         if (!col) return;
         col.sort(function (a, c) { return a.variance - c.variance; });
         col.forEach(function (inv, k) { marks.push(mark(inv, x0 + b * P, base - (k + 1) * P, S)); });
+        if (col.indexOf(nearest) !== -1) nearTop = base - col.length * P;
       });
       var t1 = svgEl('text', { x: left, y: base + 18, 'class': 'lab-tick' });
       /* the block is narrower on a phone, so the label gets shorter with it */
@@ -251,6 +260,15 @@
       lineLabel = svgEl('text', { y: 14, 'class': 'lab-line__label' });
       svg.appendChild(line);
       svg.appendChild(lineLabel);
+
+      /* the reveal: a dimension from the line to the nearest overbill,
+         drawn only once the visitor has let go */
+      var nm = marks.filter(function (m) { return m.inv === nearest; })[0];
+      near = { g: svgEl('g', { 'class': 'lab-near' }), cx: nm ? nm.cx : x0, y: Math.max(top + 14, nearTop - 10), narrow: narrow };
+      near.path = svgEl('path', { 'class': 'lab-dim' });
+      near.text = svgEl('text', { 'class': 'lab-dim__label' });
+      near.g.appendChild(near.path); near.g.appendChild(near.text);
+      svg.appendChild(near.g);
       paint();
     }
 
@@ -291,17 +309,47 @@
         fitLabel(dims.lText, (dims.x0 + lx) / 2, lx - dims.x0, (res.post + res.slip) + ' POST ON THEIR OWN', String(res.post + res.slip));
         fitLabel(dims.rText, (lx + dims.x1) / 2, dims.x1 - lx, (res.person + res.caught) + ' TO A PERSON', String(res.person + res.caught));
       }
+      if (near) {
+        near.g.style.display = released ? '' : 'none';
+        var ny = near.y, nx = near.cx, tt = 5;
+        near.path.setAttribute('d', 'M' + lx + ' ' + ny + ' H' + nx + ' M' + lx + ' ' + (ny - tt) + ' V' + (ny + tt) + ' M' + nx + ' ' + (ny - tt) + ' V' + (ny + tt));
+        var caught = cfg.price_tolerance_pct < nearest.variance;
+        var gap = Math.abs(nearest.variance - cfg.price_tolerance_pct).toFixed(1);
+        near.text.textContent = near.narrow ? nearest.id + ' · ' + gap + (caught ? ' PTS CLEAR' : ' PTS INSIDE')
+          : nearest.id + ' · ' + pct(nearest.variance) + ' OVER · ' + (caught ? 'CAUGHT, ' + gap + ' PTS CLEAR' : 'PAID, ' + gap + ' PTS INSIDE THE LINE');
+        near.text.setAttribute('class', 'lab-dim__label' + (caught ? '' : ' lab-dim__label--wrong'));
+        near.text.setAttribute('y', ny - 7);
+        /* sit the label over the span, kept inside the drawing */
+        var lw = near.text.getComputedTextLength();
+        var lo = Math.min(lx, nx), hi = Math.max(lx, nx);
+        var tx2 = Math.max(4, Math.min(layout.W - 4 - lw, (lo + hi) / 2 - lw / 2));
+        near.text.setAttribute('x', tx2);
+      }
       setStat(root, 'post', res.post + res.slip);
       setStat(root, 'person', res.person + res.caught);
       setStat(root, 'caught', res.caught);
       setStat(root, 'slip', res.slip);
       var dups = res.rows.filter(function (r) { return r.o === 'slip' && r.inv.kind === 'duplicate'; }).length;
       var touch = res.post + res.slip;
-      var text = 'At ' + pct(cfg.price_tolerance_pct) + ', ' + touch + ' of 200 invoices post with no one touching them. ' +
+      var overPaid = res.rows.filter(function (r) { return r.o === 'slip' && r.inv.kind === 'overbill'; }).length;
+      var verdict = '';
+      if (released) {
+        var at = pct(cfg.price_tolerance_pct);
+        if (!overPaid) {
+          verdict = 'Every overbill caught at ' + at + '. ' + (cfg.price_tolerance_pct < safe
+            ? 'There was room: the nearest, ' + nearest.id + ', is ' + pct(nearest.variance) + ' over the PO, so a ' + pct(safe) + ' line catches them all too. '
+            : 'That is the widest line that does it here. One step wider and ' + nearest.id + ', ' + pct(nearest.variance) + ' over the PO, gets paid. ');
+        } else {
+          verdict = nearest.id + ' got paid: ' + pct(nearest.variance) + ' over the PO, inside your ' + at + ' line. ' +
+            (overPaid > 1 ? (overPaid - 1) + ' more overbilled ' + (overPaid === 2 ? 'invoice was' : 'invoices were') + ' paid too. ' : '') +
+            'The widest line that catches every overbill here is ' + pct(safe) + '. ';
+        }
+      }
+      var text = verdict + 'At ' + pct(cfg.price_tolerance_pct) + ', ' + touch + ' of 200 invoices post with no one touching them. ' +
         (res.person + res.caught) + ' go to a person, and ' + res.person + ' of those were fine. ' +
         res.slip + ' problems slip through, about ' + money(res.slipValue) + ' paid that should not have been.';
       if (dups && released) text += ' ' + dups + ' of them are duplicates with no variance at all. No tolerance can see those. That takes a rule, which is the next tool.';
-      else if (dups) text += ' Drag the line, then let go. Which ones still get paid?';
+      else if (dups) text += ' Find the widest line that still catches every overbill, then let go.';
       summary.textContent = text;
       svg.setAttribute('aria-label', 'Dot chart of 200 synthetic invoices by price variance. ' + text);
     }
@@ -355,8 +403,10 @@
     function record() {
       if (!window.UnwiredLab) return;
       var dups = last.rows.filter(function (r) { return r.o === 'slip' && r.inv.kind === 'duplicate'; }).length;
+      var over = last.rows.filter(function (r) { return r.o === 'slip' && r.inv.kind === 'overbill'; }).length;
       window.UnwiredLab.save('tolerance', { pct: cfg.price_tolerance_pct, touch: last.post + last.slip,
-        person: last.person + last.caught, slip: last.slip, dups: dups, money: Math.round(last.slipValue), done: released });
+        person: last.person + last.caught, slip: last.slip, dups: dups, money: Math.round(last.slipValue), done: released,
+        over: over, overAll: overs.length, fine: last.person, nearId: nearest.id, nearVar: nearest.variance, safe: safe });
     }
     range.addEventListener('input', function () { paint(); record(); });
     range.addEventListener('change', function () { released = true; paint(); record(); });
@@ -524,6 +574,10 @@
        against the rules in the file now. Each held problem is credited to
        the rule that held it, by its line in the visitor's config */
     function plural(n, one, many) { return n + ' ' + (n === 1 ? one : many); }
+    /* the config line behind a decision: a vendor rule is on its vendor's line */
+    function ruleLine(rule, inv) {
+      return rule === 'always_escalate_vendor' ? cfg.vendorLines[inv.vendor.toLowerCase()] : cfg.lines[rule];
+    }
     function explain() {
       if (!why) return;
       var lineOnly = runQueue(queue, { price_tolerance_pct: cfg.price_tolerance_pct, auto_post_max_amount: Infinity,
@@ -533,7 +587,7 @@
         var now = res.rows[i];
         if (r.o !== 'slip' || now.o !== 'caught') return;
         var rule = now.d.rule;
-        var at = rule === 'always_escalate_vendor' ? cfg.vendorLines[now.inv.vendor.toLowerCase()] : cfg.lines[rule];
+        var at = ruleLine(rule, now.inv);
         var key = rule + '@' + at;
         if (!held[key]) { held[key] = { rule: rule, line: at, n: 0, dups: true }; order.push(key); }
         held[key].n++;
@@ -578,18 +632,18 @@
       tasks[name] = true;
       var n = (tasks.tolerance ? 1 : 0) + (tasks.rule ? 1 : 0) + (tasks.find ? 1 : 0);
       if (window.UnwiredLab) {
-        /* a pass already earned in this tab stays earned */
-        var had = window.UnwiredLab.load().handover;
-        window.UnwiredLab.save('handover', { done: Math.max(n, (had && had.done) || 0) });
+        window.UnwiredLab.save('handover', { done: n, tasks: { tolerance: tasks.tolerance, rule: tasks.rule, find: tasks.find } });
       }
       mark(name);
       if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
     }
-    /* back after passing: show the pass, without saving anything */
-    var passed = window.UnwiredLab ? window.UnwiredLab.load().handover : null;
-    if (passed && passed.done === 3) {
-      ['tolerance', 'rule', 'find'].forEach(function (k) { tasks[k] = true; mark(k); });
-      done.hidden = false;
+    /* back for another go: tasks already done in this tab stay done. Shown
+       again on load without saving anything */
+    var had = window.UnwiredLab ? window.UnwiredLab.load().handover : null;
+    if (had) {
+      var was = had.tasks || (had.done === 3 ? { tolerance: true, rule: true, find: true } : {});
+      ['tolerance', 'rule', 'find'].forEach(function (k) { if (was[k]) { tasks[k] = true; mark(k); } });
+      if (tasks.tolerance && tasks.rule && tasks.find) done.hidden = false;
     }
 
     function render() {
@@ -639,7 +693,7 @@
           ['read', inv.po + ' · goods receipt GR-' + (2200 + inv.n)],
           ['check', inv.variance ? 'price ' + pct(inv.variance) + ' over po' : 'price and quantity match the po'],
           [d.to === 'post' ? 'post' : 'hand', d.why],
-          ['rule', d.rule ? d.rule + (cfg.lines[d.rule] ? ' · line ' + cfg.lines[d.rule] + ' of your config' : '') : 'no rule needed, everything agreed'],
+          ['rule', d.rule ? d.rule + (ruleLine(d.rule, inv) ? ' · line ' + ruleLine(d.rule, inv) + ' of your config' : '') : 'no rule needed, everything agreed'],
           ['truth', 'what it was: ' + inv.note]
         ];
         lines.forEach(function (l) {
@@ -683,10 +737,290 @@
       : 'APPLIED · the shipped config. Change any line.';
   }
 
+  /* ------------------------------------------------ 00 The hub: the bet */
+  /* One call on one invoice, a duplicate, then the line over all 200 with
+     the duplicate rule written as one word the visitor can strike. Every
+     number is the engine's; nothing on this sheet is typed in. */
+  function initHub(queue) {
+    var bet = q('[data-lab-bet]');
+    var root = q('[data-lab-hub]');
+    if (!bet && !root) return;
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function load() { return window.UnwiredLab ? (window.UnwiredLab.load().hub || {}) : {}; }
+    function store(patch) {
+      if (!window.UnwiredLab) return;
+      var d = load();
+      for (var k in patch) d[k] = patch[k];
+      window.UnwiredLab.save('hub', d);
+    }
+    var dups = queue.filter(function (inv) { return inv.dupOf; });
+    /* the invoice on the desk: the largest duplicate whose original was
+       posted right before it, so the twin is one invoice earlier */
+    var pick = dups.filter(function (inv) { return inv.dupOf.n === inv.n - 1; })
+      .sort(function (a, b) { return b.amount - a.amount; })[0] || dups[0];
+    var none = { price_tolerance_pct: 5, auto_post_max_amount: Infinity, hold_duplicates: false, new_vendor_review: false, always_escalate_vendor: [] };
+    function slipAt(p, rule) { none.price_tolerance_pct = p; none.hold_duplicates = rule; var r = runQueue(queue, none); none.hold_duplicates = false; return r; }
+    var whole = Math.round(slipAt(15, false).slipValue - slipAt(0, false).slipValue);
+
+    if (bet && pick) {
+      var cents = function (v) { return '$' + v.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 }); };
+      var F = { id: pick.id, twin: pick.dupOf.id, vendor: pick.vendor, amount: cents(pick.amount), po: pick.po, more: String(dups.length - 1) };
+      qa('[data-bet-f]', bet).forEach(function (n) { var v = F[n.getAttribute('data-bet-f')]; if (v) n.textContent = v; });
+      var calls = qa('[data-bet-call]', bet);
+      var twin = q('[data-bet-twin]', bet), ghost = q('[data-bet-ghost]', bet);
+      var dim = q('[data-bet-dim]', bet), desk = q('[data-bet-desk]', bet);
+      var reveal = q('[data-bet-reveal]', bet);
+
+      var drawDim = function () {
+        if (dim.hidden || !dim.clientWidth) return;
+        var papers = qa('.paper-inv', desk);
+        var dr = desk.getBoundingClientRect(), a = papers[0].getBoundingClientRect(), b = papers[1].getBoundingClientRect();
+        var w = dim.clientWidth;
+        var x1 = a.left - dr.left + a.width / 2, x2 = b.left - dr.left + b.width / 2;
+        dim.innerHTML = '';
+        var svg = svgEl('svg', { viewBox: '0 0 ' + w + ' 34' });
+        svg.appendChild(svgEl('path', { d: 'M' + x1 + ' 2 V22 M' + x1 + ' 12 H' + x2 + ' M' + x2 + ' 2 V22' }));
+        var t = svgEl('text', { x: (x1 + x2) / 2, y: 16, 'text-anchor': 'middle' });
+        t.textContent = 'SAME VENDOR · SAME AMOUNT · SAME PO';
+        svg.appendChild(t);
+        dim.appendChild(svg);
+        var tw = t.getComputedTextLength() + 16;
+        svg.insertBefore(svgEl('rect', { x: (x1 + x2) / 2 - tw / 2, y: 4, width: tw, height: 16 }), t);
+      };
+      var show = function (call, fresh) {
+        calls.forEach(function (b) {
+          var on = b.getAttribute('data-bet-call') === call;
+          b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          b.disabled = true;
+          if (on && !q('.pen-tick', b)) b.insertAdjacentHTML('beforeend', '<svg class="pen-tick" viewBox="0 0 30 20" aria-hidden="true"><path d="M3 11 L 10 17 L 27 3"/></svg>');
+        });
+        ghost.hidden = true;
+        twin.hidden = false;
+        if (fresh && !reduce) requestAnimationFrame(function () { requestAnimationFrame(function () { twin.classList.add('is-in'); }); });
+        else twin.classList.add('is-in');
+        dim.hidden = false;
+        drawDim();
+        q('[data-bet-head]', reveal).textContent = call === 'post' ? 'You paid ' + pick.vendor + ' twice.' : 'Good call. What would your person check?';
+        q('[data-bet-body]', reveal).textContent = call === 'post'
+          ? pick.dupOf.id + ' was posted one invoice earlier. Your call was reasonable: everything on this sheet checks out.'
+          : 'Nothing on this sheet is wrong. The problem is ' + pick.dupOf.id + ', posted one invoice earlier. A person only sees it if they look back.';
+        reveal.hidden = false;
+      };
+      calls.forEach(function (b) {
+        b.addEventListener('click', function () {
+          var call = b.getAttribute('data-bet-call');
+          show(call, true);
+          store({ call: call });
+        });
+      });
+      var had = load();
+      if (had.call) show(had.call, false);
+      window.addEventListener('resize', drawDim);
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(drawDim);
+    }
+
+    if (!root) return;
+    var chart = q('[data-hub-chart]', root);
+    var range = q('[data-hub-range]', root);
+    var readout = q('[data-hub-readout]', root);
+    var word = q('[data-hub-word]', root);
+    var yes = q('[data-hub-yes]', root);
+    var hint = q('[data-hub-hint]', root);
+    var wordDim = q('[data-hub-worddim]', root);
+    var prev = load();
+    var state = { pct: isFinite(prev.pct) ? prev.pct : 5, moved: !!prev.moved, struck: !!prev.struck };
+    range.value = state.pct;
+    var cfg = { price_tolerance_pct: state.pct, auto_post_max_amount: Infinity, hold_duplicates: state.struck,
+      new_vendor_review: false, always_escalate_vendor: [] };
+    var zero = queue.filter(function (inv) { return !inv.variance; });
+    var rest = queue.filter(function (inv) { return inv.variance; }).sort(function (a, b) { return a.variance - b.variance; });
+    var marks = [], L = null, lineG, tagRect, tagText, wholeG;
+
+    function build() {
+      var W = Math.max(300, chart.clientWidth || 900);
+      var narrow = W < 620;
+      var bin = narrow ? 1 : 0.5, bins = Math.ceil(23 / bin);
+      var counts = [];
+      rest.forEach(function (inv) { var b = Math.min(bins - 1, Math.floor(inv.variance / bin)); (counts[b] = counts[b] || []).push(inv); });
+      var tall = counts.reduce(function (m, c) { return Math.max(m, c ? c.length : 0); }, 0);
+      var zc = narrow ? 8 : 16, rows = Math.max(Math.ceil(zero.length / zc), tall);
+      var gapCols = narrow ? 2 : 3;
+      var P = Math.floor((W - 2) / (zc + gapCols + bins) * 10) / 10, S = Math.max(2, P - (narrow ? 1.6 : 2.4));
+      var top = 30, base = top + rows * P, H = base + 64, x0 = (zc + gapCols) * P;
+      L = { W: W, P: P, bin: bin, x0: x0, base: base, top: top, narrow: narrow };
+      chart.innerHTML = '';
+      var svg = svgEl('svg', { viewBox: '0 0 ' + W + ' ' + H, role: 'img',
+        'aria-label': 'All 200 made-up invoices. Exact matches to the PO on the left, the rest by how far over the PO they are, with the line across them.' });
+      chart.appendChild(svg);
+      marks = [];
+      function mark(inv, x, y) {
+        var r = svgEl('rect', { x: x, y: y, width: S, height: S });
+        svg.appendChild(r);
+        marks.push({ inv: inv, r: r, cx: x + S / 2, cy: y + S / 2 });
+      }
+      zero.forEach(function (inv, k) { mark(inv, (k % zc) * P, base - (Math.floor(k / zc) + 1) * P); });
+      counts.forEach(function (col, b) { if (col) col.forEach(function (inv, k) { mark(inv, x0 + b * P, base - (k + 1) * P); }); });
+      svg.appendChild(svgEl('line', { 'class': 'hub-axis', x1: 0, x2: zc * P - (P - S), y1: base + 6, y2: base + 6 }));
+      svg.appendChild(svgEl('line', { 'class': 'hub-axis', x1: x0, x2: x0 + bins * P, y1: base + 6, y2: base + 6 }));
+      var g0 = svgEl('text', { 'class': 'hub-tick', x: 0, y: base + 22 });
+      g0.textContent = (narrow ? 'EXACT · ' : 'EXACT MATCH TO PO · ') + zero.length;
+      svg.appendChild(g0);
+      var step = narrow ? 5 : 2.5;
+      for (var v = 0; v <= 22.5; v += step) {
+        var tx = x0 + v / bin * P;
+        svg.appendChild(svgEl('line', { 'class': 'hub-axis', x1: tx, x2: tx, y1: base + 6, y2: base + 10 }));
+        var t = svgEl('text', { 'class': 'hub-tick', x: tx, y: base + 22, 'text-anchor': v ? 'middle' : 'start' });
+        t.textContent = (v % 1 ? v.toFixed(1) : v) + '%';
+        svg.appendChild(t);
+      }
+      /* the whole slider, measured across what it measures: 0% to 15% */
+      wholeG = svgEl('g', { 'class': 'hub-dim' + (state.moved ? ' is-on' : '') });
+      svg.appendChild(wholeG);
+      var d1 = x0, d2 = x0 + 15 / bin * P, dy = base + 44;
+      wholeG.appendChild(svgEl('path', { d: 'M' + d1 + ' ' + (dy - 7) + ' V' + (dy + 7) + ' M' + d1 + ' ' + dy + ' H' + d2 + ' M' + d2 + ' ' + (dy - 7) + ' V' + (dy + 7) }));
+      var wt = svgEl('text', { x: (d1 + d2) / 2, y: dy + 4, 'text-anchor': 'middle' });
+      wt.textContent = (narrow ? 'WHOLE SLIDER · ' : 'THE WHOLE SLIDER, 0% TO 15% · ') + money(whole);
+      wholeG.appendChild(wt);
+      var ww = wt.getComputedTextLength() + 16;
+      wholeG.insertBefore(svgEl('rect', { x: (d1 + d2) / 2 - ww / 2, y: dy - 8, width: ww, height: 16 }), wt);
+      /* the line */
+      lineG = svgEl('g', {});
+      svg.appendChild(lineG);
+      lineG.appendChild(svgEl('rect', { 'class': 'hub-line-hit', x: -14, y: top - 26, width: 28, height: base - top + 40 }));
+      lineG.appendChild(svgEl('line', { 'class': 'hub-line', x1: 0, x2: 0, y1: top - 8, y2: base + 10 }));
+      var tag = svgEl('g', { 'class': 'hub-tag' });
+      lineG.appendChild(tag);
+      tagRect = svgEl('rect', { x: 0, y: top - 30, width: 10, height: 20 });
+      tagText = svgEl('text', { x: 7, y: top - 16 });
+      tag.appendChild(tagRect); tag.appendChild(tagText);
+      paint();
+    }
+
+    function paint() {
+      cfg.price_tolerance_pct = state.pct;
+      cfg.hold_duplicates = state.struck;
+      var res = runQueue(queue, cfg);
+      marks.forEach(function (m) {
+        var o = res.rows[m.inv.n].o;
+        m.r.setAttribute('class', 'hub-m--' + o);
+        /* paid problems are diamonds, so state never rests on colour alone */
+        m.r.setAttribute('transform', o === 'slip' ? 'rotate(45 ' + m.cx + ' ' + m.cy + ')' : '');
+      });
+      var x = L.x0 + state.pct / L.bin * L.P;
+      lineG.setAttribute('transform', 'translate(' + x + ' 0)');
+      tagText.textContent = (state.moved ? 'YOUR LINE · ' : 'THE LINE · ') + pct(state.pct);
+      var w = tagText.getComputedTextLength() + 14;
+      var flip = x + w > L.W;
+      tagRect.setAttribute('x', flip ? -w : 0); tagRect.setAttribute('width', w);
+      tagText.setAttribute('x', flip ? -w + 7 : 7);
+      if (state.moved) wholeG.classList.add('is-on');
+      readout.textContent = pct(state.pct);
+      range.value = state.pct;
+      var stats = { person: res.person + res.caught, post: res.post + res.slip, slip: res.slip, money: money(res.slipValue) };
+      qa('[data-hub-stat]', root).forEach(function (n) { n.textContent = stats[n.getAttribute('data-hub-stat')]; });
+      q('[data-hub-pct]', root).textContent = String(state.pct);
+      range.setAttribute('aria-valuetext', pct(state.pct) + '. ' + stats.person + ' to a person, ' + res.slip + ' problems paid, ' + stats.money + ' paid wrong.');
+      bars();
+    }
+
+    /* money paid wrong with and without the rule, on one scale */
+    var MAX = slipAt(15, false).slipValue;
+    function bars() {
+      var a = slipAt(state.pct, false).slipValue, b = slipAt(state.pct, true).slipValue;
+      var track = q('[data-hub-bar="a"]', root).parentNode.clientWidth || 300;
+      var use = track * 0.62, wa = a / MAX * use, wb = state.struck ? b / MAX * use : 0;
+      q('[data-hub-bar="a"]', root).style.width = wa + 'px';
+      q('[data-hub-val="a"]', root).style.left = (wa + 8) + 'px';
+      q('[data-hub-val="a"]', root).textContent = money(a);
+      q('[data-hub-bar="b"]', root).style.width = wb + 'px';
+      q('[data-hub-val="b"]', root).style.left = (wb + 8) + 'px';
+      q('[data-hub-val="b"]', root).textContent = state.struck ? money(b) : 'strike the word to see';
+      wordDim.innerHTML = '';
+      if (!state.struck) return;
+      var svg = svgEl('svg', { viewBox: '0 0 ' + track + ' 30' });
+      svg.appendChild(svgEl('path', { d: 'M' + wb + ' 2 V14 M' + wb + ' 8 H' + wa + ' M' + wa + ' 2 V14' }));
+      var t = svgEl('text', { y: 27 });
+      t.textContent = 'ONE WORD · ' + money(a - b);
+      var tx = (wa + wb) / 2;
+      t.setAttribute('x', tx);
+      t.setAttribute('text-anchor', tx < 70 ? 'start' : 'middle');
+      svg.appendChild(t);
+      wordDim.appendChild(svg);
+    }
+
+    function record() {
+      store({ pct: state.pct, moved: state.moved, struck: state.struck, whole: whole,
+        word: Math.round(slipAt(state.pct, false).slipValue - slipAt(state.pct, true).slipValue) });
+    }
+    function setPct(v) {
+      v = Math.max(0, Math.min(15, Math.round(v * 2) / 2));
+      state.moved = true;
+      if (v !== state.pct) { state.pct = v; }
+      paint();
+    }
+    range.addEventListener('input', function () { setPct(parseFloat(range.value)); });
+    range.addEventListener('change', record);
+
+    /* drag the line itself: sideways moves it, up and down still scrolls */
+    var drag = null;
+    function at(clientX) {
+      var r = chart.getBoundingClientRect();
+      return ((clientX - r.left) * (L.W / r.width) - L.x0) / L.P * L.bin;
+    }
+    chart.addEventListener('pointerdown', function (e) {
+      drag = { id: e.pointerId, x: e.clientX, y: e.clientY, live: e.pointerType === 'mouse' };
+      if (drag.live) { chart.setPointerCapture(e.pointerId); setPct(at(e.clientX)); }
+    });
+    chart.addEventListener('pointermove', function (e) {
+      if (!drag || drag.id !== e.pointerId) return;
+      if (!drag.live) {
+        var dx = Math.abs(e.clientX - drag.x), dy = Math.abs(e.clientY - drag.y);
+        if (dx > 6 && dx > dy) { drag.live = true; try { chart.setPointerCapture(e.pointerId); } catch (err) { /* already released */ } }
+        else if (dy > 6) { drag = null; return; }
+        else return;
+      }
+      setPct(at(e.clientX));
+    });
+    chart.addEventListener('pointerup', function (e) {
+      if (!drag) return;
+      if (!drag.live) setPct(at(e.clientX));
+      drag = null;
+      record();
+    });
+    chart.addEventListener('pointercancel', function () { if (drag && drag.live) record(); drag = null; });
+
+    function strike(fresh) {
+      state.struck = true;
+      word.classList.add('is-struck');
+      if (!fresh) word.querySelector('path').style.animation = 'none';
+      word.disabled = true;
+      word.setAttribute('aria-label', 'no, struck out');
+      yes.hidden = false;
+      hint.textContent = 'hold_duplicates: yes. Same line, same tolerance.';
+    }
+    word.addEventListener('click', function () {
+      if (state.struck) return;
+      strike(true);
+      paint();
+      record();
+    });
+    if (state.struck) strike(false);
+
+    var lastW = 0;
+    window.addEventListener('resize', function () {
+      if (Math.abs(chart.clientWidth - lastW) < 30) { bars(); return; }
+      lastW = chart.clientWidth; build();
+    });
+    lastW = chart.clientWidth;
+    build();
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(build);
+  }
+
   function start() {
     var queue = buildQueue();
     try { initTolerance(queue); } catch (e) { if (window.console) console.error('[unwired] lab tolerance failed', e); }
     try { initHandover(queue); } catch (e) { if (window.console) console.error('[unwired] lab handover failed', e); }
+    try { initHub(queue); } catch (e) { if (window.console) console.error('[unwired] lab hub failed', e); }
   }
 
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);

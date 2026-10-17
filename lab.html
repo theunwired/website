@@ -4,16 +4,16 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Lab · The Unwired</title>
-<meta name="description" content="Where would you draw the line? Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, check the fields. In your browser.">
+<meta name="description" content="Post this invoice, or send it to a person? One call, then draw the line on 200 made-up invoices, then three short stages. In your browser.">
 <link rel="canonical" href="https://theunwired.in/lab.html">
 <meta property="og:title" content="Lab · The Unwired">
-<meta property="og:description" content="Where would you draw the line? Three short stages on made-up invoices and documents: set a tolerance, pass the handover test, check the fields. In your browser.">
+<meta property="og:description" content="Post this invoice, or send it to a person? One call, then draw the line on 200 made-up invoices, then three short stages. In your browser.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://theunwired.in/lab.html">
 <meta property="og:image" content="https://theunwired.in/assets/og-lab.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="627">
-<meta property="og:image:alt" content="The Unwired Lab, sheet 00. Where would you draw the line? A line labelled 5.0% across 200 invoices.">
+<meta property="og:image:alt" content="The Unwired Lab, sheet 00. Post INV-40152, or send it to a person? A made-up invoice from Quarry Lane Print for $21,920.00.">
 <meta property="og:site_name" content="The Unwired">
 <meta name="twitter:image" content="https://theunwired.in/assets/og-lab.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -31,7 +31,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/styles.css?v=12">
+<link rel="stylesheet" href="assets/styles.css?v=13">
 </head>
 <body>
 
@@ -78,28 +78,117 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
       <span class="lab-stagebar__count">THREE STAGES</span>
     </div>
   </nav>
-  <section class="sec--page-hero lab-hero" data-section="Lab">
+  <section class="sec--page-hero lab-hero lab-hero--bet" id="bet" data-section="Lab">
     <div class="wrap">
-      <div class="lab-thesis">
-        <div>
-          <div class="chapter">
-            <span class="chapter__rule chapter__rule--short"></span>
-            <span class="chapter__label">Lab</span>
+      <div class="chapter">
+        <span class="chapter__rule chapter__rule--short"></span>
+        <span class="chapter__label">Lab</span>
+      </div>
+      <h1 class="h-thesis">You draw the line.</h1>
+      <p class="lede lab-hero__lede">Left of it, the agent acts. Right of it, a person decides. Start with one invoice from a made-up queue of 200.</p>
+
+      <div class="bet" data-lab-bet>
+        <p class="bet__q" id="bet-q">Post <span data-bet-f="id">INV-40152</span>, or send it to a person?</p>
+        <div class="bet__desk" data-bet-desk>
+          <article class="paper-inv" aria-label="Invoice in the queue now">
+            <div class="paper-inv__top"><span class="paper-inv__vendor" data-bet-f="vendor">Quarry Lane Print</span><span class="paper-inv__tag">INVOICE · IN THE QUEUE NOW</span></div>
+            <dl>
+              <dt>Invoice no</dt><dd data-bet-f="id">INV-40152</dd>
+              <dt>Amount</dt><dd data-bet-f="amount">$21,920.00</dd>
+              <dt>Purchase order</dt><dd data-bet-f="po">PO 88689</dd>
+              <dt>Over PO</dt><dd>0.0%</dd>
+              <dt>Goods receipt</dt><dd>matches</dd>
+            </dl>
+          </article>
+          <div class="bet__ghost" data-bet-ghost aria-hidden="true">Make the call to see<br>what the agent saw</div>
+          <article class="paper-inv paper-inv--twin" data-bet-twin aria-label="The invoice posted one before it" hidden>
+            <div class="paper-inv__top"><span class="paper-inv__vendor" data-bet-f="vendor">Quarry Lane Print</span><span class="paper-inv__tag paper-inv__tag--posted">POSTED · ONE INVOICE EARLIER</span></div>
+            <dl>
+              <dt>Invoice no</dt><dd data-bet-f="twin">INV-40151</dd>
+              <dt>Amount</dt><dd data-bet-f="amount">$21,920.00</dd>
+              <dt>Purchase order</dt><dd data-bet-f="po">PO 88689</dd>
+              <dt>Over PO</dt><dd>0.0%</dd>
+              <dt>Goods receipt</dt><dd>matches</dd>
+            </dl>
+          </article>
+          <div class="bet__dim" data-bet-dim aria-hidden="true" hidden></div>
+        </div>
+        <div class="bet__calls" role="group" aria-labelledby="bet-q">
+          <button type="button" class="btn btn--solid bet__call" data-bet-call="post" aria-pressed="false">Post it</button>
+          <button type="button" class="btn btn--ghost bet__call" data-bet-call="person" aria-pressed="false">Send to a person</button>
+        </div>
+        <div class="bet__reveal" data-bet-reveal aria-live="polite" hidden>
+          <p class="bet__head" data-bet-head></p>
+          <p data-bet-body></p>
+          <p><strong>Same vendor, same <span data-bet-f="amount">$21,920.00</span>, same <span data-bet-f="po">PO 88689</span>.</strong> A duplicate rule catches it by checking vendor, amount and PO against what was already posted. Nothing on <span data-bet-f="id">INV-40152</span> by itself is wrong, so no price tolerance can see it. This queue has <span data-bet-f="more">8</span> more.</p>
+          <a class="bet__next" href="#line">Now draw the line</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec lab-stage hubline-sec" id="line" data-section="The line">
+    <div class="wrap">
+      <div class="lab-panel hubline" data-lab-hub data-reveal>
+        <div class="chapter chapter--tight">
+          <span class="chapter__num">00</span>
+          <span class="chapter__rule"></span>
+          <span class="chapter__label">The line</span>
+        </div>
+        <h2 class="h-section">Drag the line. Watch where the money goes.</h2>
+        <p class="hubline__help">All 200 invoices. Left of the line the agent posts on its own. Right of it, a person decides. Drag the line itself, or use the slider.</p>
+
+        <div class="hubline__chart" data-hub-chart></div>
+        <div class="lab-control">
+          <label class="lab-control__label" for="hub-range">Price tolerance</label>
+          <input class="lab-range" id="hub-range" type="range" min="0" max="15" step="0.5" value="5" data-hub-range>
+          <span class="lab-control__value" data-hub-readout aria-hidden="true">5.0%</span>
+        </div>
+        <div class="fit-legend lab-legend">
+          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--post" x="0.5" y="0.5" width="11" height="11"></rect></svg>Posted, and it was fine</span>
+          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--person" x="1" y="1" width="10" height="10"></rect></svg>Sent to a person, it was fine</span>
+          <span class="fit-legend__row"><svg width="12" height="12" aria-hidden="true"><rect class="lab-key lab-key--caught" x="1" y="1" width="10" height="10"></rect></svg>Sent to a person, it was a problem</span>
+          <span class="fit-legend__row"><svg width="14" height="14" aria-hidden="true"><rect class="lab-key lab-key--slip" x="3" y="3" width="8" height="8" transform="rotate(45 7 7)"></rect></svg>Posted, and it was a problem</span>
+        </div>
+
+        <div class="grid grid--4 lab-stats" aria-live="polite">
+          <div class="cell"><span class="cell__tag">SENT TO A PERSON</span><span class="lab-stat" data-hub-stat="person">0</span></div>
+          <div class="cell"><span class="cell__tag">POSTED ON ITS OWN</span><span class="lab-stat" data-hub-stat="post">0</span></div>
+          <div class="cell"><span class="cell__tag cell__tag--warn">PROBLEMS PAID</span><span class="lab-stat" data-hub-stat="slip">0</span></div>
+          <div class="cell"><span class="cell__tag cell__tag--warn">MONEY PAID WRONG</span><span class="lab-stat" data-hub-stat="money">$0</span></div>
+        </div>
+
+        <div class="hubline__rule">
+          <div>
+            <div class="hubline__yaml" aria-label="rules.yaml">
+              <div class="hubline__c"># rules.yaml</div>
+              <div><span class="hubline__k">price_tolerance_pct:</span> <span data-hub-pct>5</span> <span class="hubline__c"># the line</span></div>
+              <div><span class="hubline__k">hold_duplicates:</span> <button type="button" class="hubline__word" data-hub-word aria-label="Strike out no, so hold_duplicates is yes">no<svg class="hubline__strike" viewBox="0 0 40 20" preserveAspectRatio="none" aria-hidden="true"><path d="M2 13 C 10 9, 26 12, 38 7"></path></svg></button><span class="hubline__yes" data-hub-yes hidden>yes</span></div>
+            </div>
+            <p class="hubline__hint" data-hub-hint>Strike the word with the pen.</p>
           </div>
-          <h1 class="h-thesis">You draw the line.</h1>
-          <p class="lede">Every system we build has a line. Left of it, the agent acts on its own. Right of it, a person decides. Here you get to draw it, on made-up invoices and documents, in three short stages. About eight minutes. Nothing you do leaves your browser.</p>
-          <div class="btn-row btn-row--left">
-            <a class="btn btn--solid" data-wipe-link href="lab-tolerance.html">Start at stage 01</a>
+          <div class="hubline__bars" aria-live="polite">
+            <div class="hubline__bar"><span>No rule</span><span class="hubline__track"><span class="hubline__fill" data-hub-bar="a"></span><span class="hubline__val" data-hub-val="a"></span></span></div>
+            <div class="hubline__bar"><span>With the rule</span><span class="hubline__track"><span class="hubline__fill" data-hub-bar="b"></span><span class="hubline__val" data-hub-val="b">strike the word to see</span></span></div>
+            <div class="hubline__bar"><span></span><span class="hubline__word-dim" data-hub-worddim></span></div>
           </div>
         </div>
-        <div class="lab-thesis__line" aria-hidden="true"><span data-lab-hubline>THE LINE · 5.0%</span></div>
-      </div>
-      <div class="lab-sheet-foot">
-        <div class="titleblock" aria-label="Title block">
-          <div><span class="titleblock__k">SHEET</span>00 / 03</div>
-          <div><span class="titleblock__k">DRAWN BY</span>The Unwired</div>
-          <div><span class="titleblock__k">CHECKED BY</span><span data-lab-signature><span class="titleblock__empty">unsigned</span></span></div>
-          <div><span class="titleblock__k">REV</span>A</div>
+
+        <div class="lab-earned" data-lab-earned="hub" hidden>
+          <span class="lab-lesson"><span class="lab-lesson__k">SHEET 00 · THE LESSON</span><span>The line matters. The rule matters more.</span></span>
+          <div class="lab-copy-row" hidden>
+            <button type="button" class="lab-copy" data-lab-copy="hub">Copy the sheet</button>
+            <span class="lab-copy__status" role="status"></span>
+          </div>
+        </div>
+        <p class="diagram-panel__note">Illustrative. 200 made-up invoices, the same for every visitor. Money paid wrong counts the whole amount of a duplicate and only the overbilled part of an overbill. Only the price tolerance and the duplicate rule are on here, so the two can be seen alone.</p>
+        <div class="lab-sheet-foot">
+          <div class="titleblock" aria-label="Title block">
+            <div><span class="titleblock__k">SHEET</span>00 / 03</div>
+            <div><span class="titleblock__k">DRAWN BY</span>The Unwired</div>
+            <div><span class="titleblock__k">CHECKED BY</span><span data-lab-signature><span class="titleblock__empty">unsigned</span></span></div>
+            <div><span class="titleblock__k">REV</span>B</div>
+          </div>
         </div>
       </div>
     </div>
@@ -112,7 +201,7 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
           <span class="lab-card__top"><span class="lab-card__num">01</span><span class="lab-card__time">ABOUT 2 MIN</span></span>
           <span class="lab-card__name">Set the line</span>
           <span class="lab-card__text">Drag one price tolerance across 200 invoices. See what posts on its own, what goes to a person, and what slips through.</span>
-          <span class="lab-card__ask">How much slips through at your line?</span>
+          <span class="lab-card__ask">How wide can the line go before an overbill gets paid?</span>
           <span data-lab-earned="tolerance" hidden><span class="lab-lesson"><span class="lab-lesson__k">SHEET 01 · THE LESSON</span><span>One number decides what nobody checks.</span></span></span>
           <span class="lab-card__go">Open stage 01</span>
         </a>
@@ -237,7 +326,8 @@ if(t==='light'){var m=document.querySelector('meta[name="theme-color"]');if(m)m.
 <script src="assets/wires.js?v=9"></script>
 <script src="assets/ambient.js?v=8"></script>
 <script src="assets/site.js?v=10"></script>
-<script src="assets/lab-run.js?v=4"></script>
+<script src="assets/lab.js?v=8"></script>
+<script src="assets/lab-run.js?v=5"></script>
 <script>
 /* old links pointed at sections of this page; send them to the stage pages */
 (function(){var m={"#tolerance":"lab-tolerance.html","#handover":"lab-handover.html"}[location.hash];if(m)location.replace(m);})();

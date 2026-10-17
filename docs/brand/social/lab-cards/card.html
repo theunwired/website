@@ -27,6 +27,16 @@ body{background-color:var(--cut);background-image:linear-gradient(rgba(234,242,2
 .art svg{display:block;width:100%;overflow:visible}
 .foot{position:absolute;left:72px;right:72px;bottom:0;height:52px;border-top:1px solid var(--hair);display:flex;justify-content:space-between;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:14px;letter-spacing:.14em;color:var(--quiet)}
 .foot b{font-weight:400;color:var(--bone)}
+.inv{display:flex;gap:40px;align-items:flex-end}
+.paper{background:#F7F6F1;color:#1B1C1A;border:1px solid var(--hair-hi);padding:22px 26px 20px;width:560px;font-family:'IBM Plex Mono',monospace;font-size:17px}
+.paper .v{font-family:'Instrument Sans',sans-serif;font-weight:700;font-size:26px;letter-spacing:-.015em;margin-bottom:14px;display:flex;justify-content:space-between;align-items:baseline}
+.paper .v span{font-family:'IBM Plex Mono',monospace;font-weight:400;font-size:12px;letter-spacing:.12em;color:#5C6055}
+.paper dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 22px}
+.paper dt{font-size:12px;letter-spacing:.12em;color:#5C6055;padding-top:3px}
+.paper dd{margin:0}
+.opts{display:flex;flex-direction:column;gap:14px;padding-bottom:4px}
+.opt{border:1.5px solid var(--bone);padding:16px 26px;font-size:22px;font-weight:600;color:var(--bone);white-space:nowrap}
+.opt.solid{background:var(--bone);color:var(--cut)}
 .yaml{position:absolute;right:72px;top:150px;width:392px;background:var(--cut);border:1px solid var(--hair-hi);padding:16px 18px;font-family:'IBM Plex Mono',monospace;font-size:15px;line-height:1.85;color:var(--body)}
 .yaml .c{color:var(--quiet)} .yaml .v{color:var(--bone)}
 text{font-family:'IBM Plex Mono',monospace}
@@ -38,15 +48,21 @@ var Q = buildQueue();
 var which = location.hash.slice(1) || 'hub';
 var NS='http://www.w3.org/2000/svg';
 function el(t,a,p){var n=document.createElementNS(NS,t);for(var k in a)n.setAttribute(k,a[k]);if(p)p.appendChild(n);return n;}
-function outcome(inv,to){ if(to==='post') return inv.problem?'slip':'post'; return inv.problem?'caught':'person'; }
+function cardOutcome(inv,to){ if(to==='post') return inv.problem?'slip':'post'; return inv.problem?'caught':'person'; }
 var C={post:'#3FB58C',person:'#C5D7E6',caught:'#FF9F8C',slip:'#FF9F8C'};
 var CARDS={
-  hub:{sheet:'00 / 03',eyebrow:'THE LAB · THREE STAGES · ABOUT 8 MIN',q:'Where would you draw the line?',strip:{pct:5,rules:false,label:'THE LINE · 5.0%'},foot:'ILLUSTRATIVE · LEFT OF THE LINE THE AGENT ACTS. RIGHT OF IT, A PERSON.'},
-  tolerance:{sheet:'01 / 03',eyebrow:'SHEET 01 · SET THE LINE',q:'At a 5.0% line, how many duplicate invoices get paid?',strip:{pct:5,rules:false},foot:'ILLUSTRATIVE · THE SAME 200 INVOICES FOR EVERYONE'},
+  hub:{sheet:'00 / 03',eyebrow:'THE LAB · SHEET 00 · THE BET',q:'',invoice:true,foot:'ILLUSTRATIVE · ONE OF 200 MADE-UP INVOICES'},
+  tolerance:{sheet:'01 / 03',eyebrow:'SHEET 01 · SET THE LINE',q:'How wide can the line go before an overbill gets paid?',strip:{pct:4,rules:false,label:'THE LINE · 4.0%'},foot:'ILLUSTRATIVE · THE SAME 200 INVOICES FOR EVERYONE'},
   handover:{sheet:'02 / 03',eyebrow:'SHEET 02 · PASS THE HANDOVER',q:'Could your team change this agent without calling us?',strip:{pct:5,rules:true},yaml:true,foot:'ILLUSTRATIVE · THE SAME 200 INVOICES FOR EVERYONE'},
   documents:{sheet:'03 / 03',eyebrow:'SHEET 03 · WORST-DOCUMENT BENCH',q:'The agent is 95% sure. Would you check it?',conf:true,foot:'ILLUSTRATIVE · THE SAME SIX DOCUMENTS FOR EVERYONE'}
 };
 var c=CARDS[which];
+/* the hub's invoice is the one the page opens on: the largest duplicate
+   whose original was posted right before it */
+var dupsAll=Q.filter(function(i){return i.dupOf;});
+var pick=dupsAll.filter(function(i){return i.dupOf.n===i.n-1;}).sort(function(a,b){return b.amount-a.amount;})[0]||dupsAll[0];
+var cents=function(v){return '$'+v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});};
+if(c.invoice) c.q='Post '+pick.id+', or send it to a person?';
 var card=document.getElementById('card');
 card.innerHTML='<div class="top"><div class="lockup"><span class="mark"><i></i><i></i></span><span class="word">theunwired</span></div>'+
  '<div class="tb"><div><span>SET</span>THE LAB</div><div><span>SHEET</span>'+c.sheet+'</div><div><span>REV</span>A</div></div></div>'+
@@ -54,6 +70,12 @@ card.innerHTML='<div class="top"><div class="lockup"><span class="mark"><i></i><
  (c.yaml?'<div class="yaml"><div class="c"># your team owns this file.</div><div>price_tolerance_pct: <span class="v">5</span></div><div>auto_post_max_amount: <span class="v">25000</span></div><div>hold_duplicates: <span class="v">yes</span></div><div>new_vendor_review: <span class="v">yes</span></div><div>always_escalate_vendor: <span class="v">none</span></div></div>':'')+
  '<div class="art" id="art"></div><div class="foot"><span>'+c.foot+'</span><b>THEUNWIRED.IN/LAB</b></div>';
 var art=document.getElementById('art');
+if(c.invoice){
+  art.innerHTML='<div class="inv"><div class="paper"><div class="v">'+pick.vendor+'<span>INVOICE</span></div><dl>'+
+    '<dt>INVOICE NO</dt><dd>'+pick.id+'</dd><dt>AMOUNT</dt><dd>'+cents(pick.amount)+'</dd><dt>PURCHASE ORDER</dt><dd>'+pick.po+'</dd>'+
+    '<dt>OVER PO</dt><dd>0.0%</dd><dt>GOODS RECEIPT</dt><dd>matches</dd></dl></div>'+
+    '<div class="opts"><div class="opt solid">Post it</div><div class="opt">Send to a person</div></div></div>';
+}
 if(c.strip){
   var cfg={price_tolerance_pct:c.strip.pct,auto_post_max_amount:c.strip.rules?25000:Infinity,hold_duplicates:c.strip.rules,new_vendor_review:c.strip.rules,always_escalate_vendor:[]};
   var zero=Q.filter(function(i){return !i.variance}), nz=Q.filter(function(i){return i.variance}).sort(function(a,b){return a.variance-b.variance});
@@ -62,7 +84,7 @@ if(c.strip){
   var rows=counts.reduce(function(m,c){return Math.max(m,c?c.length:0);},9), zc=Math.ceil(zero.length/rows), P=13, S=10.2;
   var x0=(zc+gap)*P, W=1056, H=rows*P+48, base=24+rows*P;
   var svg=el('svg',{viewBox:'0 0 '+W+' '+H},art);
-  function mark(inv,x,y){var o=outcome(inv,decide(inv,cfg).to);
+  function mark(inv,x,y){var o=cardOutcome(inv,decide(inv,cfg).to);
     if(o==='slip'){var s=S*0.78;el('rect',{x:x+(S-s)/2,y:y+(S-s)/2,width:s,height:s,fill:C.slip,transform:'rotate(45 '+(x+S/2)+' '+(y+S/2)+')'},svg);}
     else if(o==='post') el('rect',{x:x,y:y,width:S,height:S,fill:C.post},svg);
     else el('rect',{x:x+.75,y:y+.75,width:S-1.5,height:S-1.5,fill:'none',stroke:C[o],'stroke-width':1.5},svg);}

@@ -133,6 +133,11 @@ answers by playing. Its lesson is stamped only once they have played it, on
 the stage and on its hub card. Never print a lesson before the play, in
 cards, headlines or share text.
 
+**Sheet 00, the hub.** The Lab opens on one call on one invoice, then the
+line over the whole queue. The duplicate rule is shown as config, one word
+the visitor strikes with the pen, so the lesson lands as an act: the line
+matters, the rule matters more.
+
 **Leaving the site.** Copy the sheet gives plain text: the lesson in the
 visitor's own numbers first, the link last, "/" separators, no emoji. Every
 Lab page has its own link card, a question over a labelled line.

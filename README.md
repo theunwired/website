@@ -116,7 +116,14 @@ The sheet the site promises, the Unwired Blueprint, is a template in
 `docs/templates/unwired-blueprint.html`. How to fill it in is in
 `docs/brand/README.md`.
 
-A hub (`lab.html`) and three stage pages. Every Lab page has the stage bar
+A hub (`lab.html`, sheet 00) and three stage pages. The hub opens on the bet:
+one invoice from the queue (the largest duplicate whose original was posted
+just before it, picked by `initHub` in `assets/lab.js`), post it or send it
+to a person. Under it, the line over all 200 invoices can be dragged, and
+the duplicate rule is one word the visitor strikes. Every number there comes
+from the engine: the whole slider moves about $6k, the one word about $55k.
+Stage 01's bet is the near miss: the widest line that still catches every
+overbill, revealed as a dimension line to the nearest one. Every Lab page has the stage bar
 under the nav, and every stage ends with a Next stage button, so nobody has
 to find their way back. The home page invites people in from a band inside
 the contact section, above the CTA, so the ten numbered beats are untouched.
