@@ -2004,6 +2004,7 @@ h2.h-section,
 .hubline__yes[hidden] { display: none; }
 .hubline__hint { margin-top: 10px; font-family: var(--mono); font-size: 11.5px; line-height: 1.6; color: var(--quiet); }
 .hubline__bars { display: flex; flex-direction: column; gap: 10px; }
+.hubline .lab-stats .cell { min-width: 0; }
 .hubline__bar { display: grid; grid-template-columns: 112px minmax(0, 1fr); gap: 12px; align-items: center; font-family: var(--mono); font-size: 11px; letter-spacing: 0.04em; color: var(--quiet); }
 .hubline__track { position: relative; height: 22px; border-left: 1px solid var(--hairline-hi); display: block; }
 .hubline__fill { position: absolute; left: 0; top: 4px; bottom: 4px; background: var(--error); transition: width .4s ease-out; }
@@ -2167,6 +2168,8 @@ h2.h-section,
 }
 
 @media (max-width: 420px) {
+  .hubline__bar { grid-template-columns: 92px minmax(0, 1fr); }
+  .hubline .lab-stats .cell { padding: 16px 14px; }
   :root { --mark-peak: 0.18; }
   .hero-word { font-size: 26px; }
   .btn { padding: 13px 20px; font-size: 13px; }

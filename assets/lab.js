@@ -928,13 +928,14 @@
     function bars() {
       var a = slipAt(state.pct, false).slipValue, b = slipAt(state.pct, true).slipValue;
       var track = q('[data-hub-bar="a"]', root).parentNode.clientWidth || 300;
-      var use = track * 0.62, wa = a / MAX * use, wb = state.struck ? b / MAX * use : 0;
+      /* leave room after the longest bar for its value, on any width */
+      var use = Math.max(20, Math.min(track * 0.62, track - 72)), wa = a / MAX * use, wb = state.struck ? b / MAX * use : 0;
       q('[data-hub-bar="a"]', root).style.width = wa + 'px';
       q('[data-hub-val="a"]', root).style.left = (wa + 8) + 'px';
       q('[data-hub-val="a"]', root).textContent = money(a);
       q('[data-hub-bar="b"]', root).style.width = wb + 'px';
       q('[data-hub-val="b"]', root).style.left = (wb + 8) + 'px';
-      q('[data-hub-val="b"]', root).textContent = state.struck ? money(b) : 'strike the word to see';
+      q('[data-hub-val="b"]', root).textContent = state.struck ? money(b) : 'strike the word';
       wordDim.innerHTML = '';
       if (!state.struck) return;
       var svg = svgEl('svg', { viewBox: '0 0 ' + track + ' 30' });
