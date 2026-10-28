@@ -13,7 +13,7 @@ can add, reorder or delete lines here at any time.
 
 ## 2. Process playbooks by function (40%)
 
-- [ ] Invoice exceptions: what to automate and what to escalate
+- [x] Invoice exceptions: what to automate and what to escalate
 - [ ] Three-way match failures: the five causes and how an agent handles each
 - [ ] Bank reconciliation with an agent: where the time actually goes
 - [ ] Month-end close: which tasks an agent can take and which stay human

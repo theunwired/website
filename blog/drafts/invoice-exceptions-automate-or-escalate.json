@@ -1,0 +1,101 @@
+{
+  "slug": "invoice-exceptions-automate-or-escalate",
+  "pillar": "Process playbooks by function",
+  "title": "Invoice exceptions: what to automate and what to escalate",
+  "description": "Six kinds of invoice exception, which an agent can close on its own, which go to a person, and why bank detail changes always go to a person.",
+  "lede": "Most invoice exceptions are paperwork. A few are risk. The design job is telling them apart before the agent touches either.",
+  "answer": "Automate the exceptions where the fix is a known step and the downside is a delay: price variances inside a signed tolerance, missing receipts that can be chased, and invoices missing required fields. Escalate anything where a wrong call moves money to the wrong place: bank detail changes, likely duplicates, variances above tolerance and invoices with no purchase order.",
+  "date": "2026-10-28",
+  "summary": "Six kinds of invoice exception, sorted into the ones an agent closes and the ones a person decides.",
+  "cta_heading": "Where does your exception queue actually go?",
+  "cta_text": "Send us the categories your AP team works by hand each month. We'll show you which ones an agent should close and which ones it should only prepare.",
+  "reviewer": "a practitioner with 10+ years in enterprise automation",
+  "sections": [
+    {
+      "heading": "Who this is for",
+      "html": "<p>AP leads, finance controllers and shared service managers with an exception queue that never empties. If your clean invoices already post on their own and your team spends its week on the rest, this note is about the rest.</p>"
+    },
+    {
+      "heading": "An exception is not one thing",
+      "html": "<p>Teams talk about \"the exception queue\" as if it were one pile. It is several piles that look alike on a screen. An invoice 3% over the purchase order price and an invoice asking you to pay a new bank account both show up as a red flag on the same list. They are not the same problem.</p><p>The first is a question of tolerance. Someone has already decided, or should have, how much price movement is acceptable. The second is a question of identity. Is this really the vendor you think it is? No tolerance answers that.</p><p>So before we decide what an agent does, we sort the exceptions by one question: <strong>if the agent gets this wrong, what happens?</strong> If the answer is a delay or a polite email to a vendor, the agent can act. If the answer is money leaving to the wrong account, a person decides, and the agent's job is to prepare the case so that decision takes minutes, not an afternoon.</p>"
+    },
+    {
+      "heading": "Six exceptions and where each one goes",
+      "html": "<p>These six cover most of what lands in an AP exception queue. Your list will have local variants, but the sorting question stays the same.</p><table><thead><tr><th>Exception</th><th>What the agent does on its own</th><th>What goes to a person</th></tr></thead><tbody><tr><td><strong>Price or quantity variance</strong></td><td>Posts it if the variance sits inside the tolerance the process owner signed, and records which tolerance version applied</td><td>Anything above tolerance, with the PO, receipt and variance laid out side by side</td></tr><tr><td><strong>No goods receipt yet</strong></td><td>Asks the requester to confirm receipt, chases on a schedule, and re-runs the match when the receipt posts</td><td>Cases still open after the agreed number of reminders, or where the requester disputes delivery</td></tr><tr><td><strong>Missing or wrong fields</strong></td><td>Returns the invoice to the vendor with every defect listed in one message</td><td>Vendors who send the same defect again after being told</td></tr><tr><td><strong>Possible duplicate</strong></td><td>Holds the invoice and gathers the earlier match: number, amount, date, payment status</td><td>Always. A person confirms it is a duplicate or releases it</td></tr><tr><td><strong>Bank detail change</strong></td><td>Stops the invoice and the change, and pulls the vendor's existing contact details from the master file</td><td>Always. A person verifies the change through a separate channel before anything moves</td></tr><tr><td><strong>No purchase order</strong></td><td>Identifies the likely budget holder from the cost centre and past spend with that vendor</td><td>Always. The budget holder approves or rejects the spend</td></tr></tbody></table><p>Three rows end in \"always\". That is deliberate. In each of them, the risk is not that the agent misreads the invoice. The risk is that the invoice is designed to be misread.</p>"
+    },
+    {
+      "heading": "Why bank detail changes never go straight through",
+      "html": "<p>A request to change where a vendor gets paid is the single most dangerous email an AP team receives. It is also the one that looks most routine. The FBI's Internet Crime Complaint Center has tracked business email compromise for over a decade. Its 2024 public service announcement put the exposed dollar loss from October 2013 to December 2023 at more than $55 billion across 305,033 incidents. Its 2025 annual report lists 24,768 business email compromise complaints and about $3.05 billion in losses for that year alone.</p><p>The FBI's advice is short:</p><blockquote>Use secondary channels and/or two-factor authentication to verify requests for changes in account information.<cite>FBI Internet Crime Complaint Center, Business Email Compromise: The $55 Billion Scam (PSA, September 2024)</cite></blockquote><p>An agent is well placed to catch the change. It reads every invoice, it compares the bank details against the vendor master each time, and it does not get tired at 6pm on the last day of the month. What it should not do is verify the change, because the channel it would verify through is the same channel the fraud arrived on. The agent stops the payment and hands a person the old details, the new details, and the phone number already on file. The person calls that number. Not the one in the email.</p><p>The same logic applies to who can edit the vendor master. The US Government Accountability Office's internal control standards put it plainly: management \"divides or segregates key duties and responsibilities among different people to reduce the risk of error\" and fraud. An agent that can both change a vendor's bank account and release a payment to it holds two duties that should sit with different people. Give it one, or neither.</p>"
+    },
+    {
+      "heading": "Returning a bad invoice well",
+      "html": "<p>The most common exception is also the most boring: the invoice is missing something. A PO number, a tax ID, a delivery reference. Teams often handle this one defect at a time. The clerk spots the missing PO, emails the vendor, gets a corrected invoice back, then spots the missing tax ID. Each round trip adds days.</p><p>US federal agencies work under a rule that handles this better. Under the Prompt Payment regulations, an agency that receives an improper invoice must return it \"no later than 7 days after receipt\" and must \"identify all defects that prevent payment\". The notice must ask for \"a corrected invoice, to be clearly marked as such\". If the agency is late returning it, the days it is late come off the time it has to pay the corrected invoice.</p><p>That rule binds federal agencies, not private companies. It is still a good design brief for an agent. List every defect at once. Send it back fast. Ask for a corrected invoice that is marked as one, so it is not mistaken for a duplicate when it arrives. An agent can do all three on its own, because the downside of a returned invoice is a delay, and the rule it applies is a checklist the controller has already written.</p><p>This is not legal advice. Payment terms and late payment rules depend on your contracts and where you operate. Check them with counsel before you change how invoices are returned.</p>"
+    },
+    {
+      "heading": "A worked example: one month of exceptions",
+      "html": "<p>The numbers here are illustrative, for this example only. Take a month of 1,000 invoices, of which 150 raise an exception. Sorted by the table above, they might split like this.</p><table><thead><tr><th>Exception</th><th>Count</th><th>Closed by the agent</th><th>Sent to a person</th></tr></thead><tbody><tr><td>Price or quantity variance</td><td>70</td><td>50 inside tolerance</td><td>20 above tolerance</td></tr><tr><td>No goods receipt yet</td><td>35</td><td>25 after the receipt posts</td><td>10 still open or disputed</td></tr><tr><td>Missing or wrong fields</td><td>25</td><td>25 returned to the vendor</td><td>0</td></tr><tr><td>Possible duplicate</td><td>12</td><td>0</td><td>12</td></tr><tr><td>Bank detail change</td><td>5</td><td>0</td><td>5</td></tr><tr><td>No purchase order</td><td>3</td><td>0</td><td>3</td></tr><tr><td><strong>Total</strong></td><td><strong>150</strong></td><td><strong>100</strong></td><td><strong>50</strong></td></tr></tbody></table><p>In this example, the team's queue drops from 150 cases to 50. The more important change is what those 50 look like. Each arrives with the evidence already attached: the PO, the receipt, the earlier invoice, the vendor's number on file. The person is deciding, not searching.</p><p>Notice what did not change. The five bank detail changes and the twelve possible duplicates still go to a person, every month, however good the agent gets. Those rows are not waiting for the agent to improve. They are where the control lives.</p>"
+    },
+    {
+      "heading": "Where this breaks",
+      "html": "<p>The sorting holds up well, but three things undo it in practice.</p><p><strong>A tolerance nobody signed.</strong> If the variance row runs on a number a developer picked, the agent is posting invoices on a guess. The tolerance has to come from the process owner, written down and versioned, before the agent posts anything.</p><p><strong>Duplicates that do not look like duplicates.</strong> The same invoice resent with a new number, or split into two smaller amounts, will pass an exact-match check. Duplicate detection needs fuzzy checks on amount, date and vendor, and it will flag some false positives. That is fine. A false positive costs a person a minute.</p><p><strong>A queue that is all escalations.</strong> If most of what reaches a person is the agent being unsure, rather than a real decision, people stop reading the cases and start approving them. Track how often a person overrides the agent's suggestion. If it is almost never, the line may be too tight. If it is often, the agent is guessing.</p>"
+    }
+  ],
+  "from_our_builds": "<p>When we map an AP process, we start with the last month of the exception queue, not with the clean invoices. We sit with the AP lead and sort every case by one question: what happens if this is decided wrong? The cases where the answer is \"we pay the wrong account\" never go on the list of things the agent closes. We agree that list before writing any rule, and it rarely changes during the build.</p>",
+  "faq": [
+    {
+      "q": "Can an agent ever approve a bank detail change?",
+      "a": "We would not let it. The agent can detect the change, stop the payment and prepare the case. Verifying the change needs a separate channel, such as a call to the number already on file, and a person who owns that decision."
+    },
+    {
+      "q": "What tolerance should we set for price variances?",
+      "a": "There is no standard number. It depends on the category, the vendor and your margins. The process owner should set it, sign it and version it, and start tight. Widen it when the decision log shows the agent's calls hold up."
+    },
+    {
+      "q": "Should the agent email vendors directly?",
+      "a": "For defect returns and receipt chasers, yes, from a shared AP mailbox with a clear template. It should not negotiate prices, accept credit notes or discuss payment timing. Those go to a person."
+    },
+    {
+      "q": "Does the 7-day return rule apply to us?",
+      "a": "The Prompt Payment rule binds US federal agencies. Private companies follow their contracts and local law. The rule is still a useful model for how fast and how completely a defective invoice should be returned. This is not legal advice."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Business Email Compromise: The $55 Billion Scam (PSA I-091124-PSA)",
+      "url": "https://www.ic3.gov/PSA/2024/PSA240911",
+      "publisher": "FBI Internet Crime Complaint Center"
+    },
+    {
+      "title": "2025 IC3 Annual Report",
+      "url": "https://www.ic3.gov/AnnualReport/Reports/2025_IC3Report.pdf",
+      "publisher": "FBI Internet Crime Complaint Center"
+    },
+    {
+      "title": "5 CFR 1315.4: Prompt payment standards and required notices to vendors",
+      "url": "https://www.law.cornell.edu/cfr/text/5/1315.4",
+      "publisher": "Code of Federal Regulations, via Cornell Legal Information Institute"
+    },
+    {
+      "title": "Prompt Payment: Frequently Asked Questions",
+      "url": "https://fiscal.treasury.gov/payments-from-government/prompt-payment/faqs",
+      "publisher": "US Department of the Treasury, Bureau of the Fiscal Service"
+    },
+    {
+      "title": "Standards for Internal Control in the Federal Government (GAO-14-704G)",
+      "url": "https://www.gao.gov/assets/gao-14-704g.pdf",
+      "publisher": "US Government Accountability Office"
+    }
+  ],
+  "_review": {
+    "version": 1,
+    "notes": [
+      "From our builds: confirm this matches how we actually start an AP mapping (last month's exception queue, sorting with the AP lead, agreeing the list before rules). Only you know if it is true.",
+      "FBI IC3 PSA (Sept 2024): $55,499,915,582 exposed loss, 305,033 incidents, October 2013 to December 2023. Quote checked against ic3.gov/PSA/2024/PSA240911.",
+      "IC3 2025 Annual Report: BEC 24,768 complaints and $3,046,598,558 losses in 2025 (tables on pp. 25-26). Rounded to about $3.05 billion in the text.",
+      "Prompt Payment quotes ('no later than 7 days after receipt', 'identify all defects that prevent payment', 'a corrected invoice, to be clearly marked as such') come from 5 CFR 1315.4 and the Fiscal Service FAQ. The post says it binds federal agencies only.",
+      "GAO quote is from the Green Book (2014 edition, Figure 6, Control Activities). GAO issued a 2025 revision; check whether you prefer to cite that edition instead.",
+      "Worked example numbers (1,000 invoices, 150 exceptions, 100/50 split) are illustrative and labelled as such.",
+      "FAQ 'We would not let it' states a firm position on bank detail changes. Confirm you are comfortable with that stance."
+    ]
+  }
+}
